@@ -1,0 +1,13 @@
+# F3B — never commit real CSSA private field data
+field_private/
+local_intake/
+private_intake/
+*.private.json
+*.private.yaml
+*.private.yml
+*.private.csv
+*.private.eml
+*.private.msg
+*.private.pdf
+*.private.docx
+*.private.xlsx
