@@ -51,7 +51,7 @@ Current main baseline:
 - run 37508621493 / job 112423614411;
 - `11 failed, 12443 passed, 46 skipped, 207 deselected`.
 
-The same 11 baseline failures occur in both runs. F2.5 adds seven tests and the pass count increases by exactly seven.
+The same 11 baseline failures occur in both runs. The hardened F2.5 branch adds eight focused upstream tests, including forged-envelope rejection, and introduces zero new failure.
 
 Verdict:
 `BASELINE_EQUIVALENT_NO_NEW_FAILURES`
@@ -67,3 +67,18 @@ Not claimed:
 - CSSA/Administration business-semantic freeze;
 - production deployment;
 - unrestricted external action.
+
+
+## Security hardening before freeze
+
+Audit finding `F25-AUDIT-001` rejected the earlier extension-supplied decision-pipeline shape.
+
+Frozen contract:
+`resolve_domain_aggregate_builder(domain) -> DomainAggregate`.
+
+The upstream coordinator validates aggregate type/domain and invokes the real `GuardX108` itself.
+
+Cross-repository negative proof rejects a forged `CanonicalDecisionEnvelope(ALLOW)` before persistence or provider execution.
+
+Freeze marker:
+`evidence/audits/F25_FREEZE_V0.md`
