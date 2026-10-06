@@ -1,47 +1,56 @@
 # STATUS
 
-Status: F2_1_REAL_CURRENT_MAIN_COMPATIBILITY_CLOSED
-Branch: feat/f2-1-main-runtime-compat-v0
+Status: F2_2_PORTABLE_DOMAIN_REGISTRATION_CLOSED
+Branch: feat/f2-2-portable-domain-registration-v0
 F0-A: CLOSED
 F0-B CSSA field reality: OPEN
 F1 universal contract: PASS
 F2 isolated conformance: PASS
 F2.1 real current-main Guard compatibility: PASS
-CI: 43/43 PASS
+F2.2 portable new-domain registration: PASS
+CI: 64/64 PASS
 Administration semantic freeze: HOLD
-CSSA runtime registration: NOT_STARTED
+Canonical runtime portable registration: NOT_STARTED
 
 ## Proven now
 
-F1 GovernancePayloadV0 can be translated without copied kernel code into the REAL current `obsidia-x108-proofs` DomainAggregate and sent through the REAL GuardX108 for currently registered domains.
+A new domain can be explicitly registered outside KX108, translated through the F1 universal contract and judged by the REAL current GuardX108 without adding its business semantics to KX108 and without modifying upstream kernel code.
 
-Real Guard behavior observed in CI:
+Observed with two unrelated new domains:
+- administration;
+- warehouse.
+
+Real Guard behavior:
 - clean -> ALLOW;
 - excess unknowns -> HOLD;
 - contradiction threshold -> BLOCK.
 
-The payload itself still carries no decision, no Binder permission and no action authority.
+## Non-sovereignty preserved
 
-## Exact remaining plug-in gap
+Portable registration cannot decide, grant Binder permission, authorize action, emit ACT/verdict, mutate kernel/X108, or write memory.
 
-Current main's governed runtime still enumerates concrete pipelines in `_DOMAIN_PIPELINES` and relies on concrete upstream Domain enum/runtime bridges.
+Business fields stop at the domain adapter boundary.
 
-Therefore Administration is correctly refused before GuardX108:
-`NO_CANONICAL_DOMAIN_PIPELINE:administration`.
+## Exact remaining gap
 
-This means:
-- UNIVERSAL CONTRACT = working candidate;
-- REAL KX108 COMPATIBILITY = proven for registered domains;
-- GENERIC NEW-DOMAIN REGISTRATION = not yet proven.
+Current main's canonical governed runtime coordinator still uses `_DOMAIN_PIPELINES` for supported domains.
+
+F2.2 proves the portable route at the Guard boundary, but not yet as a canonical runtime domain route.
+
+Therefore:
+- UNIVERSAL CONTRACT = PASS;
+- REAL GUARD COMPATIBILITY = PASS;
+- PORTABLE NEW-DOMAIN REGISTRATION = PASS AT GUARD BOUNDARY;
+- CANONICAL RUNTIME PLUG-IN = NOT YET PROVEN.
 
 ## Evidence
 
-`evidence/audits/F21_REAL_CURRENT_MAIN_RUNTIME_RECEIPT.md`
-GitHub Actions run 37520797367 / job 112465375493
-`43 passed in 0.20s`
+`evidence/audits/F22_PORTABLE_DOMAIN_REGISTRATION_RECEIPT.md`
+GitHub Actions run 37521371473 / job 112467330628
+`64 passed in 0.22s`
 
 ## Next technical target
 
-F2.2 — define and prove a non-sovereign portable domain registration/bridge contract so a new domain can declare its adapter without hard-coding business semantics into Universal or KX108.
+F2.3 — integrate the portable registration contract with a canonical-runtime-compatible resolver boundary, without business semantics in Universal/KX108 and without weakening current unsupported-domain fail-closed behavior.
 
-Administration/CSSA semantics remain HOLD until F0-B field evidence.
+Administration/CSSA semantic freeze remains HOLD until F0-B field evidence.
