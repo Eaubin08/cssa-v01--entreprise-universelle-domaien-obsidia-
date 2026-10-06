@@ -311,6 +311,12 @@ class CanonicalCompatibleResolverV0:
         if self._canonical_is_supported_domain(domain_id):
             return self._canonical_resolve_domain_pipeline(domain_id)
 
+        # Preserve the F2.3 fail-closed public error contract.
+        if domain_id not in self._bindings:
+            raise PortableRuntimeResolutionError(
+                f"NO_CANONICAL_OR_PORTABLE_DOMAIN_PIPELINE:{domain_id}"
+            )
+
         builder = self.resolve_domain_aggregate_builder(domain_id)
 
         def portable_pipeline(raw_state: Any, packet: Any):
