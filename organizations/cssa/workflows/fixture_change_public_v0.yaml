@@ -1,0 +1,36 @@
+version: CSSA_FIXTURE_CHANGE_PUBLIC_V0
+status: PUBLIC_RULE_MODEL_NOT_FIELD_VALIDATED
+domain: administration
+organization: cssa
+season: "2026-2027"
+source_rule: LGEF_2026_2027_ART_20_7
+
+branches:
+  normal_window:
+    condition: days_before_match >= 10
+    required_channel: FOOTCLUBS
+    club_action: REQUEST_AND_VALIDATE_WITH_OTHER_CLUB
+    final_authority: LGEF_COMPETITIONS_WITH_CRC
+  late_window:
+    condition: days_before_match < 10
+    required_channel: OFFICIAL_EMAIL
+    club_action: OBTAIN_OTHER_CLUB_AGREEMENT
+    final_authority: LGEF_COMPETITIONS_WITH_CRC
+
+invariants:
+  - CSSA_CANNOT_SELF_HOMOLOGATE_FIXTURE
+  - CLUB_AGREEMENT_IS_NOT_FINAL_AUTHORITY
+  - REQUEST_IS_NOT_DECISION
+  - PROPOSAL_IS_NOT_ACTION
+  - KX108_ONLY
+
+first_pilot_mode:
+  - READ
+  - CLASSIFY
+  - LINK_TO_FIXTURE
+  - DETECT_DEADLINE_ROUTE
+  - PREPARE_CHECKLIST
+  - PROPOSE
+  - REQUEST_HUMAN_VALIDATION
+
+external_write: HOLD
