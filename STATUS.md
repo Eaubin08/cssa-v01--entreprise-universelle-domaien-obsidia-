@@ -1,47 +1,47 @@
 # STATUS
 
-Status: F2_UNIVERSAL_CONFORMANCE_CLOSED
-Branch: feat/f2-universal-conformance-v0
+Status: F2_1_REAL_CURRENT_MAIN_COMPATIBILITY_CLOSED
+Branch: feat/f2-1-main-runtime-compat-v0
 F0-A: CLOSED
 F0-B CSSA field reality: OPEN
-F1 contract: CLOSED_CANDIDATE
-F2 conformance: 32/32 PASS
-GitHub Actions CI: PASS
-Main-runtime direct integration: NOT_STARTED
+F1 universal contract: PASS
+F2 isolated conformance: PASS
+F2.1 real current-main Guard compatibility: PASS
+CI: 43/43 PASS
 Administration semantic freeze: HOLD
-CSSA action/runtime: NOT_STARTED
+CSSA runtime registration: NOT_STARTED
 
-## F2 result
+## Proven now
 
-F1 universal contract survived comparison against:
-- four current-main domain profiles;
-- October UDIP executable candidate semantics;
-- an arbitrary synthetic Administration domain at contract level.
+F1 GovernancePayloadV0 can be translated without copied kernel code into the REAL current `obsidia-x108-proofs` DomainAggregate and sent through the REAL GuardX108 for currently registered domains.
 
-Authority/write leakage fails closed.
-Business/advisory fields remain outside Universal.
-WorldState remains optional upstream rather than mandatory.
+Real Guard behavior observed in CI:
+- clean -> ALLOW;
+- excess unknowns -> HOLD;
+- contradiction threshold -> BLOCK.
 
-CI proof:
-- workflow f2-universal-conformance;
-- run 37520147402;
-- job 112463165631;
-- 32 passed in 0.07s;
-- conclusion SUCCESS.
+The payload itself still carries no decision, no Binder permission and no action authority.
 
-## Important boundary
+## Exact remaining plug-in gap
 
-Administration can now be represented by the Universal contract, but current obsidia-x108-proofs main does NOT yet support Administration as a real registered runtime domain.
+Current main's governed runtime still enumerates concrete pipelines in `_DOMAIN_PIPELINES` and relies on concrete upstream Domain enum/runtime bridges.
 
-Therefore:
-- UNIVERSAL CONTRACT GENERALITY = CANDIDATE TESTED
-- MAIN RUNTIME PLUG-IN GENERALITY = NOT YET PROVEN
-- CSSA DOMAIN CORRECTNESS = NOT YET PROVEN
+Therefore Administration is correctly refused before GuardX108:
+`NO_CANONICAL_DOMAIN_PIPELINE:administration`.
 
-## Next
+This means:
+- UNIVERSAL CONTRACT = working candidate;
+- REAL KX108 COMPATIBILITY = proven for registered domains;
+- GENERIC NEW-DOMAIN REGISTRATION = not yet proven.
 
-Two routes remain:
-1. F2.1 direct compatibility/integration proof against current-main interfaces without copying the kernel;
-2. F0-B/F3 field acquisition for real CSSA Administration semantics.
+## Evidence
 
-Do not freeze Administration objects before field evidence.
+`evidence/audits/F21_REAL_CURRENT_MAIN_RUNTIME_RECEIPT.md`
+GitHub Actions run 37520797367 / job 112465375493
+`43 passed in 0.20s`
+
+## Next technical target
+
+F2.2 — define and prove a non-sovereign portable domain registration/bridge contract so a new domain can declare its adapter without hard-coding business semantics into Universal or KX108.
+
+Administration/CSSA semantics remain HOLD until F0-B field evidence.
