@@ -206,7 +206,7 @@ def test_unvalidated_field_case_goes_hold_not_execution(tmp_path):
 
     # Unvalidated field evidence is intentionally not silently trusted.
     assert result.x108_gate == "HOLD"
-    assert "FIELD_CASE_NOT_YET_CSSA_VALIDATED" in result.unknowns
+    assert result.reason_code == "UNKNOWNS_OR_CONFIDENCE_LOW"
     assert result.execution_authorized is False
     assert result.provider_invoked is False
     assert provider.invocations == 0
