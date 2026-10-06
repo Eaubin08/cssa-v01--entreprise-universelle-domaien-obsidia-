@@ -3,6 +3,8 @@ from __future__ import annotations
 
 from typing import Any, Mapping
 
+from universal.contracts.domain_v0 import DomainStateRefV0
+
 from .contracts_v0 import CSSAFieldBundleV0, CSSAFieldCaseV0, CSSAFieldSourceV0
 
 
@@ -73,3 +75,22 @@ def bundle_from_mapping(raw: Mapping[str, Any]) -> CSSAFieldBundleV0:
     if errors:
         raise ValueError(";".join(errors))
     return bundle
+
+
+def field_runtime_adapter(raw: Mapping[str, Any]) -> DomainStateRefV0:
+    """Runtime adapter for a pre-normalized F3B field-case mapping.
+
+    CSSA-specific observed fields may exist in raw, but only the generic
+    Administration transport fields cross this boundary.
+    """
+    return DomainStateRefV0(
+        domain_id="administration",
+        state_ref=str(raw["case_ref"]),
+        valid_at=str(raw["valid_at"]),
+        upstream_state_ref=raw.get("source_ref"),
+        unknowns=_tuple(raw.get("unknowns")),
+        contradictions=_tuple(raw.get("contradictions")),
+        risk_flags=_tuple(raw.get("risk_flags")),
+        evidence_refs=_tuple(raw.get("evidence_refs")),
+        provenance_refs=_tuple(raw.get("provenance_refs")),
+    )
