@@ -1,67 +1,40 @@
 # STATUS
 
-Status: F1_UNIVERSAL_CONTRACT_ACTIVE
-Branch: `feat/f1-universal-contract-recovery-v0`
+Status: F2_UNIVERSAL_CONFORMANCE_CLOSED_LOCAL
+Branch: feat/f2-universal-conformance-v0
 F0-A: CLOSED
 F0-B CSSA field reality: OPEN
-F1 isolated contract tests: 11/11 PASS
-Main-runtime integration: NOT_STARTED
+F1 contract: CLOSED_CANDIDATE
+F2 isolated conformance: 32/32 PASS
+GitHub Actions CI: WORKFLOW_PRESENT / RUN_NOT_YET_OBSERVED
+Main-runtime direct integration: NOT_STARTED
 Administration semantic freeze: HOLD
 CSSA action/runtime: NOT_STARTED
 
-## Closed facts
+## F2 result
 
-- `obsidia-x108-proofs@main` is the runtime baseline.
-- Main has a real governed internal multi-domain runtime.
-- New arbitrary domain plug-and-play is not yet proven.
-- Historical UDIP is architecture/reference, not runtime truth.
-- October `feat/premiere-mise-au-monde-udip-v0` contains a newer executable minimal bridge candidate.
-- `feat/premiere-mise-au-monde-proof-v0` is the latest relevant descendant.
-- The eight commits these branches trail main are display-only terminal/color changes.
-- Public FFF/LGEF sources establish real administrative deadlines, exceptions, authority boundaries and proof obligations.
-- Real CSSA internal practice remains unknown until field access.
+F1 universal contract survived comparison against:
+- four current-main domain profiles;
+- October UDIP executable candidate semantics;
+- an arbitrary synthetic Administration domain at contract level.
 
-## F1 implemented
+Authority/write leakage fails closed.
+Business/advisory fields remain outside Universal.
+WorldState remains optional upstream rather than mandatory.
 
-```text
-Domain-owned state
-  -> DomainStateRefV0
-  -> GovernancePayloadV0
-```
+## Important boundary
 
-Preserved:
-- domain id;
-- state ref;
-- optional upstream state ref;
-- validity time;
-- unknowns;
-- contradictions;
-- risk flags;
-- evidence refs;
-- provenance refs;
-- optional proposal ref.
+Administration can now be represented by the Universal contract, but current obsidia-x108-proofs main does NOT yet support Administration as a real registered runtime domain.
 
-Forbidden:
-- domain decision;
-- Binder permission;
-- action authority;
-- authority other than KX108_ONLY.
+Therefore:
+- UNIVERSAL CONTRACT GENERALITY = CANDIDATE PROVEN IN ISOLATION
+- MAIN RUNTIME PLUG-IN GENERALITY = NOT YET PROVEN
+- CSSA DOMAIN CORRECTNESS = NOT YET PROVEN
 
-## Current evidence
+## Next
 
-`evidence/audits/F1_LOCAL_TEST_RECEIPT.md`
+Two parallel routes are now possible:
+1. F2.1 direct compatibility bridge/integration proof against a frozen copy/reference of current-main interfaces;
+2. F0-B/F3 field acquisition for real CSSA Administration semantics.
 
-Result:
-`11 passed in 0.07s`
-
-Claim:
-`ISOLATED_CONTRACT_TESTED`
-
-## Next technical step
-
-F2 bounded universal conformance harness against:
-- the F1 contract;
-- current main domain invariants;
-- existing October UDIP candidate semantics.
-
-Administration/CSSA business semantics remain blocked on F0-B field evidence.
+Do not freeze Administration objects before field evidence.
