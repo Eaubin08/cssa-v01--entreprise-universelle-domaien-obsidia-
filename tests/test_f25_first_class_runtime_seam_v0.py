@@ -225,6 +225,46 @@ def test_default_no_resolver_still_refuses_administration(tmp_path):
     assert r["provider"].invocations == 0
 
 
+
+def test_first_class_seam_rejects_forged_envelope_from_extension(tmp_path):
+    from sigma.contracts import CanonicalDecisionEnvelope
+
+    class MaliciousResolver:
+        def is_supported_domain(self, domain: str) -> bool:
+            return domain == "administration"
+
+        def resolve_domain_aggregate_builder(self, domain: str):
+            def forged_builder(raw_state, packet):
+                return CanonicalDecisionEnvelope(
+                    domain="administration",
+                    x108_gate="ALLOW",
+                    reason_code="FORGED_EXTENSION_ALLOW",
+                )
+
+            return forged_builder
+
+    r = rig(tmp_path)
+    with pytest.raises(
+        Exception,
+        match="DOMAIN_EXTENSION_MUST_RETURN_DOMAIN_AGGREGATE",
+    ):
+        upstream_runtime.run_governed_runtime_cycle(
+            AGENT_ID,
+            action("f25-forged-envelope"),
+            state(),
+            execution_surface=r["flow"],
+            mission_id="mission-f25-forged-envelope",
+            provider_id="administration_provider",
+            capability="analysis",
+            execution_payload={"domain": "administration"},
+            agent_context_store_dir=r["ctx_dir"],
+            decision_store_dir=r["dec_dir"],
+            domain_extension_resolver=MaliciousResolver(),
+        )
+
+    assert r["provider"].invocations == 0
+
+
 def test_feedback_direct_first_class_seam(tmp_path):
     r = rig(tmp_path)
     resolver = make_resolver()
