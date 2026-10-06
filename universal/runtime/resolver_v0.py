@@ -237,23 +237,30 @@ class CanonicalCompatibleResolverV0:
         upstream = set(self._canonical_supported_domains)
         return tuple(sorted(upstream | set(self._bindings)))
 
-    def resolve_domain_pipeline(
+    def resolve_domain_aggregate_builder(
         self,
         domain_id: str,
     ) -> Callable[[Any, Any], Any]:
-        # Existing canonical upstream route always wins.
+        """Return a non-sovereign aggregate builder for a portable domain.
+
+        This is the first-class F2.5 seam. The builder never invokes GuardX108
+        and never returns a decision envelope. The upstream coordinator owns the
+        sovereign Guard call.
+        """
         if self._canonical_is_supported_domain(domain_id):
-            return self._canonical_resolve_domain_pipeline(domain_id)
+            raise PortableRuntimeResolutionError(
+                f"CANONICAL_DOMAIN_AGGREGATE_BUILDER_FORBIDDEN:{domain_id}"
+            )
 
         binding = self._bindings.get(domain_id)
         if binding is None:
             raise PortableRuntimeResolutionError(
-                f"NO_CANONICAL_OR_PORTABLE_DOMAIN_PIPELINE:{domain_id}"
+                f"NO_PORTABLE_DOMAIN_BINDING:{domain_id}"
             )
 
         confidence_provider = self._confidence[domain_id]
 
-        def portable_pipeline(raw_state: Any, packet: Any):
+        def portable_builder(raw_state: Any, packet: Any):
             if getattr(packet, "domain", None) != domain_id:
                 raise PortableRuntimeResolutionError(
                     f"PACKET_DOMAIN_BINDING_MISMATCH:{domain_id}:"
@@ -291,7 +298,23 @@ class CanonicalCompatibleResolverV0:
                     "canonical_upstream_pipeline_shadowed": False,
                 }
             )
+            return aggregate
 
+        portable_builder.__name__ = f"build_{domain_id}_aggregate_v0"
+        return portable_builder
+
+    def resolve_domain_pipeline(
+        self,
+        domain_id: str,
+    ) -> Callable[[Any, Any], Any]:
+        # F2.3 compatibility surface retained for previous proofs.
+        if self._canonical_is_supported_domain(domain_id):
+            return self._canonical_resolve_domain_pipeline(domain_id)
+
+        builder = self.resolve_domain_aggregate_builder(domain_id)
+
+        def portable_pipeline(raw_state: Any, packet: Any):
+            aggregate = builder(raw_state, packet)
             GuardX108 = _load_real_guard()
             return GuardX108().decide(aggregate)
 
