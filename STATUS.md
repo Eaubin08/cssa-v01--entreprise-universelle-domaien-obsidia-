@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F2_5_FIRST_CLASS_RUNTIME_SEAM_CLOSED
-Branch: feat/f2-5-first-class-runtime-seam-v0
+Status: F2_5_FROZEN_OFF_MAIN
+Branch: `feat/f2-5-first-class-runtime-seam-v0`
 F0-A: CLOSED
 F0-B CSSA field reality: OPEN
 F1 universal contract: PASS
@@ -10,70 +10,59 @@ F2.1 real current-main Guard compatibility: PASS
 F2.2 portable new-domain registration: PASS
 F2.3 canonical-compatible resolver: PASS
 F2.4 full canonical runtime by injection: PASS
-F2.5 first-class upstream resolver seam: PASS
-Cross-repo CI: 101/101 PASS
+F2.5 first-class aggregate-only resolver seam: PASS
+Cross-repo hardened CI: 102/102 PASS
 Upstream native regression: BASELINE_EQUIVALENT_NO_NEW_FAILURES
 Administration semantic freeze: HOLD
-Upstream main merge: NOT_DONE
+Upstream main merge: FORBIDDEN UNTIL EXPLICIT USER DECISION
 
-## Proven now
+## Security audit
 
-`obsidia-x108-proofs` has a dedicated F2.5 branch where the real governed runtime accepts an optional `domain_extension_resolver` directly.
+Merge-readiness audit found one sovereignty issue in the initial F2.5 draft:
+an extension-supplied full pipeline could theoretically fabricate a dataclass decision envelope.
 
-No monkey-patching is required for the F2.5 path.
+That design was rejected before freeze.
 
-Resolution is:
-1. canonical current-main pipeline;
-2. optional extension only for an absent canonical domain;
-3. fail closed.
+Frozen F2.5 contract:
 
-Administration traverses the full real lifecycle through that first-class seam:
-- registered non-sovereign agent;
-- ContextPacket and boundary;
-- real GuardX108;
-- CanonicalDecisionEnvelope;
-- pre-execution context;
-- persisted/verified decision record;
-- OS3 ticket;
-- replay;
-- execution gate;
-- bounded provider;
-- sealed receipt;
-- readonly feedback.
+```text
+extension
+ -> DomainAggregate only
+runtime
+ -> validates aggregate/domain
+ -> REAL GuardX108.decide()
+ -> CanonicalDecisionEnvelope
+```
 
-Observed:
-- clean -> ALLOW -> provider executes once;
-- unknown threshold -> HOLD -> no execution;
-- contradiction threshold -> BLOCK -> no execution;
-- resolver absent -> Administration refused before decision;
-- feedback t1 requires a fresh KX108 decision through the same explicit resolver.
+Forged-envelope negative test: PASS.
 
-## Regression truth
+## Evidence
 
-Dedicated CSSA cross-repo suite:
-`101 passed in 0.46s`.
+Focused final:
+`102 passed in 0.43s`
+run `37527394792`, job `112487760134`.
 
-Upstream all-tests branch run:
-`11 failed, 12450 passed, 46 skipped, 207 deselected`.
+Upstream native hardened branch:
+`11 failed, 12451 passed, 46 skipped, 207 deselected`
+run `37526855143`, job `112485940506`.
 
 Current main baseline:
 `11 failed, 12443 passed, 46 skipped, 207 deselected`.
 
-The same 11 failures exist on main. F2.5 adds seven passing tests and no new failure.
+Same 11 inherited failures; +8 F2.5 passing tests; zero new failures.
 
-## Universal-runtime conclusion
+## Freeze
 
-- UNIVERSAL CONTRACT = PASS;
-- PORTABLE DOMAIN REGISTRATION = PASS;
-- REAL KX108 = PASS;
-- FULL CANONICAL RUNTIME LIFECYCLE = PASS;
-- FIRST-CLASS RESOLVER SEAM = PASS ON DEDICATED UPSTREAM BRANCH;
-- MERGE TO MAIN = NOT YET DONE.
+`evidence/audits/F25_FREEZE_V0.md`
 
-## Next gate
+No semantic change to F2.5 without explicit unfreeze + new audit.
 
-The universal runtime blocker is no longer technical proof of portability.
+## Next
 
-Before merging/promoting to main, perform a focused merge-readiness audit of the F2.5 branch and decide whether this seam belongs in current main now or remains a V0.1 branch contract.
+Universal runtime portability is no longer the blocker.
 
-In parallel, F0-B remains required before freezing real Administration/CSSA semantics.
+Remaining work splits into:
+1. optional future decision on whether to promote the frozen upstream seam to main;
+2. F0-B acquisition of real CSSA field evidence before freezing Administration/CSSA business semantics.
+
+Nothing has been pushed or merged to `main`.
