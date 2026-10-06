@@ -1,0 +1,22 @@
+version: CSSA_OFFICIAL_CORRESPONDENCE_PUBLIC_V0
+status: PUBLIC_RULE_MODEL_NOT_FIELD_VALIDATED
+domain: administration
+organization: cssa
+source_rule: LGEF_2026_2027_ART_1_CORRESPONDENCE
+
+public_cssa_official_contact:
+  email: sedanardennes.cs@ardennes.lgef.fr
+  source_ref: CSSA_PUBLIC_CONTACT_PAGE
+
+lgef_rule:
+  inbound_to_club: OFFICIAL_ADDRESS_REGISTERED_VIA_FOOTCLUBS
+  outbound_to_lgef_or_district: OFFICIAL_CLUB_ADDRESS_TO_OFFICIAL_SERVICE_ADDRESS
+
+invariants:
+  - EMAIL_CONTENT_DOES_NOT_IMPLY_AUTHORITY
+  - SENDER_ADDRESS_MATTERS
+  - SOURCE_IDENTITY_MUST_BE_PRESERVED
+  - OFFICIAL_CHANNEL_DOES_NOT_EQUAL_TRUTH
+  - KX108_ONLY
+
+external_send: HOLD
