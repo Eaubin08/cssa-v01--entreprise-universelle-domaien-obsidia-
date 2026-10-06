@@ -1,31 +1,67 @@
 # STATUS
 
-Status: PRE-FORGE_F0A_CLOSED / F1_READY
-Branch: `preforge/v01-cssa-universal-domain-v0`
-Runtime build: NOT_STARTED
-CSSA field access: NOT_STARTED
-Public-source audit: BASELINE_ESTABLISHED
-Universal-domain audit: F0A_CLOSED
+Status: F1_UNIVERSAL_CONTRACT_ACTIVE
+Branch: `feat/f1-universal-contract-recovery-v0`
+F0-A: CLOSED
+F0-B CSSA field reality: OPEN
+F1 isolated contract tests: 11/11 PASS
+Main-runtime integration: NOT_STARTED
+Administration semantic freeze: HOLD
+CSSA action/runtime: NOT_STARTED
 
-## Current facts
+## Closed facts
 
-- The repository is intentionally isolated from the kernel repository.
-- `obsidia-x108-proofs@main` is the current runtime baseline.
-- Main already has a real governed internal multi-domain runtime, but new domain plug-and-play is not proven.
-- Historical UDIP remains useful as an architectural source but is not the current runtime source.
-- `feat/premiere-mise-au-monde-udip-v0` contains a newer minimal executable UDIP bridge candidate.
-- `feat/premiere-mise-au-monde-proof-v0` is the latest relevant strict descendant and adds governed-world proof binding.
-- The eight commits by which these October branches trail main are display/terminal-color changes only.
-- The Administration scaffold on the old UDIP branch contains no real business semantics.
-- Public FFF/LGEF sources already expose real administrative workflows, deadlines, exceptions, authority boundaries and proof obligations.
-- Real CSSA internal workflows remain unknown until field access.
+- `obsidia-x108-proofs@main` is the runtime baseline.
+- Main has a real governed internal multi-domain runtime.
+- New arbitrary domain plug-and-play is not yet proven.
+- Historical UDIP is architecture/reference, not runtime truth.
+- October `feat/premiere-mise-au-monde-udip-v0` contains a newer executable minimal bridge candidate.
+- `feat/premiere-mise-au-monde-proof-v0` is the latest relevant descendant.
+- The eight commits these branches trail main are display-only terminal/color changes.
+- Public FFF/LGEF sources establish real administrative deadlines, exceptions, authority boundaries and proof obligations.
+- Real CSSA internal practice remains unknown until field access.
 
-## Forge gate
+## F1 implemented
 
-`F1 UNIVERSAL CONTRACT RECOVERY = GO`
+```text
+Domain-owned state
+  -> DomainStateRefV0
+  -> GovernancePayloadV0
+```
 
-`ADMINISTRATION/CSSA SEMANTIC FREEZE = HOLD pending field evidence`
+Preserved:
+- domain id;
+- state ref;
+- optional upstream state ref;
+- validity time;
+- unknowns;
+- contradictions;
+- risk flags;
+- evidence refs;
+- provenance refs;
+- optional proposal ref.
 
-## Next step
+Forbidden:
+- domain decision;
+- Binder permission;
+- action authority;
+- authority other than KX108_ONLY.
 
-Create F1 branch and implement the minimal universal contract/conformance layer without copying the kernel or hard-coding CSSA semantics.
+## Current evidence
+
+`evidence/audits/F1_LOCAL_TEST_RECEIPT.md`
+
+Result:
+`11 passed in 0.07s`
+
+Claim:
+`ISOLATED_CONTRACT_TESTED`
+
+## Next technical step
+
+F2 bounded universal conformance harness against:
+- the F1 contract;
+- current main domain invariants;
+- existing October UDIP candidate semantics.
+
+Administration/CSSA business semantics remain blocked on F0-B field evidence.
