@@ -1,56 +1,51 @@
 # STATUS
 
-Status: F2_2_PORTABLE_DOMAIN_REGISTRATION_CLOSED
-Branch: feat/f2-2-portable-domain-registration-v0
+Status: F2_3_CANONICAL_COMPATIBLE_RESOLVER_CLOSED
+Branch: feat/f2-3-canonical-compatible-resolver-v0
 F0-A: CLOSED
 F0-B CSSA field reality: OPEN
 F1 universal contract: PASS
 F2 isolated conformance: PASS
 F2.1 real current-main Guard compatibility: PASS
 F2.2 portable new-domain registration: PASS
-CI: 64/64 PASS
+F2.3 canonical-compatible resolver: PASS
+CI: 88/88 PASS
 Administration semantic freeze: HOLD
-Canonical runtime portable registration: NOT_STARTED
+Full canonical runtime portable domain cycle: NOT_STARTED
 
 ## Proven now
 
-A new domain can be explicitly registered outside KX108, translated through the F1 universal contract and judged by the REAL current GuardX108 without adding its business semantics to KX108 and without modifying upstream kernel code.
+A portable domain can expose the same `(state, packet) -> envelope` resolution shape as current canonical domain bridges while preserving current-main canonical precedence.
 
-Observed with two unrelated new domains:
-- administration;
-- warehouse.
+Built-in domains still resolve to the exact upstream canonical functions.
+Administration exists only in the overlay resolver.
+Unknown domains still fail closed.
+Portable domains cannot shadow built-in domains.
 
-Real Guard behavior:
-- clean -> ALLOW;
-- excess unknowns -> HOLD;
-- contradiction threshold -> BLOCK.
-
-## Non-sovereignty preserved
-
-Portable registration cannot decide, grant Binder permission, authorize action, emit ACT/verdict, mutate kernel/X108, or write memory.
-
-Business fields stop at the domain adapter boundary.
+REAL upstream PeripheralSignalPacket and REAL GuardX108 are exercised.
 
 ## Exact remaining gap
 
-Current main's canonical governed runtime coordinator still uses `_DOMAIN_PIPELINES` for supported domains.
+The unmodified upstream `run_governed_runtime_cycle()` still calls its own module-level:
+- `is_supported_domain()`;
+- `resolve_domain_pipeline()`.
 
-F2.2 proves the portable route at the Guard boundary, but not yet as a canonical runtime domain route.
+It does not yet receive the F2.3 overlay resolver.
 
 Therefore:
-- UNIVERSAL CONTRACT = PASS;
-- REAL GUARD COMPATIBILITY = PASS;
-- PORTABLE NEW-DOMAIN REGISTRATION = PASS AT GUARD BOUNDARY;
-- CANONICAL RUNTIME PLUG-IN = NOT YET PROVEN.
+- PORTABLE DOMAIN CONTRACT = PASS;
+- REAL GUARD = PASS;
+- CANONICAL-COMPATIBLE RESOLVER = PASS;
+- FULL CANONICAL RUNTIME PORTABLE CYCLE = NOT YET PROVEN.
 
 ## Evidence
 
-`evidence/audits/F22_PORTABLE_DOMAIN_REGISTRATION_RECEIPT.md`
-GitHub Actions run 37521371473 / job 112467330628
-`64 passed in 0.22s`
+`evidence/audits/F23_CANONICAL_COMPATIBLE_RESOLVER_RECEIPT.md`
+GitHub Actions run 37522045717 / job 112469648672
+`88 passed in 0.24s`
 
 ## Next technical target
 
-F2.3 — integrate the portable registration contract with a canonical-runtime-compatible resolver boundary, without business semantics in Universal/KX108 and without weakening current unsupported-domain fail-closed behavior.
+F2.4 — prove a dependency-injected / adapter-compatible full `run_governed_runtime_cycle` path for a portable domain, preserving the same context, decision-record, ticket, replay and execution gates, without weakening unsupported-domain fail-closed semantics.
 
 Administration/CSSA semantic freeze remains HOLD until F0-B field evidence.
