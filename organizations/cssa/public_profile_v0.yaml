@@ -1,0 +1,44 @@
+version: CSSA_PUBLIC_PROFILE_V0
+status: PUBLIC_ONLY_NOT_FIELD_VALIDATED
+organization_id: cssa
+legal_form_public: association_loi_1901
+season_context: "2026-2027"
+
+public_contacts:
+  general_official:
+    email: sedanardennes.cs@ardennes.lgef.fr
+    source_ref: CSSA_PUBLIC_CONTACT_PAGE
+    note: Public CSSA contact page labels this as general club information/contact.
+
+public_role_slots:
+  - PRESIDENT
+  - GENERAL_MANAGER
+  - TECHNICAL_DIRECTOR
+  - ADMINISTRATIVE_MANAGER
+  - TREASURY_ADMINISTRATION
+  - CLUB_SECRETARIAT
+  - PARTNERSHIPS
+  - MERCHANDISING
+  - COMMUNICATION
+  - MATCHDAY_ORGANIZATION_EVENTS
+  - MATCHDAY_SECURITY
+
+privacy_rule:
+  freeze_people_as_identity: false
+  reason: Roles are modeled as stable organization slots. Public occupants can change and are not domain primitives.
+
+public_competition_context:
+  first_team_level: REGIONAL_1
+  source_ref: CSSA_PUBLIC_WEBSITE_2026
+
+field_reality:
+  status: NOT_AUDITED
+  missing:
+    - internal_mailbox_topology
+    - actual_access_rights
+    - real_role_handoffs
+    - internal_files_and_folders
+    - actual_matchday_checklists
+    - unwritten_practices
+    - exception_handling
+    - validation_chains
