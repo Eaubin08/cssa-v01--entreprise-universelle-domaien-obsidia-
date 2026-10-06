@@ -1,0 +1,48 @@
+{
+  "bundle_ref": "fixture-change-sample-v0",
+  "sources": [
+    {
+      "source_id": "email-thread-001",
+      "evidence_class": "EMAIL_THREAD",
+      "observed_at": "2026-10-06T20:00:00Z",
+      "source_type": "EMAIL",
+      "source_ref": "anonymized:email-thread-001",
+      "sensitivity": ["INTERNAL"],
+      "anonymized": true,
+      "access_scope": "READONLY"
+    },
+    {
+      "source_id": "lgef-rule-20-7",
+      "evidence_class": "INTERNAL_DOCUMENT",
+      "observed_at": "2026-10-06T20:00:00Z",
+      "source_type": "PUBLIC_RULE_REFERENCE",
+      "source_ref": "LGEF_2026_2027_ART_20_7",
+      "sensitivity": ["PUBLIC"],
+      "anonymized": true,
+      "access_scope": "READONLY"
+    }
+  ],
+  "cases": [
+    {
+      "case_ref": "sample-fixture-change-001",
+      "case_type_observed": "fixture_change",
+      "valid_at": "2026-10-06T20:00:00Z",
+      "source_ids": ["email-thread-001", "lgef-rule-20-7"],
+      "trigger": "other_club_requests_time_change",
+      "target_refs": ["fixture:anonymized:001"],
+      "responsible_role_observed": "CSSA_ADMINISTRATION",
+      "approving_role_observed": "UNKNOWN",
+      "external_authority_observed": "LGEF_COMPETITIONS_WITH_CRC",
+      "deadline_observed": "10_days_before_match",
+      "channel_observed": "OFFICIAL_EMAIL",
+      "tools_observed": ["EMAIL", "FOOTCLUBS"],
+      "missing_information": ["internal_approver_unknown"],
+      "contradictions": [],
+      "exceptions": ["late_change_path"],
+      "risk_flags": [],
+      "proof_refs": ["email-thread-001"],
+      "public_rule_refs": ["LGEF_2026_2027_ART_20_7"],
+      "validated_by_cssa": false
+    }
+  ]
+}
