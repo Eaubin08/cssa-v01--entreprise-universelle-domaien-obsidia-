@@ -1,25 +1,31 @@
 # STATUS
 
-Status: PRE-FORGE_ACTIVE
+Status: PRE-FORGE_F0A_CLOSED / F1_READY
 Branch: `preforge/v01-cssa-universal-domain-v0`
 Runtime build: NOT_STARTED
 CSSA field access: NOT_STARTED
-Public-source audit: PARTIAL
-Universal-domain audit: PARTIAL
+Public-source audit: BASELINE_ESTABLISHED
+Universal-domain audit: F0A_CLOSED
 
 ## Current facts
 
 - The repository is intentionally isolated from the kernel repository.
-- `obsidia-x108-proofs@main` already contains V0.1 product doctrine, Domain Integration doctrine, canonical domain runtime surfaces, Sigma multi-domain machinery, domain packets, receipts/proof surfaces and KX108_ONLY boundaries.
-- The historical branch `codex/udip-domain-packs-v0` contains a distinct UDIP V0 specification and an Administration scaffold that are not present on current `main` under the same files/names.
-- The branch `docs/obsidia-ontology-layer-contracts-v0` contains doctrine not present on current `main` under the same file.
-- Git ahead/behind is not used as a semantic truth criterion.
+- `obsidia-x108-proofs@main` is the current runtime baseline.
+- Main already has a real governed internal multi-domain runtime, but new domain plug-and-play is not proven.
+- Historical UDIP remains useful as an architectural source but is not the current runtime source.
+- `feat/premiere-mise-au-monde-udip-v0` contains a newer minimal executable UDIP bridge candidate.
+- `feat/premiere-mise-au-monde-proof-v0` is the latest relevant strict descendant and adds governed-world proof binding.
+- The eight commits by which these October branches trail main are display/terminal-color changes only.
+- The Administration scaffold on the old UDIP branch contains no real business semantics.
+- Public FFF/LGEF sources already expose real administrative workflows, deadlines, exceptions, authority boundaries and proof obligations.
+- Real CSSA internal workflows remain unknown until field access.
 
-## Next checkpoint
+## Forge gate
 
-Complete semantic source audit and freeze:
-1. what already exists on main;
-2. what historical branches add;
-3. what is superseded;
-4. what remains useful as contract/reference;
-5. what CSSA uniquely contributes.
+`F1 UNIVERSAL CONTRACT RECOVERY = GO`
+
+`ADMINISTRATION/CSSA SEMANTIC FREEZE = HOLD pending field evidence`
+
+## Next step
+
+Create F1 branch and implement the minimal universal contract/conformance layer without copying the kernel or hard-coding CSSA semantics.
