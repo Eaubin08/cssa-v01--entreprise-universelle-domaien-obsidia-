@@ -1,68 +1,64 @@
 # STATUS
 
-Status: F2_5_FROZEN_OFF_MAIN
-Branch: `feat/f2-5-first-class-runtime-seam-v0`
-F0-A: CLOSED
-F0-B CSSA field reality: OPEN
-F1 universal contract: PASS
-F2 isolated conformance: PASS
-F2.1 real current-main Guard compatibility: PASS
-F2.2 portable new-domain registration: PASS
-F2.3 canonical-compatible resolver: PASS
-F2.4 full canonical runtime by injection: PASS
-F2.5 first-class aggregate-only resolver seam: PASS
-Cross-repo hardened CI: 102/102 PASS
-Upstream native regression: BASELINE_EQUIVALENT_NO_NEW_FAILURES
-Administration semantic freeze: HOLD
-Upstream main merge: FORBIDDEN UNTIL EXPLICIT USER DECISION
+Status: F3A_CSSA_PUBLIC_ADMINISTRATION_CLOSED
+Branch: `feat/f3a-cssa-public-admin-domain-v0`
 
-## Security audit
+## Universal runtime
 
-Merge-readiness audit found one sovereignty issue in the initial F2.5 draft:
-an extension-supplied full pipeline could theoretically fabricate a dataclass decision envelope.
+- F1 universal contract: PASS
+- F2 conformance: PASS
+- F2.1 real current-main Guard compatibility: PASS
+- F2.2 portable registration: PASS
+- F2.3 canonical-compatible resolver: PASS
+- F2.4 full canonical runtime: PASS
+- F2.5 first-class aggregate-only resolver seam: FROZEN OFF MAIN
 
-That design was rejected before freeze.
+## CSSA
 
-Frozen F2.5 contract:
+- F3A public CSSA Administration baseline: PASS
+- Public baseline freeze: ACTIVE
+- F0-B CSSA field reality: OPEN
+- Internal Administration semantic freeze: HOLD
+- External action: HOLD
 
-```text
-extension
- -> DomainAggregate only
-runtime
- -> validates aggregate/domain
- -> REAL GuardX108.decide()
- -> CanonicalDecisionEnvelope
-```
+## Public CSSA workflows modeled
 
-Forged-envelope negative test: PASS.
+- fixture modification;
+- FMI normal + exception;
+- official correspondence;
+- club information update;
+- referee designation authority.
 
-## Evidence
+## Runtime proof
 
-Focused final:
-`102 passed in 0.43s`
-run `37527394792`, job `112487760134`.
+Real public CSSA fixture-change case -> CSSA adapter -> Administration -> Universal -> F2.5 first-class runtime -> REAL GuardX108 -> canonical runtime -> bounded readonly provider.
 
-Upstream native hardened branch:
-`11 failed, 12451 passed, 46 skipped, 207 deselected`
-run `37526855143`, job `112485940506`.
+CI:
+`110 passed in 0.35s`
+run `37529148484`, job `112493736899`.
 
-Current main baseline:
-`11 failed, 12443 passed, 46 skipped, 207 deselected`.
+## Source boundary
 
-Same 11 inherited failures; +8 F2.5 passing tests; zero new failures.
+Public CSSA organization structure and current 2026-2027 FFF/LGEF rules are now a usable baseline.
 
-## Freeze
+Internal CSSA reality is deliberately not inferred from public sources.
 
-`evidence/audits/F25_FREEZE_V0.md`
+## Field-ready
 
-No semantic change to F2.5 without explicit unfreeze + new audit.
+`preforge/16_F0B_CSSA_FIELD_INTAKE.md` is prepared.
 
-## Next
+`organizations/cssa/CSSA_READONLY_PILOT_V0.md` is prepared.
 
-Universal runtime portability is no longer the blocker.
+## Next gate
 
-Remaining work splits into:
-1. optional future decision on whether to promote the frozen upstream seam to main;
-2. F0-B acquisition of real CSSA field evidence before freezing Administration/CSSA business semantics.
+F3B begins only from real CSSA field evidence.
 
-Nothing has been pushed or merged to `main`.
+Minimum useful field intake:
+- recent administrative email samples;
+- one full match administrative lifecycle;
+- real role/approval chain;
+- one normal + one exception path;
+- actual tools/channels;
+- at least one public-rule vs local-practice comparison.
+
+Until then, the correct mode is public-source enrichment and readonly pilot preparation, not invented automation.
