@@ -1,0 +1,28 @@
+version: CSSA_CLUB_INFO_UPDATE_PUBLIC_V0
+status: PUBLIC_RULE_MODEL_NOT_FIELD_VALIDATED
+domain: administration
+organization: cssa
+source_rules:
+  - LGEF_2026_2027_ART_3_2
+  - LGEF_2026_2027_ART_3_3
+
+season_start_requirement:
+  due_by: "09-01"
+  fields:
+    - CLUB_OFFICE_COMPOSITION
+    - SECRETARY_OR_CORRESPONDENT_ADDRESS
+    - SECRETARY_OR_CORRESPONDENT_PHONE
+    - GROUND_ADDRESS
+    - CHANGING_ROOM_ADDRESS
+    - OFFICIAL_CLUB_COLOURS
+
+change_requirement:
+  notification_deadline_days: 10
+
+invariants:
+  - PERSON_OCCUPANT_IS_NOT_ROLE_IDENTITY
+  - CHANGE_EVENT_STARTS_A_NEW_DEADLINE
+  - CURRENT_SOURCE_VERSION_REQUIRED
+  - KX108_ONLY
+
+external_send: HOLD
