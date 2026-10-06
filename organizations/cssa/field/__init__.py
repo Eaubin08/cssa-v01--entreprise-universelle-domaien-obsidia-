@@ -6,6 +6,7 @@ from .contracts_v0 import (
 from .intake_v0 import (
     bundle_from_mapping,
     case_from_mapping,
+    field_runtime_adapter,
     source_from_mapping,
 )
 
@@ -15,5 +16,6 @@ __all__ = [
     "CSSAFieldSourceV0",
     "bundle_from_mapping",
     "case_from_mapping",
+    "field_runtime_adapter",
     "source_from_mapping",
 ]
