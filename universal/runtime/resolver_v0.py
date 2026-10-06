@@ -191,6 +191,15 @@ class CanonicalCompatibleResolverV0:
         self.source_root = _ensure_upstream_import_paths(source_root)
         self.registry = registry
         self._runtime = _load_real_upstream_runtime(self.source_root)
+        # Snapshot the canonical upstream resolver callables at construction
+        # time. F2.4 may temporarily inject this resolver back into the module;
+        # using snapshots prevents self-recursion and preserves canonical
+        # precedence without mutating the upstream tables.
+        self._canonical_is_supported_domain = self._runtime.is_supported_domain
+        self._canonical_resolve_domain_pipeline = self._runtime.resolve_domain_pipeline
+        self._canonical_supported_domains = tuple(
+            getattr(self._runtime, "SUPPORTED_DOMAINS", ())
+        )
         self._bindings: dict[str, PortableRuntimeBindingV0] = {}
         self._confidence: dict[str, ConfidenceProvider] = {}
 
@@ -203,7 +212,7 @@ class CanonicalCompatibleResolverV0:
         self.registry.registration(binding.domain_id)
 
         # Never shadow a real canonical current-main pipeline.
-        if self._runtime.is_supported_domain(binding.domain_id):
+        if self._canonical_is_supported_domain(binding.domain_id):
             raise PortableRuntimeResolutionError(
                 f"CANONICAL_DOMAIN_SHADOW_FORBIDDEN:{binding.domain_id}"
             )
@@ -220,12 +229,12 @@ class CanonicalCompatibleResolverV0:
         self._confidence[binding.domain_id] = confidence_provider
 
     def is_supported_domain(self, domain_id: str) -> bool:
-        return self._runtime.is_supported_domain(domain_id) or (
+        return self._canonical_is_supported_domain(domain_id) or (
             domain_id in self._bindings
         )
 
     def supported_domains(self) -> tuple[str, ...]:
-        upstream = set(getattr(self._runtime, "SUPPORTED_DOMAINS", ()))
+        upstream = set(self._canonical_supported_domains)
         return tuple(sorted(upstream | set(self._bindings)))
 
     def resolve_domain_pipeline(
@@ -233,8 +242,8 @@ class CanonicalCompatibleResolverV0:
         domain_id: str,
     ) -> Callable[[Any, Any], Any]:
         # Existing canonical upstream route always wins.
-        if self._runtime.is_supported_domain(domain_id):
-            return self._runtime.resolve_domain_pipeline(domain_id)
+        if self._canonical_is_supported_domain(domain_id):
+            return self._canonical_resolve_domain_pipeline(domain_id)
 
         binding = self._bindings.get(domain_id)
         if binding is None:
