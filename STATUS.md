@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F2_3_CANONICAL_COMPATIBLE_RESOLVER_CLOSED
-Branch: feat/f2-3-canonical-compatible-resolver-v0
+Status: F2_4_FULL_PORTABLE_RUNTIME_CYCLE_CLOSED
+Branch: feat/f2-4-full-portable-runtime-cycle-v0
 F0-A: CLOSED
 F0-B CSSA field reality: OPEN
 F1 universal contract: PASS
@@ -9,43 +9,66 @@ F2 isolated conformance: PASS
 F2.1 real current-main Guard compatibility: PASS
 F2.2 portable new-domain registration: PASS
 F2.3 canonical-compatible resolver: PASS
-CI: 88/88 PASS
+F2.4 full current canonical runtime cycle: PASS
+CI: 95/95 PASS
 Administration semantic freeze: HOLD
-Full canonical runtime portable domain cycle: NOT_STARTED
+Upstream first-class portable resolver API: NOT_STARTED
 
 ## Proven now
 
-A portable domain can expose the same `(state, packet) -> envelope` resolution shape as current canonical domain bridges while preserving current-main canonical precedence.
+A portable new domain can traverse the REAL current upstream full governed runtime lifecycle without modifying upstream source files.
 
-Built-in domains still resolve to the exact upstream canonical functions.
-Administration exists only in the overlay resolver.
-Unknown domains still fail closed.
-Portable domains cannot shadow built-in domains.
+Administration has now exercised:
+- real registered agent;
+- real ContextPacket + context boundary;
+- real GuardX108;
+- real CanonicalDecisionEnvelope;
+- real pre-execution context persistence/verification;
+- real KX108 decision record persistence/verification;
+- real OS3 ticket;
+- real replay;
+- real execution authorization;
+- real bounded provider execution behind ALLOW only;
+- real sealed receipt;
+- real readonly feedback.
 
-REAL upstream PeripheralSignalPacket and REAL GuardX108 are exercised.
+Observed gates:
+- clean -> ALLOW -> provider invoked once;
+- >1 unknown -> HOLD -> provider untouched;
+- >=2 contradictions -> BLOCK -> provider untouched;
+- unregistered domain -> refused before decision.
 
-## Exact remaining gap
+Non-sovereignty remains intact:
+- decision authority KX108_ONLY;
+- memory_write false;
+- kernel_mutation false;
+- emits_act false;
+- world action false/dry-run.
 
-The unmodified upstream `run_governed_runtime_cycle()` still calls its own module-level:
-- `is_supported_domain()`;
-- `resolve_domain_pipeline()`.
+## CI history
 
-It does not yet receive the F2.3 overlay resolver.
+Attempt 1 exposed an injection recursion bug: 89 passed / 6 failed.
+The resolver was corrected to snapshot the canonical upstream resolver functions before injection.
+
+Closure run:
+- GitHub Actions run 37523932904;
+- job 112476017906;
+- `95 passed in 0.26s`;
+- SUCCESS.
+
+## Exact remaining universal-runtime gap
+
+The portable route is proven technically through the full current coordinator, but upstream main does not yet expose the resolver as a first-class dependency/configuration API.
 
 Therefore:
-- PORTABLE DOMAIN CONTRACT = PASS;
-- REAL GUARD = PASS;
-- CANONICAL-COMPATIBLE RESOLVER = PASS;
-- FULL CANONICAL RUNTIME PORTABLE CYCLE = NOT YET PROVEN.
-
-## Evidence
-
-`evidence/audits/F23_CANONICAL_COMPATIBLE_RESOLVER_RECEIPT.md`
-GitHub Actions run 37522045717 / job 112469648672
-`88 passed in 0.24s`
+- UNIVERSAL CONTRACT = PASS;
+- PORTABLE DOMAIN REGISTRATION = PASS;
+- REAL KX108 = PASS;
+- FULL CANONICAL RUNTIME LIFECYCLE = PASS;
+- FIRST-CLASS UPSTREAM PORTABLE DOMAIN API = NOT YET PROMOTED.
 
 ## Next technical target
 
-F2.4 — prove a dependency-injected / adapter-compatible full `run_governed_runtime_cycle` path for a portable domain, preserving the same context, decision-record, ticket, replay and execution gates, without weakening unsupported-domain fail-closed semantics.
+F2.5 — source-level first-class resolver seam candidate on a dedicated `obsidia-x108-proofs` branch, preserving the existing default runtime behavior byte-for-byte in semantics and keeping unknown domains fail-closed.
 
-Administration/CSSA semantic freeze remains HOLD until F0-B field evidence.
+F0-B remains separately required before freezing real Administration/CSSA business semantics.
