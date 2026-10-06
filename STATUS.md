@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F2_4_FULL_PORTABLE_RUNTIME_CYCLE_CLOSED
-Branch: feat/f2-4-full-portable-runtime-cycle-v0
+Status: F2_5_FIRST_CLASS_RUNTIME_SEAM_CLOSED
+Branch: feat/f2-5-first-class-runtime-seam-v0
 F0-A: CLOSED
 F0-B CSSA field reality: OPEN
 F1 universal contract: PASS
@@ -9,66 +9,71 @@ F2 isolated conformance: PASS
 F2.1 real current-main Guard compatibility: PASS
 F2.2 portable new-domain registration: PASS
 F2.3 canonical-compatible resolver: PASS
-F2.4 full current canonical runtime cycle: PASS
-CI: 95/95 PASS
+F2.4 full canonical runtime by injection: PASS
+F2.5 first-class upstream resolver seam: PASS
+Cross-repo CI: 101/101 PASS
+Upstream native regression: BASELINE_EQUIVALENT_NO_NEW_FAILURES
 Administration semantic freeze: HOLD
-Upstream first-class portable resolver API: NOT_STARTED
+Upstream main merge: NOT_DONE
 
 ## Proven now
 
-A portable new domain can traverse the REAL current upstream full governed runtime lifecycle without modifying upstream source files.
+`obsidia-x108-proofs` has a dedicated F2.5 branch where the real governed runtime accepts an optional `domain_extension_resolver` directly.
 
-Administration has now exercised:
-- real registered agent;
-- real ContextPacket + context boundary;
+No monkey-patching is required for the F2.5 path.
+
+Resolution is:
+1. canonical current-main pipeline;
+2. optional extension only for an absent canonical domain;
+3. fail closed.
+
+Administration traverses the full real lifecycle through that first-class seam:
+- registered non-sovereign agent;
+- ContextPacket and boundary;
 - real GuardX108;
-- real CanonicalDecisionEnvelope;
-- real pre-execution context persistence/verification;
-- real KX108 decision record persistence/verification;
-- real OS3 ticket;
-- real replay;
-- real execution authorization;
-- real bounded provider execution behind ALLOW only;
-- real sealed receipt;
-- real readonly feedback.
+- CanonicalDecisionEnvelope;
+- pre-execution context;
+- persisted/verified decision record;
+- OS3 ticket;
+- replay;
+- execution gate;
+- bounded provider;
+- sealed receipt;
+- readonly feedback.
 
-Observed gates:
-- clean -> ALLOW -> provider invoked once;
-- >1 unknown -> HOLD -> provider untouched;
-- >=2 contradictions -> BLOCK -> provider untouched;
-- unregistered domain -> refused before decision.
+Observed:
+- clean -> ALLOW -> provider executes once;
+- unknown threshold -> HOLD -> no execution;
+- contradiction threshold -> BLOCK -> no execution;
+- resolver absent -> Administration refused before decision;
+- feedback t1 requires a fresh KX108 decision through the same explicit resolver.
 
-Non-sovereignty remains intact:
-- decision authority KX108_ONLY;
-- memory_write false;
-- kernel_mutation false;
-- emits_act false;
-- world action false/dry-run.
+## Regression truth
 
-## CI history
+Dedicated CSSA cross-repo suite:
+`101 passed in 0.46s`.
 
-Attempt 1 exposed an injection recursion bug: 89 passed / 6 failed.
-The resolver was corrected to snapshot the canonical upstream resolver functions before injection.
+Upstream all-tests branch run:
+`11 failed, 12450 passed, 46 skipped, 207 deselected`.
 
-Closure run:
-- GitHub Actions run 37523932904;
-- job 112476017906;
-- `95 passed in 0.26s`;
-- SUCCESS.
+Current main baseline:
+`11 failed, 12443 passed, 46 skipped, 207 deselected`.
 
-## Exact remaining universal-runtime gap
+The same 11 failures exist on main. F2.5 adds seven passing tests and no new failure.
 
-The portable route is proven technically through the full current coordinator, but upstream main does not yet expose the resolver as a first-class dependency/configuration API.
+## Universal-runtime conclusion
 
-Therefore:
 - UNIVERSAL CONTRACT = PASS;
 - PORTABLE DOMAIN REGISTRATION = PASS;
 - REAL KX108 = PASS;
 - FULL CANONICAL RUNTIME LIFECYCLE = PASS;
-- FIRST-CLASS UPSTREAM PORTABLE DOMAIN API = NOT YET PROMOTED.
+- FIRST-CLASS RESOLVER SEAM = PASS ON DEDICATED UPSTREAM BRANCH;
+- MERGE TO MAIN = NOT YET DONE.
 
-## Next technical target
+## Next gate
 
-F2.5 — source-level first-class resolver seam candidate on a dedicated `obsidia-x108-proofs` branch, preserving the existing default runtime behavior byte-for-byte in semantics and keeping unknown domains fail-closed.
+The universal runtime blocker is no longer technical proof of portability.
 
-F0-B remains separately required before freezing real Administration/CSSA business semantics.
+Before merging/promoting to main, perform a focused merge-readiness audit of the F2.5 branch and decide whether this seam belongs in current main now or remains a V0.1 branch contract.
+
+In parallel, F0-B remains required before freezing real Administration/CSSA semantics.
