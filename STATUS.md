@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3H_E_CSSA_REAL_READONLY_INTAKE_ROUTER_PROVEN
-Branch: feat/f3h-e-real-readonly-intake-router-v0
+Status: F3H_F_CSSA_OPERATIONAL_SOURCE_REGISTRY_PROVEN
+Branch: feat/f3h-f-operational-source-registry-v0
 
 ## Progression
 
@@ -29,6 +29,7 @@ Branch: feat/f3h-e-real-readonly-intake-router-v0
 - F3H-C universal world-action PRE-execution rail: PASS
 - F3H-D CSSA -> native CRM/TASKS bridge: PASS
 - F3H-E real READONLY intake router: PASS
+- F3H-F operational source registry: PASS
 - real CSSA internal field evidence: OPEN
 - external action: HOLD
 
@@ -724,3 +725,49 @@ Governance preserved:
 Current verdict:
 
 CSSA_REAL_READONLY_INTAKE_ROUTER_V0_PROVEN
+
+
+## F3H-F operational source registry
+
+Supported READONLY source kinds:
+- MAILBOX
+- DOCUMENT_REPOSITORY
+- CALENDAR
+- FORM_INBOX
+- API_READONLY
+
+Source contract:
+- exact source-identity SHA-256
+- human approval required
+- immutable registration
+- append-only revocation
+- readonly=true
+- internal_cssa_source=true
+- external_mutation_allowed=false
+- is_execution_authority=false
+- KX108_ONLY
+
+Write-like capabilities rejected:
+- WRITE / SEND / CREATE / UPDATE / DELETE / TRASH
+- ARCHIVE / MOVE / REPLY / FORWARD / UPLOAD / MUTATE / EXECUTE
+
+Bridge:
+- active registered MAILBOX -> F3H-E SourceAuthority
+- revoked MAILBOX -> rejected
+- non-mailbox cannot forge mailbox authority
+- generic provider-neutral ReadonlySourceItem for documents/calendar/forms/API
+
+Proof:
+- run 37613151103
+- 221 passed in 0.88s
+- SUCCESS
+
+Truth boundary:
+- real CSSA operational source connected: NO
+- personal Gmail promoted to internal source: NO
+- external mutation: NO
+- main merge: NO
+
+Current verdict:
+
+CSSA_OPERATIONAL_SOURCE_REGISTRY_V0_PROVEN
