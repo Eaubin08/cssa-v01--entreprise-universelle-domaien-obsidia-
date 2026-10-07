@@ -357,10 +357,10 @@ def route_readonly_observation_v0(
     classification: str
     if not observation.cssa_relevant:
         classification = CLASS_NON_CSSA
-    elif observation.accounting_signal:
-        classification = CLASS_ACCOUNTING_DOCUMENT
     elif observation.transaction_signal:
         classification = CLASS_TICKETING_TRANSACTION
+    elif observation.accounting_signal:
+        classification = CLASS_ACCOUNTING_DOCUMENT
     elif observation.incident_signal:
         classification = CLASS_INCIDENT_ALERT
     elif observation.explicit_action_request and observation.deadline_signal:
