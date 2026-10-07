@@ -1,0 +1,43 @@
+{
+  "version": "CSSA_F3H_A_DECISION_EXECUTION_PROGRESS_V0",
+  "status": "PARTIAL_STRUCTURAL_CLOSURE_NO_EXTERNAL_ACTION",
+  "base_gap": "DECISION_EXECUTION",
+  "completed_in_phase": [
+    "ACTION_PROPOSAL_CONTRACT",
+    "PROPOSAL_INTEGRITY_HASH",
+    "KX108_VERIFIED_DECISION_BINDING",
+    "EXACT_HUMAN_APPROVAL_BINDING",
+    "TARGET_PRESTATE_RECHECK",
+    "MAIL_DRY_RUN_ADAPTER",
+    "CALENDAR_DRY_RUN_ADAPTER",
+    "CRM_DRY_RUN_ADAPTER",
+    "TASKS_DRY_RUN_ADAPTER",
+    "DRY_RUN_RECEIPT"
+  ],
+  "still_open": [
+    "MAIL_REAL_CONNECTOR_EXECUTION",
+    "CALENDAR_REAL_CONNECTOR_EXECUTION",
+    "CRM_REAL_CONNECTOR_EXECUTION",
+    "TASKS_REAL_CONNECTOR_EXECUTION",
+    "PRE_EXECUTION_KX108_RECHECK_AT_WORLD_ACTION_BOUNDARY",
+    "REAL_ACTION_RECEIPT",
+    "REAL_ACTION_REPLAY",
+    "CONNECTOR_FAILURE_AND_PARTIAL_EFFECT_RECOVERY"
+  ],
+  "authority_ramp": [
+    "READ",
+    "CLASSIFY",
+    "DRAFT",
+    "PROPOSE_ACTION",
+    "HUMAN_APPROVE",
+    "EXECUTE",
+    "RECEIPT"
+  ],
+  "current_maximum": "HUMAN_APPROVED_DRY_RUN",
+  "boundaries": {
+    "real_external_action": false,
+    "connector_invoked": false,
+    "world_action_allowed": false,
+    "decision_authority": "KX108_ONLY"
+  }
+}
