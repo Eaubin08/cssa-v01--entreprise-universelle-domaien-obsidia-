@@ -1,0 +1,26 @@
+{
+  "version": "CSSA_F3G_I_COVERAGE_CLOSURE_OVERLAY_V0",
+  "status": "READONLY_COVERAGE_CLOSURE",
+  "base_phase": "F3G_F_CSSA_ANNOUNCED_MANAGER_ROLE_COVERAGE",
+  "closed_targets": [
+    {
+      "requirement_id": "ROOT_CAUSE_DURABILITY",
+      "closed_gaps": [
+        "INCIDENT_ROOT_CAUSE_WORKFLOW",
+        "RECURRENCE_PREVENTION_RECEIPT"
+      ],
+      "closure_phase": "F3G_I",
+      "remaining_before_field_validation": [
+        "REAL_INCIDENT_TAXONOMY",
+        "REAL_RCA_OWNER_AND_ESCALATION_MATRIX",
+        "REAL_CORRECTIVE_ACTION_APPROVAL_CHAIN",
+        "REAL_MONITORING_WINDOWS_BY_INCIDENT_TYPE"
+      ]
+    }
+  ],
+  "boundaries": {
+    "real_field_evidence": false,
+    "external_action": false,
+    "decision_authority": "KX108_ONLY"
+  }
+}
