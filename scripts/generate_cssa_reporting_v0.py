@@ -23,10 +23,13 @@ from organizations.cssa.reporting import (
     report_summary_v0,
 )
 from organizations.cssa.season_simulation import build_full_season_corpus_v0
+from organizations.cssa.stress import assess_catalog_v0
 
 
 PUBLIC_MODEL = ROOT / "organizations" / "cssa" / "season" / "public_model_v0.json"
 ROUTING = ROOT / "organizations" / "cssa" / "reporting" / "routing_v0.json"
+STRESS_RESOURCES = ROOT / "organizations" / "cssa" / "stress" / "resources_v0.json"
+STRESS_CATALOG = ROOT / "organizations" / "cssa" / "stress" / "stress_scenarios_v0.json"
 
 
 def _load_json(path: Path):
@@ -46,9 +49,14 @@ def generate_for_cadence(
     model = _load_json(PUBLIC_MODEL)
     routing = _load_json(ROUTING)
     corpus = build_full_season_corpus_v0(model)
+    stress_rows = assess_catalog_v0(
+        _load_json(STRESS_CATALOG),
+        _load_json(STRESS_RESOURCES),
+    )
+    reporting_events = tuple(corpus.events) + tuple(stress_rows)
 
     pack = build_report_pack_v0(
-        corpus.events,
+        reporting_events,
         routing,
         cadence=cadence,
         as_of=as_of,
