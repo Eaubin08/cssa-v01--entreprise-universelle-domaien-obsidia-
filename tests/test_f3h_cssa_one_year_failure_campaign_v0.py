@@ -90,8 +90,8 @@ def test_attack_profiles_define_exact_365_day_campaign():
     }
     assert set(attacks["modes"]) == {"NORMAL", "HARD", "BREAKER"}
     assert len(attacks["modes"]["NORMAL"]["outage_rules"]) == 0
-    assert len(attacks["modes"]["HARD"]["outage_rules"]) == 5
-    assert len(attacks["modes"]["BREAKER"]["outage_rules"]) == 8
+    assert len(attacks["modes"]["HARD"]["outage_rules"]) == 6
+    assert len(attacks["modes"]["BREAKER"]["outage_rules"]) == 9
 
 
 def test_every_case_is_accounted_for_at_year_end():
