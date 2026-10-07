@@ -80,11 +80,13 @@ from .world_action_v0 import (
     assess_prior_attempts_v0,
     assess_world_action_pre_execution_v0,
     build_provider_outcome_v0,
+    build_world_action_human_approval_v0,
     build_world_action_pre_context_v0,
     build_world_action_request_v0,
     legacy_dry_run_ticket_input_v0,
     legacy_world_action_event_input_v0,
     replay_world_action_receipt_v0,
+    verify_world_action_human_approval_v0,
     verify_world_action_pre_evidence_v0,
 )
 
@@ -116,10 +118,12 @@ __all__ += [
     "assess_prior_attempts_v0",
     "assess_world_action_pre_execution_v0",
     "build_provider_outcome_v0",
+    "build_world_action_human_approval_v0",
     "build_world_action_pre_context_v0",
     "build_world_action_request_v0",
     "legacy_dry_run_ticket_input_v0",
     "legacy_world_action_event_input_v0",
     "replay_world_action_receipt_v0",
+    "verify_world_action_human_approval_v0",
     "verify_world_action_pre_evidence_v0",
 ]
