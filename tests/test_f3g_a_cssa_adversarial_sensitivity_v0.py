@@ -17,6 +17,7 @@ from organizations.cssa.calibration import (
     one_at_a_time_resource_sensitivity_v0,
     override_resource_capacities_v0,
     pressure_sensitivity_v0,
+    resource_coverage_audit_v0,
 )
 from organizations.cssa.field import field_runtime_adapter
 from organizations.cssa.season_simulation import build_full_season_corpus_v0
@@ -428,3 +429,17 @@ def test_capacity_flip_still_crosses_real_guard(
     assert result.kernel_mutation is False
     assert result.emits_act is False
     assert result.world_action_allowed is False
+
+
+
+def test_resource_coverage_audit_exposes_model_blind_spots_instead_of_hiding_them():
+    result = resource_coverage_audit_v0(
+        load(CATALOG),
+        load(RESOURCES),
+    )
+
+    assert result["resource_count"] == 15
+    assert result["unexercised_resources"] == [
+        "TECHNICAL_DIRECTOR_DAILY",
+        "VOLUNTEER_MATCHDAY_POOL",
+    ]
