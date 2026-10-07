@@ -1,0 +1,107 @@
+{
+  "version": "CSSA_DEPENDENCY_RULES_V0",
+  "status": "SIMULATED_NOT_OBSERVED",
+  "root_case_type": "fixture_state",
+  "dependency_rules": [
+    {
+      "case_type": "away_trip_plan",
+      "surface": "TRAVEL",
+      "required_for": [
+        "AWAY"
+      ],
+      "max_propagation_hours": 24,
+      "criticality": "HIGH"
+    },
+    {
+      "case_type": "travel_reconciliation",
+      "surface": "TRAVEL_PROOF",
+      "required_for": [
+        "AWAY"
+      ],
+      "max_propagation_hours": 72,
+      "criticality": "MEDIUM"
+    },
+    {
+      "case_type": "fmi_post_match",
+      "surface": "FMI",
+      "required_for": [
+        "FMI_TEAMS"
+      ],
+      "max_propagation_hours": 24,
+      "criticality": "HIGH"
+    },
+    {
+      "case_type": "match_publication_candidate",
+      "surface": "COMMUNICATION",
+      "required_for": [
+        "SENIORS_R1"
+      ],
+      "max_propagation_hours": 12,
+      "criticality": "HIGH"
+    },
+    {
+      "case_type": "venue_configuration",
+      "surface": "MATCHDAY",
+      "required_for": [
+        "SENIORS_R1_HOME"
+      ],
+      "max_propagation_hours": 24,
+      "criticality": "HIGH"
+    },
+    {
+      "case_type": "hospitality_activation",
+      "surface": "PARTNERS",
+      "required_for": [
+        "SENIORS_R1_HOME"
+      ],
+      "max_propagation_hours": 48,
+      "criticality": "MEDIUM"
+    },
+    {
+      "case_type": "matchday_volunteer_assignment",
+      "surface": "VOLUNTEERS",
+      "required_for": [
+        "SENIORS_R1_HOME"
+      ],
+      "max_propagation_hours": 48,
+      "criticality": "MEDIUM"
+    },
+    {
+      "case_type": "home_match_ticketing_state",
+      "surface": "TICKETING",
+      "required_for": [
+        "SENIORS_R1_HOME"
+      ],
+      "max_propagation_hours": 24,
+      "criticality": "HIGH"
+    }
+  ],
+  "invariants": [
+    "DEPENDENT_REVISION_MUST_NOT_BE_AHEAD_OF_ROOT",
+    "DEPENDENT_READY_REQUIRES_ROOT_REVISION_MATCH",
+    "ROOT_AUTHORITY_MUST_BE_FINAL_BEFORE_PUBLIC_READY",
+    "CROSS_FIXTURE_REVISION_IS_FORBIDDEN",
+    "STALE_DEPENDENCY_MUST_EMIT_SIGNAL",
+    "NO_SILENT_INCONSISTENCY"
+  ],
+  "attack_modes": {
+    "NORMAL": {
+      "revision_modulo": 5,
+      "missing_surface_modulo": 23,
+      "wrong_revision_modulo": 31,
+      "propagation_lag_multiplier": 0.5
+    },
+    "HARD": {
+      "revision_modulo": 3,
+      "missing_surface_modulo": 11,
+      "wrong_revision_modulo": 13,
+      "propagation_lag_multiplier": 1.5
+    },
+    "BREAKER": {
+      "revision_modulo": 2,
+      "missing_surface_modulo": 5,
+      "wrong_revision_modulo": 7,
+      "propagation_lag_multiplier": 4
+    }
+  }
+}
