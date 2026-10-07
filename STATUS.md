@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3C_CSSA_SIMULATED_FIELD_CLOSED
-Branch: `feat/f3c-cssa-simulated-field-v0`
+Status: F3D_CSSA_SEASON_SCALE_AUDIT_CLOSED
+Branch: `feat/f3d-cssa-season-scale-audit-v0`
 
 ## Universal / runtime
 
@@ -15,52 +15,70 @@ Branch: `feat/f3c-cssa-simulated-field-v0`
 
 ## CSSA
 
-- F3A public baseline: PASS / frozen public-only
-- F3B field-intake kit: READY
-- F3C simulated field stress tests: PASS
-- real CSSA internal field evidence: OPEN
+- F3A public baseline: PASS
+- F3B field intake kit: READY
+- F3C simulated isolated field scenarios: PASS
+- F3D season-scale public audit/model: PASS
+- F0-B real CSSA internal evidence: OPEN
 - external action: HOLD
 
-## F3C scenario result
+## F3D scale now modeled
 
-15 realistic synthetic scenarios:
-- ALLOW: 4;
-- HOLD: 5;
-- BLOCK: 5;
-- PRE_RUNTIME_PRIVACY_BLOCK: 1.
+- 19 official public team structures;
+- R1/R2 current group scale;
+- whole-club persona map;
+- licence/equipment administrative economics;
+- LGEF public tariffs;
+- partner/subscriber public snapshots;
+- current legal-entity ambiguity;
+- public-source freshness contradictions;
+- season travel ranges;
+- guarded travel/finance simulation functions;
+- Football Manager management abstractions only.
 
-CI:
-`168 passed in 0.61s`
-run `37552286365`, job `112570342673`.
+## Travel simulation envelope
 
-## Truth boundary
+- regular team-route: 20,000-29,000 km;
+- with cups/tournaments/friendlies: 22,000-36,250 km;
+- LOW vehicle-cost scenario: 15,400 EUR;
+- BASE: 32,765.62 EUR;
+- HIGH: 65,250 EUR.
 
-F3C uses public rules + sanitized supporter-output patterns to make the simulation realistic.
+All are ESTIMATED simulation values, not CSSA accounting facts.
 
-It does not infer CSSA internal workflow from marketing/transactional emails.
+## Commercial truth boundary
 
-All scenarios remain `SIMULATED_NOT_OBSERVED` and no scenario is stored as CSSA-validated field evidence.
+- 800 subscriber snapshot: PUBLIC_CONFIRMED, campaign still open;
+- 855 later claim: SECONDARY_CORROBORATED;
+- final subscriber count: UNKNOWN;
+- +50 partners: PUBLIC marketing claim;
+- partner revenue: UNKNOWN;
+- no revenue inferred from count alone.
 
-## What is now testable
+## CI
 
-- coherent matchday state;
-- unhomologated fixture change;
-- stale/contradictory supporter communication;
-- stand/VIP inconsistency;
-- subscriber-access inconsistency;
-- door/ticket-office timing inconsistency;
-- transactional ticket confirmation;
-- duplicate channel stale state;
-- late fixture-change uncertainty;
-- FMI normal path;
-- FMI fallback uncertainty;
-- official-email channel risk;
-- false inference from visible sending-channel changes;
-- publication before final operational state;
-- high-sensitivity youth-data privacy stop.
+`183 passed in 0.65s`
+Run `37555962749`
+Job `112582133606`
+SUCCESS
 
-## Next
+## Next technical target
 
-Use F3C to discover missing CSSA-domain objects and build a simulated end-to-end match-week corpus (J-10 -> J+1), while keeping F0-B real field evidence separate.
+F3E — synthetic full-season CSSA operating corpus.
+
+Target is no longer 15 isolated cases. It should create a time-evolving season with concurrent workloads across:
+
+- 19 team structures;
+- fixtures/cups/plateaux;
+- licences/equipment;
+- travel/reimbursements;
+- LGEF/District/FFF decisions;
+- discipline/procedure fees;
+- supporters/ticketing;
+- partners/hospitality;
+- matchday/volunteers/security;
+- communication/public-source consistency;
+- school/academy;
+- finance/accounting/proof.
 
 No merge to main.
