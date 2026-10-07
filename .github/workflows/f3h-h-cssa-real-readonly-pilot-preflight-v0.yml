@@ -14,11 +14,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Checkout pinned Obsidia native dependencies
+        uses: actions/checkout@v4
+        with:
+          repository: Eaubin08/obsidia-x108-proofs
+          ref: e5a75bb6e99052a8015f7ac8362c3bd3d40fa1f0
+          path: upstream
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: python -m pip install --upgrade pip pytest
       - name: Verify CSSA real-source readiness without source activation
+        env:
+          OBSIDIA_UPSTREAM_ROOT: ${{ github.workspace }}/upstream
         run: >-
           python -m pytest
           tests/test_f3h_h_cssa_real_readonly_pilot_preflight_v0.py
