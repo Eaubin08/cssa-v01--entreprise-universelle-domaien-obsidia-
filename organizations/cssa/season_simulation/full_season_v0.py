@@ -135,8 +135,13 @@ class CSSASeasonCorpusV0:
 
     @property
     def total_estimated_team_route_km(self) -> float:
+        """Count planned away trips once; reconciliation events are proof, not new travel."""
         return round(
-            sum(e.estimated_team_route_km or 0.0 for e in self.events),
+            sum(
+                e.estimated_team_route_km or 0.0
+                for e in self.events
+                if e.case_type == "away_trip_plan"
+            ),
             2,
         )
 
