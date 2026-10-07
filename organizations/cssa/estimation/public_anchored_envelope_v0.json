@@ -1,0 +1,180 @@
+{
+  "version": "CSSA_PUBLIC_ANCHORED_OPERATING_ENVELOPE_V0",
+  "status": "ESTIMATED_PUBLIC_ANCHORED",
+  "as_of": "2026-10-07",
+  "doctrine": [
+    "PUBLIC_FACTS_STAY_PUBLIC_FACTS",
+    "UNKNOWN_PRIVATE_STAYS_UNKNOWN",
+    "ESTIMATED_CAPACITY_UNITS_ARE_NOT_HEADCOUNT",
+    "REAL_FIELD_EVIDENCE_REPLACES_PARAMETERS_NOT_ARCHITECTURE",
+    "NO_EXTERNAL_ACTION"
+  ],
+  "anchors": [
+    {
+      "id": "PUBLIC_19_TEAM_STRUCTURES",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "value": 19,
+      "evidence_refs": [
+        "CSSA_ACADEMY_ORG_2026_10_07"
+      ]
+    },
+    {
+      "id": "PUBLIC_MANAGER_STATE_UNRESOLVED",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "value": "PUBLIC_STATE_CONFLICT_OR_SUCCESSOR_NOT_CONFIRMED",
+      "evidence_refs": [
+        "CSSA_MANAGER_COMMUNIQUE_2026_09_10",
+        "CSSA_ORGANIGRAMME_ASSOCIATION_2026_10_07",
+        "CSSA_MANAGER_RECRUITMENT_2026_10_07"
+      ]
+    },
+    {
+      "id": "PUBLIC_TECHNICAL_STRUCTURE_EXISTS",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "value": true,
+      "evidence_refs": [
+        "CSSA_ACADEMY_ORG_2026_10_07"
+      ]
+    },
+    {
+      "id": "PUBLIC_VOLUNTEER_PROGRAM_EXISTS",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "value": true,
+      "evidence_refs": [
+        "CSSA_VOLUNTEER_RECRUITMENT_2026_10_07"
+      ]
+    },
+    {
+      "id": "PUBLIC_R1_HOME_LEAGUE_MATCHES",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "value": 13,
+      "evidence_refs": [
+        "CSSA_SUBSCRIPTION_2026_2027"
+      ]
+    },
+    {
+      "id": "PUBLIC_RECENT_MULTI_TEAM_WORKLOAD",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "value": 16,
+      "semantics": "public weekend workload observations, not internal task count",
+      "evidence_refs": [
+        "CSSA_ASSOCIATION_MIRROR_2026_10_02"
+      ]
+    }
+  ],
+  "capacity_semantics": {
+    "unit": "SIMULATION_CAPACITY_UNIT",
+    "note": "Role capacities are abstract processing units/day. They are not number of employees or volunteers."
+  },
+  "profiles": {
+    "LOW_CONSTRAINED": {
+      "truth_class": "ESTIMATED",
+      "description": "Constrained but still operating synthetic approximation anchored to public club structure.",
+      "capacities": {
+        "RESP_ADMIN_DAILY": 3,
+        "ADMIN_ACCOUNTING_DAILY": 2,
+        "MANAGER_GENERAL_DAILY": 0,
+        "TECHNICAL_DIRECTOR_DAILY": 2,
+        "FORMATION_COORDINATOR_DAILY": 2,
+        "TEAM_MANAGER_DAILY": 3,
+        "MATCHDAY_ORGANIZER_DAILY": 3,
+        "PARTNERSHIP_MANAGER_DAILY": 2,
+        "COMMUNICATION_DAILY": 2,
+        "TICKETING_DAILY": 2,
+        "VEHICLE_EQUIVALENT_POOL": 1,
+        "HOSPITALITY_SPACE": 1,
+        "MAIN_STADIUM_SLOT": 1,
+        "TRAVEL_MONTHLY_ENVELOPE": 3000,
+        "VOLUNTEER_MATCHDAY_POOL": 10
+      }
+    },
+    "CENTRAL_WORKING": {
+      "truth_class": "ESTIMATED",
+      "description": "Working central synthetic envelope. Uses F3F baseline where public data does not justify a replacement.",
+      "capacities": {
+        "RESP_ADMIN_DAILY": 6,
+        "ADMIN_ACCOUNTING_DAILY": 5,
+        "MANAGER_GENERAL_DAILY": 2,
+        "TECHNICAL_DIRECTOR_DAILY": 5,
+        "FORMATION_COORDINATOR_DAILY": 4,
+        "TEAM_MANAGER_DAILY": 6,
+        "MATCHDAY_ORGANIZER_DAILY": 5,
+        "PARTNERSHIP_MANAGER_DAILY": 4,
+        "COMMUNICATION_DAILY": 4,
+        "TICKETING_DAILY": 4,
+        "VEHICLE_EQUIVALENT_POOL": 2,
+        "HOSPITALITY_SPACE": 1,
+        "MAIN_STADIUM_SLOT": 1,
+        "TRAVEL_MONTHLY_ENVELOPE": 5000,
+        "VOLUNTEER_MATCHDAY_POOL": 20
+      }
+    },
+    "HIGH_CAPACITY": {
+      "truth_class": "ESTIMATED",
+      "description": "Upper synthetic envelope to test whether extra capacity solves or merely masks pressure.",
+      "capacities": {
+        "RESP_ADMIN_DAILY": 10,
+        "ADMIN_ACCOUNTING_DAILY": 8,
+        "MANAGER_GENERAL_DAILY": 5,
+        "TECHNICAL_DIRECTOR_DAILY": 8,
+        "FORMATION_COORDINATOR_DAILY": 8,
+        "TEAM_MANAGER_DAILY": 10,
+        "MATCHDAY_ORGANIZER_DAILY": 8,
+        "PARTNERSHIP_MANAGER_DAILY": 8,
+        "COMMUNICATION_DAILY": 8,
+        "TICKETING_DAILY": 8,
+        "VEHICLE_EQUIVALENT_POOL": 3,
+        "HOSPITALITY_SPACE": 2,
+        "MAIN_STADIUM_SLOT": 1,
+        "TRAVEL_MONTHLY_ENVELOPE": 8000,
+        "VOLUNTEER_MATCHDAY_POOL": 30
+      }
+    }
+  },
+  "assumptions_kept_unknown": [
+    "REAL_EMPLOYEE_HEADCOUNT_BY_ROLE",
+    "REAL_VEHICLE_FLEET",
+    "REAL_TRAVEL_BUDGET",
+    "REAL_VOLUNTEER_COUNT_PER_MATCH",
+    "REAL_HOSPITALITY_SIMULTANEOUS_CAPACITY",
+    "REAL_DELEGATION_AND_SIGNATURE_SCOPE",
+    "REAL_INTERNAL_APPROVAL_CHAIN",
+    "REAL_ASSOCIATION_SAS_OPERATING_SPLIT"
+  ],
+  "new_public_anchored_stress_cases": [
+    {
+      "id": "F3GC_TECHNICAL_DIRECTION_CRUNCH",
+      "title": "Four academy/technical escalations require same-day technical attention",
+      "items": [
+        [
+          "TECHNICAL_DIRECTOR_DAILY",
+          1
+        ],
+        [
+          "TECHNICAL_DIRECTOR_DAILY",
+          1
+        ],
+        [
+          "TECHNICAL_DIRECTOR_DAILY",
+          1
+        ],
+        [
+          "TECHNICAL_DIRECTOR_DAILY",
+          1
+        ]
+      ],
+      "source_anchor": "OBS_TECHNICAL_DIRECTION_PUBLIC_STRUCTURE"
+    },
+    {
+      "id": "F3GC_VOLUNTEER_MATCHDAY_PRESSURE",
+      "title": "Synthetic home-match configuration requires 24 volunteer capacity units",
+      "items": [
+        [
+          "VOLUNTEER_MATCHDAY_POOL",
+          24
+        ]
+      ],
+      "source_anchor": "OBS_VOLUNTEER_PROGRAM_ACTIVE"
+    }
+  ]
+}
