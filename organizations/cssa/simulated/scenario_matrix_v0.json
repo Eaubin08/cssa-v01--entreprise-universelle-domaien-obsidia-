@@ -1,0 +1,447 @@
+{
+  "version": "CSSA_SIMULATED_FIELD_SCENARIOS_V0",
+  "status": "SIMULATED_NOT_OBSERVED",
+  "privacy": "NO_RAW_GMAIL_CONTENT_NO_USER_IDENTIFIERS",
+  "source_basis": [
+    "F3A_PUBLIC_FFF_LGEF_RULES",
+    "SANITIZED_CSSA_SUPPORTER_COMMUNICATION_PATTERNS",
+    "F3B_FIELD_INTAKE_CONTRACT"
+  ],
+  "scenarios": [
+    {
+      "scenario_id": "S01_CLEAN_HOME_MATCH",
+      "title": "Home match operational state coherent",
+      "family": "MATCHDAY_CONFIGURATION",
+      "description": "Synthetic home-match case with coherent kickoff, opening, ticketing and subscriber-access state.",
+      "source_patterns": [
+        "SUPPORTER_MAIL_MATCH_INFO",
+        "SUPPORTER_MAIL_PRACTICAL_INFO"
+      ],
+      "public_rule_refs": [],
+      "case_ref": "sim:S01",
+      "case_type_observed": "matchday_configuration",
+      "valid_at": "2026-10-07T12:00:00Z",
+      "source_ids": [
+        "sim:ops:S01",
+        "sim:com:S01"
+      ],
+      "target_refs": [
+        "fixture:sim:001"
+      ],
+      "responsible_role_observed": "MATCHDAY_ADMINISTRATION",
+      "approving_role_observed": "HUMAN_VALIDATOR",
+      "channel_observed": "INTERNAL_REVIEW",
+      "tools_observed": [
+        "MATCH_SHEET",
+        "CRM_DRAFT"
+      ],
+      "missing_information": [],
+      "contradictions": [],
+      "exceptions": [],
+      "risk_flags": [],
+      "proof_refs": [
+        "sim:config:S01"
+      ],
+      "validated_by_cssa": true,
+      "expected_gate": "ALLOW",
+      "expected_provider_invoked": true
+    },
+    {
+      "scenario_id": "S02_TIME_CHANGE_NOT_HOMOLOGATED",
+      "title": "Kickoff change prepared before LGEF homologation",
+      "family": "FIXTURE_CHANGE",
+      "description": "A new kickoff time is being prepared for supporter communication while official homologation remains unknown.",
+      "source_patterns": [
+        "SUPPORTER_MAIL_KICKOFF_TIME"
+      ],
+      "public_rule_refs": [
+        "LGEF_2026_2027_ART_20_7"
+      ],
+      "case_ref": "sim:S02",
+      "case_type_observed": "fixture_change",
+      "valid_at": "2026-10-07T12:05:00Z",
+      "source_ids": [
+        "sim:request:S02",
+        "sim:draft:S02"
+      ],
+      "target_refs": [
+        "fixture:sim:002"
+      ],
+      "responsible_role_observed": "CSSA_ADMINISTRATION",
+      "approving_role_observed": "HUMAN_VALIDATOR",
+      "external_authority_observed": "LGEF_COMPETITIONS_WITH_CRC",
+      "channel_observed": "OFFICIAL_EMAIL",
+      "tools_observed": [
+        "EMAIL",
+        "CRM_DRAFT"
+      ],
+      "missing_information": [
+        "LGEF_HOMOLOGATION_UNKNOWN",
+        "OTHER_CLUB_FINAL_AGREEMENT_UNKNOWN"
+      ],
+      "contradictions": [],
+      "exceptions": [
+        "late_change_path"
+      ],
+      "risk_flags": [
+        "PUBLICATION_PREPARED_BEFORE_FINAL_AUTHORITY"
+      ],
+      "validated_by_cssa": true,
+      "expected_gate": "HOLD",
+      "expected_provider_invoked": false
+    },
+    {
+      "scenario_id": "S03_KICKOFF_CONTRADICTION",
+      "title": "Official decision and supporter draft disagree on kickoff",
+      "family": "CROSS_CHANNEL_COHERENCE",
+      "description": "Two synthetic artifacts disagree on official kickoff and door-opening time.",
+      "source_patterns": [
+        "SUPPORTER_MAIL_KICKOFF_TIME",
+        "SUPPORTER_MAIL_DOOR_OPENING"
+      ],
+      "public_rule_refs": [
+        "LGEF_2026_2027_ART_20_7"
+      ],
+      "case_ref": "sim:S03",
+      "case_type_observed": "publication_consistency",
+      "valid_at": "2026-10-07T12:10:00Z",
+      "source_ids": [
+        "sim:official:S03",
+        "sim:draft:S03"
+      ],
+      "target_refs": [
+        "fixture:sim:003"
+      ],
+      "contradictions": [
+        "KICKOFF_TIME_CONFLICT",
+        "DOOR_OPENING_TIME_CONFLICT"
+      ],
+      "risk_flags": [
+        "STALE_PUBLIC_COMMUNICATION"
+      ],
+      "proof_refs": [
+        "sim:official-decision:S03",
+        "sim:campaign-draft:S03"
+      ],
+      "validated_by_cssa": true,
+      "expected_gate": "BLOCK",
+      "expected_provider_invoked": false
+    },
+    {
+      "scenario_id": "S04_STAND_CONFIGURATION_CONTRADICTION",
+      "title": "Supporter email conflicts with stand-opening plan",
+      "family": "MATCHDAY_CONFIGURATION",
+      "description": "Operational plan says one stand only while draft communication announces broader access and VIP opening.",
+      "source_patterns": [
+        "SUPPORTER_MAIL_STAND_OPENING",
+        "SUPPORTER_MAIL_VIP_CLOSURE"
+      ],
+      "public_rule_refs": [],
+      "case_ref": "sim:S04",
+      "case_type_observed": "venue_configuration",
+      "valid_at": "2026-10-07T12:15:00Z",
+      "source_ids": [
+        "sim:venue:S04",
+        "sim:draft:S04"
+      ],
+      "target_refs": [
+        "fixture:sim:004"
+      ],
+      "contradictions": [
+        "STAND_OPENING_CONFLICT",
+        "VIP_SPACE_STATUS_CONFLICT"
+      ],
+      "risk_flags": [
+        "SUPPORTER_MISDIRECTION_RISK"
+      ],
+      "validated_by_cssa": true,
+      "expected_gate": "BLOCK",
+      "expected_provider_invoked": false
+    },
+    {
+      "scenario_id": "S05_SUBSCRIBER_ACCESS_CONFLICT",
+      "title": "Subscriber access rule conflicts across ticketing and communication",
+      "family": "TICKETING_ACCESS",
+      "description": "One synthetic source says season-ticket card is enough while another requires a separate match ticket.",
+      "source_patterns": [
+        "SUPPORTER_MAIL_SUBSCRIBER_CARD_ACCESS"
+      ],
+      "public_rule_refs": [],
+      "case_ref": "sim:S05",
+      "case_type_observed": "subscriber_access",
+      "valid_at": "2026-10-07T12:20:00Z",
+      "source_ids": [
+        "sim:access:S05",
+        "sim:ticketing:S05"
+      ],
+      "contradictions": [
+        "SUBSCRIBER_TICKET_REQUIREMENT_CONFLICT",
+        "TURNSTILE_ACCESS_RULE_CONFLICT"
+      ],
+      "risk_flags": [
+        "ENTRY_DENIAL_RISK"
+      ],
+      "validated_by_cssa": true,
+      "expected_gate": "BLOCK",
+      "expected_provider_invoked": false
+    },
+    {
+      "scenario_id": "S06_GATES_AND_TICKET_OFFICE_MISMATCH",
+      "title": "Door and ticket-office opening times disagree",
+      "family": "MATCHDAY_CONFIGURATION",
+      "description": "Supporter communication and synthetic operations sheet carry different opening times.",
+      "source_patterns": [
+        "SUPPORTER_MAIL_DOOR_OPENING",
+        "SUPPORTER_MAIL_TICKET_OFFICE_OPENING"
+      ],
+      "public_rule_refs": [],
+      "case_ref": "sim:S06",
+      "case_type_observed": "matchday_timing",
+      "valid_at": "2026-10-07T12:25:00Z",
+      "source_ids": [
+        "sim:ops:S06",
+        "sim:draft:S06"
+      ],
+      "contradictions": [
+        "DOOR_OPENING_TIME_CONFLICT",
+        "TICKET_OFFICE_TIME_CONFLICT"
+      ],
+      "risk_flags": [
+        "QUEUE_MANAGEMENT_RISK"
+      ],
+      "validated_by_cssa": true,
+      "expected_gate": "BLOCK",
+      "expected_provider_invoked": false
+    },
+    {
+      "scenario_id": "S07_TICKET_PURCHASE_CONFIRMATION",
+      "title": "Automatic ticket purchase confirmation is classified as transaction output",
+      "family": "TRANSACTIONAL_OUTPUT",
+      "description": "Synthetic ticketing confirmation after a supporter purchase; no administrative authority is inferred from it.",
+      "source_patterns": [
+        "WEEZEVENT_PURCHASE_CONFIRMATION"
+      ],
+      "public_rule_refs": [],
+      "case_ref": "sim:S07",
+      "case_type_observed": "transactional_confirmation",
+      "valid_at": "2026-10-07T12:30:00Z",
+      "source_ids": [
+        "sim:ticketing:S07"
+      ],
+      "target_refs": [
+        "order:sim:007"
+      ],
+      "channel_observed": "TRANSACTIONAL_EMAIL",
+      "tools_observed": [
+        "TICKETING_PROVIDER"
+      ],
+      "risk_flags": [],
+      "validated_by_cssa": true,
+      "expected_gate": "ALLOW",
+      "expected_provider_invoked": true
+    },
+    {
+      "scenario_id": "S08_DUPLICATE_CHANNEL_STALE_DATA",
+      "title": "CRM and club noreply contain different match information",
+      "family": "CROSS_CHANNEL_COHERENCE",
+      "description": "Synthetic duplicate campaigns from two channels disagree on kickoff and stand opening.",
+      "source_patterns": [
+        "CRM_COMMUNICATION_CHANNEL",
+        "CLUB_NOREPLY_OPERATIONAL_CHANNEL"
+      ],
+      "public_rule_refs": [],
+      "case_ref": "sim:S08",
+      "case_type_observed": "multi_channel_publication",
+      "valid_at": "2026-10-07T12:35:00Z",
+      "source_ids": [
+        "sim:crm:S08",
+        "sim:noreply:S08"
+      ],
+      "contradictions": [
+        "KICKOFF_TIME_CONFLICT",
+        "STAND_OPENING_CONFLICT"
+      ],
+      "risk_flags": [
+        "MULTI_CHANNEL_STALE_STATE"
+      ],
+      "validated_by_cssa": true,
+      "expected_gate": "BLOCK",
+      "expected_provider_invoked": false
+    },
+    {
+      "scenario_id": "S09_LATE_CHANGE_MISSING_AGREEMENT",
+      "title": "Late fixture change lacks club agreement and homologation proof",
+      "family": "FIXTURE_CHANGE",
+      "description": "Synthetic late request where the other club agreement and LGEF homologation are both unknown.",
+      "source_patterns": [
+        "SUPPORTER_MAIL_KICKOFF_TIME"
+      ],
+      "public_rule_refs": [
+        "LGEF_2026_2027_ART_20_7"
+      ],
+      "case_ref": "sim:S09",
+      "case_type_observed": "fixture_change",
+      "valid_at": "2026-10-07T12:40:00Z",
+      "source_ids": [
+        "sim:late-request:S09"
+      ],
+      "external_authority_observed": "LGEF_COMPETITIONS_WITH_CRC",
+      "channel_observed": "OFFICIAL_EMAIL",
+      "missing_information": [
+        "OTHER_CLUB_FINAL_AGREEMENT_UNKNOWN",
+        "LGEF_HOMOLOGATION_UNKNOWN"
+      ],
+      "exceptions": [
+        "late_change_path"
+      ],
+      "risk_flags": [
+        "PUBLICATION_MUST_WAIT"
+      ],
+      "validated_by_cssa": true,
+      "expected_gate": "HOLD",
+      "expected_provider_invoked": false
+    },
+    {
+      "scenario_id": "S10_FMI_NORMAL_CLEAN",
+      "title": "FMI normal-path case complete",
+      "family": "FMI",
+      "description": "Synthetic receiving-club FMI case with complete trace and no known exception.",
+      "source_patterns": [],
+      "public_rule_refs": [
+        "LGEF_2026_2027_ART_24"
+      ],
+      "case_ref": "sim:S10",
+      "case_type_observed": "fmi_normal",
+      "valid_at": "2026-10-07T12:45:00Z",
+      "source_ids": [
+        "sim:fmi:S10",
+        "sim:proof:S10"
+      ],
+      "channel_observed": "FMI",
+      "tools_observed": [
+        "FMI"
+      ],
+      "proof_refs": [
+        "sim:fmi-transmission:S10"
+      ],
+      "validated_by_cssa": true,
+      "expected_gate": "ALLOW",
+      "expected_provider_invoked": true
+    },
+    {
+      "scenario_id": "S11_FMI_TECHNICAL_EXCEPTION_UNRESOLVED",
+      "title": "FMI technical failure with unresolved fallback transmission",
+      "family": "FMI",
+      "description": "Synthetic matchday FMI outage where fallback transmission status and validation are still unknown.",
+      "source_patterns": [],
+      "public_rule_refs": [
+        "LGEF_2026_2027_ART_24"
+      ],
+      "case_ref": "sim:S11",
+      "case_type_observed": "fmi_exception",
+      "valid_at": "2026-10-07T12:50:00Z",
+      "source_ids": [
+        "sim:fmi-error:S11",
+        "sim:paper:S11"
+      ],
+      "external_authority_observed": "LGEF_COMMISSION",
+      "channel_observed": "PAPER_FALLBACK",
+      "tools_observed": [
+        "FMI",
+        "PAPER_MATCH_SHEET"
+      ],
+      "missing_information": [
+        "PAPER_FALLBACK_TRANSMISSION_STATUS_UNKNOWN",
+        "HUMAN_VALIDATION_STATUS_UNKNOWN"
+      ],
+      "exceptions": [
+        "technical_failure"
+      ],
+      "risk_flags": [
+        "COMMISSION_REVIEW_POSSIBLE"
+      ],
+      "validated_by_cssa": true,
+      "expected_gate": "HOLD",
+      "expected_provider_invoked": false
+    },
+    {
+      "scenario_id": "S12_OFFICIAL_EMAIL_WRONG_SENDER",
+      "title": "League correspondence prepared from non-official sender",
+      "family": "OFFICIAL_CORRESPONDENCE",
+      "description": "Synthetic outbound LGEF correspondence is drafted from a personal/non-official mailbox.",
+      "source_patterns": [],
+      "public_rule_refs": [
+        "LGEF_2026_2027_ART_1_CORRESPONDENCE"
+      ],
+      "case_ref": "sim:S12",
+      "case_type_observed": "official_correspondence",
+      "valid_at": "2026-10-07T12:55:00Z",
+      "source_ids": [
+        "sim:draft:S12"
+      ],
+      "channel_observed": "EMAIL",
+      "risk_flags": [
+        "NON_OFFICIAL_SENDER_ADDRESS",
+        "OFFICIAL_CHANNEL_REQUIRED"
+      ],
+      "validated_by_cssa": true,
+      "expected_gate": "ALLOW",
+      "expected_provider_invoked": true
+    },
+    {
+      "scenario_id": "S13_CHANNEL_MIGRATION_NOT_INFERRED",
+      "title": "Different sending domains do not prove an internal system migration",
+      "family": "SOURCE_INTERPRETATION",
+      "description": "Synthetic evidence mirrors two visible communication channels but keeps internal tooling/migration unknown.",
+      "source_patterns": [
+        "CRM_COMMUNICATION_CHANNEL",
+        "CLUB_NOREPLY_OPERATIONAL_CHANNEL"
+      ],
+      "public_rule_refs": [],
+      "case_ref": "sim:S13",
+      "case_type_observed": "communication_channel_observation",
+      "valid_at": "2026-10-07T13:00:00Z",
+      "source_ids": [
+        "sim:channel-a:S13",
+        "sim:channel-b:S13"
+      ],
+      "missing_information": [
+        "INTERNAL_TOOLING_UNKNOWN",
+        "CHANNEL_MIGRATION_NOT_PROVEN"
+      ],
+      "risk_flags": [
+        "DO_NOT_INFER_INTERNAL_ARCHITECTURE"
+      ],
+      "validated_by_cssa": true,
+      "expected_gate": "HOLD",
+      "expected_provider_invoked": false
+    },
+    {
+      "scenario_id": "S14_PUBLICATION_BEFORE_FINAL_MATCH_STATE",
+      "title": "Communication campaign ready while match state is not final",
+      "family": "PUBLICATION_GOVERNANCE",
+      "description": "Synthetic campaign contains supporter-facing facts before two upstream operational facts are validated.",
+      "source_patterns": [
+        "SUPPORTER_MAIL_PRACTICAL_INFO"
+      ],
+      "public_rule_refs": [],
+      "case_ref": "sim:S14",
+      "case_type_observed": "publication_candidate",
+      "valid_at": "2026-10-07T13:05:00Z",
+      "source_ids": [
+        "sim:campaign:S14",
+        "sim:ops:S14"
+      ],
+      "missing_information": [
+        "FINAL_MATCH_CONFIGURATION_UNKNOWN",
+        "HUMAN_PUBLICATION_APPROVAL_UNKNOWN"
+      ],
+      "risk_flags": [
+        "PUBLICATION_NOT_READY"
+      ],
+      "validated_by_cssa": true,
+      "expected_gate": "HOLD",
+      "expected_provider_invoked": false
+    }
+  ]
+}
