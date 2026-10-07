@@ -189,6 +189,12 @@ def assess_contract_v0(
             "CONTRACT_DATE_RANGE_INVALID",
         ))
 
+    if start and as_of < start and state in {"ACTIVE", "EXPIRING"}:
+        contradictions.extend((
+            "CONTRACT_ACTIVE_BEFORE_EFFECTIVE_DATE",
+            "ACTIVE_STATE_CONFLICTS_WITH_EFFECTIVE_DATE",
+        ))
+
     operational_use_requested = bool(raw.get("operational_use_requested", False))
     if end and as_of > end and state in {"ACTIVE", "EXPIRING"}:
         contradictions.extend((
