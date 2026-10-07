@@ -20,7 +20,9 @@ from universal.execution import (
     ExecutionSurfaceRegistrationV0,
     UniversalActionProposalV0,
     UniversalExecutionContractError,
+    UniversalExecutionDomainAdapterRegistryV0,
     UniversalExecutionSurfaceRegistryV0,
+    ExecutionDomainAdapterRegistrationV0,
     assess_universal_execution_readiness_v0,
     build_universal_action_proposal_v0,
     build_universal_human_approval_v0,
@@ -463,3 +465,150 @@ def test_cssa_bridge_registry_is_non_sovereign():
         assert item.allowed_to_decide is False
         assert item.allowed_to_act is False
         assert item.emits_act is False
+
+
+def _adapter_for(domain_id, surface_id, operation_id):
+    def adapter(raw_case, surface_registry):
+        return build_universal_action_proposal_v0(
+            registry=surface_registry,
+            proposal_id=raw_case["proposal_id"],
+            domain_id=domain_id,
+            surface_id=surface_id,
+            operation_id=operation_id,
+            target_ref=raw_case["target_ref"],
+            payload=raw_case["payload"],
+            source_case_refs=tuple(raw_case["source_case_refs"]),
+            evidence_refs=tuple(raw_case["evidence_refs"]),
+            expected_target_state_hash=raw_case["expected_target_state_hash"],
+        )
+    return adapter
+
+
+def test_execution_domain_adapter_registry_standardizes_multi_domain_translation():
+    surface_registry = registry()
+    domain_registry = UniversalExecutionDomainAdapterRegistryV0(
+        surface_registry=surface_registry,
+    )
+
+    for domain_id, surface_id, operation_id in CASES:
+        domain_registry.register(
+            ExecutionDomainAdapterRegistrationV0(
+                domain_id=domain_id,
+                adapter_id=f"adapter:{domain_id}",
+                allowed_surface_ids=(surface_id,),
+            ),
+            _adapter_for(domain_id, surface_id, operation_id),
+        )
+
+    assert set(domain_registry.domains()) == {row[0] for row in CASES}
+
+    for domain_id, surface_id, operation_id in CASES:
+        p = domain_registry.propose(
+            domain_id,
+            {
+                "proposal_id": f"via-adapter-{domain_id}",
+                "target_ref": f"target:{domain_id}",
+                "payload": {"fixture": domain_id},
+                "source_case_refs": (f"case:{domain_id}",),
+                "evidence_refs": (f"evidence:{domain_id}",),
+                "expected_target_state_hash": h(f"state:{domain_id}"),
+            },
+        )
+        assert p.domain_id == domain_id
+        assert p.surface_id == surface_id
+        assert p.operation_id == operation_id
+        assert p.allowed_to_decide is False
+        assert p.allowed_to_act is False
+
+
+def test_execution_domain_adapter_cannot_escape_its_registered_surface():
+    surface_registry = registry()
+    domain_registry = UniversalExecutionDomainAdapterRegistryV0(
+        surface_registry=surface_registry,
+    )
+    domain_registry.register(
+        ExecutionDomainAdapterRegistrationV0(
+            domain_id="administration",
+            adapter_id="admin-mail-only",
+            allowed_surface_ids=("MAIL",),
+        ),
+        _adapter_for(
+            "administration",
+            "CRM",
+            "PROPOSE_UPDATE_RECORD",
+        ),
+    )
+
+    with pytest.raises(
+        UniversalExecutionContractError,
+        match="EXECUTION_SURFACE_NOT_ALLOWED_FOR_DOMAIN",
+    ):
+        domain_registry.propose(
+            "administration",
+            {
+                "proposal_id": "escape",
+                "target_ref": "target:escape",
+                "payload": {},
+                "source_case_refs": ("case:escape",),
+                "evidence_refs": ("evidence:escape",),
+                "expected_target_state_hash": h("state:escape"),
+            },
+        )
+
+
+def test_execution_domain_adapter_cannot_change_domain_identity():
+    surface_registry = registry()
+    domain_registry = UniversalExecutionDomainAdapterRegistryV0(
+        surface_registry=surface_registry,
+    )
+    domain_registry.register(
+        ExecutionDomainAdapterRegistrationV0(
+            domain_id="administration",
+            adapter_id="bad-cross-domain",
+            allowed_surface_ids=("MAIL",),
+        ),
+        _adapter_for(
+            "trading",
+            "MAIL",
+            "DRAFT_NOTIFICATION",
+        ),
+    )
+
+    with pytest.raises(
+        UniversalExecutionContractError,
+        match="EXECUTION_DOMAIN_BINDING_MISMATCH",
+    ):
+        domain_registry.propose(
+            "administration",
+            {
+                "proposal_id": "wrong-domain",
+                "target_ref": "target:wrong",
+                "payload": {},
+                "source_case_refs": ("case:wrong",),
+                "evidence_refs": ("evidence:wrong",),
+                "expected_target_state_hash": h("state:wrong"),
+            },
+        )
+
+
+@pytest.mark.parametrize(
+    "mutation",
+    [
+        {"decision_authority": "DOMAIN"},
+        {"allowed_to_decide": True},
+        {"allowed_to_act": True},
+        {"emits_act": True},
+        {"kernel_mutation": True},
+        {"memory_write": True},
+    ],
+)
+def test_execution_domain_registration_cannot_grant_authority(mutation):
+    kwargs = dict(
+        domain_id="new_domain",
+        adapter_id="adapter:new",
+        allowed_surface_ids=("MAIL",),
+    )
+    kwargs.update(mutation)
+
+    with pytest.raises(UniversalExecutionContractError):
+        ExecutionDomainAdapterRegistrationV0(**kwargs)
