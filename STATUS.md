@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3G_G_CSSA_CONTRACT_COMPLIANCE_LIFECYCLE_CLOSED
-Branch: feat/f3g-g-cssa-contract-compliance-lifecycle-v0
+Status: F3G_H_CSSA_INSTITUTIONAL_RELATIONS_CLOSED
+Branch: feat/f3g-h-cssa-institutional-relations-v0
 
 ## Progression
 
@@ -19,6 +19,7 @@ Branch: feat/f3g-g-cssa-contract-compliance-lifecycle-v0
 - F3G-E controlled semantic promotion and impact propagation: PASS
 - F3G-F announced Manager Général role coverage: PASS
 - F3G-G contract + generic compliance lifecycle: PASS
+- F3G-H institutional relations: PASS
 - real CSSA internal field evidence: OPEN
 - external action: HOLD
 
@@ -246,14 +247,73 @@ Current verdict:
 
 CSSA_CONTRACT_AND_GENERIC_COMPLIANCE_LIFECYCLE_V0_PROVEN
 
+## F3G-H institutional relations
+
+Closed F3G-F institutional gaps:
+- FFF_RELATION_WORKFLOW
+- VILLE_COLLECTIVITY_RELATION_WORKFLOW
+
+Public grounding:
+- CSSA Manager Général announcement names Ligue / District / Fédération /
+  Ville de Sedan / collectivités as counterparts
+- Ardenne Métropole public page places Louis-Dugauguez under its responsibility
+- District des Ardennes public site exposes current CSSA activity on a FFF-linked
+  public channel
+
+Critical semantic rule:
+- ACKNOWLEDGED != APPROVED
+
+Institutional proof:
+- 10 simulated cases
+- 2 ALLOW
+- 3 HOLD
+- 5 BLOCK
+- unknown authority scope -> HOLD
+- wrong authority scope -> BLOCK
+- wrong explicit channel -> BLOCK
+- conflicting instructions -> BLOCK
+- refusal + downstream action -> BLOCK
+- final state without proof -> HOLD
+- explicit hard deadline missed -> BLOCK
+- near deadline -> visible risk, no false BLOCK
+
+Initial closure proof:
+- run 37570792978
+- 325 passed in 27.25s
+- SUCCESS
+
+Still unknown before field validation:
+- REAL_FFF_CASE_CHANNELS_BY_SUBJECT
+- REAL_VILLE_DE_SEDAN_CASE_SCOPE
+- REAL_ARDENNE_METROPOLE_APPROVAL_CHAIN
+- REAL_COLLECTIVITY_CONTACT_AND_APPROVAL_MATRIX
+
+Governance preserved:
+- KX108_ONLY
+- external_action=false
+- memory_write=false
+- emits_act=false
+- kernel_mutation=false
+
+Current verdict:
+
+CSSA_INSTITUTIONAL_RELATIONS_V0_PROVEN
+
 ## Next
 
 Continue F3G-F gap closure:
 
-1. FFF / Ville / collectivity relation workflows
-2. root-cause / recurrence-prevention lifecycle
-3. buvette / restauration operating workflow
-4. then DECISION_EXECUTION:
+1. incident root-cause / recurrence-prevention lifecycle
+2. buvette / restauration operating workflow
+3. then DECISION_EXECUTION:
    MAIL / CALENDAR / CRM / TASKS + receipts/replay
 
 No merge to main.
+
+
+## Final frozen-HEAD verification
+
+- run 37570923893
+- 325 passed in 26.94s
+- SUCCESS
+- verified after architecture/report/receipt/status freeze

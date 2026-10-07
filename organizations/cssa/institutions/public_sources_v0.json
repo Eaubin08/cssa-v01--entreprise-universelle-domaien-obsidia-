@@ -1,0 +1,56 @@
+{
+  "version": "CSSA_F3G_H_INSTITUTIONAL_PUBLIC_SOURCES_V0",
+  "status": "PUBLIC_SOURCE_SCOPE_ONLY",
+  "as_of": "2026-10-07",
+  "sources": [
+    {
+      "id": "CSSA_MANAGER_GENERAL_RECRUITMENT_2026",
+      "url": "https://cs-sedan.fr/recrutement-manager-general",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "supports": [
+        "RELATION_WITH_LIGUE",
+        "RELATION_WITH_DISTRICT",
+        "RELATION_WITH_FFF",
+        "RELATION_WITH_VILLE_DE_SEDAN",
+        "RELATION_WITH_COLLECTIVITIES"
+      ],
+      "does_not_support": [
+        "PRIVATE_AUTHORITY_CHAIN",
+        "PRIVATE_REQUIRED_CHANNELS",
+        "PRIVATE_RESPONSE_DEADLINES",
+        "PRIVATE_APPROVAL_SCOPE"
+      ]
+    },
+    {
+      "id": "ARDENNE_METROPOLE_DUGAUGUEZ_CURRENT_PAGE",
+      "url": "https://ardenne-metropole.fr/stade-de-football-dugauguez/",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "supports": [
+        "DUGAUGUEZ_UNDER_ARDENNE_METROPOLE_RESPONSIBILITY",
+        "CSSA_USES_DUGAUGUEZ"
+      ],
+      "does_not_support": [
+        "CURRENT_PRIVATE_OCCUPANCY_TERMS",
+        "CSSA_CAN_SELF_APPROVE_FACILITY_CHANGES",
+        "PRIVATE_OPERATIONAL_APPROVAL_CHAIN"
+      ]
+    },
+    {
+      "id": "DISTRICT_08_MABILLON_2026",
+      "url": "https://districtfoot08.fff.fr/simple/section-sportive-football-mabillon-sedan-recrutement-en-cours/",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "supports": [
+        "CURRENT_CSSA_ACTIVITY_APPEARS_ON_DISTRICT_FFF_CHANNEL"
+      ],
+      "does_not_support": [
+        "DISTRICT_APPROVAL_FOR_ALL_CSSA_CASES",
+        "FFF_DIRECT_AUTHORITY_FOR_LOCAL_FACILITY_CASES"
+      ]
+    }
+  ],
+  "boundaries": {
+    "real_internal_workflow": false,
+    "external_action": false,
+    "decision_authority": "KX108_ONLY"
+  }
+}
