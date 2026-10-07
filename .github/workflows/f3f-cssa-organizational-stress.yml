@@ -55,9 +55,22 @@ jobs:
       - name: Generate F3F stress artifact
         run: python scripts/generate_cssa_stress_v0.py
 
+      - name: Generate stress-aware reporting cockpit
+        run: >-
+          python scripts/generate_cssa_reporting_v0.py
+          --as-of 2026-10-20
+          --out-dir generated_reports
+
       - name: Upload F3F stress artifact
         uses: actions/upload-artifact@v4
         with:
           name: cssa-f3f-stress-${{ github.run_id }}
           path: generated_stress/
+          if-no-files-found: error
+
+      - name: Upload F3F reporting cockpit
+        uses: actions/upload-artifact@v4
+        with:
+          name: cssa-f3f-reporting-${{ github.run_id }}
+          path: generated_reports/
           if-no-files-found: error
