@@ -53,6 +53,12 @@
           "every_days": 29,
           "duration_days": 1,
           "multiplier": 0.5
+        },
+        {
+          "resource_id": "TRAVEL_MONTHLY_ENVELOPE",
+          "every_days": 47,
+          "duration_days": 1,
+          "multiplier": 0.25
         }
       ]
     },
@@ -111,6 +117,12 @@
           "every_days": 31,
           "duration_days": 2,
           "multiplier": 0
+        },
+        {
+          "resource_id": "TRAVEL_MONTHLY_ENVELOPE",
+          "every_days": 37,
+          "duration_days": 3,
+          "multiplier": 0.1
         }
       ]
     }
