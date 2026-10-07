@@ -1,0 +1,111 @@
+{
+  "version": "CSSA_PUBLIC_WATCHLIST_V0",
+  "status": "READONLY_PUBLIC_WATCH",
+  "doctrine": [
+    "HTTP_GET_ONLY",
+    "SOURCE_CHANGE_IS_NOT_SEMANTIC_TRUTH",
+    "CONTENT_CHANGE_REQUIRES_REVIEW",
+    "PUBLIC_WATCH_SIGNAL_IS_NOT_INTERNAL_FIELD_EVIDENCE",
+    "NO_EXTERNAL_MUTATION"
+  ],
+  "sources": [
+    {
+      "id": "CSSA_HOME",
+      "url": "https://cs-sedan.fr/",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "cadence": "WEEKLY",
+      "criticality": "MEDIUM"
+    },
+    {
+      "id": "CSSA_ORGANIGRAMME_ASSOCIATION",
+      "url": "https://cs-sedan.fr/organigramme-association",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "cadence": "WEEKLY",
+      "criticality": "HIGH"
+    },
+    {
+      "id": "CSSA_MANAGER_RECRUITMENT",
+      "url": "https://cs-sedan.fr/recrutement-manager-general",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "cadence": "WEEKLY",
+      "criticality": "HIGH"
+    },
+    {
+      "id": "CSSA_ACADEMY_ORG",
+      "url": "https://cs-sedan.fr/organigramme-academie",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "cadence": "BIWEEKLY",
+      "criticality": "MEDIUM"
+    },
+    {
+      "id": "CSSA_VOLUNTEER_RECRUITMENT",
+      "url": "https://cs-sedan.fr/recrutement-benevole",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "cadence": "BIWEEKLY",
+      "criticality": "MEDIUM"
+    },
+    {
+      "id": "CSSA_ACCREDITATIONS",
+      "url": "https://cs-sedan.fr/accreditations",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "cadence": "BIWEEKLY",
+      "criticality": "MEDIUM"
+    },
+    {
+      "id": "CSSA_LICENSE_2026_2027",
+      "url": "https://cs-sedan.fr/renouvellement-licence-2026-2027",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "cadence": "MONTHLY",
+      "criticality": "MEDIUM"
+    },
+    {
+      "id": "CSSA_SUBSCRIPTION_2026_2027",
+      "url": "https://cs-sedan.fr/abonnement-26-27",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "cadence": "MONTHLY",
+      "criticality": "MEDIUM"
+    },
+    {
+      "id": "CSSA_ASSOCIATION_MIRROR",
+      "url": "https://www.localgymsandfitness.com/FR/Sedan/100338915052339/CSSA---Association",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "cadence": "WEEKLY",
+      "criticality": "MEDIUM"
+    },
+    {
+      "id": "LEBALLONROND_CSSA",
+      "url": "https://www.leballonrond.fr/equipe/cs-sedan/129",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "cadence": "WEEKLY",
+      "criticality": "HIGH"
+    },
+    {
+      "id": "LEPROGRES_R1",
+      "url": "https://www.leprogres.fr/sport/calendrier-resultats/football/regional-ligue-grand-est-regional-1-poule-a",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "cadence": "WEEKLY",
+      "criticality": "HIGH"
+    },
+    {
+      "id": "DNA_R2",
+      "url": "https://www.dna.fr/sport/calendrier-resultats/football/regional-ligue-grand-est-regional-2-poule-a",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "cadence": "WEEKLY",
+      "criticality": "HIGH"
+    },
+    {
+      "id": "ESTREP_U16",
+      "url": "https://www.estrepublicain.fr/sport/calendrier-resultats/football/regional-ligue-grand-est-u16-regional-1-poule-a",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "cadence": "BIWEEKLY",
+      "criticality": "LOW"
+    },
+    {
+      "id": "LEPROGRES_U15",
+      "url": "https://www.leprogres.fr/sport/calendrier-resultats/football/regional-ligue-grand-est-u15-regional-1-poule-a",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "cadence": "BIWEEKLY",
+      "criticality": "LOW"
+    }
+  ]
+}
