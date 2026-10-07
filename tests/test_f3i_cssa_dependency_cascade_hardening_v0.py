@@ -11,6 +11,7 @@ from organizations.cssa.dependency import (
     build_fixture_dependency_index_v0,
     cascade_summary_v0,
     run_cascade_campaign_v0,
+    validate_state_transition_v0,
 )
 from organizations.cssa.field import field_runtime_adapter
 from organizations.cssa.reporting import build_report_pack_v0
@@ -205,6 +206,90 @@ def test_full_propagation_of_changed_fixture_can_allow():
     assert row.propagation_completeness == 1.0
     assert row.expected_gate == "ALLOW"
 
+
+
+def test_missing_dependent_never_silently_allows():
+    row = next(
+        item
+        for item in campaign("BREAKER")
+        if item.missing_nodes and not item.root_conflict
+    )
+
+    assert row.expected_gate != "ALLOW"
+    assert "REQUIRED_DEPENDENT_MISSING" in row.risk_flags
+    assert any(
+        value.startswith("REQUIRED_DEPENDENT_MISSING:")
+        for value in row.unknowns
+    )
+
+
+def test_order_violation_requires_review_not_silent_allow():
+    row = next(
+        item
+        for item in campaign("BREAKER")
+        if item.order_violations and not item.root_conflict
+    )
+
+    assert row.expected_gate != "ALLOW"
+    assert "PROPAGATION_ORDER_NOT_PROVEN" in row.risk_flags
+    assert any(
+        value.startswith("DEPENDENCY_ORDER_VIOLATION:")
+        for value in row.unknowns
+    )
+
+
+def test_version_rollback_fails_closed():
+    result = validate_state_transition_v0(
+        current_version=5,
+        current_fingerprint="state-v5",
+        incoming_version=4,
+        incoming_fingerprint="state-v4",
+    )
+
+    assert result.allowed is False
+    assert result.expected_gate == "BLOCK"
+    assert "VERSION_ROLLBACK_REJECTED" in result.risk_flags
+
+
+def test_same_version_different_value_is_identity_conflict():
+    result = validate_state_transition_v0(
+        current_version=5,
+        current_fingerprint="kickoff-18h30",
+        incoming_version=5,
+        incoming_fingerprint="kickoff-20h00",
+    )
+
+    assert result.allowed is False
+    assert result.expected_gate == "BLOCK"
+    assert "DUPLICATE_VERSION_CONFLICT" in result.risk_flags
+
+
+def test_version_gap_holds_until_missing_provenance_is_recovered():
+    result = validate_state_transition_v0(
+        current_version=5,
+        current_fingerprint="state-v5",
+        incoming_version=7,
+        incoming_fingerprint="state-v7",
+    )
+
+    assert result.allowed is False
+    assert result.expected_gate == "HOLD"
+    assert result.unknowns == (
+        "INTERMEDIATE_VERSION_MISSING",
+        "VERSION_GAP_PROVENANCE_UNKNOWN",
+    )
+
+
+def test_clean_next_version_transition_allows():
+    result = validate_state_transition_v0(
+        current_version=5,
+        current_fingerprint="state-v5",
+        incoming_version=6,
+        incoming_fingerprint="state-v6",
+    )
+
+    assert result.allowed is True
+    assert result.expected_gate == "ALLOW"
 
 def test_breaker_exposes_at_least_as_many_failures_as_hard_and_normal():
     normal = cascade_summary_v0(campaign("NORMAL"))
