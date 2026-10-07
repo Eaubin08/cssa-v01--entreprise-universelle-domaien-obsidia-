@@ -1,0 +1,37 @@
+{
+  "version": "CSSA_F3G_E_REVIEWED_CHANGE_FIXTURE_V0",
+  "fixture_status": "SIMULATED_REVIEW_PACKET_NOT_OBSERVED",
+  "status": "REVIEWED_PUBLIC_CHANGE",
+  "review_id": "F3GE_REVIEW_MANAGER_GENERAL_001",
+  "review_decision": "APPROVED",
+  "reviewed_at": "2026-10-07",
+  "reviewer_role": "HUMAN_REVIEWER_FIXTURE",
+  "resolution_mode": "REPLACE_REVIEWED_STATE_SET",
+  "state_key": "manager_general_public_state",
+  "expected_before_values": [
+    "FORMER_MANAGER_STILL_LISTED",
+    "VACANT_OR_SUCCESSOR_NOT_PUBLICLY_CONFIRMED"
+  ],
+  "canonical_value": "APPOINTED_PUBLICLY_CONFIRMED",
+  "event_date": "2026-10-07",
+  "family": "PEOPLE_HR_VOLUNTEERS",
+  "case_type": "manager_general_current_state",
+  "temporal_kind": "STATE",
+  "truth_class": "PUBLIC_CONFIRMED",
+  "source_ids": [
+    "CSSA_MANAGER_RECRUITMENT_2026_10_07"
+  ],
+  "unresolved_unknowns": [],
+  "unresolved_contradictions": [],
+  "anchor_updates": [
+    {
+      "anchor_id": "PUBLIC_MANAGER_STATE_UNRESOLVED",
+      "value": "APPOINTED_PUBLICLY_CONFIRMED",
+      "evidence_refs": [
+        "CSSA_MANAGER_RECRUITMENT_2026_10_07"
+      ]
+    }
+  ],
+  "capacity_updates": {},
+  "profile_updates": {}
+}
