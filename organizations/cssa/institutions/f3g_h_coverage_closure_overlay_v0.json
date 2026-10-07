@@ -1,0 +1,26 @@
+{
+  "version": "CSSA_F3G_H_COVERAGE_CLOSURE_OVERLAY_V0",
+  "status": "READONLY_COVERAGE_CLOSURE",
+  "base_phase": "F3G_F_CSSA_ANNOUNCED_MANAGER_ROLE_COVERAGE",
+  "closed_targets": [
+    {
+      "requirement_id": "INSTITUTIONAL_RELATIONS",
+      "closed_gaps": [
+        "FFF_RELATION_WORKFLOW",
+        "VILLE_COLLECTIVITY_RELATION_WORKFLOW"
+      ],
+      "closure_phase": "F3G_H",
+      "remaining_before_field_validation": [
+        "REAL_FFF_CASE_CHANNELS_BY_SUBJECT",
+        "REAL_VILLE_DE_SEDAN_CASE_SCOPE",
+        "REAL_ARDENNE_METROPOLE_APPROVAL_CHAIN",
+        "REAL_COLLECTIVITY_CONTACT_AND_APPROVAL_MATRIX"
+      ]
+    }
+  ],
+  "boundaries": {
+    "real_field_evidence": false,
+    "external_action": false,
+    "decision_authority": "KX108_ONLY"
+  }
+}
