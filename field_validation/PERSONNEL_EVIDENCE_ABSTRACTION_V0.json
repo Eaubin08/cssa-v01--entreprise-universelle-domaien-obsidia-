@@ -1,0 +1,34 @@
+{
+  "version": "PERSONNEL_EVIDENCE_ABSTRACTION_V0",
+  "status": "TEMPLATE_ONLY",
+  "source_is_real": false,
+  "allowed_fields": {
+    "role_id": null,
+    "employing_entity": null,
+    "contract_type": null,
+    "weekly_hours_or_range": null,
+    "gross_pay_band_optional": null,
+    "expense_categories": [],
+    "mileage_reimbursement_present": null,
+    "meal_or_travel_allowance_present": null,
+    "pay_period": null,
+    "validated_by_staff_member": false
+  },
+  "prohibited_in_repo": [
+    "FULL_NAME",
+    "HOME_ADDRESS",
+    "DATE_OF_BIRTH",
+    "PLACE_OF_BIRTH",
+    "SOCIAL_SECURITY_NUMBER",
+    "EMPLOYEE_ID",
+    "IBAN",
+    "BANK_DETAILS",
+    "TAX_WITHHOLDING_DETAILS",
+    "HEALTH_OR_LEAVE_DATA",
+    "GARNISHMENTS",
+    "SIGNATURE",
+    "QR_OR_BARCODE",
+    "RAW_PAYSLIP_FILE"
+  ],
+  "runtime_policy": "FINANCIAL_DATA_MANUAL_PRIVACY_REVIEW_PRE_RUNTIME_BLOCK"
+}
