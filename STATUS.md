@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3H_B_CSSA_MAIL_PREFLIGHT_AND_UNIVERSAL_EXECUTION_PROVEN
-Branch: feat/f3h-b-cssa-mail-governed-execution-v0
+Status: F3H_C_UNIVERSAL_WORLD_ACTION_PRE_EXECUTION_PROVEN
+Branch: feat/f3h-c-universal-world-action-pre-execution-v0
 
 ## Progression
 
@@ -26,6 +26,7 @@ Branch: feat/f3h-b-cssa-mail-governed-execution-v0
 - F3H-B CSSA MAIL governed preflight: PASS
 - Universal decision-execution contract: PASS
 - Universal métier execution-adapter registry: PASS
+- F3H-C universal world-action PRE-execution rail: PASS
 - real CSSA internal field evidence: OPEN
 - external action: HOLD
 
@@ -549,26 +550,70 @@ UNIVERSAL_DECISION_EXECUTION_CONTRACT_V0_PROVEN
 
 CSSA_MAIL_GOVERNED_PREFLIGHT_V0_PROVEN_LIVE_SEND_BLOCKED
 
+## F3H-C universal world-action PRE-execution rail
+
+Completed:
+- world-action operation policy registry
+- exact connector call binding
+- exact world-action request SHA-256
+- exact human approval of the external action request
+- target pre-state binding
+- secret-field rejection before action request
+- deterministic idempotency key
+- WORLD_ACTION_PRE_EXECUTION context/evidence contract
+- critical/forbidden class block
+- prior confirmed execution duplicate block
+- prior unknown outcome reconciliation block
+- provider outcome normalization
+- confirmed receipt + replay
+- explicit no-effect retry policy
+- current SovereignTicket compatibility
+- current ObsidiaGateway dry-run compatibility
+- current WorldActionBus append-only compatibility
+- current WorldExecutorDryRun compatibility
+- CSSA MAIL -> universal world-action bridge
+
+Multi-domain proof:
+- administration / MAIL
+- logistics / CALENDAR
+- ecom / CRM
+- trading / TASKS
+- finance_ops / PAYMENT
+- gps_defense_aviation / DEVICE
+
+Critical device action is blocked generically.
+
+Initial proof:
+- run 37596840226
+- 461 passed in 27.67s
+- SUCCESS
+
+Current upstream truth preserved:
+- EXTERNAL_WORLD_ACTUATION_NOT_ACTIVATED
+- REAL_X108_GATED_EXECUTION_PATH_NOT_ACTIVATED
+- SovereignTicket dry_run_only=true
+- ObsidiaGateway egress_allowed=false
+- WorldActionBus append-only / no real egress
+- WorldExecutorDryRun executed=false
+
+Current verdict:
+
+UNIVERSAL_WORLD_ACTION_PRE_EXECUTION_CONTRACT_V0_PROVEN
+
+REAL_EXTERNAL_WORLD_ACTUATION_NOT_YET_PROVEN
+
 ## Remaining structural gap
 
-`DECISION_EXECUTION` remains PARTIAL.
+The universal contract is ready, but the canonical upstream producer of
+WORLD_ACTION_PRE_EXECUTION does not yet exist.
 
-Generic blocker before any real external connector:
-1. build/activate GENERIC_WORLD_ACTION_PRE_EXECUTION_RAIL
-2. prove REAL_X108_GATED_EXTERNAL_EXECUTION_PATH
-3. prove real external receipt/replay + partial-effect recovery
-
-Then connector surfaces:
-4. MAIL: authorized CSSA mailbox + one human-approved real pilot
-5. CALENDAR governed connector
-6. CRM governed connector
-7. TASKS governed connector
-8. real-field calibration + readonly pilot + progressive execution
-
-Important:
-- do not duplicate the governance rail per métier
-- future domains use UniversalExecutionDomainAdapterRegistryV0
-- domain-specific work is limited to fact translation + allowed surfaces/operations
-- KX108_ONLY remains global
+Next architectural milestone:
+1. implement canonical WORLD_ACTION_PRE_EXECUTION in obsidia-x108-proofs feature branch
+2. keep existing dry-run path as default
+3. activate real external path only behind explicit authority/config
+4. issue exact sovereign external ticket only after KX108 ALLOW + exact human approval
+5. connect one low-risk human-approved pilot
+6. prove real provider receipt / replay / unknown-outcome recovery
+7. then reuse unchanged rail for MAIL / CALENDAR / CRM / TASKS and future métier domains
 
 No merge to main.
