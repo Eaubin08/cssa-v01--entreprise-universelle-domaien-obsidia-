@@ -442,6 +442,32 @@
       "validated_by_cssa": true,
       "expected_gate": "HOLD",
       "expected_provider_invoked": false
+    },
+    {
+      "scenario_id": "S15_HIGH_SENSITIVITY_YOUTH_RECORD",
+      "title": "Youth administrative record stopped before runtime",
+      "family": "PRIVACY",
+      "description": "Synthetic youth-player administrative file used only to prove privacy gating before the universal runtime.",
+      "source_patterns": [],
+      "public_rule_refs": [],
+      "source_sensitivity": [
+        "INTERNAL",
+        "MINOR_DATA"
+      ],
+      "case_ref": "sim:S15",
+      "case_type_observed": "youth_player_admin",
+      "valid_at": "2026-10-07T13:10:00Z",
+      "source_ids": [
+        "sim:minor-record:S15"
+      ],
+      "target_refs": [
+        "player:sim:minor:015"
+      ],
+      "missing_information": [],
+      "contradictions": [],
+      "risk_flags": [],
+      "expected_gate": "PRE_RUNTIME_BLOCK",
+      "expected_provider_invoked": false
     }
   ]
 }
