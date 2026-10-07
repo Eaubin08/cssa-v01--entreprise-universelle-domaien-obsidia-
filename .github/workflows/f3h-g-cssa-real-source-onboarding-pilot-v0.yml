@@ -1,0 +1,41 @@
+name: f3h-g-cssa-real-source-onboarding-pilot-v0
+
+on:
+  push:
+    branches:
+      - feat/f3h-g-real-source-onboarding-pilot-v0
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cssa-real-source-onboarding-proof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: Eaubin08/obsidia-x108-proofs
+          ref: feat/native-tasks-crm-v0
+          path: upstream
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --upgrade pip pytest
+      - name: Run F3H-G onboarding and prior-chain regression
+        env:
+          OBSIDIA_UPSTREAM_ROOT: ${{ github.workspace }}/upstream
+        run: >-
+          python -m pytest
+          tests/test_f3h_g_cssa_real_source_onboarding_pilot_v0.py
+          tests/test_f3h_f_cssa_operational_source_registry_v0.py
+          tests/test_f3h_e_cssa_real_readonly_intake_router_v0.py
+          tests/test_f3h_d_cssa_native_ops_bridge_v0.py
+          tests/test_f3h_c_universal_world_action_pre_execution_v0.py
+          tests/test_f3h_b_cssa_mail_governed_execution_v0.py
+          tests/test_f3h_universal_decision_execution_contract_v0.py
+          tests/test_f3h_a_cssa_decision_execution_contract_v0.py
+          -q

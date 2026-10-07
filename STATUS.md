@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3H_F_CSSA_OPERATIONAL_SOURCE_REGISTRY_PROVEN
-Branch: feat/f3h-f-operational-source-registry-v0
+Status: F3H_G_CSSA_REAL_SOURCE_ONBOARDING_PILOT_PROVEN
+Branch: feat/f3h-g-real-source-onboarding-pilot-v0
 
 ## Progression
 
@@ -30,6 +30,7 @@ Branch: feat/f3h-f-operational-source-registry-v0
 - F3H-D CSSA -> native CRM/TASKS bridge: PASS
 - F3H-E real READONLY intake router: PASS
 - F3H-F operational source registry: PASS
+- F3H-G real source onboarding pilot: PASS
 - real CSSA internal field evidence: OPEN
 - external action: HOLD
 
@@ -771,3 +772,49 @@ Truth boundary:
 Current verdict:
 
 CSSA_OPERATIONAL_SOURCE_REGISTRY_V0_PROVEN
+
+
+## F3H-G real source onboarding pilot
+
+Two-key activation:
+- connector-observed source candidate
+- exact human operational-source authorization
+
+Bound fields:
+- source kind/provider
+- source identity SHA-256
+- observed capabilities
+- exact candidate hash
+- approved capability subset
+- authority reference
+- human approver
+- authorization hash
+
+Drift:
+- account/source identity change -> reauthorization required
+- capability change -> reauthorization required
+- candidate hash change -> reauthorization required
+
+Activation:
+- exact candidate + exact authorization -> F3H-F registration
+- MAILBOX -> F3H-E SourceAuthority ready
+- DOCUMENT_REPOSITORY -> READONLY source-item path ready
+- readonly only
+- no external mutation
+- no execution authority
+- KX108_ONLY
+
+Real-world state:
+- connected Gmail remains PERSONAL_INBOX
+- historical Drive CSSA tree is not registered as current internal repository
+- real CSSA operational mailbox connected: NO
+- real internal document repository connected: NO
+
+Proof:
+- run 37615616327
+- 156 passed in 0.62s
+- SUCCESS
+
+Current verdict:
+
+CSSA_REAL_SOURCE_ONBOARDING_PILOT_V0_PROVEN
