@@ -1,0 +1,29 @@
+{
+  "version": "CSSA_F3G_J_COVERAGE_CLOSURE_OVERLAY_V0",
+  "status": "READONLY_COVERAGE_CLOSURE",
+  "base_phase": "F3G_F_CSSA_ANNOUNCED_MANAGER_ROLE_COVERAGE",
+  "closed_targets": [
+    {
+      "requirement_id": "MATCHDAY_BUVETTE_RESTAURATION",
+      "closed_gaps": [
+        "BUVETTE_STOCK_WORKFLOW",
+        "RESTAURATION_SUPPLIER_WORKFLOW",
+        "MATCHDAY_CASH_RECONCILIATION",
+        "SHIFT_ASSIGNMENT"
+      ],
+      "closure_phase": "F3G_J",
+      "remaining_before_field_validation": [
+        "REAL_BUVETTE_PRODUCT_CATALOG",
+        "REAL_STOCK_LEVELS_AND_REORDER_RULES",
+        "REAL_SUPPLIER_CONTRACTS_AND_DELIVERY_WINDOWS",
+        "REAL_SHIFT_REQUIREMENTS_AND_ASSIGNMENT_AUTHORITY",
+        "REAL_CASH_RECONCILIATION_POLICY_AND_TOLERANCE"
+      ]
+    }
+  ],
+  "boundaries": {
+    "real_field_evidence": false,
+    "external_action": false,
+    "decision_authority": "KX108_ONLY"
+  }
+}
