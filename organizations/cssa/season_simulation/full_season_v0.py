@@ -289,7 +289,7 @@ def build_full_season_corpus_v0(public_model: Mapping[str, Any]) -> CSSASeasonCo
                         team_id=team_id,
                         source_ids=(f"sim:travel-plan:{fixture_ref}",),
                         target_refs=(fixture_ref,),
-                        estimated_team_route_km=round(km_per_away, 2),
+                        estimated_team_route_km=km_per_away,
                         risk_flags=("SIMULATION_ROUTE_ESTIMATE",),
                     )
                 )
@@ -302,7 +302,7 @@ def build_full_season_corpus_v0(public_model: Mapping[str, Any]) -> CSSASeasonCo
                         team_id=team_id,
                         source_ids=(f"sim:travel-close:{fixture_ref}",),
                         target_refs=(fixture_ref,),
-                        estimated_team_route_km=round(km_per_away, 2),
+                        estimated_team_route_km=km_per_away,
                         risk_flags=("SIMULATION_COST_NOT_ACCOUNTING_FACT",),
                     )
                 )
