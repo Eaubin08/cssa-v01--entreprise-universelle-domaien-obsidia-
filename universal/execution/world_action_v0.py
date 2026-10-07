@@ -5,11 +5,12 @@ future real external connector call.
 
 Current upstream Obsidia remains dry-run only. This module therefore:
 - binds exact connector calls and operation policy;
+- binds explicit human approval to the exact world-action request;
 - derives deterministic idempotency keys;
-- verifies human/KX108/world-action evidence contracts;
+- defines the future sovereign WORLD_ACTION_PRE_EXECUTION evidence contract;
 - detects duplicate/unknown prior attempts;
 - defines provider outcome / receipt / replay semantics;
-- bridges cleanly to the existing SovereignTicket/Gateway/WorldActionBus dry-run
+- bridges to the existing SovereignTicket/Gateway/WorldActionBus dry-run
   components without treating them as live egress authority;
 - fails closed until the upstream world-action runtime is truly activated.
 
@@ -28,7 +29,6 @@ from .contract_v0 import (
     UniversalExecutionSurfaceRegistryV0,
     canonical_sha256_v0,
     verify_universal_action_proposal_v0,
-    verify_universal_human_approval_v0,
 )
 
 WORLD_ACTION_PRE_PHASE = "WORLD_ACTION_PRE_EXECUTION"
@@ -377,7 +377,6 @@ def build_world_action_human_approval_v0(
     approval_reference: str,
     request: WorldActionRequestV0,
 ) -> dict[str, Any]:
-    """Bind human approval to the exact external action request."""
     request.assert_non_sovereign()
     if not approval_id or not approved_by or not approval_reference:
         raise UniversalExecutionContractError(
@@ -403,7 +402,6 @@ def build_world_action_human_approval_v0(
         "connector_call_hash": request.connector_call_hash,
         "target_ref": request.target_ref,
         "target_prestate_hash": request.target_prestate_hash,
-        "world_action_approval_hash": world_action_approval["approval_hash"],
         "required_scope": request.required_scope,
         "idempotency_key": request.idempotency_key,
         "decision_authority": DECISION_AUTHORITY,
@@ -417,7 +415,6 @@ def verify_world_action_human_approval_v0(
     *,
     approval: Mapping[str, Any] | None,
     request: WorldActionRequestV0,
-    world_action_approval: Mapping[str, Any],
 ) -> tuple[bool, str | None]:
     if approval is None:
         return False, "WORLD_ACTION_HUMAN_APPROVAL_MISSING"
@@ -439,7 +436,6 @@ def verify_world_action_human_approval_v0(
         "connector_call_hash": request.connector_call_hash,
         "target_ref": request.target_ref,
         "target_prestate_hash": request.target_prestate_hash,
-        "world_action_approval_hash": world_action_approval["approval_hash"],
         "required_scope": request.required_scope,
         "idempotency_key": request.idempotency_key,
     }
@@ -463,7 +459,6 @@ def build_world_action_pre_context_v0(
     contradictions: Sequence[str] = (),
     risk_flags: Sequence[str] = (),
 ) -> dict[str, Any]:
-    """Exact context for the future sovereign WORLD_ACTION_PRE_EXECUTION gate."""
     request.assert_non_sovereign()
     ok, reason = verify_world_action_human_approval_v0(
         approval=world_action_approval,
@@ -487,11 +482,13 @@ def build_world_action_pre_context_v0(
         "world_action_request_hash": request.request_hash,
         "connector_call_hash": request.connector_call_hash,
         "target_prestate_hash": request.target_prestate_hash,
+        "world_action_approval_hash": world_action_approval["approval_hash"],
         "required_scope": request.required_scope,
         "world_call_class": request.world_call_class,
         "action_risk_class": request.action_risk_class,
         "autonomy_level": request.autonomy_level,
         "irreversible": request.irreversible,
+        "idempotency_key": request.idempotency_key,
         "unknowns": tuple(unknowns),
         "contradictions": tuple(contradictions),
         "risk_flags": tuple(risk_flags),
@@ -505,8 +502,8 @@ def verify_world_action_pre_evidence_v0(
     evidence: Mapping[str, Any] | None,
     *,
     request: WorldActionRequestV0,
+    world_action_approval: Mapping[str, Any],
 ) -> tuple[bool, str | None]:
-    """Verify evidence from the future canonical external PRE rail."""
     if evidence is None:
         return False, "WORLD_ACTION_PRE_EVIDENCE_MISSING"
     if evidence.get("schema") != "UNIVERSAL_WORLD_ACTION_PRE_EVIDENCE_V0":
@@ -517,17 +514,20 @@ def verify_world_action_pre_evidence_v0(
         return False, "WORLD_ACTION_PRE_AUTHORITY_INVALID"
     if evidence.get("x108_gate") != "ALLOW":
         return False, "WORLD_ACTION_PRE_GATE_NOT_ALLOW"
+
     ok, reason = verify_world_action_human_approval_v0(
         approval=world_action_approval,
         request=request,
     )
     if not ok:
         return False, reason
+
     expected = {
         "proposal_hash": request.proposal_hash,
         "world_action_request_hash": request.request_hash,
         "connector_call_hash": request.connector_call_hash,
         "target_prestate_hash": request.target_prestate_hash,
+        "world_action_approval_hash": world_action_approval["approval_hash"],
         "required_scope": request.required_scope,
         "world_call_class": request.world_call_class,
         "action_risk_class": request.action_risk_class,
@@ -547,6 +547,7 @@ def verify_world_action_pre_evidence_v0(
         return False, "WORLD_ACTION_PRE_MUST_NOT_BE_DRY_RUN"
     if evidence.get("egress_allowed") is not True:
         return False, "WORLD_ACTION_PRE_EGRESS_NOT_ALLOWED"
+
     candidate = dict(evidence)
     stored = candidate.pop("evidence_hash", None)
     if not stored or canonical_sha256_v0(candidate) != stored:
@@ -562,7 +563,6 @@ def assess_world_action_pre_execution_v0(
     world_action_approval: Mapping[str, Any],
     prior_attempts: Sequence[Mapping[str, Any]] = (),
 ) -> dict[str, Any]:
-    """Final universal readiness check before an external connector call."""
     request.assert_non_sovereign()
 
     duplicate = assess_prior_attempts_v0(
@@ -624,10 +624,7 @@ def assess_prior_attempts_v0(
         if attempt.get("idempotency_key") == request.idempotency_key
     ]
     if not matching:
-        return {
-            "status": "NO_PRIOR_EFFECT",
-            "reason": None,
-        }
+        return {"status": "NO_PRIOR_EFFECT", "reason": None}
 
     for attempt in matching:
         if attempt.get("status") == OUTCOME_CONFIRMED:
@@ -642,10 +639,7 @@ def assess_prior_attempts_v0(
                 "reason": "UNKNOWN_PRIOR_OUTCOME_BLOCKS_RETRY",
             }
 
-    return {
-        "status": "NO_PRIOR_EFFECT",
-        "reason": None,
-    }
+    return {"status": "NO_PRIOR_EFFECT", "reason": None}
 
 
 def build_provider_outcome_v0(
@@ -655,7 +649,6 @@ def build_provider_outcome_v0(
     explicit_no_effect: bool = False,
     exception_class: str | None = None,
 ) -> dict[str, Any]:
-    """Normalize connector result without guessing whether an unknown call acted."""
     if explicit_no_effect and provider_result_identity:
         raise UniversalExecutionContractError(
             "provider result cannot be both success identity and no-effect"
@@ -718,10 +711,12 @@ def replay_world_action_receipt_v0(
         return {"status": "FAIL", "reason": "WORLD_ACTION_RECEIPT_CALL_MISMATCH"}
     if receipt.get("idempotency_key") != request.idempotency_key:
         return {"status": "FAIL", "reason": "WORLD_ACTION_RECEIPT_IDEMPOTENCY_MISMATCH"}
+
     candidate = dict(receipt)
     stored = candidate.pop("receipt_sha256", None)
     if not stored or canonical_sha256_v0(candidate) != stored:
         return {"status": "FAIL", "reason": "WORLD_ACTION_RECEIPT_HASH_MISMATCH"}
+
     return {
         "status": "PASS",
         "real_execution_proven": True,
@@ -736,7 +731,6 @@ def legacy_dry_run_ticket_input_v0(
     *,
     os3_ticket_id: str,
 ) -> dict[str, Any]:
-    """Compatibility input for current upstream SovereignTicket dry-run path."""
     return {
         "action_id": request.request_id,
         "os3_ticket_id": os3_ticket_id,
