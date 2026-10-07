@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3G_B_CSSA_PUBLIC_SHADOW_CLOSED
-Branch: `feat/f3g-b-cssa-public-shadow-v0`
+Status: F3G_C_CSSA_PUBLIC_ANCHORED_ENVELOPE_CLOSED
+Branch: `feat/f3g-c-cssa-public-anchored-envelope-v0`
 
 ## Progression
 
@@ -14,70 +14,60 @@ Branch: `feat/f3g-b-cssa-public-shadow-v0`
 - F3F organizational stress: PASS
 - F3G-A adversarial sensitivity: PASS
 - F3G-B public reality shadow: PASS
+- F3G-C public-anchored estimated operating envelope: PASS
 - real CSSA internal field evidence: OPEN
 - external action: HOLD
 
-## F3G-B public shadow
+## Current usable approximation
 
-As-of 2026-10-07:
+Three replaceable envelopes:
 
-- 15 public sources
-- 35 observations
-- 10 PUBLIC_CONFIRMED
-- 25 SECONDARY_CORROBORATED
-- 16 recent public workload observations
-- 3 unresolved public conflicts
+```text
+LOW_CONSTRAINED
+  2 ALLOW / 5 BLOCK / 5 HOLD
+  9 resource conflicts
+  56 season pressure points
 
-## Conflict handling
+CENTRAL_WORKING
+  2 ALLOW / 5 BLOCK / 5 HOLD
+  5 resource conflicts
+  4 season pressure points
 
-Detected without silent reconciliation:
+HIGH_CAPACITY
+  4 ALLOW / 3 BLOCK / 5 HOLD
+  1 resource conflict
+  3 season pressure points
+```
 
-- Manager Général public-state mismatch
-- Bogny — Sedan same-source kickoff mismatch
-- Rethel — Sedan 2 cross-source kickoff mismatch
+## Truth boundary
 
-Each conflict reaches fail-closed BLOCK through real GuardX108.
+- public anchors remain PUBLIC_CONFIRMED / SECONDARY_CORROBORATED
+- capacities remain ESTIMATED
+- simulation capacity units are not staff headcount
+- 8 private facts remain UNKNOWN
 
-## F3G-A blind spots
+## Replaceability
 
-Now publicly covered at structure/workflow level:
+15 estimated parameters can later be replaced by real evidence and the same suite rerun.
 
-- technical direction
-- volunteer matchday program
-
-Still UNKNOWN:
-
-- TECHNICAL_DIRECTOR_DAILY_CAPACITY
-- VOLUNTEER_MATCHDAY_POOL_COUNT
-
-## Reporting
-
-Public observations feed weekly / biweekly / monthly + persona views.
-
-Per-event truth classes are preserved.
-
-`PUBLIC_SHADOW_EVIDENCE != REAL_FIELD_EVIDENCE`
-
-## Governance
-
-- KX108_ONLY
-- no memory write
-- no kernel mutation
-- no emits_act
-- no world action
-- no external delivery
+No architectural redesign is required merely because a real count/budget/capacity differs.
 
 ## CI
 
-- run `37562295105`
-- `244 passed in 18.82s`
-- artifact `11457332763`
+- run `37562759225`
+- `254 passed in 18.51s`
+- artifact `11456744300`
 - SUCCESS
 
 ## Next
 
-F3G-C — public-anchored estimated operating envelope.
+The technical system can now continue without waiting for internal access.
 
-Keep public facts fixed, unknowns explicit, and use replaceable ranges only where simulation requires approximate values.
+Next useful work:
+
+1. freeze F3G-C as the current approximation baseline;
+2. make public-shadow refresh repeatable over time;
+3. compare future public observations against this baseline;
+4. when field evidence becomes available, replace only affected parameters and rerun.
 
 No merge to main.
