@@ -541,7 +541,8 @@
           ]
         }
       ],
-      "expected_gate": "ALLOW"
+      "expected_gate": "ALLOW",
+      "expected_priority_first": "CASE_09"
     },
     {
       "id": "F3F_S10_NORMAL_MULTI_CASE_DAY",
