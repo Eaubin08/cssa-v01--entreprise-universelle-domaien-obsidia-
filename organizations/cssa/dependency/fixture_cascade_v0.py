@@ -29,6 +29,72 @@ class DependencyNodeStateV0:
 
 
 @dataclass(frozen=True)
+@dataclass(frozen=True)
+class VersionTransitionAssessmentV0:
+    current_version: int
+    incoming_version: int
+    allowed: bool
+    expected_gate: str
+    unknowns: tuple[str, ...]
+    contradictions: tuple[str, ...]
+    risk_flags: tuple[str, ...]
+
+
+def validate_state_transition_v0(
+    *,
+    current_version: int,
+    current_fingerprint: str,
+    incoming_version: int,
+    incoming_fingerprint: str,
+) -> VersionTransitionAssessmentV0:
+    if current_version < 0 or incoming_version < 0:
+        raise ValueError("VERSION_MUST_BE_NONNEGATIVE")
+
+    unknowns: list[str] = []
+    contradictions: list[str] = []
+    risks: list[str] = []
+
+    if incoming_version < current_version:
+        contradictions.extend((
+            "OUT_OF_ORDER_VERSION_ROLLBACK",
+            "INCOMING_STATE_OLDER_THAN_CURRENT",
+        ))
+        risks.append("VERSION_ROLLBACK_REJECTED")
+    elif (
+        incoming_version == current_version
+        and incoming_fingerprint != current_fingerprint
+    ):
+        contradictions.extend((
+            "SAME_VERSION_DIFFERENT_VALUE",
+            "VERSION_IDENTITY_COLLISION",
+        ))
+        risks.append("DUPLICATE_VERSION_CONFLICT")
+    elif incoming_version > current_version + 1:
+        unknowns.extend((
+            "INTERMEDIATE_VERSION_MISSING",
+            "VERSION_GAP_PROVENANCE_UNKNOWN",
+        ))
+        risks.append("VERSION_GAP_REQUIRES_REVIEW")
+
+    gate = (
+        "BLOCK"
+        if len(contradictions) >= 2
+        else "HOLD"
+        if len(unknowns) > 1
+        else "ALLOW"
+    )
+    return VersionTransitionAssessmentV0(
+        current_version=current_version,
+        incoming_version=incoming_version,
+        allowed=gate == "ALLOW",
+        expected_gate=gate,
+        unknowns=tuple(unknowns),
+        contradictions=tuple(contradictions),
+        risk_flags=tuple(risks),
+    )
+
+
+@dataclass(frozen=True)
 class CascadeAssessmentV0:
     event_id: str
     event_date: str
@@ -155,6 +221,8 @@ def _attack_plan(
             "root_conflict": False,
             "stale_nodes": (),
             "receipt_stale": False,
+            "missing_node": None,
+            "order_violation": None,
         }
 
     root_conflict_every = int(mode.get("root_conflict_every", 0))
@@ -175,11 +243,31 @@ def _attack_plan(
     receipt_every = int(mode.get("receipt_stale_every", 0))
     receipt_stale = receipt_every > 0 and ordinal % receipt_every == 0
 
+    missing_every = int(mode.get("missing_node_every", 0))
+    missing_node = (
+        node_ids[-1]
+        if missing_every > 0
+        and ordinal % missing_every == 0
+        and node_ids
+        else None
+    )
+
+    order_every = int(mode.get("order_violation_every", 0))
+    order_violation = (
+        node_ids[0]
+        if order_every > 0
+        and ordinal % order_every == 0
+        and node_ids
+        else None
+    )
+
     return {
         "changed": True,
         "root_conflict": root_conflict,
         "stale_nodes": tuple(dict.fromkeys(stale)),
         "receipt_stale": receipt_stale,
+        "missing_node": missing_node,
+        "order_violation": order_violation,
     }
 
 
@@ -211,8 +299,12 @@ def assess_fixture_cascade_v0(
     stale_targets = set(attack["stale_nodes"])
 
     nodes: list[DependencyNodeStateV0] = []
+    missing_nodes: list[str] = []
     for event in node_events:
         node_id = _node_id(event, graph)
+        if node_id == attack["missing_node"]:
+            missing_nodes.append(node_id)
+            continue
         node_version = (
             root_version - 1
             if node_id in stale_targets
@@ -249,6 +341,11 @@ def assess_fixture_cascade_v0(
     stale_nodes = tuple(
         node.node_id for node in nodes if node.stale
     )
+    order_violations = (
+        (str(attack["order_violation"]),)
+        if attack["order_violation"] is not None
+        else ()
+    )
     contradictions: list[str] = []
     unknowns: list[str] = []
     risks: list[str] = []
@@ -283,6 +380,20 @@ def assess_fixture_cascade_v0(
         )
         risks.append("SINGLE_STALE_DEPENDENT")
 
+    if missing_nodes and len(contradictions) < 2:
+        unknowns.extend((
+            f"REQUIRED_DEPENDENT_MISSING:{missing_nodes[0]}",
+            f"PROPAGATION_NODE_COMPLETENESS_UNKNOWN:{fixture_ref}",
+        ))
+        risks.append("REQUIRED_DEPENDENT_MISSING")
+
+    if order_violations and len(contradictions) < 2:
+        unknowns.extend((
+            f"DEPENDENCY_ORDER_VIOLATION:{order_violations[0]}",
+            f"PREDECESSOR_CONFIRMATION_UNKNOWN:{fixture_ref}",
+        ))
+        risks.append("PROPAGATION_ORDER_NOT_PROVEN")
+
     receipt_mismatch = "PROOF_RECEIPT" in stale_nodes
     if receipt_mismatch and len(contradictions) < 2:
         unknowns.extend(
@@ -293,7 +404,7 @@ def assess_fixture_cascade_v0(
         )
         risks.append("PROOF_NOT_BOUND_TO_CURRENT_ROOT_VERSION")
 
-    total_nodes = len(nodes)
+    total_nodes = len(nodes) + len(missing_nodes)
     current_nodes = sum(1 for node in nodes if not node.stale)
     completeness = (
         1.0 if total_nodes == 0 else round(current_nodes / total_nodes, 4)
@@ -309,8 +420,8 @@ def assess_fixture_cascade_v0(
         root_version=root_version,
         nodes=tuple(nodes),
         stale_nodes=stale_nodes,
-        missing_nodes=(),
-        order_violations=(),
+        missing_nodes=tuple(missing_nodes),
+        order_violations=tuple(order_violations),
         receipt_mismatch=receipt_mismatch,
         root_conflict=bool(attack["root_conflict"]),
         unknowns=tuple(dict.fromkeys(unknowns)),
@@ -368,6 +479,12 @@ def cascade_summary_v0(
         "root_conflict_count": sum(1 for row in rows if row.root_conflict),
         "receipt_mismatch_count": sum(
             1 for row in rows if row.receipt_mismatch
+        ),
+        "missing_node_count": sum(
+            len(row.missing_nodes) for row in rows
+        ),
+        "order_violation_count": sum(
+            len(row.order_violations) for row in rows
         ),
         "stale_node_counts": dict(sorted(stale_counter.items())),
         "mean_changed_propagation_completeness": (
