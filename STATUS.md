@@ -1,19 +1,9 @@
 # STATUS
 
-Status: F3G_A_CSSA_ADVERSARIAL_SENSITIVITY_CLOSED
-Branch: `feat/f3g-a-cssa-adversarial-sensitivity-v0`
+Status: F3G_B_CSSA_PUBLIC_SHADOW_CLOSED
+Branch: `feat/f3g-b-cssa-public-shadow-v0`
 
-## Universal / runtime
-
-- F1 universal contract: PASS
-- F2 conformance: PASS
-- F2.1 real Guard compatibility: PASS
-- F2.2 portable registration: PASS
-- F2.3 canonical-compatible resolver: PASS
-- F2.4 full canonical runtime: PASS
-- F2.5 first-class aggregate-only resolver: FROZEN OFF MAIN
-
-## CSSA progression
+## Progression
 
 - F3A public baseline: PASS
 - F3B field intake kit: READY
@@ -22,101 +12,72 @@ Branch: `feat/f3g-a-cssa-adversarial-sensitivity-v0`
 - F3E full-season synthetic corpus: PASS
 - F3E recurring reporting/persona routing: PASS
 - F3F organizational stress: PASS
-- F3G-A adversarial sensitivity/calibration prep: PASS
+- F3G-A adversarial sensitivity: PASS
+- F3G-B public reality shadow: PASS
 - real CSSA internal field evidence: OPEN
 - external action: HOLD
 
-## F3G-A attack surface
+## F3G-B public shadow
 
-- 15,120 exhaustive resource profiles
-- 64 exhaustive authority/truth profiles
-- role capacity attacked at 0 / 25% / 50% / 100% / 200% / 400%
-- 5 named operating envelopes
-- invalid/negative/non-finite parameter attacks
-- capacity-induced real Guard gate flip proof
+As-of 2026-10-07:
 
-## Key result
+- 15 public sources
+- 35 observations
+- 10 PUBLIC_CONFIRMED
+- 25 SECONDARY_CORROBORATED
+- 16 recent public workload observations
+- 3 unresolved public conflicts
 
-Resource abundance changes baseline from:
+## Conflict handling
 
-`ALLOW 2 / BLOCK 5 / HOLD 5`
+Detected without silent reconciliation:
 
-to:
+- Manager Général public-state mismatch
+- Bogny — Sedan same-source kickoff mismatch
+- Rethel — Sedan 2 cross-source kickoff mismatch
 
-`ALLOW 5 / BLOCK 2 / HOLD 5`
+Each conflict reaches fail-closed BLOCK through real GuardX108.
 
-Therefore resource relief cannot fix missing authority or stale/contradictory truth.
+## F3G-A blind spots
 
-## Top calibration target
+Now publicly covered at structure/workflow level:
 
-`DELEGATION_RESOLVED`
+- technical direction
+- volunteer matchday program
 
-Question:
+Still UNKNOWN:
 
-Who substitutes for an absent responsible person, and what is the exact validation/signature scope?
+- TECHNICAL_DIRECTOR_DAILY_CAPACITY
+- VOLUNTEER_MATCHDAY_POOL_COUNT
 
-This one fact changes two separate baseline HOLD cases.
+## Reporting
 
-## Largest synthetic pressure levers
+Public observations feed weekly / biweekly / monthly + persona views.
 
-- RESP_ADMIN_DAILY: pressure range 275
-- TEAM_MANAGER_DAILY: 254
-- ADMIN_ACCOUNTING_DAILY: 146
+Per-event truth classes are preserved.
 
-Gate count must not be used as a proxy for organizational health.
-
-## Capacity-fragile hard-resource cases
-
-- shared vehicle pool
-- hospitality capacity
-- stadium slot
-
-## Model coverage gaps discovered
-
-Currently defined but not exercised:
-
-- TECHNICAL_DIRECTOR_DAILY
-- VOLUNTEER_MATCHDAY_POOL
-
-Do not claim those capacity layers are validated.
+`PUBLIC_SHADOW_EVIDENCE != REAL_FIELD_EVIDENCE`
 
 ## Governance
 
-Preserved:
-
 - KX108_ONLY
-- no world action
-- no kernel mutation
 - no memory write
+- no kernel mutation
 - no emits_act
-- invalid parameter input fails closed
-- all values remain SIMULATED_NOT_OBSERVED until field/public evidence upgrades them
+- no world action
+- no external delivery
 
 ## CI
 
-Closure run:
-
-- run `37561671909`
-- `232 passed in 26.60s`
-- artifact `11456987742`
+- run `37562295105`
+- `244 passed in 18.82s`
+- artifact `11457332763`
 - SUCCESS
 
 ## Next
 
-F3G-B — PUBLIC REALITY SHADOW MODE.
+F3G-C — public-anchored estimated operating envelope.
 
-Goal:
-
-- ingest current public CSSA / competition observations;
-- classify freshness/provenance;
-- compare public reality to synthetic expectations;
-- run READONLY governance;
-- feed weekly/biweekly/monthly persona cockpit;
-- never mutate a club system.
-
-Also expand shadow coverage for the two F3G-A blind spots:
-
-- Direction Technique
-- volunteer/matchday pool
+Keep public facts fixed, unknowns explicit, and use replaceable ranges only where simulation requires approximate values.
 
 No merge to main.
