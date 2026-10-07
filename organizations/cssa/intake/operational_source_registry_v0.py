@@ -29,8 +29,10 @@ from typing import Any, Mapping, Optional
 
 from organizations.cssa.intake.readonly_router_v0 import (
     DECISION_AUTHORITY,
+    ReadonlyMessageObservationV0,
     ReadonlySourceAuthorityV0,
     SOURCE_CSSA_OPERATIONAL_MAILBOX,
+    build_readonly_message_observation_v0,
     build_readonly_source_authority_v0,
 )
 
@@ -633,3 +635,32 @@ def verify_readonly_source_item_v0(
     if _hash(_item_payload(data)) != data.get("item_hash"):
         return False, "SOURCE_ITEM_HASH_MISMATCH"
     return True, None
+
+
+
+def build_mailbox_observation_from_registered_source_v0(
+    *,
+    registration: OperationalSourceRegistrationV0,
+    registry: OperationalSourceRegistryV0,
+    provider_message_id: str,
+    subject: str,
+    body: str,
+    sender_family: str,
+    received_at: str,
+    has_attachment: bool,
+) -> ReadonlyMessageObservationV0:
+    """Bridge one active registered mailbox into the F3H-E router contract."""
+    authority = mailbox_registration_to_f3h_e_authority_v0(
+        registration=registration,
+        registry=registry,
+    )
+    return build_readonly_message_observation_v0(
+        provider_message_id=provider_message_id,
+        subject=subject,
+        body=body,
+        sender_family=sender_family,
+        received_at=received_at,
+        source_scope=SOURCE_CSSA_OPERATIONAL_MAILBOX,
+        has_attachment=has_attachment,
+        source_authority=authority,
+    )
