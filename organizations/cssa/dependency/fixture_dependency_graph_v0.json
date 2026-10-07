@@ -91,21 +91,27 @@
       "single_stale_every": 5,
       "multi_stale_every": 0,
       "root_conflict_every": 0,
-      "receipt_stale_every": 7
+      "receipt_stale_every": 7,
+      "missing_node_every": 0,
+      "order_violation_every": 0
     },
     "HARD": {
       "change_every": 7,
       "single_stale_every": 3,
       "multi_stale_every": 5,
       "root_conflict_every": 11,
-      "receipt_stale_every": 4
+      "receipt_stale_every": 4,
+      "missing_node_every": 13,
+      "order_violation_every": 9
     },
     "BREAKER": {
       "change_every": 3,
       "single_stale_every": 2,
       "multi_stale_every": 3,
       "root_conflict_every": 5,
-      "receipt_stale_every": 2
+      "receipt_stale_every": 2,
+      "missing_node_every": 4,
+      "order_violation_every": 3
     }
   }
 }
