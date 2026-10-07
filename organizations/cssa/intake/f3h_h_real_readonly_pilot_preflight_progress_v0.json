@@ -1,0 +1,16 @@
+{
+  "schema": "CSSA_REAL_READONLY_PILOT_PREFLIGHT_V0",
+  "date": "2026-10-08",
+  "status": "PREPARATION_ONLY_BLOCKED_REAL_SOURCE",
+  "connected_club_mailbox": false,
+  "connected_club_internal_documents": false,
+  "operational_source_authorized": false,
+  "personal_mailbox_is_not_club_authority": true,
+  "pilot_started": false,
+  "observed_prior_personal_sample_count": 8,
+  "real_native_promotions": 0,
+  "governance": "KX108_ONLY",
+  "external_mutation_allowed": false,
+  "next_dependency": "Explicit CSSA operational source with human READONLY authorization",
+  "main_merge": false
+}
