@@ -1,0 +1,28 @@
+version: CSSA_FMI_PUBLIC_V0
+status: PUBLIC_RULE_MODEL_NOT_FIELD_VALIDATED
+domain: administration
+organization: cssa
+season: "2026-2027"
+source_rule: LGEF_2026_2027_ART_24
+
+normal_path:
+  applies_when: CSSA_IS_RECEIVING_CLUB_AND_FMI_MANDATORY
+  channel: FMI
+  transmission_deadline: NEXT_DAY_BEFORE_10H00
+
+exception_path:
+  trigger: FMI_UNAVAILABLE_ON_MATCHDAY
+  fallback: PAPER_MATCH_SHEET
+  deadline:
+    - WITHIN_24_BUSINESS_HOURS
+    - MONDAY_10H00_LATEST_FOR_WEEKEND_MATCHES
+  review_authority: LGEF_COMMISSION
+  sanction_risk: true
+
+invariants:
+  - TECHNICAL_FAILURE_DOES_NOT_REMOVE_ADMINISTRATIVE_OBLIGATION
+  - FALLBACK_REQUIRES_TRACE
+  - COMMISSION_REVIEW_IS_EXTERNAL_AUTHORITY
+  - KX108_ONLY
+
+external_write: HOLD

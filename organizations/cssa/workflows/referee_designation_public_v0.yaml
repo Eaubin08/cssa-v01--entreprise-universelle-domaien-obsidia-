@@ -1,0 +1,23 @@
+version: CSSA_REFEREE_DESIGNATION_PUBLIC_V0
+status: PUBLIC_RULE_MODEL_NOT_FIELD_VALIDATED
+domain: administration
+organization: cssa
+source_rule: LGEF_2026_2027_ART_42
+
+regional_competition:
+  designation_authority: LGEF_CRA
+  district_support_possible: true
+
+invariants:
+  - CSSA_DOES_NOT_DESIGNATE_REGIONAL_REFEREE
+  - DESIGNATION_SOURCE_AND_VERSION_MUST_BE_PRESERVED
+  - CHANGE_OR_ABSENCE_IS_AN_EVENT_NOT_AN_IMPLICIT_OVERRIDE
+  - KX108_ONLY
+
+first_pilot_mode:
+  - READ
+  - LINK_TO_MATCH
+  - DETECT_MISSING_DESIGNATION
+  - REMIND
+  - PREPARE_ESCALATION
+  - REQUEST_HUMAN_VALIDATION

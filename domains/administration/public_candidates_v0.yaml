@@ -1,0 +1,58 @@
+version: ADMINISTRATION_PUBLIC_CANDIDATES_V0
+status: CANDIDATES_NOT_FROZEN
+derived_from:
+  - CSSA_PUBLIC_ORGANIZATION
+  - LGEF_REGLEMENTS_PARTICULIERS_2026_2027
+  - FFF_REGULATIONS_2026_2027
+
+candidate_objects:
+  - id: AdministrativeCase
+    confidence: MEDIUM
+    cssa_examples:
+      - fixture_change
+      - fmi_exception
+      - club_info_update
+  - id: OfficialCorrespondence
+    confidence: HIGH
+    evidence:
+      - LGEF_2026_2027_ART_1_CORRESPONDENCE
+  - id: Deadline
+    confidence: HIGH
+    evidence:
+      - LGEF_2026_2027_ART_20_7
+      - LGEF_2026_2027_ART_24
+      - LGEF_2026_2027_ART_3_3
+  - id: RequiredChannel
+    confidence: HIGH
+    evidence:
+      - FOOTCLUBS
+      - OFFICIAL_EMAIL
+      - FMI
+      - PAPER_FALLBACK
+  - id: ResponsibleRole
+    confidence: MEDIUM
+  - id: ExternalAuthority
+    confidence: HIGH
+    cssa_examples:
+      - LGEF_COMPETITIONS_WITH_CRC
+      - LGEF_COMMISSION
+      - LGEF_CRA
+  - id: CaseSpecificDecision
+    confidence: HIGH
+  - id: ExceptionPath
+    confidence: HIGH
+    evidence:
+      - LGEF_2026_2027_ART_24
+
+not_promoted_yet:
+  - Match
+  - Referee
+  - FMI
+  - Footclubs
+  - Competition
+  - Licence
+
+promotion_rule: >
+  No candidate becomes frozen Administration/Universal semantics until it
+  survives CSSA field evidence and comparison with at least one unrelated
+  organization/domain.

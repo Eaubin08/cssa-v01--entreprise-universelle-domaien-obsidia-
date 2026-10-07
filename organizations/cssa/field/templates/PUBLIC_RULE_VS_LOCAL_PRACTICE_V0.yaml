@@ -1,0 +1,32 @@
+version: PUBLIC_RULE_VS_LOCAL_PRACTICE_V0
+status: TEMPLATE
+
+comparison_ref: ""
+case_ref: ""
+public_rule:
+  source_ref: ""
+  rule_ref: ""
+  expected_process: ""
+local_observation:
+  source_refs: []
+  observed_process: ""
+comparison:
+  status: UNKNOWN
+  allowed_status:
+    - MATCH
+    - PARTIAL_MATCH
+    - DIFFERENT
+    - UNKNOWN
+  difference_description: ""
+  reason_known: false
+  reason: ""
+  exception_documented: false
+  exception_ref: ""
+authority:
+  who_explained_local_practice: ""
+  who_can_validate_difference: ""
+result:
+  promote_to_rule: false
+  requires_human_review: true
+
+invariant: LOCAL_PRACTICE_IS_NOT_CANON_WITHOUT_VALIDATION

@@ -1,0 +1,76 @@
+version: F0_PUBLIC_SOURCE_MANIFEST_V0
+status: PREFORGE
+retrieved_date: "2026-10-06"
+
+sources:
+  - id: FFF_REGULATIONS_2026_2027
+    issuer: FFF
+    class: FEDERAL_NORMATIVE
+    url: "https://www.fff.fr/11-les-reglements/151-les-statuts-et-reglements-de-la-fff.html"
+    season: "2026-2027"
+    role:
+      - general_regulations
+      - licence_procedure
+      - arbitration_status
+    status: AUDITED_INDEX
+
+  - id: LGEF_PARTICULAR_REGULATIONS_2026_2027
+    issuer: LGEF
+    class: REGIONAL_NORMATIVE
+    url: "https://lgef.fff.fr/wp-content/uploads/sites/14/2026/05/Reglements-Particuliers-de-la-LGEF-26-27.pdf"
+    season: "2026-2027"
+    audited_topics:
+      - match_change_deadline_and_homologation
+      - FMI
+      - referee_match_formalities
+      - competition_commission_authority
+    status: PARTIAL_CONTENT_AUDIT
+
+  - id: LGEF_COMMISSION_DOCUMENTS_2026_2027
+    issuer: LGEF
+    class: CASE_SPECIFIC_DECISION_INDEX
+    url: "https://lgef.fff.fr/documents/?cid=36"
+    season: "2026-2027"
+    role:
+      - competition_commission_pv
+      - arbitration_status_pv
+      - arbitration_commission_pv
+      - facility_commission_pv
+    status: AUDITED_INDEX
+
+  - id: LGEF_REGIONAL_CALENDAR_2026_2027
+    issuer: LGEF
+    class: CALENDAR_OPERATIONAL
+    url: "https://lgef.fff.fr/simple/championnats-regionaux-les-calendriers-detailles-26-27/"
+    season: "2026-2027"
+    status: AUDITED_PAGE
+
+  - id: CSSA_PUBLIC_CONTACT
+    issuer: CSSA
+    class: ORGANIZATION_PUBLIC
+    url: "https://cs-sedan.fr/contact"
+    status: AUDITED_PAGE
+
+  - id: CSSA_SERVICE_CIVIQUE_ADMIN_RECRUITMENT
+    issuer: CSSA
+    class: ORGANIZATION_PUBLIC
+    url: "https://cs-sedan.fr/recrutement-service-civique-secretariat-administratif"
+    status: OPERATOR_PROVIDED_URL_CAPTURE_PENDING
+
+  - id: DISTRICT_ARDENNES_PUBLIC
+    issuer: DISTRICT_ARDENNES
+    class: DEPARTMENTAL_AUTHORITY_SOURCE
+    url: "https://districtfoot08.fff.fr/"
+    status: AUDITED_ENTRYPOINT
+
+field_sources:
+  status: NOT_AVAILABLE
+  required:
+    - real_email_flows
+    - internal_documents
+    - actual_role_allocation
+    - real_calendar_and_matchday_process
+    - internal_checklists
+    - human_exceptions
+    - local_tools
+    - validation_chains

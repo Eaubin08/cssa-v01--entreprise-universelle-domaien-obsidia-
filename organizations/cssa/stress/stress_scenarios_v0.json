@@ -1,0 +1,669 @@
+{
+  "version": "CSSA_F3F_STRESS_SCENARIOS_V0",
+  "status": "SIMULATED_NOT_OBSERVED",
+  "scenarios": [
+    {
+      "id": "F3F_S01_VEHICLE_COLLISION",
+      "date": "2026-10-10",
+      "title": "Three away teams need a two-equivalent vehicle pool",
+      "items": [
+        {
+          "id": "R1_AWAY",
+          "family": "TRAVEL_LOGISTICS",
+          "team_id": "SENIORS_R1",
+          "deadline_days": 0,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "VEHICLE_EQUIVALENT_POOL",
+              1
+            ]
+          ]
+        },
+        {
+          "id": "U20_AWAY",
+          "family": "TRAVEL_LOGISTICS",
+          "team_id": "U20_R1",
+          "deadline_days": 0,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "VEHICLE_EQUIVALENT_POOL",
+              1
+            ]
+          ]
+        },
+        {
+          "id": "U17_AWAY",
+          "family": "TRAVEL_LOGISTICS",
+          "team_id": "U17_R1",
+          "deadline_days": 0,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "VEHICLE_EQUIVALENT_POOL",
+              1
+            ]
+          ]
+        }
+      ],
+      "expected_gate": "BLOCK"
+    },
+    {
+      "id": "F3F_S02_ADMIN_ABSENCE_LGEF_URGENT",
+      "date": "2026-10-20",
+      "title": "Admin owner absent while official league cases are due",
+      "forced_unknowns": [
+        "INTERIM_DELEGATE_UNKNOWN",
+        "SIGNATURE_AUTHORITY_UNKNOWN"
+      ],
+      "items": [
+        {
+          "id": "LGEF_CHANGE",
+          "family": "COMPETITIONS",
+          "deadline_days": 0,
+          "regulatory": true,
+          "safety": false,
+          "resource_demands": [
+            [
+              "RESP_ADMIN_DAILY",
+              3
+            ]
+          ]
+        },
+        {
+          "id": "FMI_FOLLOWUP",
+          "family": "COMPETITIONS",
+          "deadline_days": 1,
+          "regulatory": true,
+          "safety": false,
+          "resource_demands": [
+            [
+              "RESP_ADMIN_DAILY",
+              2
+            ]
+          ]
+        }
+      ],
+      "expected_gate": "HOLD"
+    },
+    {
+      "id": "F3F_S03_TRAVEL_BUDGET_PRESSURE",
+      "date": "2026-11-01",
+      "title": "Projected monthly travel exceeds synthetic envelope",
+      "forced_unknowns": [
+        "OVERRUN_APPROVAL_UNKNOWN",
+        "FUNDING_REALLOCATION_UNKNOWN"
+      ],
+      "items": [
+        {
+          "id": "MONTH_TRAVEL",
+          "family": "FINANCE_ACCOUNTING",
+          "deadline_days": 3,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "TRAVEL_MONTHLY_ENVELOPE",
+              6500
+            ]
+          ]
+        }
+      ],
+      "expected_gate": "HOLD"
+    },
+    {
+      "id": "F3F_S04_LATE_MATCH_CHANGE_CASCADE",
+      "date": "2026-10-20",
+      "title": "Late official match change conflicts with transport and public ticketing state",
+      "forced_contradictions": [
+        "TRANSPORT_OLD_KICKOFF_CONFLICT",
+        "TICKETING_OLD_KICKOFF_CONFLICT"
+      ],
+      "items": [
+        {
+          "id": "OFFICIAL_CHANGE",
+          "family": "COMPETITIONS",
+          "deadline_days": 0,
+          "regulatory": true,
+          "safety": false,
+          "resource_demands": [
+            [
+              "RESP_ADMIN_DAILY",
+              2
+            ]
+          ]
+        },
+        {
+          "id": "PUBLICATION_UPDATE",
+          "family": "COMMUNICATION",
+          "deadline_days": 0,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "COMMUNICATION_DAILY",
+              1
+            ]
+          ]
+        }
+      ],
+      "expected_gate": "BLOCK"
+    },
+    {
+      "id": "F3F_S05_HOSPITALITY_DOUBLE_COMMITMENT",
+      "date": "2026-12-05",
+      "title": "Two partner commitments target one hospitality slot",
+      "items": [
+        {
+          "id": "PARTNER_A",
+          "family": "PARTNERS_COMMERCIAL",
+          "deadline_days": 2,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "HOSPITALITY_SPACE",
+              1
+            ]
+          ]
+        },
+        {
+          "id": "PARTNER_B",
+          "family": "PARTNERS_COMMERCIAL",
+          "deadline_days": 2,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "HOSPITALITY_SPACE",
+              1
+            ]
+          ]
+        }
+      ],
+      "expected_gate": "BLOCK"
+    },
+    {
+      "id": "F3F_S06_FMI_BACKLOG_DEADLINE_CASCADE",
+      "date": "2026-11-09",
+      "title": "Previous FMI exception remains open while next official deadline arrives",
+      "forced_unknowns": [
+        "PREVIOUS_FMI_CLOSURE_UNKNOWN",
+        "COMMISSION_REPLY_UNKNOWN"
+      ],
+      "items": [
+        {
+          "id": "OLD_FMI",
+          "family": "COMPETITIONS",
+          "deadline_days": 0,
+          "regulatory": true,
+          "safety": false,
+          "resource_demands": [
+            [
+              "RESP_ADMIN_DAILY",
+              2
+            ]
+          ]
+        },
+        {
+          "id": "NEW_FMI",
+          "family": "COMPETITIONS",
+          "deadline_days": 1,
+          "regulatory": true,
+          "safety": false,
+          "resource_demands": [
+            [
+              "RESP_ADMIN_DAILY",
+              2
+            ]
+          ]
+        }
+      ],
+      "expected_gate": "HOLD"
+    },
+    {
+      "id": "F3F_S07_STALE_SOURCE_CONFLICT",
+      "date": "2026-09-15",
+      "title": "Current official communication conflicts with stale public organization source",
+      "forced_contradictions": [
+        "ROLE_OCCUPANT_CONFLICT",
+        "SOURCE_FRESHNESS_CONFLICT"
+      ],
+      "items": [
+        {
+          "id": "ORG_SOURCE",
+          "family": "PROOF_AUDIT",
+          "deadline_days": 4,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "RESP_ADMIN_DAILY",
+              1
+            ]
+          ]
+        }
+      ],
+      "expected_gate": "BLOCK"
+    },
+    {
+      "id": "F3F_S08_NO_DELEGATION_FOR_ABSENCE",
+      "date": "2027-01-18",
+      "title": "Role holder absence has no validated substitution chain",
+      "forced_unknowns": [
+        "SUBSTITUTE_UNKNOWN",
+        "DELEGATION_SCOPE_UNKNOWN"
+      ],
+      "items": [
+        {
+          "id": "ROLE_ABSENCE",
+          "family": "PEOPLE_HR_VOLUNTEERS",
+          "deadline_days": 1,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "MANAGER_GENERAL_DAILY",
+              1
+            ]
+          ]
+        }
+      ],
+      "expected_gate": "HOLD"
+    },
+    {
+      "id": "F3F_S09_TWENTY_VALID_CASES",
+      "date": "2027-02-01",
+      "title": "Twenty valid cases compete for limited administrative attention",
+      "items": [
+        {
+          "id": "CASE_01",
+          "family": "COMPETITIONS",
+          "deadline_days": 0,
+          "regulatory": true,
+          "safety": false,
+          "resource_demands": [
+            [
+              "RESP_ADMIN_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_02",
+          "family": "COMPETITIONS",
+          "deadline_days": 0,
+          "regulatory": true,
+          "safety": false,
+          "resource_demands": [
+            [
+              "RESP_ADMIN_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_03",
+          "family": "COMPETITIONS",
+          "deadline_days": 1,
+          "regulatory": true,
+          "safety": false,
+          "resource_demands": [
+            [
+              "RESP_ADMIN_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_04",
+          "family": "FINANCE_ACCOUNTING",
+          "deadline_days": 3,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "ADMIN_ACCOUNTING_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_05",
+          "family": "PARTNERS_COMMERCIAL",
+          "deadline_days": 2,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "PARTNERSHIP_MANAGER_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_06",
+          "family": "COMMUNICATION",
+          "deadline_days": 1,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "COMMUNICATION_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_07",
+          "family": "ACADEMY_MEMBERSHIP",
+          "deadline_days": 5,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "RESP_ADMIN_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_08",
+          "family": "TRAVEL_LOGISTICS",
+          "deadline_days": 2,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "TEAM_MANAGER_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_09",
+          "family": "MATCHDAY",
+          "deadline_days": 1,
+          "regulatory": false,
+          "safety": true,
+          "resource_demands": [
+            [
+              "MATCHDAY_ORGANIZER_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_10",
+          "family": "SUPPORTERS_TICKETING",
+          "deadline_days": 2,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "TICKETING_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_11",
+          "family": "COMPETITIONS",
+          "deadline_days": 2,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "RESP_ADMIN_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_12",
+          "family": "FINANCE_ACCOUNTING",
+          "deadline_days": 2,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "ADMIN_ACCOUNTING_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_13",
+          "family": "PARTNERS_COMMERCIAL",
+          "deadline_days": 4,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "PARTNERSHIP_MANAGER_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_14",
+          "family": "COMMUNICATION",
+          "deadline_days": 3,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "COMMUNICATION_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_15",
+          "family": "ACADEMY_MEMBERSHIP",
+          "deadline_days": 4,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "FORMATION_COORDINATOR_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_16",
+          "family": "TRAVEL_LOGISTICS",
+          "deadline_days": 4,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "TEAM_MANAGER_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_17",
+          "family": "MATCHDAY",
+          "deadline_days": 2,
+          "regulatory": false,
+          "safety": true,
+          "resource_demands": [
+            [
+              "MATCHDAY_ORGANIZER_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_18",
+          "family": "SUPPORTERS_TICKETING",
+          "deadline_days": 3,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "TICKETING_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_19",
+          "family": "PROOF_AUDIT",
+          "deadline_days": 6,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "RESP_ADMIN_DAILY",
+              0.3
+            ]
+          ]
+        },
+        {
+          "id": "CASE_20",
+          "family": "PEOPLE_HR_VOLUNTEERS",
+          "deadline_days": 5,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "MANAGER_GENERAL_DAILY",
+              0.3
+            ]
+          ]
+        }
+      ],
+      "expected_gate": "ALLOW",
+      "expected_priority_first": "CASE_09"
+    },
+    {
+      "id": "F3F_S10_NORMAL_MULTI_CASE_DAY",
+      "date": "2027-03-08",
+      "title": "Several independent cases fit available capacity",
+      "items": [
+        {
+          "id": "NORMAL_ADMIN",
+          "family": "COMPETITIONS",
+          "deadline_days": 3,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "RESP_ADMIN_DAILY",
+              1
+            ]
+          ]
+        },
+        {
+          "id": "NORMAL_FINANCE",
+          "family": "FINANCE_ACCOUNTING",
+          "deadline_days": 4,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "ADMIN_ACCOUNTING_DAILY",
+              1
+            ]
+          ]
+        },
+        {
+          "id": "NORMAL_COMM",
+          "family": "COMMUNICATION",
+          "deadline_days": 5,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "COMMUNICATION_DAILY",
+              1
+            ]
+          ]
+        }
+      ],
+      "expected_gate": "ALLOW"
+    },
+    {
+      "id": "F3F_S11_SAFETY_VS_PARTNER_PRIORITY",
+      "date": "2027-04-03",
+      "title": "Safety-critical matchday case outranks partner activation during shared attention pressure",
+      "forced_unknowns": [
+        "HUMAN_REALLOCATION_APPROVAL_UNKNOWN",
+        "PARTNER_ALTERNATIVE_UNKNOWN"
+      ],
+      "items": [
+        {
+          "id": "SAFETY_ACCESS",
+          "family": "MATCHDAY",
+          "deadline_days": 0,
+          "regulatory": false,
+          "safety": true,
+          "resource_demands": [
+            [
+              "MATCHDAY_ORGANIZER_DAILY",
+              4
+            ]
+          ]
+        },
+        {
+          "id": "PARTNER_HOST",
+          "family": "PARTNERS_COMMERCIAL",
+          "deadline_days": 0,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "MATCHDAY_ORGANIZER_DAILY",
+              3
+            ]
+          ]
+        }
+      ],
+      "expected_gate": "HOLD",
+      "expected_priority_first": "SAFETY_ACCESS"
+    },
+    {
+      "id": "F3F_S12_VENUE_DOUBLE_BOOKING",
+      "date": "2027-05-01",
+      "title": "Two organizational uses claim the same stadium slot",
+      "items": [
+        {
+          "id": "HOME_MATCH",
+          "family": "MATCHDAY",
+          "deadline_days": 0,
+          "regulatory": true,
+          "safety": true,
+          "resource_demands": [
+            [
+              "MAIN_STADIUM_SLOT",
+              1
+            ]
+          ]
+        },
+        {
+          "id": "COMMERCIAL_EVENT",
+          "family": "PARTNERS_COMMERCIAL",
+          "deadline_days": 0,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            [
+              "MAIN_STADIUM_SLOT",
+              1
+            ]
+          ]
+        }
+      ],
+      "expected_gate": "BLOCK",
+      "expected_priority_first": "HOME_MATCH"
+    }
+  ]
+}

@@ -1,0 +1,365 @@
+{
+  "version": "CSSA_REPORTING_ROUTING_V0",
+  "status": "ACTIVE_IN_REPO_NO_EXTERNAL_DELIVERY",
+  "truth_classes": [
+    "PUBLIC_CONFIRMED",
+    "SECONDARY_CORROBORATED",
+    "ESTIMATED",
+    "SIMULATED_NOT_OBSERVED",
+    "REAL_FIELD_EVIDENCE",
+    "UNKNOWN_PRIVATE"
+  ],
+  "cadences": {
+    "WEEKLY": {
+      "backward_days": 7,
+      "forward_days": 7,
+      "audience_scope": "OPERATIONAL",
+      "purpose": "short-cycle operations, deadlines, blockers, next-week planning"
+    },
+    "BIWEEKLY": {
+      "backward_days": 14,
+      "forward_days": 14,
+      "audience_scope": "CROSS_LAYER",
+      "purpose": "cross-layer review, dependency drift, resource conflicts, model updates"
+    },
+    "MONTHLY": {
+      "backward_days": 31,
+      "forward_days": 31,
+      "audience_scope": "GOVERNANCE",
+      "purpose": "governance, finance, capacity, risk, architecture and next-month planning"
+    }
+  },
+  "family_routes": {
+    "GOVERNANCE_LEGAL": [
+      "DIRECTION_PRESIDENCE",
+      "MANAGER_GENERAL",
+      "RESP_ADMIN",
+      "CLUB_SECRETARIAT"
+    ],
+    "COMPETITIONS": [
+      "MANAGER_GENERAL",
+      "RESP_ADMIN",
+      "CLUB_SECRETARIAT",
+      "TECHNICAL_DIRECTOR",
+      "TEAM_MANAGER_INTENDANT",
+      "COMMUNICATION"
+    ],
+    "ACADEMY_MEMBERSHIP": [
+      "MANAGER_GENERAL",
+      "RESP_ADMIN",
+      "ADMIN_ACCOUNTING",
+      "TECHNICAL_DIRECTOR",
+      "FORMATION_COORDINATOR",
+      "FOOT5_8_COORDINATOR",
+      "TEAM_MANAGER_INTENDANT"
+    ],
+    "TRAVEL_LOGISTICS": [
+      "MANAGER_GENERAL",
+      "RESP_ADMIN",
+      "ADMIN_ACCOUNTING",
+      "TECHNICAL_DIRECTOR",
+      "TEAM_MANAGER_INTENDANT"
+    ],
+    "FINANCE_ACCOUNTING": [
+      "DIRECTION_PRESIDENCE",
+      "MANAGER_GENERAL",
+      "RESP_ADMIN",
+      "ADMIN_ACCOUNTING"
+    ],
+    "PARTNERS_COMMERCIAL": [
+      "DIRECTION_PRESIDENCE",
+      "MANAGER_GENERAL",
+      "ADMIN_ACCOUNTING",
+      "PARTNERSHIP_MANAGER",
+      "MATCHDAY_ORGANIZER"
+    ],
+    "SUPPORTERS_TICKETING": [
+      "MANAGER_GENERAL",
+      "ADMIN_ACCOUNTING",
+      "TICKETING_BOUTIQUE",
+      "MATCHDAY_ORGANIZER",
+      "COMMUNICATION"
+    ],
+    "MATCHDAY": [
+      "MANAGER_GENERAL",
+      "RESP_ADMIN",
+      "MATCHDAY_ORGANIZER",
+      "MATCHDAY_SECURITY",
+      "VOLUNTEER",
+      "TICKETING_BOUTIQUE",
+      "PARTNERSHIP_MANAGER",
+      "COMMUNICATION"
+    ],
+    "COMMUNICATION": [
+      "MANAGER_GENERAL",
+      "RESP_ADMIN",
+      "CLUB_SECRETARIAT",
+      "COMMUNICATION"
+    ],
+    "PEOPLE_HR_VOLUNTEERS": [
+      "DIRECTION_PRESIDENCE",
+      "MANAGER_GENERAL",
+      "RESP_ADMIN",
+      "ADMIN_ACCOUNTING"
+    ],
+    "FACILITIES": [
+      "DIRECTION_PRESIDENCE",
+      "MANAGER_GENERAL",
+      "RESP_ADMIN",
+      "MATCHDAY_ORGANIZER"
+    ],
+    "EDUCATION": [
+      "MANAGER_GENERAL",
+      "TECHNICAL_DIRECTOR",
+      "FORMATION_COORDINATOR",
+      "SCHOOL_SECTION_MABILLON"
+    ],
+    "PROOF_AUDIT": [
+      "DIRECTION_PRESIDENCE",
+      "MANAGER_GENERAL",
+      "RESP_ADMIN",
+      "CLUB_SECRETARIAT"
+    ],
+    "PRIVACY_SENSITIVE": [
+      "MANAGER_GENERAL",
+      "RESP_ADMIN"
+    ],
+    "ORGANIZATIONAL_STRESS": [
+      "DIRECTION_PRESIDENCE",
+      "MANAGER_GENERAL",
+      "RESP_ADMIN",
+      "ADMIN_ACCOUNTING",
+      "TECHNICAL_DIRECTOR",
+      "TEAM_MANAGER_INTENDANT",
+      "MATCHDAY_ORGANIZER",
+      "TICKETING_BOUTIQUE",
+      "PARTNERSHIP_MANAGER",
+      "COMMUNICATION"
+    ]
+  },
+  "persona_views": {
+    "DIRECTION_PRESIDENCE": {
+      "cadences": [
+        "BIWEEKLY",
+        "MONTHLY"
+      ],
+      "sections": [
+        "RISKS",
+        "FINANCE",
+        "GOVERNANCE",
+        "DECISIONS",
+        "UNKNOWN_PRIVATE"
+      ]
+    },
+    "MANAGER_GENERAL": {
+      "cadences": [
+        "WEEKLY",
+        "BIWEEKLY",
+        "MONTHLY"
+      ],
+      "sections": [
+        "PRIORITIES",
+        "BLOCKERS",
+        "DEPENDENCIES",
+        "DEADLINES",
+        "CROSS_LAYER"
+      ]
+    },
+    "RESP_ADMIN": {
+      "cadences": [
+        "WEEKLY",
+        "BIWEEKLY",
+        "MONTHLY"
+      ],
+      "sections": [
+        "CASES",
+        "DEADLINES",
+        "OFFICIAL_AUTHORITIES",
+        "EVIDENCE",
+        "BLOCKERS"
+      ]
+    },
+    "CLUB_SECRETARIAT": {
+      "cadences": [
+        "WEEKLY",
+        "BIWEEKLY"
+      ],
+      "sections": [
+        "CORRESPONDENCE",
+        "DOCUMENTS",
+        "FOLLOWUPS",
+        "DEADLINES"
+      ]
+    },
+    "ADMIN_ACCOUNTING": {
+      "cadences": [
+        "WEEKLY",
+        "BIWEEKLY",
+        "MONTHLY"
+      ],
+      "sections": [
+        "INVOICES",
+        "PAYMENTS",
+        "RECONCILIATION",
+        "TRAVEL",
+        "BUDGET_RISK"
+      ]
+    },
+    "TECHNICAL_DIRECTOR": {
+      "cadences": [
+        "WEEKLY",
+        "BIWEEKLY"
+      ],
+      "sections": [
+        "TEAMS",
+        "FIXTURES",
+        "STAFF",
+        "TRAVEL",
+        "ACADEMY"
+      ]
+    },
+    "FORMATION_COORDINATOR": {
+      "cadences": [
+        "WEEKLY",
+        "BIWEEKLY"
+      ],
+      "sections": [
+        "FORMATION",
+        "LICENCES",
+        "EQUIPMENT",
+        "FIXTURES",
+        "EDUCATION"
+      ]
+    },
+    "FOOT5_8_COORDINATOR": {
+      "cadences": [
+        "WEEKLY",
+        "BIWEEKLY"
+      ],
+      "sections": [
+        "PLATEAUX",
+        "LOGISTICS",
+        "GUARDIANS",
+        "EQUIPMENT"
+      ]
+    },
+    "TEAM_MANAGER_INTENDANT": {
+      "cadences": [
+        "WEEKLY"
+      ],
+      "sections": [
+        "FIXTURES",
+        "TRAVEL",
+        "DOCUMENTS",
+        "EQUIPMENT"
+      ]
+    },
+    "MATCHDAY_ORGANIZER": {
+      "cadences": [
+        "WEEKLY",
+        "BIWEEKLY"
+      ],
+      "sections": [
+        "VENUE",
+        "HOSPITALITY",
+        "VOLUNTEERS",
+        "TICKETING",
+        "DEPENDENCIES"
+      ]
+    },
+    "MATCHDAY_SECURITY": {
+      "cadences": [
+        "WEEKLY"
+      ],
+      "sections": [
+        "VENUE",
+        "ACCESS",
+        "SECURITY_DEPENDENCIES"
+      ]
+    },
+    "VOLUNTEER": {
+      "cadences": [
+        "WEEKLY"
+      ],
+      "sections": [
+        "ASSIGNMENTS",
+        "BRIEFING"
+      ]
+    },
+    "TICKETING_BOUTIQUE": {
+      "cadences": [
+        "WEEKLY",
+        "BIWEEKLY"
+      ],
+      "sections": [
+        "TICKETING",
+        "SUBSCRIBERS",
+        "ACCESS_RULES",
+        "MATCH_CONFIG"
+      ]
+    },
+    "PARTNERSHIP_MANAGER": {
+      "cadences": [
+        "WEEKLY",
+        "BIWEEKLY",
+        "MONTHLY"
+      ],
+      "sections": [
+        "PARTNERS",
+        "ACTIVATIONS",
+        "HOSPITALITY",
+        "INVOICES",
+        "PROOF_OF_DELIVERY"
+      ]
+    },
+    "COMMUNICATION": {
+      "cadences": [
+        "WEEKLY",
+        "BIWEEKLY"
+      ],
+      "sections": [
+        "APPROVED_FACTS",
+        "PUBLICATION_CANDIDATES",
+        "SOURCE_FRESHNESS",
+        "BLOCKERS"
+      ]
+    },
+    "SCHOOL_SECTION_MABILLON": {
+      "cadences": [
+        "BIWEEKLY",
+        "MONTHLY"
+      ],
+      "sections": [
+        "EDUCATION",
+        "SCHEDULE",
+        "COORDINATION"
+      ]
+    }
+  },
+  "privacy_policy": {
+    "PRIVACY_SENSITIVE": {
+      "redact": true,
+      "visible_fields": [
+        "event_id",
+        "event_date",
+        "family",
+        "case_type",
+        "expected_gate",
+        "risk_flags"
+      ],
+      "forbidden_fields": [
+        "source_ids",
+        "target_refs",
+        "estimated_amount_eur",
+        "evidence_refs",
+        "provenance_refs"
+      ],
+      "message": "Sensitive case metadata only. Detail requires manual privacy authorization."
+    }
+  },
+  "external_delivery": {
+    "enabled": false,
+    "reason": "V0 generates routed report artifacts only; no email/Slack/CRM delivery authority.",
+    "decision_authority": "KX108_ONLY"
+  }
+}

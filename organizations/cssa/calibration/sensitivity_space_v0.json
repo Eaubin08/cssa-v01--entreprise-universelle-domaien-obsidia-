@@ -1,0 +1,208 @@
+{
+  "version": "CSSA_F3G_A_SENSITIVITY_SPACE_V0",
+  "status": "SIMULATED_NOT_OBSERVED",
+  "doctrine": [
+    "BREAK_ASSUMPTIONS_NOT_GOVERNANCE",
+    "EXTREME_VALUES_ARE_TEST_INPUTS_NOT_CSSA_FACTS",
+    "PRIORITY_NEVER_BECOMES_AUTHORITY",
+    "INVALID_PARAMETERS_FAIL_CLOSED",
+    "REAL_FIELD_CALIBRATION_REPLACES_ONLY_VALIDATED_ASSUMPTIONS"
+  ],
+  "resource_dimensions": [
+    {
+      "id": "RESP_ADMIN_DAILY",
+      "values": [
+        0,
+        1,
+        2,
+        4,
+        6,
+        10,
+        20
+      ],
+      "field_question": "Combien de personnes/capacité réelle absorbent les urgences administratives et qui peut remplacer le responsable ?"
+    },
+    {
+      "id": "VEHICLE_EQUIVALENT_POOL",
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        5
+      ],
+      "field_question": "Combien de véhicules/minibus ou équivalents sont réellement mutualisés entre les équipes ?"
+    },
+    {
+      "id": "TRAVEL_MONTHLY_ENVELOPE",
+      "values": [
+        0,
+        1000,
+        3000,
+        5000,
+        8000,
+        15000
+      ],
+      "field_question": "Existe-t-il une enveloppe ou un seuil de validation pour les déplacements et qui autorise un dépassement ?"
+    },
+    {
+      "id": "MATCHDAY_ORGANIZER_DAILY",
+      "values": [
+        0,
+        1,
+        3,
+        5,
+        8,
+        15
+      ],
+      "field_question": "Combien de personnes peuvent réellement absorber/valider des sujets matchday en parallèle ?"
+    },
+    {
+      "id": "HOSPITALITY_SPACE",
+      "values": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "field_question": "Combien d'espaces/activations hospitalité peuvent être honorés simultanément ?"
+    },
+    {
+      "id": "MAIN_STADIUM_SLOT",
+      "values": [
+        0,
+        1,
+        2
+      ],
+      "field_question": "Comment sont arbitrés les conflits d'occupation du stade ou d'un créneau critique ?"
+    }
+  ],
+  "pressure_multipliers": [
+    0,
+    0.25,
+    0.5,
+    1,
+    2,
+    4
+  ],
+  "assumption_dimensions": [
+    {
+      "id": "DELEGATION_RESOLVED",
+      "removes_unknowns": [
+        "INTERIM_DELEGATE_UNKNOWN",
+        "SIGNATURE_AUTHORITY_UNKNOWN",
+        "SUBSTITUTE_UNKNOWN",
+        "DELEGATION_SCOPE_UNKNOWN"
+      ],
+      "removes_contradictions": [],
+      "field_question": "Quand le responsable est absent, qui reprend réellement le dossier et avec quel périmètre de signature/validation ?"
+    },
+    {
+      "id": "BUDGET_AUTHORITY_RESOLVED",
+      "removes_unknowns": [
+        "OVERRUN_APPROVAL_UNKNOWN",
+        "FUNDING_REALLOCATION_UNKNOWN"
+      ],
+      "removes_contradictions": [],
+      "field_question": "Qui peut autoriser un dépassement ou réallouer un budget de déplacement ?"
+    },
+    {
+      "id": "FMI_STATUS_RESOLVED",
+      "removes_unknowns": [
+        "PREVIOUS_FMI_CLOSURE_UNKNOWN",
+        "COMMISSION_REPLY_UNKNOWN"
+      ],
+      "removes_contradictions": [],
+      "field_question": "Qui suit un incident FMI jusqu'à clôture et où voit-on que la commission a répondu ?"
+    },
+    {
+      "id": "MATCH_CHANGE_PROPAGATED",
+      "removes_unknowns": [],
+      "removes_contradictions": [
+        "TRANSPORT_OLD_KICKOFF_CONFLICT",
+        "TICKETING_OLD_KICKOFF_CONFLICT"
+      ],
+      "field_question": "Après une modification de match validée, qui met à jour transport, billetterie et communication et comment la propagation est-elle vérifiée ?"
+    },
+    {
+      "id": "STALE_SOURCE_RECONCILED",
+      "removes_unknowns": [],
+      "removes_contradictions": [
+        "ROLE_OCCUPANT_CONFLICT",
+        "SOURCE_FRESHNESS_CONFLICT"
+      ],
+      "field_question": "Quelle source fait foi quand le site, un organigramme ou une communication interne ne sont pas synchronisés ?"
+    },
+    {
+      "id": "MATCHDAY_REALLOCATION_RESOLVED",
+      "removes_unknowns": [
+        "HUMAN_REALLOCATION_APPROVAL_UNKNOWN",
+        "PARTNER_ALTERNATIVE_UNKNOWN"
+      ],
+      "removes_contradictions": [],
+      "field_question": "Qui arbitre une urgence sécurité contre un engagement partenaire et quelles alternatives sont prévues ?"
+    }
+  ],
+  "named_operating_profiles": [
+    {
+      "id": "CRUSHED",
+      "description": "Artificial near-collapse profile used only to attack the model.",
+      "overrides": {
+        "RESP_ADMIN_DAILY": 0,
+        "VEHICLE_EQUIVALENT_POOL": 0,
+        "TRAVEL_MONTHLY_ENVELOPE": 0,
+        "MATCHDAY_ORGANIZER_DAILY": 0,
+        "HOSPITALITY_SPACE": 0,
+        "MAIN_STADIUM_SLOT": 0
+      }
+    },
+    {
+      "id": "TIGHT",
+      "description": "Low-capacity constrained profile.",
+      "overrides": {
+        "RESP_ADMIN_DAILY": 2,
+        "VEHICLE_EQUIVALENT_POOL": 1,
+        "TRAVEL_MONTHLY_ENVELOPE": 3000,
+        "MATCHDAY_ORGANIZER_DAILY": 3,
+        "HOSPITALITY_SPACE": 1,
+        "MAIN_STADIUM_SLOT": 1
+      }
+    },
+    {
+      "id": "BASE_F3F",
+      "description": "Current F3F synthetic baseline.",
+      "overrides": {
+        "RESP_ADMIN_DAILY": 6,
+        "VEHICLE_EQUIVALENT_POOL": 2,
+        "TRAVEL_MONTHLY_ENVELOPE": 5000,
+        "MATCHDAY_ORGANIZER_DAILY": 5,
+        "HOSPITALITY_SPACE": 1,
+        "MAIN_STADIUM_SLOT": 1
+      }
+    },
+    {
+      "id": "COMFORTABLE",
+      "description": "Higher-capacity plausible stress comparison, not a real CSSA claim.",
+      "overrides": {
+        "RESP_ADMIN_DAILY": 10,
+        "VEHICLE_EQUIVALENT_POOL": 3,
+        "TRAVEL_MONTHLY_ENVELOPE": 8000,
+        "MATCHDAY_ORGANIZER_DAILY": 8,
+        "HOSPITALITY_SPACE": 2,
+        "MAIN_STADIUM_SLOT": 2
+      }
+    },
+    {
+      "id": "ABUNDANT",
+      "description": "Artificial high-capacity ceiling used to expose which failures remain non-resource-related.",
+      "overrides": {
+        "RESP_ADMIN_DAILY": 20,
+        "VEHICLE_EQUIVALENT_POOL": 5,
+        "TRAVEL_MONTHLY_ENVELOPE": 15000,
+        "MATCHDAY_ORGANIZER_DAILY": 15,
+        "HOSPITALITY_SPACE": 4,
+        "MAIN_STADIUM_SLOT": 2
+      }
+    }
+  ]
+}

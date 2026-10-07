@@ -1,0 +1,80 @@
+version: CSSA_PUBLIC_ADMIN_SOURCES_V0
+retrieved_date: "2026-10-06"
+status: PUBLIC_BASELINE
+
+sources:
+  - id: CSSA_PUBLIC_WEBSITE_2026
+    issuer: CSSA
+    class: ORGANIZATION_PUBLIC
+    url: "https://cs-sedan.fr/"
+    observed:
+      - first_team_regional_1
+      - season_2026_2027_site_context
+
+  - id: CSSA_PUBLIC_CONTACT_PAGE
+    issuer: CSSA
+    class: ORGANIZATION_PUBLIC
+    url: "https://cs-sedan.fr/contact"
+    observed:
+      - general_club_contact
+      - official_lgef_domain_email_visible
+
+  - id: CSSA_PUBLIC_ORGANIZATION
+    issuer: CSSA
+    class: ORGANIZATION_PUBLIC
+    url: "https://cs-sedan.fr/organigramme-association"
+    observed_role_slots:
+      - PRESIDENT
+      - GENERAL_MANAGER
+      - TECHNICAL_DIRECTOR
+      - ADMINISTRATIVE_MANAGER
+      - TREASURY_ADMINISTRATION
+      - CLUB_SECRETARIAT
+      - MATCHDAY_ORGANIZATION_EVENTS
+      - MATCHDAY_SECURITY
+
+  - id: FFF_REGULATIONS_2026_2027
+    issuer: FFF
+    class: FEDERAL_NORMATIVE
+    url: "https://www.fff.fr/11-les-reglements/151-les-statuts-et-reglements-de-la-fff.html"
+    season: "2026-2027"
+
+  - id: LGEF_REGLEMENTS_PARTICULIERS_2026_2027
+    issuer: LGEF
+    class: REGIONAL_NORMATIVE
+    url: "https://lgef.fff.fr/wp-content/uploads/sites/14/2026/05/Reglements-Particuliers-de-la-LGEF-26-27.pdf"
+    season: "2026-2027"
+    audited_rules:
+      - id: LGEF_2026_2027_ART_1_CORRESPONDENCE
+        article: "1"
+        facts:
+          - league_and_district_mail_to_clubs_uses_official_registered_address
+          - club_mail_to_league_or_district_uses_official_club_address
+      - id: LGEF_2026_2027_ART_3_3
+        article: "3.3"
+        facts:
+          - changes_to_required_club_information_notified_within_10_days
+      - id: LGEF_2026_2027_ART_20_7
+        article: "20.7"
+        facts:
+          - fixture_change_at_least_10_days_before_via_footclubs
+          - after_deadline_clubs_agree_by_official_email
+          - only_competitions_service_with_crc_homologates_time_and_date
+      - id: LGEF_2026_2027_ART_24
+        article: "24"
+        facts:
+          - receiving_club_uses_fmi_when_mandatory
+          - fmi_transmitted_next_day_before_10
+          - paper_fallback_if_fmi_unavailable
+          - fallback_deadline_24_business_hours_and_monday_10_for_weekend
+          - commission_reviews_exception_and_sanction_risk
+      - id: LGEF_2026_2027_ART_42
+        article: "42"
+        facts:
+          - regional_competition_referees_designated_by_cra
+
+claim_boundary:
+  cssa_internal_practice: UNKNOWN
+  public_rules_equal_local_practice: FALSE
+  automation_authorized: FALSE
+  external_write_authorized: FALSE

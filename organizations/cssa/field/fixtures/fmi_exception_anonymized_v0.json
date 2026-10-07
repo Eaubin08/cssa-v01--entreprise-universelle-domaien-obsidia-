@@ -1,0 +1,46 @@
+{
+  "bundle_ref": "fmi-exception-sample-v0",
+  "sources": [
+    {
+      "source_id": "screen-state-001",
+      "evidence_class": "SYSTEM_SCREEN_STATE",
+      "observed_at": "2026-10-06T20:00:00Z",
+      "source_type": "FMI_SCREEN",
+      "source_ref": "anonymized:fmi-screen-001",
+      "sensitivity": ["INTERNAL"],
+      "anonymized": true,
+      "access_scope": "READONLY"
+    },
+    {
+      "source_id": "local-checklist-001",
+      "evidence_class": "LOCAL_CHECKLIST",
+      "observed_at": "2026-10-06T20:00:00Z",
+      "source_type": "CHECKLIST",
+      "source_ref": "anonymized:checklist-001",
+      "sensitivity": ["INTERNAL"],
+      "anonymized": true,
+      "access_scope": "READONLY"
+    }
+  ],
+  "cases": [
+    {
+      "case_ref": "sample-fmi-exception-001",
+      "case_type_observed": "fmi_exception",
+      "valid_at": "2026-10-06T20:00:00Z",
+      "source_ids": ["screen-state-001", "local-checklist-001"],
+      "trigger": "fmi_unavailable_matchday",
+      "target_refs": ["fixture:anonymized:002"],
+      "responsible_role_observed": "MATCHDAY_ADMINISTRATION",
+      "approving_role_observed": "UNKNOWN",
+      "external_authority_observed": "LGEF_COMMISSION",
+      "channel_observed": "PAPER_FALLBACK",
+      "tools_observed": ["FMI", "PAPER_MATCH_SHEET"],
+      "required_documents_observed": ["paper_match_sheet"],
+      "missing_information": ["who_validates_paper_send"],
+      "exceptions": ["technical_failure"],
+      "human_memory_only_refs": ["who_calls_lgef_if_problem"],
+      "public_rule_refs": ["LGEF_2026_2027_ART_24"],
+      "validated_by_cssa": false
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+name: f3b-cssa-field-intake-kit
+
+on:
+  push:
+    branches:
+      - feat/f3b-cssa-field-intake-kit-v0
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  field-intake-proof:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout CSSA V0.1 repo
+        uses: actions/checkout@v4
+
+      - name: Checkout frozen Obsidia F2.5 resolver seam
+        uses: actions/checkout@v4
+        with:
+          repository: Eaubin08/obsidia-x108-proofs
+          ref: feat/f2-5-portable-domain-resolver-seam-v0
+          path: upstream
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: python -m pip install --upgrade pip pytest
+
+      - name: Run F1 through F3B kit proof suite
+        env:
+          OBSIDIA_UPSTREAM_ROOT: ${{ github.workspace }}/upstream
+        run: >-
+          python -m pytest
+          tests/test_f1_universal_contract_v0.py
+          tests/test_f2_universal_conformance_v0.py
+          tests/test_f21_real_current_main_runtime.py
+          tests/test_f22_portable_domain_registration_v0.py
+          tests/test_f23_canonical_compatible_resolver_v0.py
+          tests/test_f24_full_portable_runtime_cycle_v0.py
+          tests/test_f25_first_class_runtime_seam_v0.py
+          tests/test_f3a_cssa_public_admin_domain_v0.py
+          tests/test_f3b_cssa_field_intake_kit_v0.py
+          -q

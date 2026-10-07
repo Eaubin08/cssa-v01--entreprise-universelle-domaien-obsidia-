@@ -1,0 +1,255 @@
+{
+  "version": "CSSA_OPERATING_MAP_V0",
+  "status": "PUBLIC_MODEL_PLUS_SIMULATION_BOUNDARIES",
+  "operating_domains": [
+    {
+      "id": "GOVERNANCE_LEGAL",
+      "objects": [
+        "Entity",
+        "Mandate",
+        "Delegation",
+        "Decision",
+        "Agreement"
+      ],
+      "external": [
+        "Association",
+        "SAS",
+        "Collectivities"
+      ],
+      "unknowns": [
+        "CURRENT_ASSOCIATION_SAS_OPERATING_SPLIT"
+      ]
+    },
+    {
+      "id": "COMPETITIONS",
+      "objects": [
+        "Team",
+        "Fixture",
+        "Competition",
+        "Homologation",
+        "OfficialDecision",
+        "FMI",
+        "Discipline"
+      ],
+      "external": [
+        "LGEF",
+        "District",
+        "FFF"
+      ],
+      "unknowns": [
+        "INTERNAL_CASE_OWNER"
+      ]
+    },
+    {
+      "id": "ACADEMY_MEMBERSHIP",
+      "objects": [
+        "LicenceHolder",
+        "Guardian",
+        "Licence",
+        "Pack",
+        "EquipmentOrder",
+        "DiscountEvidence",
+        "SeasonTicketBenefit"
+      ],
+      "external": [
+        "FFF",
+        "Kappa",
+        "HelloAsso"
+      ],
+      "unknowns": [
+        "CATEGORY_HEADCOUNT"
+      ]
+    },
+    {
+      "id": "TRAVEL_LOGISTICS",
+      "objects": [
+        "AwayTrip",
+        "VehiclePlan",
+        "Driver",
+        "PassengerManifest",
+        "Mileage",
+        "Toll",
+        "Meal",
+        "Invoice",
+        "Reimbursement"
+      ],
+      "external": [
+        "TransportProviders",
+        "Families"
+      ],
+      "unknowns": [
+        "CSSA_REIMBURSEMENT_POLICY",
+        "VEHICLE_FLEET",
+        "COACH_CONTRACTS"
+      ]
+    },
+    {
+      "id": "FINANCE_ACCOUNTING",
+      "objects": [
+        "Budget",
+        "CostCenter",
+        "Invoice",
+        "Payment",
+        "Reconciliation",
+        "Grant",
+        "Fee",
+        "Receipt"
+      ],
+      "external": [
+        "Bank",
+        "LGEF",
+        "Suppliers",
+        "Collectivities"
+      ],
+      "unknowns": [
+        "2026_27_CERTIFIED_BUDGET"
+      ]
+    },
+    {
+      "id": "PARTNERS_COMMERCIAL",
+      "objects": [
+        "Partner",
+        "Contract",
+        "Tier",
+        "Asset",
+        "Activation",
+        "HospitalityQuota",
+        "GuestList",
+        "Invoice",
+        "ProofOfDelivery"
+      ],
+      "external": [
+        "ArdennesClubPartenaires",
+        "Companies"
+      ],
+      "unknowns": [
+        "PARTNER_CONTRACT_VALUES"
+      ]
+    },
+    {
+      "id": "SUPPORTERS_TICKETING",
+      "objects": [
+        "Subscriber",
+        "Ticket",
+        "SubscriptionProduct",
+        "QR",
+        "Order",
+        "Refund",
+        "AccessRule"
+      ],
+      "external": [
+        "Weezevent",
+        "Supporters"
+      ],
+      "unknowns": [
+        "FINAL_SUBSCRIBER_COUNT",
+        "PRODUCT_MIX"
+      ]
+    },
+    {
+      "id": "MATCHDAY",
+      "objects": [
+        "VenueConfig",
+        "StandStatus",
+        "Gate",
+        "HospitalitySpace",
+        "Buvette",
+        "SecurityPlan",
+        "VolunteerAssignment",
+        "Accreditation"
+      ],
+      "external": [
+        "PoliceSecurity",
+        "Media",
+        "Guests"
+      ],
+      "unknowns": [
+        "INTERNAL_MATCHDAY_CHECKLIST"
+      ]
+    },
+    {
+      "id": "COMMUNICATION",
+      "objects": [
+        "SourceFact",
+        "PublicationCandidate",
+        "Campaign",
+        "AudienceSegment",
+        "Channel",
+        "PublishedArtifact"
+      ],
+      "external": [
+        "Website",
+        "Social",
+        "Email"
+      ],
+      "unknowns": [
+        "INTERNAL_PUBLICATION_APPROVAL"
+      ]
+    },
+    {
+      "id": "PEOPLE_HR_VOLUNTEERS",
+      "objects": [
+        "Role",
+        "Person",
+        "Availability",
+        "Contract",
+        "VolunteerAssignment",
+        "Substitution"
+      ],
+      "external": [
+        "Staff",
+        "Volunteers"
+      ],
+      "unknowns": [
+        "CURRENT_PRIVATE_CONTRACTS"
+      ]
+    },
+    {
+      "id": "FACILITIES",
+      "objects": [
+        "Stadium",
+        "TrainingGround",
+        "OccupancyAgreement",
+        "MaintenanceCase",
+        "Booking"
+      ],
+      "external": [
+        "ArdenneMetropole",
+        "Ville"
+      ],
+      "unknowns": [
+        "CURRENT_2026_OCCUPANCY_FINANCIAL_TERMS"
+      ]
+    },
+    {
+      "id": "EDUCATION",
+      "objects": [
+        "StudentPlayer",
+        "SchoolProgress",
+        "SportProgress",
+        "Attendance",
+        "Selection"
+      ],
+      "external": [
+        "Mabillon",
+        "Guardians"
+      ],
+      "unknowns": [
+        "PRIVATE_STUDENT_DATA"
+      ]
+    },
+    {
+      "id": "PROOF_AUDIT",
+      "objects": [
+        "Evidence",
+        "Provenance",
+        "Receipt",
+        "Version",
+        "Contradiction",
+        "Unknown"
+      ],
+      "external": [],
+      "unknowns": []
+    }
+  ]
+}

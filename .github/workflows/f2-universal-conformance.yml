@@ -1,0 +1,23 @@
+name: f2-universal-conformance
+
+on:
+  push:
+    branches:
+      - feat/f2-universal-conformance-v0
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --upgrade pip pytest
+      - name: Run F1 + F2 contract tests
+        run: python -m pytest tests/test_f1_universal_contract_v0.py tests/test_f2_universal_conformance_v0.py -q

@@ -1,0 +1,25 @@
+{
+  "bundle_ref": "sensitive-sample-v0",
+  "sources": [
+    {
+      "source_id": "minor-record-001",
+      "evidence_class": "INTERNAL_DOCUMENT",
+      "observed_at": "2026-10-06T20:00:00Z",
+      "source_type": "PLAYER_RECORD",
+      "source_ref": "anonymized:minor-record-001",
+      "sensitivity": ["INTERNAL", "MINOR_DATA"],
+      "anonymized": false,
+      "access_scope": "READONLY"
+    }
+  ],
+  "cases": [
+    {
+      "case_ref": "sample-sensitive-001",
+      "case_type_observed": "player_admin_issue",
+      "valid_at": "2026-10-06T20:00:00Z",
+      "source_ids": ["minor-record-001"],
+      "missing_information": [],
+      "validated_by_cssa": false
+    }
+  ]
+}

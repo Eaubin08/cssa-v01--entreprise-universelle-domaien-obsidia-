@@ -1,0 +1,53 @@
+version: F2_SOURCE_BASELINE_V0
+date: "2026-10-06"
+
+runtime_baseline:
+  repository: Eaubin08/obsidia-x108-proofs
+  ref: main
+  sha: 48f0c2fbcfe097c213b2783bc7b4d0fba78e6621
+  facts:
+    - real_governed_internal_multidomain_runtime
+    - canonical_domains_bank_trading_ecom_gps_defense_aviation
+    - KX108_ONLY
+    - unsupported_domain_refused_before_verdict
+    - external_world_actuation_false
+
+historical_architecture:
+  repository: Eaubin08/obsidia-x108-proofs
+  ref: codex/udip-domain-packs-v0
+  files:
+    - docs/UNIVERSAL_DOMAIN_INTEGRATION_PROTOCOL_V0.md
+    - domains/administration/README.md
+  verdict: REFERENCE_ONLY_PARTIAL_PROMOTION
+
+ontology_doctrine:
+  repository: Eaubin08/obsidia-x108-proofs
+  ref: docs/obsidia-ontology-layer-contracts-v0
+  file: docs/architecture/OBSIDIA_ONTOLOGY_AND_LAYER_CONTRACTS_V0.md
+  verdict: COMPLEMENTARY_DOCTRINE
+
+october_udip_candidate:
+  repository: Eaubin08/obsidia-x108-proofs
+  ref: feat/premiere-mise-au-monde-udip-v0
+  files:
+    - periphery/udip/contracts_v0.py
+    - tests/periphery/test_udip_contracts_v0.py
+    - periphery/mmonde/contracts_v0.py
+    - docs/architecture/UDIP_MMONDE_BRIDGE_V0.md
+  verdict: EXECUTABLE_COMPATIBILITY_SOURCE
+
+latest_governed_world_candidate:
+  repository: Eaubin08/obsidia-x108-proofs
+  ref: feat/premiere-mise-au-monde-proof-v0
+  files:
+    - periphery/governed_world/bridge_v0.py
+    - proofs/governed_world_decision_proof_v0.py
+    - docs/architecture/GOVERNED_WORLD_KX108_V0.md
+    - docs/architecture/GOVERNED_WORLD_DECISION_PROOF_V0.md
+  verdict: LATEST_RELEVANT_REFERENCE
+
+claim_boundary:
+  universal_contract_runtime_integration: NOT_PROVEN
+  administration_current_main_supported_domain: FALSE
+  cssa_runtime_supported: FALSE
+  f2_goal: CONTRACT_CONFORMANCE_ONLY

@@ -1,0 +1,225 @@
+{
+  "version": "CSSA_ORGANIZATIONAL_RESOURCES_SIM_V0",
+  "status": "SIMULATED_NOT_OBSERVED",
+  "note": "Capacities are stress-test parameters, not CSSA real assets/staffing.",
+  "resources": [
+    {
+      "id": "RESP_ADMIN_DAILY",
+      "kind": "ROLE_CAPACITY",
+      "unit": "work_unit",
+      "capacity": 6,
+      "persona": "RESP_ADMIN"
+    },
+    {
+      "id": "ADMIN_ACCOUNTING_DAILY",
+      "kind": "ROLE_CAPACITY",
+      "unit": "work_unit",
+      "capacity": 5,
+      "persona": "ADMIN_ACCOUNTING"
+    },
+    {
+      "id": "MANAGER_GENERAL_DAILY",
+      "kind": "ROLE_CAPACITY",
+      "unit": "work_unit",
+      "capacity": 5,
+      "persona": "MANAGER_GENERAL"
+    },
+    {
+      "id": "TECHNICAL_DIRECTOR_DAILY",
+      "kind": "ROLE_CAPACITY",
+      "unit": "work_unit",
+      "capacity": 5,
+      "persona": "TECHNICAL_DIRECTOR"
+    },
+    {
+      "id": "FORMATION_COORDINATOR_DAILY",
+      "kind": "ROLE_CAPACITY",
+      "unit": "work_unit",
+      "capacity": 4,
+      "persona": "FORMATION_COORDINATOR"
+    },
+    {
+      "id": "TEAM_MANAGER_DAILY",
+      "kind": "ROLE_CAPACITY",
+      "unit": "work_unit",
+      "capacity": 6,
+      "persona": "TEAM_MANAGER_INTENDANT"
+    },
+    {
+      "id": "MATCHDAY_ORGANIZER_DAILY",
+      "kind": "ROLE_CAPACITY",
+      "unit": "work_unit",
+      "capacity": 5,
+      "persona": "MATCHDAY_ORGANIZER"
+    },
+    {
+      "id": "PARTNERSHIP_MANAGER_DAILY",
+      "kind": "ROLE_CAPACITY",
+      "unit": "work_unit",
+      "capacity": 4,
+      "persona": "PARTNERSHIP_MANAGER"
+    },
+    {
+      "id": "COMMUNICATION_DAILY",
+      "kind": "ROLE_CAPACITY",
+      "unit": "work_unit",
+      "capacity": 4,
+      "persona": "COMMUNICATION"
+    },
+    {
+      "id": "TICKETING_DAILY",
+      "kind": "ROLE_CAPACITY",
+      "unit": "work_unit",
+      "capacity": 4,
+      "persona": "TICKETING_BOUTIQUE"
+    },
+    {
+      "id": "VEHICLE_EQUIVALENT_POOL",
+      "kind": "SHARED_ASSET",
+      "unit": "vehicle_equivalent",
+      "capacity": 2
+    },
+    {
+      "id": "HOSPITALITY_SPACE",
+      "kind": "SHARED_ASSET",
+      "unit": "activation_slot",
+      "capacity": 1
+    },
+    {
+      "id": "MAIN_STADIUM_SLOT",
+      "kind": "SHARED_ASSET",
+      "unit": "venue_slot",
+      "capacity": 1
+    },
+    {
+      "id": "TRAVEL_MONTHLY_ENVELOPE",
+      "kind": "BUDGET",
+      "unit": "EUR",
+      "capacity": 5000
+    },
+    {
+      "id": "VOLUNTEER_MATCHDAY_POOL",
+      "kind": "SHARED_PEOPLE",
+      "unit": "volunteer_slot",
+      "capacity": 30
+    }
+  ],
+  "family_workload_map": {
+    "GOVERNANCE_LEGAL": [
+      [
+        "MANAGER_GENERAL_DAILY",
+        1
+      ],
+      [
+        "RESP_ADMIN_DAILY",
+        1
+      ]
+    ],
+    "COMPETITIONS": [
+      [
+        "RESP_ADMIN_DAILY",
+        1
+      ],
+      [
+        "TEAM_MANAGER_DAILY",
+        0.5
+      ]
+    ],
+    "ACADEMY_MEMBERSHIP": [
+      [
+        "RESP_ADMIN_DAILY",
+        0.5
+      ],
+      [
+        "FORMATION_COORDINATOR_DAILY",
+        0.5
+      ]
+    ],
+    "TRAVEL_LOGISTICS": [
+      [
+        "TEAM_MANAGER_DAILY",
+        1
+      ],
+      [
+        "RESP_ADMIN_DAILY",
+        0.25
+      ]
+    ],
+    "FINANCE_ACCOUNTING": [
+      [
+        "ADMIN_ACCOUNTING_DAILY",
+        1
+      ]
+    ],
+    "PARTNERS_COMMERCIAL": [
+      [
+        "PARTNERSHIP_MANAGER_DAILY",
+        1
+      ],
+      [
+        "ADMIN_ACCOUNTING_DAILY",
+        0.25
+      ]
+    ],
+    "SUPPORTERS_TICKETING": [
+      [
+        "TICKETING_DAILY",
+        1
+      ]
+    ],
+    "MATCHDAY": [
+      [
+        "MATCHDAY_ORGANIZER_DAILY",
+        1
+      ]
+    ],
+    "COMMUNICATION": [
+      [
+        "COMMUNICATION_DAILY",
+        1
+      ]
+    ],
+    "PEOPLE_HR_VOLUNTEERS": [
+      [
+        "MANAGER_GENERAL_DAILY",
+        0.5
+      ],
+      [
+        "RESP_ADMIN_DAILY",
+        0.5
+      ]
+    ],
+    "FACILITIES": [
+      [
+        "MATCHDAY_ORGANIZER_DAILY",
+        0.5
+      ],
+      [
+        "RESP_ADMIN_DAILY",
+        0.5
+      ]
+    ],
+    "EDUCATION": [
+      [
+        "FORMATION_COORDINATOR_DAILY",
+        0.5
+      ]
+    ],
+    "PROOF_AUDIT": [
+      [
+        "RESP_ADMIN_DAILY",
+        0.5
+      ]
+    ],
+    "PRIVACY_SENSITIVE": [
+      [
+        "RESP_ADMIN_DAILY",
+        1
+      ],
+      [
+        "MANAGER_GENERAL_DAILY",
+        0.5
+      ]
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+version: CSSA_FIELD_CASE_CAPTURE_V0
+status: TEMPLATE
+
+source:
+  source_id: ""
+  evidence_class: EMAIL_THREAD
+  observed_at: ""
+  source_type: EMAIL
+  source_ref: ""
+  sensitivity:
+    - INTERNAL
+  anonymized: true
+  retention_note: ""
+  access_scope: READONLY
+  provenance_refs: []
+
+case:
+  case_ref: ""
+  case_type_observed: ""
+  valid_at: ""
+  source_ids: []
+  trigger: ""
+  target_refs: []
+  responsible_role_observed: null
+  approving_role_observed: null
+  external_authority_observed: null
+  deadline_observed: null
+  channel_observed: null
+  tools_observed: []
+  required_documents_observed: []
+  missing_information: []
+  contradictions: []
+  exceptions: []
+  risk_flags: []
+  result_observed: null
+  proof_refs: []
+  human_memory_only_refs: []
+  local_practice_refs: []
+  public_rule_refs: []
+  validated_by_cssa: false
+
+capture_notes:
+  - Preserve what happened, not what the operator thinks should have happened.
+  - Use role labels before personal names.
+  - Keep unknowns explicit.
+  - Do not turn repeated practice into a rule.
+  - Mark any public-rule vs local-practice difference.

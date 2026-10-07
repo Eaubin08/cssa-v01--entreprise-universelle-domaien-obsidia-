@@ -1,0 +1,423 @@
+{
+  "version": "CSSA_SEASON_2026_2027_PUBLIC_MODEL_V0",
+  "status": "PUBLIC_AUDIT_PLUS_EXPLICIT_ESTIMATES",
+  "generated_at": "2026-10-07",
+  "certainty_levels": [
+    "PUBLIC_CONFIRMED",
+    "SECONDARY_CORROBORATED",
+    "ESTIMATED",
+    "UNKNOWN_PRIVATE"
+  ],
+  "invariants": [
+    "ESTIMATED_NEVER_PROMOTED_TO_PUBLIC_CONFIRMED_WITHOUT_SOURCE",
+    "HISTORICAL_ENTITY_RELATION_NEVER_ASSUMED_CURRENT",
+    "PARTNER_COUNT_DOES_NOT_IMPLY_PARTNER_REVENUE",
+    "SUBSCRIBER_SNAPSHOT_DOES_NOT_IMPLY_FINAL_SEASON_COUNT",
+    "TEAM_ROUTE_KM_IS_NOT_VEHICLE_KM",
+    "SIMULATION_COST_IS_NOT_CSSA_ACCOUNTING"
+  ],
+  "organization": {
+    "public_team_structures_count": 19,
+    "source_ref": "CSSA_ORGANIGRAMME_ACADEMIE_2026_2027",
+    "teams": [
+      {
+        "id": "SENIORS_R1",
+        "label": "Seniors R1",
+        "tier": "SENIORS_POST_FORMATION",
+        "competition": "REGIONAL_1_A"
+      },
+      {
+        "id": "SENIORS_R2",
+        "label": "Seniors R2",
+        "tier": "SENIORS_POST_FORMATION",
+        "competition": "REGIONAL_2_A"
+      },
+      {
+        "id": "U20_R1",
+        "label": "U20 R1",
+        "tier": "SENIORS_POST_FORMATION",
+        "competition": "U20_R1"
+      },
+      {
+        "id": "U17_R1",
+        "label": "U17 R1",
+        "tier": "FORMATION",
+        "competition": "U17_R1"
+      },
+      {
+        "id": "U16_R1",
+        "label": "U16 R1",
+        "tier": "FORMATION",
+        "competition": "U16_R1"
+      },
+      {
+        "id": "U15_R1",
+        "label": "U15 R1",
+        "tier": "FORMATION",
+        "competition": "U15_R1"
+      },
+      {
+        "id": "U15_D1",
+        "label": "U15 D1",
+        "tier": "FORMATION_PREFORMATION",
+        "competition": "DISTRICT_D1"
+      },
+      {
+        "id": "SENIORS_F",
+        "label": "Seniors féminines",
+        "tier": "FEMININES",
+        "competition": "R2_F_CENTRE_OUEST"
+      },
+      {
+        "id": "U18F_R2",
+        "label": "U18 F R2",
+        "tier": "FEMININES",
+        "competition": "U18_R2_F"
+      },
+      {
+        "id": "U13_FANION",
+        "label": "U13 Fanion",
+        "tier": "FOOT_8",
+        "competition": "U13_D1"
+      },
+      {
+        "id": "U13_U12_ESPOIR",
+        "label": "U13/U12 Espoir",
+        "tier": "FOOT_8",
+        "competition": "U13_D2"
+      },
+      {
+        "id": "U12_AVENIR",
+        "label": "U12 Avenir",
+        "tier": "FOOT_8",
+        "competition": "DISTRICT_PHASES"
+      },
+      {
+        "id": "U11_FANION",
+        "label": "U11 Fanion",
+        "tier": "FOOT_8",
+        "competition": "PLATEAUX"
+      },
+      {
+        "id": "U11_U10_ESPOIR",
+        "label": "U11/U10 Espoir",
+        "tier": "FOOT_8",
+        "competition": "PLATEAUX"
+      },
+      {
+        "id": "U10_AVENIR",
+        "label": "U10 Avenir",
+        "tier": "FOOT_8",
+        "competition": "PLATEAUX"
+      },
+      {
+        "id": "U9",
+        "label": "U9",
+        "tier": "FOOT_5",
+        "competition": "PLATEAUX"
+      },
+      {
+        "id": "U8",
+        "label": "U8",
+        "tier": "FOOT_5",
+        "competition": "PLATEAUX"
+      },
+      {
+        "id": "U7",
+        "label": "U7",
+        "tier": "FOOT_5",
+        "competition": "PLATEAUX"
+      },
+      {
+        "id": "U6",
+        "label": "U6",
+        "tier": "FOOT_5",
+        "competition": "PLATEAUX"
+      }
+    ]
+  },
+  "senior_groups": {
+    "R1_A": {
+      "certainty": "SECONDARY_CORROBORATED",
+      "clubs": [
+        "FC Bogny-sur-Meuse",
+        "Cormontreuil FC",
+        "CS Sedan Ardennes",
+        "CSO Amnéville",
+        "ES Villerupt-Thil",
+        "FC Hettange-Grande",
+        "FC Saint-Méziéry",
+        "FCF La Neuvillette-Jamin",
+        "Olympique Charleville-Prix AM 2",
+        "RC Épernay Champagne",
+        "SC Marnaval",
+        "Stade de Reims 2",
+        "US Thionville Lusitanos 2",
+        "USAG Uckange"
+      ],
+      "league_matches": 26,
+      "away_league_matches": 13
+    },
+    "R2_A": {
+      "certainty": "SECONDARY_CORROBORATED",
+      "clubs": [
+        "AS Saint-Brice-Courcelles",
+        "AS Val de l’Aisne",
+        "CS Sedan Ardennes 2",
+        "CS Veymerange",
+        "ES Fagnières",
+        "Reims FC Christo",
+        "Reims Murigny FP",
+        "Reims Sainte-Anne",
+        "Rethel SF",
+        "UL Plantières",
+        "US Étain-Buzy",
+        "Val de l’Orne FC"
+      ],
+      "league_matches": 22,
+      "away_league_matches": 11
+    }
+  },
+  "public_financial_rules": {
+    "cssa_license_pack_eur": {
+      "certainty": "PUBLIC_CONFIRMED",
+      "U6_U9": 180,
+      "U10_U18": 240,
+      "U20_SENIORS": 300,
+      "includes": [
+        "FFF_LICENCE",
+        "KAPPA_EQUIPMENT_PACK",
+        "R1_SEASON_TICKET"
+      ]
+    },
+    "cssa_discounts": {
+      "certainty": "PUBLIC_CONFIRMED",
+      "family_second_child_eur": 25,
+      "female_eur": 25,
+      "pass_sport_eur": 70,
+      "note": "Eligibility/evidence and non-cumulative purchase logic must be checked per case."
+    },
+    "lgef_2026_2027_license_tariffs_eur": {
+      "certainty": "PUBLIC_CONFIRMED",
+      "SENIOR_U20": 30.49,
+      "U19_U18": 25.42,
+      "U17_U16": 19.33,
+      "U15_U14": 18.31,
+      "SENIOR_F_U19F_U18F": 23.39,
+      "U13_U12": 17.3,
+      "U11_U10": 16.28,
+      "U9_U8_U7_U6": 14.25,
+      "ARBITRE": 21.36,
+      "EDUCATEUR_FEDERAL": 17.3
+    },
+    "lgef_selected_admin_tariffs_eur": {
+      "certainty": "PUBLIC_CONFIRMED",
+      "CLUB_R1_R2_COTISATION": 367.34,
+      "DISCIPLINE_FIRST_WARNING": 15.98,
+      "DISCIPLINE_SECOND_WARNING": 15.98,
+      "DISCIPLINE_THIRD_WARNING": 26.62,
+      "DISCIPLINE_EXCLUSION_OR_POST_MATCH_REPORT": 47.92,
+      "DISCIPLINE_INSTRUCTION_FLAT_FEE": 159.71,
+      "RESERVE_CLAIM_EVOCATION_PROCEDURE": 106.47,
+      "APPEAL_PROCEDURE": 159.71
+    }
+  },
+  "commercial_public": {
+    "partners_active": {
+      "value_min": 50,
+      "certainty": "PUBLIC_CONFIRMED",
+      "semantics": "PUBLIC_MARKETING_CLAIM_PLUS_50_ACTIVE_PARTNERS"
+    },
+    "partner_revenue_eur": {
+      "value": null,
+      "certainty": "UNKNOWN_PRIVATE"
+    },
+    "subscribers": {
+      "official_snapshot_2026_27": {
+        "value": 800,
+        "certainty": "PUBLIC_CONFIRMED",
+        "includes_partners": true,
+        "final_count": false
+      },
+      "secondary_later_snapshot": {
+        "value": 855,
+        "certainty": "SECONDARY_CORROBORATED",
+        "final_count": "UNKNOWN"
+      },
+      "final_season_count": {
+        "value": null,
+        "certainty": "UNKNOWN_PRIVATE"
+      }
+    },
+    "home_league_matches_subscription": {
+      "value": 13,
+      "certainty": "PUBLIC_CONFIRMED"
+    },
+    "partner_page_home_matches_claim": {
+      "value_min": 12,
+      "certainty": "PUBLIC_CONFIRMED",
+      "note": "Marketing wording differs from 13 league home matches in subscription page."
+    },
+    "social_followers_claim": {
+      "value_min": 100000,
+      "certainty": "PUBLIC_CONFIRMED"
+    },
+    "partner_sales_social_followers_claim": {
+      "value_min": 110000,
+      "certainty": "PUBLIC_CONFIRMED"
+    },
+    "annual_stadium_spectators_claim": {
+      "value_min": 30000,
+      "certainty": "PUBLIC_CONFIRMED"
+    },
+    "match_exposure_claim": {
+      "value_min": 2500,
+      "certainty": "PUBLIC_CONFIRMED"
+    }
+  },
+  "legal_ecosystem": {
+    "association_cssa": {
+      "status": "ACTIVE",
+      "certainty": "PUBLIC_CONFIRMED",
+      "siren": "780287843"
+    },
+    "sas_cssa": {
+      "status": "ACTIVE_PROCEDURE_COLLECTIVE_REPORTED",
+      "certainty": "PUBLIC_CONFIRMED",
+      "siren": "798016796"
+    },
+    "old_sa_cssa": {
+      "status": "RADIATED_2025_10_28",
+      "certainty": "PUBLIC_CONFIRMED",
+      "siren": "389949066"
+    },
+    "ardennes_club_partners": {
+      "status": "ACTIVE",
+      "certainty": "PUBLIC_CONFIRMED",
+      "siren": "939505657"
+    },
+    "drapeau_vert_carton_rouge": {
+      "status": "ACTIVE",
+      "certainty": "PUBLIC_CONFIRMED",
+      "siren": "923996078"
+    },
+    "association_sas_operational_relation_2026": {
+      "value": null,
+      "certainty": "UNKNOWN_PRIVATE",
+      "note": "Historical separation must not be projected onto 2026 without current evidence."
+    }
+  },
+  "public_source_coherence_findings": [
+    {
+      "id": "STALE_MANAGER_GENERAL",
+      "source_a": "CSSA_ORGANIGRAMME_ASSOCIATION",
+      "source_b": "CSSA_COMMUNIQUE_2026_09_10",
+      "observation": "Organigramme still displays Teddy Pellerin while official communiqué states departure.",
+      "classification": "PUBLIC_CONTRADICTION"
+    },
+    {
+      "id": "STALE_RESERVE_LABEL",
+      "source_a": "CSSA_CLASSEMENT_PAGE",
+      "source_b": "2026_27_R2_GROUP",
+      "observation": "Public standings page still labels reserve as R3 while current competition sources place reserve in R2.",
+      "classification": "PUBLIC_CONTRADICTION"
+    },
+    {
+      "id": "HOME_MATCH_MARKETING_MISMATCH",
+      "source_a": "CSSA_PARTNERS_PAGE",
+      "source_b": "CSSA_SUBSCRIPTION_26_27",
+      "observation": "Partners page says +12 home matches/year; subscription states 13 R1 home league matches.",
+      "classification": "SEMANTIC_MISMATCH_NOT_AUTOMATIC_ERROR"
+    },
+    {
+      "id": "WEBSITE_FRESHNESS_WARNING",
+      "source_a": "CSSA_HOME_PAGE",
+      "observation": "Site itself states that an update is underway to bring information up to date.",
+      "classification": "SOURCE_FRESHNESS_RISK"
+    }
+  ],
+  "travel_estimates": {
+    "certainty": "ESTIMATED",
+    "definition": "Round-trip team-route kilometres from Sedan for away sporting events; not multiplied by vehicles.",
+    "excludes": [
+      "EXACT_ROUTE_RECONSTRUCTION",
+      "HOTELS",
+      "MEALS",
+      "PARKING",
+      "COACH_HIRE",
+      "STAFF_COMMUTES"
+    ],
+    "team_route_km_ranges": {
+      "SENIORS_R1": [
+        3000,
+        3300
+      ],
+      "SENIORS_R2": [
+        1800,
+        2400
+      ],
+      "U20_R1": [
+        2000,
+        2600
+      ],
+      "U17_R1": [
+        2500,
+        3400
+      ],
+      "U16_R1": [
+        2500,
+        3400
+      ],
+      "U15_R1": [
+        2700,
+        3800
+      ],
+      "U15_D1": [
+        600,
+        1100
+      ],
+      "U13_FANION": [
+        600,
+        1000
+      ],
+      "U13_U12_ESPOIR": [
+        500,
+        900
+      ],
+      "U12_AVENIR": [
+        500,
+        900
+      ],
+      "SENIORS_F": [
+        600,
+        1000
+      ],
+      "U18F_R2": [
+        700,
+        1200
+      ],
+      "U6_U11_COLLECTIVE": [
+        2000,
+        4000
+      ]
+    },
+    "league_and_regular_total_km": [
+      20000,
+      29000
+    ],
+    "cups_tournaments_friendlies_uplift_fraction": [
+      0.1,
+      0.25
+    ],
+    "season_scenario_total_team_route_km": [
+      22000,
+      36250
+    ],
+    "validation_anchor": {
+      "source": "DVCR_PREVIOUS_SEASON_PUBLIC_POST",
+      "observed_trips": 15,
+      "observed_km": 3208,
+      "scope": "INDEPENDENT_MEDIA_VOLUNTEER_TRAVEL_NOT_CSSA_TEAM_COST"
+    }
+  }
+}
