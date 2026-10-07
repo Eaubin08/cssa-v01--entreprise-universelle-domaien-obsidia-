@@ -1,15 +1,16 @@
-"""F3H-B — CSSA governed MAIL execution surface V0.
+"""F3H-B — CSSA governed MAIL execution preflight V0.
 
-The module binds an exact outbound message to:
-- the F3H-A ActionProposal,
-- a separate exact human approval,
-- a fresh verified KX108 pre-execution result,
-- the exact target/thread pre-state,
-- an explicitly authorized CSSA operational mailbox.
+Current upstream truth (obsidia-x108-proofs):
+- the governed agent PRE_EXECUTION rail is INTERNAL_BOUNDED only;
+- EXTERNAL_WORLD_ACTUATION_NOT_ACTIVATED remains a canonical missing link;
+- the WorldActionBus is dry-run only and performs no email/API egress.
 
-It can build the exact Gmail connector call and verify/record the provider
-result. It does not itself call Gmail. A live send is forbidden when the
-connected account is not proven to be an authorized CSSA operational mailbox.
+Therefore this module MUST NOT reinterpret AGENT_PRE_EXECUTION as authority to
+send email. It prepares and hashes the exact mail action, verifies exact human
+approval and CSSA mailbox authority, exposes the exact Gmail call candidate,
+and then fails closed on the upstream world-action blocker.
+
+No Gmail connector is invoked by this module.
 """
 from __future__ import annotations
 
@@ -24,18 +25,20 @@ from .decision_execution_v0 import (
     verify_action_proposal_v0,
 )
 
-STATUS = "CSSA_MAIL_GOVERNED_EXECUTION_V0"
+STATUS = "CSSA_MAIL_GOVERNED_EXECUTION_PREFLIGHT_V0"
 
 MAILBOX_ROLE = "CSSA_OPERATIONAL_MAILBOX"
 CONNECTOR = "GMAIL"
 CONNECTOR_ACTION = "SEND_EMAIL"
 
-MAIL_PLAN_READY = "MAIL_PLAN_READY"
-MAIL_PREPARED = "MAIL_PREPARED_FOR_CONNECTOR"
-MAIL_SEND_RECORDED = "MAIL_SEND_RECORDED"
-MAIL_REPLAY_PASS = "PASS"
-REJECTED = "REJECTED_NO_SEND"
+WORLD_ACTION_BLOCKER = "EXTERNAL_WORLD_ACTUATION_NOT_ACTIVATED"
+REAL_EXECUTION_BLOCKER = "REAL_X108_GATED_EXECUTION_PATH_NOT_ACTIVATED"
+
+MAIL_LIVE_SEND_BLOCKED = "MAIL_LIVE_SEND_BLOCKED"
+MAIL_LIVE_SEND_PREPARED = "MAIL_LIVE_SEND_PREPARED"
+MAIL_RECEIPT_CONTRACT_ONLY = "MAIL_RECEIPT_CONTRACT_ONLY"
 OUTCOME_UNKNOWN = "MAIL_CONNECTOR_OUTCOME_UNKNOWN_REQUIRES_RECONCILIATION"
+REJECTED = "REJECTED_NO_SEND"
 
 SUPPORTED_PROPOSAL_OPERATIONS = {
     "DRAFT_REPLY",
@@ -253,7 +256,6 @@ def verify_mail_human_approval_v0(
     for key, value in expected_pairs.items():
         if approval.get(key) != value:
             return False, f"MAIL_HUMAN_APPROVAL_{key.upper()}_MISMATCH"
-
     candidate = dict(approval)
     stored = candidate.pop("approval_hash", None)
     if not stored or _hash(candidate) != stored:
@@ -309,154 +311,8 @@ def verify_mailbox_authority_evidence_v0(
     return True, None
 
 
-def mail_pre_execution_runtime_state_v0(
-    plan: MailSendPlanV0,
-    *,
-    valid_at: str,
-    current_target_state_hash: str,
-    confidence: float = 1.0,
-    unknowns: tuple[str, ...] = (),
-    contradictions: tuple[str, ...] = (),
-    risk_flags: tuple[str, ...] = (),
-) -> dict[str, Any]:
-    """Build exact state for the fresh KX108 world-action boundary decision."""
-    binding = {
-        "schema": "CSSA_MAIL_PRE_EXECUTION_BINDING_V0",
-        "mail_plan_id": plan.plan_id,
-        "mail_plan_hash": plan.plan_hash,
-        "sender_mailbox_ref": plan.sender_mailbox_ref,
-        "to": list(plan.to),
-        "subject_sha256": sha256(plan.subject.encode("utf-8")).hexdigest(),
-        "body_sha256": sha256(plan.body.encode("utf-8")).hexdigest(),
-        "reply_message_id": plan.reply_message_id,
-        "current_target_state_hash": current_target_state_hash,
-        "decision_authority": DECISION_AUTHORITY,
-    }
-    binding_hash = _hash(binding)
-    return {
-        "case_ref": f"cssa:mail-pre-exec:{binding_hash}",
-        "valid_at": valid_at,
-        "source_ref": f"cssa-mail-plan:{plan.plan_hash}",
-        "unknowns": tuple(unknowns),
-        "contradictions": tuple(contradictions),
-        "risk_flags": tuple(risk_flags),
-        "evidence_refs": plan.source_evidence_refs,
-        "provenance_refs": (
-            f"mail-plan:{plan.plan_hash}",
-            f"mail-pre-exec-binding:{binding_hash}",
-        ),
-        "confidence": float(confidence),
-        "mail_plan_hash": plan.plan_hash,
-        "mail_pre_execution_binding_hash": binding_hash,
-        "current_target_state_hash": current_target_state_hash,
-    }
-
-
-def build_mail_kx108_pre_evidence_v0(
-    *,
-    plan: MailSendPlanV0,
-    runtime_result: Any,
-    expected_binding_hash: str,
-) -> dict[str, Any]:
-    if getattr(runtime_result, "x108_gate", None) != "ALLOW":
-        raise ValueError("MAIL_KX108_PRE_GATE_NOT_ALLOW")
-    if getattr(runtime_result, "decision_record_verified", None) is not True:
-        raise ValueError("MAIL_KX108_PRE_DECISION_NOT_VERIFIED")
-    if getattr(runtime_result, "execution_plan_binding_verified", None) is not True:
-        raise ValueError("MAIL_KX108_PRE_EXECUTION_PLAN_NOT_BOUND")
-    if not getattr(runtime_result, "decision_record_id", ""):
-        raise ValueError("MAIL_KX108_PRE_DECISION_RECORD_ID_MISSING")
-    if getattr(runtime_result, "decision_phase", None) != "AGENT_PRE_EXECUTION":
-        raise ValueError("MAIL_KX108_PRE_DECISION_PHASE_INVALID")
-    if getattr(runtime_result, "decision_authority", None) != DECISION_AUTHORITY:
-        raise ValueError("MAIL_KX108_PRE_AUTHORITY_INVALID")
-    if getattr(runtime_result, "world_action_allowed", True) is not False:
-        raise ValueError("MAIL_RUNTIME_WORLD_ACTION_BOUNDARY_VIOLATED")
-
-    record = {
-        "schema": "CSSA_MAIL_KX108_PRE_EVIDENCE_V0",
-        "mail_plan_id": plan.plan_id,
-        "mail_plan_hash": plan.plan_hash,
-        "mail_pre_execution_binding_hash": expected_binding_hash,
-        "decision_record_id": runtime_result.decision_record_id,
-        "decision_record_hash": runtime_result.decision_record_hash,
-        "decision_phase": runtime_result.decision_phase,
-        "x108_gate": runtime_result.x108_gate,
-        "execution_plan_digest": runtime_result.execution_plan_digest,
-        "decision_authority": runtime_result.decision_authority,
-    }
-    record["evidence_hash"] = _hash(record)
-    return record
-
-
-def verify_mail_kx108_pre_evidence_v0(
-    evidence: Mapping[str, Any] | None,
-    plan: MailSendPlanV0,
-    expected_binding_hash: str,
-) -> tuple[bool, str | None]:
-    if evidence is None:
-        return False, "MAIL_KX108_PRE_EVIDENCE_MISSING"
-    if evidence.get("schema") != "CSSA_MAIL_KX108_PRE_EVIDENCE_V0":
-        return False, "MAIL_KX108_PRE_EVIDENCE_SCHEMA_INVALID"
-    if evidence.get("mail_plan_id") != plan.plan_id:
-        return False, "MAIL_KX108_PRE_PLAN_ID_MISMATCH"
-    if evidence.get("mail_plan_hash") != plan.plan_hash:
-        return False, "MAIL_KX108_PRE_PLAN_HASH_MISMATCH"
-    if evidence.get("mail_pre_execution_binding_hash") != expected_binding_hash:
-        return False, "MAIL_KX108_PRE_BINDING_HASH_MISMATCH"
-    if evidence.get("x108_gate") != "ALLOW":
-        return False, "MAIL_KX108_PRE_GATE_NOT_ALLOW"
-    if evidence.get("decision_phase") != "AGENT_PRE_EXECUTION":
-        return False, "MAIL_KX108_PRE_DECISION_PHASE_INVALID"
-    if evidence.get("decision_authority") != DECISION_AUTHORITY:
-        return False, "MAIL_KX108_PRE_AUTHORITY_INVALID"
-    if not evidence.get("decision_record_id") or not evidence.get("decision_record_hash"):
-        return False, "MAIL_KX108_PRE_DECISION_IDENTITY_MISSING"
-
-    candidate = dict(evidence)
-    stored = candidate.pop("evidence_hash", None)
-    if not stored or _hash(candidate) != stored:
-        return False, "MAIL_KX108_PRE_EVIDENCE_HASH_MISMATCH"
-    return True, None
-
-
-def prepare_mail_connector_call_v0(
-    *,
-    proposal: ActionProposalV0,
-    plan: MailSendPlanV0,
-    human_approval: Mapping[str, Any] | None,
-    mailbox_authority: Mapping[str, Any] | None,
-    kx108_pre_evidence: Mapping[str, Any] | None,
-    current_target_state_hash: str,
-    expected_binding_hash: str,
-) -> dict[str, Any]:
-    ok, reason = verify_mail_send_plan_v0(plan, proposal)
-    if not ok:
-        return _reject(reason or "MAIL_PLAN_INVALID")
-
-    ok, reason = verify_mail_human_approval_v0(human_approval, plan)
-    if not ok:
-        return _reject(reason or "MAIL_HUMAN_APPROVAL_INVALID")
-
-    ok, reason = verify_mailbox_authority_evidence_v0(mailbox_authority, plan)
-    if not ok:
-        return _reject(reason or "MAILBOX_AUTHORITY_INVALID")
-
-    ok, reason = verify_mail_kx108_pre_evidence_v0(
-        kx108_pre_evidence,
-        plan,
-        expected_binding_hash,
-    )
-    if not ok:
-        return _reject(reason or "MAIL_KX108_PRE_INVALID")
-
-    if current_target_state_hash != plan.expected_target_state_hash:
-        return _reject(
-            "MAIL_TARGET_PRESTATE_HASH_MISMATCH",
-            expected_target_state_hash=plan.expected_target_state_hash,
-            current_target_state_hash=current_target_state_hash,
-        )
-
+def build_gmail_send_call_candidate_v0(plan: MailSendPlanV0) -> dict[str, Any]:
+    """Pure connector-call candidate. Building it is never authority to call."""
     call = {
         "connector": CONNECTOR,
         "action": CONNECTOR_ACTION,
@@ -469,19 +325,132 @@ def prepare_mail_connector_call_v0(
         },
         "mail_plan_id": plan.plan_id,
         "mail_plan_hash": plan.plan_hash,
-        "approval_id": human_approval["approval_id"],
-        "approval_hash": human_approval["approval_hash"],
-        "kx108_pre_decision_record_id": kx108_pre_evidence["decision_record_id"],
-        "kx108_pre_evidence_hash": kx108_pre_evidence["evidence_hash"],
-        "mailbox_authority_evidence_hash": mailbox_authority["evidence_hash"],
-        "target_prestate_hash": current_target_state_hash,
         "decision_authority": DECISION_AUTHORITY,
     }
-    call_hash = _hash(call)
     return {
-        "status": MAIL_PREPARED,
         "call": call,
-        "call_hash": call_hash,
+        "call_hash": _hash(call),
+        "connector_invoked": False,
+        "message_sent": False,
+        "world_action_allowed": False,
+    }
+
+
+def verify_world_action_pre_evidence_v0(
+    evidence: Mapping[str, Any] | None,
+    *,
+    plan: MailSendPlanV0,
+    call_hash: str,
+) -> tuple[bool, str | None]:
+    """Future external PRE contract.
+
+    No current upstream producer exists for this evidence. AGENT_PRE_EXECUTION
+    is explicitly rejected because it is INTERNAL_BOUNDED only.
+    """
+    if evidence is None:
+        return False, "WORLD_ACTION_PRE_EVIDENCE_MISSING"
+    if evidence.get("schema") != "CSSA_WORLD_ACTION_PRE_EVIDENCE_V0":
+        return False, "WORLD_ACTION_PRE_EVIDENCE_SCHEMA_INVALID"
+    if evidence.get("decision_phase") != "WORLD_ACTION_PRE_EXECUTION":
+        return False, "WORLD_ACTION_PRE_DECISION_PHASE_INVALID"
+    if evidence.get("x108_gate") != "ALLOW":
+        return False, "WORLD_ACTION_PRE_GATE_NOT_ALLOW"
+    if evidence.get("decision_authority") != DECISION_AUTHORITY:
+        return False, "WORLD_ACTION_PRE_AUTHORITY_INVALID"
+    if evidence.get("mail_plan_hash") != plan.plan_hash:
+        return False, "WORLD_ACTION_PRE_MAIL_PLAN_HASH_MISMATCH"
+    if evidence.get("connector_call_hash") != call_hash:
+        return False, "WORLD_ACTION_PRE_CONNECTOR_CALL_HASH_MISMATCH"
+    if not evidence.get("decision_record_id") or not evidence.get("decision_record_hash"):
+        return False, "WORLD_ACTION_PRE_DECISION_IDENTITY_MISSING"
+    candidate = dict(evidence)
+    stored = candidate.pop("evidence_hash", None)
+    if not stored or _hash(candidate) != stored:
+        return False, "WORLD_ACTION_PRE_EVIDENCE_HASH_MISMATCH"
+    return True, None
+
+
+def prepare_mail_world_action_v0(
+    *,
+    proposal: ActionProposalV0,
+    plan: MailSendPlanV0,
+    human_approval: Mapping[str, Any] | None,
+    mailbox_authority: Mapping[str, Any] | None,
+    current_target_state_hash: str,
+    runtime_link_facts: Mapping[str, Any],
+    world_action_dry_run_state: Mapping[str, Any],
+    world_action_pre_evidence: Mapping[str, Any] | None = None,
+) -> dict[str, Any]:
+    ok, reason = verify_mail_send_plan_v0(plan, proposal)
+    if not ok:
+        return _reject(reason or "MAIL_PLAN_INVALID")
+    ok, reason = verify_mail_human_approval_v0(human_approval, plan)
+    if not ok:
+        return _reject(reason or "MAIL_HUMAN_APPROVAL_INVALID")
+    ok, reason = verify_mailbox_authority_evidence_v0(mailbox_authority, plan)
+    if not ok:
+        return _reject(reason or "MAILBOX_AUTHORITY_INVALID")
+    if current_target_state_hash != plan.expected_target_state_hash:
+        return _reject(
+            "MAIL_TARGET_PRESTATE_HASH_MISMATCH",
+            expected_target_state_hash=plan.expected_target_state_hash,
+            current_target_state_hash=current_target_state_hash,
+        )
+
+    candidate = build_gmail_send_call_candidate_v0(plan)
+
+    if runtime_link_facts.get("decision_authority") != DECISION_AUTHORITY:
+        return _reject("UPSTREAM_RUNTIME_AUTHORITY_INVALID")
+    missing_links = set(runtime_link_facts.get("missing_runtime_links") or ())
+    world_active = runtime_link_facts.get("world_action_runtime_activated") is True
+
+    dry_run_only = world_action_dry_run_state.get("dry_run_enabled") is True
+    real_action_enabled = (
+        world_action_dry_run_state.get("real_action_enabled") is True
+    )
+    detected_email = (
+        world_action_dry_run_state.get("detected_action_type") == "EMAIL_SEND"
+    )
+    action_blocked = (
+        world_action_dry_run_state.get("action_request_blocked") is True
+    )
+
+    blockers: list[str] = []
+    if WORLD_ACTION_BLOCKER in missing_links or not world_active:
+        blockers.append(WORLD_ACTION_BLOCKER)
+    if REAL_EXECUTION_BLOCKER in missing_links:
+        blockers.append(REAL_EXECUTION_BLOCKER)
+    if dry_run_only and not real_action_enabled:
+        blockers.append("WORLD_ACTION_BUS_DRY_RUN_ONLY")
+    if detected_email and action_blocked:
+        blockers.append("EMAIL_SEND_BLOCKED_AT_WORLD_ACTION_BOUNDARY")
+
+    if blockers:
+        return {
+            "status": MAIL_LIVE_SEND_BLOCKED,
+            "reason": blockers[0],
+            "blockers": tuple(dict.fromkeys(blockers)),
+            "gmail_call_candidate": candidate,
+            "connector_invoked": False,
+            "message_sent": False,
+            "world_action_allowed": False,
+            "decision_authority": DECISION_AUTHORITY,
+        }
+
+    ok, reason = verify_world_action_pre_evidence_v0(
+        world_action_pre_evidence,
+        plan=plan,
+        call_hash=candidate["call_hash"],
+    )
+    if not ok:
+        return _reject(reason or "WORLD_ACTION_PRE_INVALID")
+
+    return {
+        "status": MAIL_LIVE_SEND_PREPARED,
+        "reason": None,
+        "gmail_call_candidate": candidate,
+        "world_action_pre_evidence_hash":
+            world_action_pre_evidence["evidence_hash"],
         "connector_invoked": False,
         "message_sent": False,
         "world_action_allowed": True,
@@ -489,71 +458,55 @@ def prepare_mail_connector_call_v0(
     }
 
 
-def record_mail_connector_success_v0(
+def build_mail_provider_receipt_contract_v0(
     *,
-    prepared: Mapping[str, Any],
+    plan: MailSendPlanV0,
+    call_hash: str,
     provider_result: Mapping[str, Any],
 ) -> dict[str, Any]:
-    if prepared.get("status") != MAIL_PREPARED:
-        return _reject("MAIL_CONNECTOR_CALL_NOT_PREPARED")
-    call = prepared.get("call")
-    if not isinstance(call, Mapping):
-        return _reject("MAIL_CONNECTOR_CALL_MISSING")
-    if _hash(call) != prepared.get("call_hash"):
-        return _reject("MAIL_CONNECTOR_CALL_HASH_MISMATCH")
+    """Provider result parser/receipt contract.
 
+    This function does NOT prove the connector was actually called. Until the
+    external world-action rail is activated, receipts produced in tests remain
+    contract-only artifacts.
+    """
     provider_message_id = provider_result.get("id")
     provider_thread_id = provider_result.get("threadId")
     if not provider_message_id or not provider_thread_id:
         return {
             "status": OUTCOME_UNKNOWN,
             "reason": "MAIL_PROVIDER_RESULT_IDENTITY_INCOMPLETE",
-            "call_hash": prepared.get("call_hash"),
             "automatic_retry_allowed": False,
             "requires_sent_mail_reconciliation": True,
+            "real_send_proven": False,
             "decision_authority": DECISION_AUTHORITY,
         }
 
     receipt = {
-        "schema": "CSSA_MAIL_SEND_RECEIPT_V0",
-        "status": MAIL_SEND_RECORDED,
-        "mail_plan_id": call["mail_plan_id"],
-        "mail_plan_hash": call["mail_plan_hash"],
-        "call_hash": prepared["call_hash"],
+        "schema": "CSSA_MAIL_SEND_RECEIPT_CONTRACT_V0",
+        "status": MAIL_RECEIPT_CONTRACT_ONLY,
+        "mail_plan_id": plan.plan_id,
+        "mail_plan_hash": plan.plan_hash,
+        "call_hash": call_hash,
         "provider": CONNECTOR,
         "provider_message_id": str(provider_message_id),
         "provider_thread_id": str(provider_thread_id),
-        "approval_id": call["approval_id"],
-        "kx108_pre_decision_record_id": call["kx108_pre_decision_record_id"],
-        "target_prestate_hash": call["target_prestate_hash"],
+        "real_send_proven": False,
         "decision_authority": DECISION_AUTHORITY,
     }
     receipt["receipt_sha256"] = _hash(receipt)
     return receipt
 
 
-def record_mail_connector_exception_v0(
-    *,
-    prepared: Mapping[str, Any],
-    exception_class: str,
-) -> dict[str, Any]:
-    return {
-        "status": OUTCOME_UNKNOWN,
-        "reason": f"MAIL_CONNECTOR_EXCEPTION:{exception_class}",
-        "call_hash": prepared.get("call_hash"),
-        "automatic_retry_allowed": False,
-        "requires_sent_mail_reconciliation": True,
-        "decision_authority": DECISION_AUTHORITY,
-    }
-
-
-def replay_mail_receipt_v0(
+def replay_mail_receipt_contract_v0(
     *,
     receipt: Mapping[str, Any],
     plan: MailSendPlanV0,
 ) -> dict[str, Any]:
-    if receipt.get("schema") != "CSSA_MAIL_SEND_RECEIPT_V0":
+    if receipt.get("schema") != "CSSA_MAIL_SEND_RECEIPT_CONTRACT_V0":
         return {"status": "FAIL", "reason": "MAIL_RECEIPT_SCHEMA_INVALID"}
+    if receipt.get("real_send_proven") is not False:
+        return {"status": "FAIL", "reason": "MAIL_RECEIPT_TRUTH_CLASS_INVALID"}
     if receipt.get("mail_plan_id") != plan.plan_id:
         return {"status": "FAIL", "reason": "MAIL_RECEIPT_PLAN_ID_MISMATCH"}
     if receipt.get("mail_plan_hash") != plan.plan_hash:
@@ -563,9 +516,10 @@ def replay_mail_receipt_v0(
     if not stored or _hash(candidate) != stored:
         return {"status": "FAIL", "reason": "MAIL_RECEIPT_HASH_MISMATCH"}
     return {
-        "status": MAIL_REPLAY_PASS,
+        "status": "PASS_CONTRACT_ONLY",
         "provider_message_id": receipt["provider_message_id"],
         "provider_thread_id": receipt["provider_thread_id"],
-        "resend_required": False,
+        "resend_authorized": False,
+        "real_send_proven": False,
         "decision_authority": DECISION_AUTHORITY,
     }
