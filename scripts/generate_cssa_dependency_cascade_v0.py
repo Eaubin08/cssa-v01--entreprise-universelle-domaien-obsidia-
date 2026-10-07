@@ -44,8 +44,8 @@ def render_markdown(summaries, rows_by_mode):
         "",
         "## Campaign matrix",
         "",
-        "| Mode | Changed fixtures | Failures | ALLOW | HOLD | BLOCK | Root conflicts | Receipt mismatch | Mean propagation |",
-        "|---|---:|---:|---:|---:|---:|---:|---:|---:|",
+        "| Mode | Changed fixtures | Failures | ALLOW | HOLD | BLOCK | Root conflicts | Receipt mismatch | Missing nodes | Order violations | Mean propagation |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for mode in ("NORMAL", "HARD", "BREAKER"):
         summary = summaries[mode]
@@ -56,6 +56,8 @@ def render_markdown(summaries, rows_by_mode):
             f"{gates.get('HOLD', 0)} | {gates.get('BLOCK', 0)} | "
             f"{summary['root_conflict_count']} | "
             f"{summary['receipt_mismatch_count']} | "
+            f"{summary['missing_node_count']} | "
+            f"{summary['order_violation_count']} | "
             f"{summary['mean_changed_propagation_completeness']:.4f} |"
         )
 
