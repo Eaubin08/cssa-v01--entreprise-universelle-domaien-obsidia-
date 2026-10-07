@@ -1,0 +1,650 @@
+{
+  "version": "CSSA_PUBLIC_SHADOW_SNAPSHOT_2026_10_07_V0",
+  "status": "PUBLIC_SHADOW_EVIDENCE",
+  "as_of": "2026-10-07",
+  "doctrine": [
+    "PUBLIC_SHADOW_IS_NOT_INTERNAL_FIELD_EVIDENCE",
+    "CONFLICTING_PUBLIC_VALUES_ARE_NOT_AUTO_RECONCILED",
+    "SECONDARY_SOURCES_NEVER_BECOME_OFFICIAL_BY_REPETITION",
+    "SOURCE_FRESHNESS_AND_EXTRACTION_PATH_ARE_PRESERVED",
+    "NO_EXTERNAL_ACTION"
+  ],
+  "sources": [
+    {
+      "id": "CSSA_HOME_2026_10_07",
+      "issuer": "CSSA",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "authority_rank": 100,
+      "url": "https://cs-sedan.fr/",
+      "observed_at": "2026-10-07",
+      "note": "Official site; homepage explicitly says site information is being updated."
+    },
+    {
+      "id": "CSSA_MANAGER_COMMUNIQUE_2026_09_10",
+      "issuer": "CSSA",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "authority_rank": 100,
+      "url": "https://cs-sedan.fr/communique-du-10-septembre-2026",
+      "observed_at": "2026-10-07"
+    },
+    {
+      "id": "CSSA_ORGANIGRAMME_ASSOCIATION_2026_10_07",
+      "issuer": "CSSA",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "authority_rank": 100,
+      "url": "https://cs-sedan.fr/organigramme-association",
+      "observed_at": "2026-10-07"
+    },
+    {
+      "id": "CSSA_MANAGER_RECRUITMENT_2026_10_07",
+      "issuer": "CSSA",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "authority_rank": 100,
+      "url": "https://cs-sedan.fr/recrutement-manager-general",
+      "observed_at": "2026-10-07"
+    },
+    {
+      "id": "CSSA_ACADEMY_ORG_2026_10_07",
+      "issuer": "CSSA",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "authority_rank": 100,
+      "url": "https://cs-sedan.fr/organigramme-academie",
+      "observed_at": "2026-10-07"
+    },
+    {
+      "id": "CSSA_VOLUNTEER_RECRUITMENT_2026_10_07",
+      "issuer": "CSSA",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "authority_rank": 100,
+      "url": "https://cs-sedan.fr/recrutement-benevole",
+      "observed_at": "2026-10-07"
+    },
+    {
+      "id": "CSSA_ACCREDITATIONS_2026_10_07",
+      "issuer": "CSSA",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "authority_rank": 100,
+      "url": "https://cs-sedan.fr/accreditations",
+      "observed_at": "2026-10-07"
+    },
+    {
+      "id": "CSSA_LICENSE_2026_2027",
+      "issuer": "CSSA",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "authority_rank": 100,
+      "url": "https://cs-sedan.fr/renouvellement-licence-2026-2027",
+      "observed_at": "2026-10-07"
+    },
+    {
+      "id": "CSSA_SUBSCRIPTION_2026_2027",
+      "issuer": "CSSA",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "authority_rank": 100,
+      "url": "https://cs-sedan.fr/abonnement-26-27",
+      "observed_at": "2026-10-07"
+    },
+    {
+      "id": "CSSA_ASSOCIATION_MIRROR_2026_10_02",
+      "issuer": "PUBLIC_MIRROR_OF_CSSA_ASSOCIATION_OUTPUT",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "authority_rank": 50,
+      "url": "https://www.localgymsandfitness.com/FR/Sedan/100338915052339/CSSA---Association",
+      "observed_at": "2026-10-07",
+      "note": "Mirror of public association/social content; not treated as primary official system."
+    },
+    {
+      "id": "LEBALLONROND_CSSA_2026_10_07",
+      "issuer": "LEBALLONROND",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "authority_rank": 40,
+      "url": "https://www.leballonrond.fr/equipe/cs-sedan/129",
+      "observed_at": "2026-10-07"
+    },
+    {
+      "id": "LEPROGRES_R1_2026_10_07",
+      "issuer": "REGIONAL_PRESS_SPORT_DATA",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "authority_rank": 45,
+      "url": "https://www.leprogres.fr/sport/calendrier-resultats/football/regional-ligue-grand-est-regional-1-poule-a",
+      "observed_at": "2026-10-07"
+    },
+    {
+      "id": "DNA_R2_2026_10_07",
+      "issuer": "REGIONAL_PRESS_SPORT_DATA",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "authority_rank": 45,
+      "url": "https://www.dna.fr/sport/calendrier-resultats/football/regional-ligue-grand-est-regional-2-poule-a",
+      "observed_at": "2026-10-07"
+    },
+    {
+      "id": "ESTREP_U16_2026_10_07",
+      "issuer": "REGIONAL_PRESS_SPORT_DATA",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "authority_rank": 45,
+      "url": "https://www.estrepublicain.fr/sport/calendrier-resultats/football/regional-ligue-grand-est-u16-regional-1-poule-a",
+      "observed_at": "2026-10-07"
+    },
+    {
+      "id": "LEPROGRES_U15_2026_10_07",
+      "issuer": "REGIONAL_PRESS_SPORT_DATA",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "authority_rank": 45,
+      "url": "https://www.leprogres.fr/sport/calendrier-resultats/football/regional-ligue-grand-est-u15-regional-1-poule-a",
+      "observed_at": "2026-10-07"
+    }
+  ],
+  "observations": [
+    {
+      "id": "OBS_SITE_UPDATE_WARNING",
+      "event_date": "2026-10-07",
+      "family": "PROOF_AUDIT",
+      "case_type": "public_source_freshness_warning",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "source_ids": [
+        "CSSA_HOME_2026_10_07"
+      ],
+      "state_key": "cssa_site_freshness_state",
+      "canonical_value": "UPDATE_IN_PROGRESS",
+      "temporal_kind": "STATE",
+      "risk_flags": [
+        "SOURCE_FRESHNESS_RISK"
+      ]
+    },
+    {
+      "id": "OBS_MANAGER_STATE_COMMUNIQUE",
+      "event_date": "2026-09-10",
+      "family": "PEOPLE_HR_VOLUNTEERS",
+      "case_type": "manager_general_current_state",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "source_ids": [
+        "CSSA_MANAGER_COMMUNIQUE_2026_09_10"
+      ],
+      "state_key": "manager_general_public_state",
+      "canonical_value": "VACANT_OR_SUCCESSOR_NOT_PUBLICLY_CONFIRMED",
+      "temporal_kind": "STATE"
+    },
+    {
+      "id": "OBS_MANAGER_STATE_RECRUITMENT",
+      "event_date": "2026-10-07",
+      "family": "PEOPLE_HR_VOLUNTEERS",
+      "case_type": "manager_general_current_state",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "source_ids": [
+        "CSSA_MANAGER_RECRUITMENT_2026_10_07"
+      ],
+      "state_key": "manager_general_public_state",
+      "canonical_value": "VACANT_OR_SUCCESSOR_NOT_PUBLICLY_CONFIRMED",
+      "temporal_kind": "STATE"
+    },
+    {
+      "id": "OBS_MANAGER_STATE_ORGANIGRAMME",
+      "event_date": "2026-10-07",
+      "family": "PEOPLE_HR_VOLUNTEERS",
+      "case_type": "manager_general_current_state",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "source_ids": [
+        "CSSA_ORGANIGRAMME_ASSOCIATION_2026_10_07"
+      ],
+      "state_key": "manager_general_public_state",
+      "canonical_value": "FORMER_MANAGER_STILL_LISTED",
+      "temporal_kind": "STATE",
+      "risk_flags": [
+        "POTENTIALLY_STALE_ORGANIGRAMME"
+      ]
+    },
+    {
+      "id": "OBS_TECHNICAL_DIRECTION_PUBLIC_STRUCTURE",
+      "event_date": "2026-10-07",
+      "family": "ACADEMY_MEMBERSHIP",
+      "case_type": "technical_direction_public_structure",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "source_ids": [
+        "CSSA_ACADEMY_ORG_2026_10_07"
+      ],
+      "state_key": "technical_direction_public_structure",
+      "canonical_value": "DIRECTOR_PLUS_FORMATION_PREFORMATION_FOOT5_8_COORDINATION_LISTED",
+      "temporal_kind": "STATE",
+      "tags": [
+        "F3G_A_BLIND_SPOT_PUBLIC_COVERAGE"
+      ]
+    },
+    {
+      "id": "OBS_VOLUNTEER_PROGRAM_ACTIVE",
+      "event_date": "2026-10-07",
+      "family": "PEOPLE_HR_VOLUNTEERS",
+      "case_type": "matchday_volunteer_program",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "source_ids": [
+        "CSSA_VOLUNTEER_RECRUITMENT_2026_10_07"
+      ],
+      "state_key": "matchday_volunteer_program",
+      "canonical_value": "ACTIVE_RECRUITMENT_AVAILABILITY_BY_MATCH",
+      "temporal_kind": "STATE",
+      "tags": [
+        "F3G_A_BLIND_SPOT_PUBLIC_COVERAGE"
+      ],
+      "payload": {
+        "missions": [
+          "PUBLIC_WELCOME",
+          "HOSPITALITY",
+          "SALON_DES_LEGENDES",
+          "CLUB_1919",
+          "TRIBUNE_HONNEUR",
+          "PARTNER_GUEST_SUPPORT"
+        ],
+        "availability_mode": "VOLUNTEER_CHOOSES_MATCH_AVAILABILITY"
+      }
+    },
+    {
+      "id": "OBS_MEDIA_ACCREDITATION_DEADLINE",
+      "event_date": "2026-10-07",
+      "family": "MATCHDAY",
+      "case_type": "media_accreditation_rule",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "source_ids": [
+        "CSSA_ACCREDITATIONS_2026_10_07"
+      ],
+      "state_key": "media_accreditation_minimum_lead_time",
+      "canonical_value": "48_HOURS",
+      "temporal_kind": "RULE"
+    },
+    {
+      "id": "OBS_LICENSE_EQUIPMENT_LEADTIME",
+      "event_date": "2026-10-07",
+      "family": "ACADEMY_MEMBERSHIP",
+      "case_type": "equipment_delivery_public_rule",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "source_ids": [
+        "CSSA_LICENSE_2026_2027"
+      ],
+      "state_key": "licensed_equipment_delivery_leadtime",
+      "canonical_value": "APPROX_20_WORKING_DAYS_AFTER_VALIDATION",
+      "temporal_kind": "RULE"
+    },
+    {
+      "id": "OBS_SUBSCRIPTION_HOME_MATCHES",
+      "event_date": "2026-10-07",
+      "family": "SUPPORTERS_TICKETING",
+      "case_type": "subscription_public_rule",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "source_ids": [
+        "CSSA_SUBSCRIPTION_2026_2027"
+      ],
+      "state_key": "r1_subscription_home_league_matches",
+      "canonical_value": "13",
+      "temporal_kind": "RULE"
+    },
+    {
+      "id": "OBS_SUBSCRIPTION_CARD_LEADTIME",
+      "event_date": "2026-10-07",
+      "family": "SUPPORTERS_TICKETING",
+      "case_type": "subscription_card_leadtime",
+      "truth_class": "PUBLIC_CONFIRMED",
+      "source_ids": [
+        "CSSA_SUBSCRIPTION_2026_2027"
+      ],
+      "state_key": "subscription_card_public_leadtime",
+      "canonical_value": "15_DAYS",
+      "temporal_kind": "RULE"
+    },
+    {
+      "id": "OBS_R1_UCKANGE_RESULT_A",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "match_result",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "LEBALLONROND_CSSA_2026_10_07"
+      ],
+      "state_key": "r1:2026-10-03:sedan-uckange:result",
+      "canonical_value": "SEDAN_2_1_UCKANGE",
+      "temporal_kind": "EVENT"
+    },
+    {
+      "id": "OBS_R1_UCKANGE_RESULT_B",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "match_result",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "LEPROGRES_R1_2026_10_07"
+      ],
+      "state_key": "r1:2026-10-03:sedan-uckange:result",
+      "canonical_value": "SEDAN_2_1_UCKANGE",
+      "temporal_kind": "EVENT"
+    },
+    {
+      "id": "OBS_R1_BOGNY_TIME_TABLE",
+      "event_date": "2026-10-18",
+      "family": "COMPETITIONS",
+      "case_type": "future_fixture_start_time",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "LEBALLONROND_CSSA_2026_10_07"
+      ],
+      "extraction_path": "MATCH_TABLE",
+      "state_key": "r1:2026-10-18:bogny-sedan:start_time",
+      "canonical_value": "15:00",
+      "temporal_kind": "SCHEDULE"
+    },
+    {
+      "id": "OBS_R1_BOGNY_TIME_FAQ",
+      "event_date": "2026-10-18",
+      "family": "COMPETITIONS",
+      "case_type": "future_fixture_start_time",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "LEBALLONROND_CSSA_2026_10_07"
+      ],
+      "extraction_path": "FAQ",
+      "state_key": "r1:2026-10-18:bogny-sedan:start_time",
+      "canonical_value": "14:00",
+      "temporal_kind": "SCHEDULE"
+    },
+    {
+      "id": "OBS_R2_RETHEL_TIME_ASSOC",
+      "event_date": "2026-10-04",
+      "family": "COMPETITIONS",
+      "case_type": "fixture_start_time",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "CSSA_ASSOCIATION_MIRROR_2026_10_02"
+      ],
+      "state_key": "r2:2026-10-04:rethel-sedan2:start_time",
+      "canonical_value": "16:30",
+      "temporal_kind": "EVENT"
+    },
+    {
+      "id": "OBS_R2_RETHEL_TIME_CALENDAR",
+      "event_date": "2026-10-04",
+      "family": "COMPETITIONS",
+      "case_type": "fixture_start_time",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "DNA_R2_2026_10_07"
+      ],
+      "state_key": "r2:2026-10-04:rethel-sedan2:start_time",
+      "canonical_value": "15:00",
+      "temporal_kind": "EVENT"
+    },
+    {
+      "id": "OBS_R2_RETHEL_RESULT",
+      "event_date": "2026-10-04",
+      "family": "COMPETITIONS",
+      "case_type": "match_result",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "DNA_R2_2026_10_07"
+      ],
+      "state_key": "r2:2026-10-04:rethel-sedan2:result",
+      "canonical_value": "RETHEL_1_1_SEDAN2",
+      "temporal_kind": "EVENT"
+    },
+    {
+      "id": "OBS_U16_OCPAM_RESULT",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "match_result",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "ESTREP_U16_2026_10_07"
+      ],
+      "state_key": "u16r1:2026-10-03:sedan-ocpam:result",
+      "canonical_value": "SEDAN_1_1_OCPAM",
+      "temporal_kind": "EVENT"
+    },
+    {
+      "id": "OBS_U15R1_MIFA_RESULT",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "match_result",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "LEPROGRES_U15_2026_10_07"
+      ],
+      "state_key": "u15r1:2026-10-03:mifa-sedan:result",
+      "canonical_value": "MIFA_2_1_SEDAN",
+      "temporal_kind": "EVENT"
+    },
+    {
+      "id": "OBS_R2_WEEKEND_PROGRAM",
+      "event_date": "2026-10-04",
+      "family": "COMPETITIONS",
+      "case_type": "public_weekend_program",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "CSSA_ASSOCIATION_MIRROR_2026_10_02"
+      ],
+      "canonical_value": "RETHEL_VS_SEDAN2",
+      "temporal_kind": "EVENT",
+      "tags": [
+        "RECENT_PUBLIC_WORKLOAD"
+      ]
+    },
+    {
+      "id": "OBS_U12_AVENIR_WEEKEND",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "public_weekend_program",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "CSSA_ASSOCIATION_MIRROR_2026_10_02"
+      ],
+      "canonical_value": "U12_AVENIR_HOME_TRM",
+      "temporal_kind": "EVENT",
+      "tags": [
+        "RECENT_PUBLIC_WORKLOAD"
+      ]
+    },
+    {
+      "id": "OBS_U12_13_ESPOIR_WEEKEND",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "public_weekend_program",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "CSSA_ASSOCIATION_MIRROR_2026_10_02"
+      ],
+      "canonical_value": "U12_13_ESPOIR_HOME_RETHEL",
+      "temporal_kind": "EVENT",
+      "tags": [
+        "RECENT_PUBLIC_WORKLOAD"
+      ]
+    },
+    {
+      "id": "OBS_U13_FANION_WEEKEND",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "public_weekend_program",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "CSSA_ASSOCIATION_MIRROR_2026_10_02"
+      ],
+      "canonical_value": "U13_FANION_AWAY_BOURG_ROCROI",
+      "temporal_kind": "EVENT",
+      "tags": [
+        "RECENT_PUBLIC_WORKLOAD"
+      ]
+    },
+    {
+      "id": "OBS_U17_R1_WEEKEND",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "public_weekend_program",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "CSSA_ASSOCIATION_MIRROR_2026_10_02"
+      ],
+      "canonical_value": "U17_R1_AWAY_ACADEMY_FC",
+      "temporal_kind": "EVENT",
+      "tags": [
+        "RECENT_PUBLIC_WORKLOAD"
+      ]
+    },
+    {
+      "id": "OBS_U16_R1_WEEKEND",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "public_weekend_program",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "CSSA_ASSOCIATION_MIRROR_2026_10_02"
+      ],
+      "canonical_value": "U16_R1_HOME_OCPAM",
+      "temporal_kind": "EVENT",
+      "tags": [
+        "RECENT_PUBLIC_WORKLOAD"
+      ]
+    },
+    {
+      "id": "OBS_U15_D1_WEEKEND",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "public_weekend_program",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "CSSA_ASSOCIATION_MIRROR_2026_10_02"
+      ],
+      "canonical_value": "U15_D1_HOME_BAZEILLES",
+      "temporal_kind": "EVENT",
+      "tags": [
+        "RECENT_PUBLIC_WORKLOAD"
+      ]
+    },
+    {
+      "id": "OBS_U20_R1_WEEKEND",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "public_weekend_program",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "CSSA_ASSOCIATION_MIRROR_2026_10_02"
+      ],
+      "canonical_value": "U20_R1_HOME_REIMS_STE_ANNE",
+      "temporal_kind": "EVENT",
+      "tags": [
+        "RECENT_PUBLIC_WORKLOAD"
+      ]
+    },
+    {
+      "id": "OBS_U15_R1_WEEKEND",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "public_weekend_program",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "CSSA_ASSOCIATION_MIRROR_2026_10_02"
+      ],
+      "canonical_value": "U15_R1_AWAY_ACADEMIE_ULP_MIFA",
+      "temporal_kind": "EVENT",
+      "tags": [
+        "RECENT_PUBLIC_WORKLOAD"
+      ]
+    },
+    {
+      "id": "OBS_U8_PLATEAU_WEEKEND",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "public_weekend_program",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "CSSA_ASSOCIATION_MIRROR_2026_10_02"
+      ],
+      "canonical_value": "U8_PLATEAU",
+      "temporal_kind": "EVENT",
+      "tags": [
+        "RECENT_PUBLIC_WORKLOAD"
+      ]
+    },
+    {
+      "id": "OBS_U7_U6_PLATEAU_WEEKEND",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "public_weekend_program",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "CSSA_ASSOCIATION_MIRROR_2026_10_02"
+      ],
+      "canonical_value": "U7_U6_PLATEAU",
+      "temporal_kind": "EVENT",
+      "tags": [
+        "RECENT_PUBLIC_WORKLOAD"
+      ]
+    },
+    {
+      "id": "OBS_U9_PLATEAU_WEEKEND",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "public_weekend_program",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "CSSA_ASSOCIATION_MIRROR_2026_10_02"
+      ],
+      "canonical_value": "U9_PLATEAU",
+      "temporal_kind": "EVENT",
+      "tags": [
+        "RECENT_PUBLIC_WORKLOAD"
+      ]
+    },
+    {
+      "id": "OBS_U10_AVENIR_PLATEAU_WEEKEND",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "public_weekend_program",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "CSSA_ASSOCIATION_MIRROR_2026_10_02"
+      ],
+      "canonical_value": "U10_AVENIR_PLATEAU",
+      "temporal_kind": "EVENT",
+      "tags": [
+        "RECENT_PUBLIC_WORKLOAD"
+      ]
+    },
+    {
+      "id": "OBS_U11_FANION_PLATEAU_WEEKEND",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "public_weekend_program",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "CSSA_ASSOCIATION_MIRROR_2026_10_02"
+      ],
+      "canonical_value": "U11_FANION_PLATEAU",
+      "temporal_kind": "EVENT",
+      "tags": [
+        "RECENT_PUBLIC_WORKLOAD"
+      ]
+    },
+    {
+      "id": "OBS_U10_11_ESPOIR_PLATEAU_WEEKEND",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "public_weekend_program",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "CSSA_ASSOCIATION_MIRROR_2026_10_02"
+      ],
+      "canonical_value": "U10_11_ESPOIR_PLATEAU",
+      "temporal_kind": "EVENT",
+      "tags": [
+        "RECENT_PUBLIC_WORKLOAD"
+      ]
+    },
+    {
+      "id": "OBS_REFEREE_DESIGNATION_PROGRAM",
+      "event_date": "2026-10-03",
+      "family": "COMPETITIONS",
+      "case_type": "club_affiliated_referee_public_program",
+      "truth_class": "SECONDARY_CORROBORATED",
+      "source_ids": [
+        "CSSA_ASSOCIATION_MIRROR_2026_10_02"
+      ],
+      "canonical_value": "MULTIPLE_CLUB_AFFILIATED_REFEREE_DESIGNATIONS",
+      "temporal_kind": "EVENT",
+      "tags": [
+        "RECENT_PUBLIC_WORKLOAD"
+      ]
+    }
+  ]
+}
