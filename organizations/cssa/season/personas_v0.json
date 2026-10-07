@@ -1,0 +1,522 @@
+{
+  "version": "CSSA_PERSONAS_V0",
+  "status": "ROLE_MODEL_PUBLIC_PLUS_SIMULATION",
+  "rules": [
+    "ROLE_NOT_PERSON_IDENTITY",
+    "PUBLIC_OCCUPANT_CAN_CHANGE",
+    "PERSONA_AUTHORITY_MUST_BE_EXPLICIT",
+    "NO_PRIVATE_SALARY_OR_CONTRACT_ASSUMPTION"
+  ],
+  "personas": [
+    {
+      "id": "DIRECTION_PRESIDENCE",
+      "layer": "GOVERNANCE",
+      "public_basis": true,
+      "goals": [
+        "strategy",
+        "institutional continuity"
+      ],
+      "inputs": [
+        "reports",
+        "budgets",
+        "risks"
+      ],
+      "outputs": [
+        "direction decisions"
+      ],
+      "authority": "HIGH_ORG_NOT_KERNEL",
+      "risks": [
+        "single_point_dependency",
+        "stale delegation"
+      ]
+    },
+    {
+      "id": "MANAGER_GENERAL",
+      "layer": "EXECUTIVE",
+      "public_basis": true,
+      "current_state": "RECRUITING_AFTER_DEPARTURE",
+      "goals": [
+        "structure club",
+        "coordinate poles",
+        "institutional relations",
+        "matchday operations"
+      ],
+      "inputs": [
+        "admin cases",
+        "contracts",
+        "licences",
+        "staff status",
+        "matchday plan"
+      ],
+      "outputs": [
+        "delegation",
+        "coordination",
+        "escalation"
+      ],
+      "authority": "ORG_MANAGEMENT",
+      "risks": [
+        "vacancy",
+        "role concentration"
+      ]
+    },
+    {
+      "id": "RESP_ADMIN",
+      "layer": "ADMINISTRATION",
+      "public_basis": true,
+      "goals": [
+        "case ownership",
+        "compliance",
+        "records"
+      ],
+      "inputs": [
+        "mail",
+        "FFF_LGEF_District",
+        "internal requests"
+      ],
+      "outputs": [
+        "validated admin dossiers",
+        "escalations"
+      ],
+      "authority": "PROCESS_OWNER"
+    },
+    {
+      "id": "ADMIN_ACCOUNTING",
+      "layer": "FINANCE_ADMIN",
+      "public_basis": true,
+      "goals": [
+        "payments",
+        "reconciliation",
+        "accounting support"
+      ],
+      "inputs": [
+        "invoices",
+        "licence payments",
+        "receipts"
+      ],
+      "outputs": [
+        "accounting records",
+        "payment status"
+      ],
+      "authority": "FINANCIAL_PROCESS_NOT_STRATEGIC"
+    },
+    {
+      "id": "CLUB_SECRETARIAT",
+      "layer": "ADMINISTRATION",
+      "public_basis": true,
+      "goals": [
+        "correspondence",
+        "documents",
+        "routing"
+      ],
+      "inputs": [
+        "official mail",
+        "forms",
+        "requests"
+      ],
+      "outputs": [
+        "dossiers",
+        "drafts",
+        "followups"
+      ],
+      "authority": "ROUTING_AND_PREPARATION"
+    },
+    {
+      "id": "TECHNICAL_DIRECTOR",
+      "layer": "SPORT",
+      "public_basis": true,
+      "goals": [
+        "sporting pathway",
+        "staff coordination"
+      ],
+      "inputs": [
+        "team plans",
+        "player development"
+      ],
+      "outputs": [
+        "sporting allocation"
+      ],
+      "authority": "SPORTING"
+    },
+    {
+      "id": "FORMATION_COORDINATOR",
+      "layer": "ACADEMY",
+      "public_basis": true,
+      "goals": [
+        "formation continuity",
+        "educator coordination"
+      ],
+      "inputs": [
+        "youth schedules",
+        "player development"
+      ],
+      "outputs": [
+        "category coordination"
+      ],
+      "authority": "ACADEMY_COORDINATION"
+    },
+    {
+      "id": "FOOT5_8_COORDINATOR",
+      "layer": "ACADEMY",
+      "public_basis": true,
+      "goals": [
+        "plateau coordination",
+        "young-team logistics"
+      ],
+      "inputs": [
+        "district plateaux",
+        "parents",
+        "educators"
+      ],
+      "outputs": [
+        "weekend plans"
+      ],
+      "authority": "ACADEMY_COORDINATION"
+    },
+    {
+      "id": "TEAM_EDUCATOR",
+      "layer": "TEAM",
+      "public_basis": true,
+      "goals": [
+        "team preparation",
+        "availability"
+      ],
+      "inputs": [
+        "fixtures",
+        "players",
+        "transport"
+      ],
+      "outputs": [
+        "squad/team needs"
+      ],
+      "authority": "TEAM_SPORTING"
+    },
+    {
+      "id": "TEAM_MANAGER_INTENDANT",
+      "layer": "TEAM_OPERATIONS",
+      "public_basis": true,
+      "goals": [
+        "equipment",
+        "documents",
+        "match logistics"
+      ],
+      "inputs": [
+        "fixture plan",
+        "kit",
+        "official requirements"
+      ],
+      "outputs": [
+        "match-ready package"
+      ],
+      "authority": "OPERATIONS"
+    },
+    {
+      "id": "PARENT_GUARDIAN",
+      "layer": "ACADEMY_EXTERNAL",
+      "public_basis": false,
+      "goals": [
+        "child registration",
+        "transport",
+        "information"
+      ],
+      "inputs": [
+        "licence pack",
+        "schedule",
+        "payment"
+      ],
+      "outputs": [
+        "documents",
+        "availability",
+        "transport"
+      ],
+      "authority": "CONSENT_FOR_OWN_CHILD_ONLY"
+    },
+    {
+      "id": "LICENCE_HOLDER",
+      "layer": "MEMBER",
+      "public_basis": true,
+      "goals": [
+        "valid licence",
+        "equipment",
+        "season benefits"
+      ],
+      "inputs": [
+        "registration",
+        "payment"
+      ],
+      "outputs": [
+        "required personal evidence"
+      ],
+      "authority": "SELF"
+    },
+    {
+      "id": "MATCHDAY_ORGANIZER",
+      "layer": "MATCHDAY",
+      "public_basis": true,
+      "goals": [
+        "venue readiness",
+        "hospitality",
+        "buvette",
+        "flow"
+      ],
+      "inputs": [
+        "fixture state",
+        "attendance",
+        "VIP plan"
+      ],
+      "outputs": [
+        "operations plan"
+      ],
+      "authority": "MATCHDAY_OPERATIONS"
+    },
+    {
+      "id": "MATCHDAY_SECURITY",
+      "layer": "MATCHDAY",
+      "public_basis": true,
+      "goals": [
+        "security plan",
+        "access control"
+      ],
+      "inputs": [
+        "attendance",
+        "risk",
+        "venue plan"
+      ],
+      "outputs": [
+        "security deployment"
+      ],
+      "authority": "SECURITY_OPERATIONS"
+    },
+    {
+      "id": "VOLUNTEER",
+      "layer": "MATCHDAY",
+      "public_basis": true,
+      "goals": [
+        "reception",
+        "hospitality support",
+        "guest routing"
+      ],
+      "inputs": [
+        "assignment",
+        "briefing"
+      ],
+      "outputs": [
+        "task completion"
+      ],
+      "authority": "BOUNDED_TASK"
+    },
+    {
+      "id": "TICKETING_BOUTIQUE",
+      "layer": "COMMERCIAL_OPERATIONS",
+      "public_basis": true,
+      "goals": [
+        "ticketing",
+        "subscriber card",
+        "merchandise"
+      ],
+      "inputs": [
+        "orders",
+        "match configuration"
+      ],
+      "outputs": [
+        "tickets",
+        "cards",
+        "sales status"
+      ],
+      "authority": "TRANSACTIONAL"
+    },
+    {
+      "id": "PARTNERSHIP_MANAGER",
+      "layer": "COMMERCIAL",
+      "public_basis": true,
+      "goals": [
+        "partner acquisition",
+        "activation",
+        "hospitality"
+      ],
+      "inputs": [
+        "partner commitments",
+        "inventory",
+        "audience metrics"
+      ],
+      "outputs": [
+        "activation plan",
+        "partner followup"
+      ],
+      "authority": "COMMERCIAL_PROCESS"
+    },
+    {
+      "id": "PARTNER_CONTACT",
+      "layer": "EXTERNAL_COMMERCIAL",
+      "public_basis": true,
+      "goals": [
+        "visibility",
+        "hospitality",
+        "relationship"
+      ],
+      "inputs": [
+        "offer",
+        "deliverables"
+      ],
+      "outputs": [
+        "commitment",
+        "guest lists",
+        "feedback"
+      ],
+      "authority": "OWN_ORG"
+    },
+    {
+      "id": "COMMUNICATION",
+      "layer": "COMMUNICATION",
+      "public_basis": true,
+      "goals": [
+        "publish accurate supporter information"
+      ],
+      "inputs": [
+        "approved match state",
+        "campaign plan"
+      ],
+      "outputs": [
+        "site",
+        "social",
+        "email"
+      ],
+      "authority": "PUBLICATION_AFTER_VALIDATION"
+    },
+    {
+      "id": "SUPPORTER_SUBSCRIBER",
+      "layer": "AUDIENCE",
+      "public_basis": true,
+      "goals": [
+        "accurate access info",
+        "ticket/season-card use"
+      ],
+      "inputs": [
+        "public communications"
+      ],
+      "outputs": [
+        "attendance",
+        "support requests"
+      ],
+      "authority": "NONE_OR_SELF_SERVICE"
+    },
+    {
+      "id": "LGEF_DISTRICT_FFF",
+      "layer": "EXTERNAL_AUTHORITY",
+      "public_basis": true,
+      "goals": [
+        "competition governance",
+        "licensing",
+        "discipline"
+      ],
+      "inputs": [
+        "official submissions"
+      ],
+      "outputs": [
+        "homologation",
+        "designation",
+        "decision",
+        "invoice"
+      ],
+      "authority": "EXTERNAL_REGULATORY"
+    },
+    {
+      "id": "CLUB_AFFILIATED_REFEREE",
+      "layer": "OFFICIALS",
+      "public_basis": true,
+      "goals": [
+        "assigned match officiating"
+      ],
+      "inputs": [
+        "designation"
+      ],
+      "outputs": [
+        "availability",
+        "match report"
+      ],
+      "authority": "OFFICIAL_MATCH_SCOPE"
+    },
+    {
+      "id": "MUNICIPALITY_COLLECTIVITY",
+      "layer": "INSTITUTIONAL",
+      "public_basis": true,
+      "goals": [
+        "facility/public relationship"
+      ],
+      "inputs": [
+        "requests",
+        "agreements"
+      ],
+      "outputs": [
+        "decisions",
+        "facility conditions"
+      ],
+      "authority": "EXTERNAL_INSTITUTIONAL"
+    },
+    {
+      "id": "SCHOOL_SECTION_MABILLON",
+      "layer": "EDUCATION",
+      "public_basis": true,
+      "goals": [
+        "school-sport coordination"
+      ],
+      "inputs": [
+        "student results",
+        "behavior",
+        "sport progression"
+      ],
+      "outputs": [
+        "joint followup"
+      ],
+      "authority": "EDUCATIONAL_SCOPE"
+    },
+    {
+      "id": "EQUIPMENT_SUPPLIER",
+      "layer": "SUPPLIER",
+      "public_basis": true,
+      "goals": [
+        "personalized kit fulfillment"
+      ],
+      "inputs": [
+        "validated sizes",
+        "orders"
+      ],
+      "outputs": [
+        "equipment delivery"
+      ],
+      "authority": "SUPPLIER_ONLY"
+    },
+    {
+      "id": "TICKETING_PAYMENT_PROVIDER",
+      "layer": "SUPPLIER",
+      "public_basis": true,
+      "goals": [
+        "payment/ticket transaction"
+      ],
+      "inputs": [
+        "orders"
+      ],
+      "outputs": [
+        "confirmation",
+        "QR/ticket"
+      ],
+      "authority": "TRANSACTIONAL_ONLY"
+    },
+    {
+      "id": "SUPPORTER_MEDIA_DVCR",
+      "layer": "ECOSYSTEM",
+      "public_basis": true,
+      "goals": [
+        "community broadcast"
+      ],
+      "inputs": [
+        "fixtures",
+        "volunteers",
+        "travel"
+      ],
+      "outputs": [
+        "broadcasts"
+      ],
+      "authority": "INDEPENDENT_MEDIA_NOT_CLUB"
+    }
+  ]
+}
