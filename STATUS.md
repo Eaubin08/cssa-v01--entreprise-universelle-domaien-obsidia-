@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3H_C_UNIVERSAL_WORLD_ACTION_PRE_EXECUTION_PROVEN
-Branch: feat/f3h-c-universal-world-action-pre-execution-v0
+Status: F3H_D_CSSA_NATIVE_CRM_TASKS_BRIDGE_PROVEN
+Branch: feat/cssa-native-ops-bridge-v0
 
 ## Progression
 
@@ -27,6 +27,7 @@ Branch: feat/f3h-c-universal-world-action-pre-execution-v0
 - Universal decision-execution contract: PASS
 - Universal métier execution-adapter registry: PASS
 - F3H-C universal world-action PRE-execution rail: PASS
+- F3H-D CSSA -> native CRM/TASKS bridge: PASS
 - real CSSA internal field evidence: OPEN
 - external action: HOLD
 
@@ -617,3 +618,50 @@ Next architectural milestone:
 7. then reuse unchanged rail for MAIL / CALENDAR / CRM / TASKS and future métier domains
 
 No merge to main.
+
+
+## F3H-D CSSA -> native CRM/TASKS bridge
+
+Canonical upstream:
+- obsidia-x108-proofs / feat/native-tasks-crm-v0
+- TASKS_NATIVE_V0
+- CRM_NATIVE_V0
+
+Proven intake:
+- CSSA case -> CRM CASE
+- CSSA case -> native TASK
+- intake interaction
+- CRM follow-up -> native task_ref
+
+Fail-closed batch:
+- 4 exact native mutations
+- 4 WORLD_ACTION_PRE KX108 ALLOW required before first canonical commit
+- any HOLD/BLOCK -> 0 native mutations
+- shadow semantic apply before canonical commit
+- exact pre-state recheck before each canonical apply
+- duplicate intake rejected
+
+Fixture families:
+- CONTRACT_COMPLIANCE
+- INSTITUTIONAL_RELATION
+- MATCHDAY_OPERATIONS
+- INCIDENT_ROOT_CAUSE
+- SUPPLIER_FOLLOWUP
+
+Fixtures remain SIMULATED_NOT_OBSERVED.
+
+Proof:
+- run 37609707350
+- 181 passed in 0.91s
+- SUCCESS
+
+Governance preserved:
+- KX108_ONLY
+- no external SaaS required
+- no external action
+- CSSA does not duplicate native TASKS/CRM
+- no main merge
+
+Current verdict:
+
+CSSA_NATIVE_CRM_TASKS_BRIDGE_V0_PROVEN

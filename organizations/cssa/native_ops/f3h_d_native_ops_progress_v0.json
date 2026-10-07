@@ -1,0 +1,43 @@
+{
+  "version": "F3H_D_CSSA_NATIVE_OPS_BRIDGE_V0",
+  "status": "CSSA_NATIVE_CRM_TASKS_BRIDGE_PROVEN",
+  "date": "2026-10-07",
+  "upstream_ref": "feat/native-tasks-crm-v0",
+  "canonical_flow": [
+    "CSSA_CASE",
+    "CRM_CASE_RECORD",
+    "CRM_INTAKE_INTERACTION",
+    "NATIVE_TASK",
+    "CRM_FOLLOWUP_LINKED_TO_TASK"
+  ],
+  "intake_mutation_count": 4,
+  "atomicity_boundary": {
+    "all_world_action_pre_must_allow_before_commit": true,
+    "shadow_semantic_apply_before_commit": true,
+    "hold_or_block_commits_zero_native_mutations": true,
+    "concurrent_prestate_change_fails_closed": true
+  },
+  "cases_proven": [
+    "CONTRACT_COMPLIANCE",
+    "INSTITUTIONAL_RELATION",
+    "MATCHDAY_OPERATIONS",
+    "INCIDENT_ROOT_CAUSE",
+    "SUPPLIER_FOLLOWUP"
+  ],
+  "boundaries": {
+    "decision_authority": "KX108_ONLY",
+    "external_saas_required": false,
+    "external_action": false,
+    "native_tasks_source_of_truth": "OBSIDIA_UPSTREAM",
+    "native_crm_source_of_truth": "OBSIDIA_UPSTREAM",
+    "cssa_duplicates_native_models": false,
+    "real_cssa_field_evidence": false,
+    "fixtures_status": "SIMULATED_NOT_OBSERVED",
+    "main_merge": false
+  },
+  "proof": {
+    "run_id": 37609707350,
+    "result": "181 passed in 0.91s",
+    "conclusion": "SUCCESS"
+  }
+}

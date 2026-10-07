@@ -1,0 +1,101 @@
+{
+  "version": "CSSA_NATIVE_OPS_INTAKE_FIXTURES_V0",
+  "status": "SIMULATED_NOT_OBSERVED",
+  "cases": [
+    {
+      "cssa_case_id": "fixture-contract-001",
+      "case_type": "CONTRACT_COMPLIANCE",
+      "title": "Contrat prestataire à revoir",
+      "summary": "Revue simulée d'un contrat prestataire avant échéance.",
+      "owner_ref": "role:manager_general",
+      "priority": "HIGH",
+      "occurred_at": "2026-10-07T10:00:00+00:00",
+      "due_at": "2026-10-10T17:00:00+00:00",
+      "source_refs": [
+        "fixture:f3g-g:contract"
+      ],
+      "evidence_refs": [
+        "fixture:evidence:contract"
+      ],
+      "tags": [
+        "ADMINISTRATION"
+      ]
+    },
+    {
+      "cssa_case_id": "fixture-institution-001",
+      "case_type": "INSTITUTIONAL_RELATION",
+      "title": "Réponse collectivité à préparer",
+      "summary": "Cas simulé de suivi d'une demande institutionnelle.",
+      "owner_ref": "role:manager_general",
+      "priority": "NORMAL",
+      "occurred_at": "2026-10-07T10:05:00+00:00",
+      "due_at": "2026-10-11T12:00:00+00:00",
+      "source_refs": [
+        "fixture:f3g-h:institution"
+      ],
+      "evidence_refs": [
+        "fixture:evidence:institution"
+      ],
+      "tags": [
+        "INSTITUTION"
+      ]
+    },
+    {
+      "cssa_case_id": "fixture-matchday-001",
+      "case_type": "MATCHDAY_OPERATIONS",
+      "title": "Préparation buvette matchday",
+      "summary": "Cas simulé de suivi opérationnel buvette et shifts.",
+      "owner_ref": "role:matchday_organizer",
+      "priority": "HIGH",
+      "occurred_at": "2026-10-07T10:10:00+00:00",
+      "due_at": "2026-10-09T18:00:00+00:00",
+      "source_refs": [
+        "fixture:f3g-j:matchday"
+      ],
+      "evidence_refs": [
+        "fixture:evidence:matchday"
+      ],
+      "tags": [
+        "MATCHDAY"
+      ]
+    },
+    {
+      "cssa_case_id": "fixture-incident-001",
+      "case_type": "INCIDENT_ROOT_CAUSE",
+      "title": "Incident opérationnel à analyser",
+      "summary": "Cas simulé pour RCA, action corrective et suivi.",
+      "owner_ref": "role:manager_general",
+      "priority": "CRITICAL",
+      "occurred_at": "2026-10-07T10:15:00+00:00",
+      "due_at": "2026-10-08T17:00:00+00:00",
+      "source_refs": [
+        "fixture:f3g-i:incident"
+      ],
+      "evidence_refs": [
+        "fixture:evidence:incident"
+      ],
+      "tags": [
+        "RCA"
+      ]
+    },
+    {
+      "cssa_case_id": "fixture-supplier-001",
+      "case_type": "SUPPLIER_FOLLOWUP",
+      "title": "Livraison fournisseur à confirmer",
+      "summary": "Cas simulé de suivi d'une livraison fournisseur matchday.",
+      "owner_ref": "role:matchday_organizer",
+      "priority": "NORMAL",
+      "occurred_at": "2026-10-07T10:20:00+00:00",
+      "due_at": "2026-10-09T09:00:00+00:00",
+      "source_refs": [
+        "fixture:f3g-j:supplier"
+      ],
+      "evidence_refs": [
+        "fixture:evidence:supplier"
+      ],
+      "tags": [
+        "SUPPLIER"
+      ]
+    }
+  ]
+}
