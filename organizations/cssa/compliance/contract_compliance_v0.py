@@ -50,6 +50,7 @@ COMPLIANCE_STATES = {
 @dataclass(frozen=True)
 class ContractAssessmentV0:
     case_id: str
+    assessed_at: str
     lifecycle_state: str
     unknowns: tuple[str, ...]
     contradictions: tuple[str, ...]
@@ -59,6 +60,26 @@ class ContractAssessmentV0:
     status: str = STATUS
     decision_authority: str = "KX108_ONLY"
     external_action: bool = False
+
+    @property
+    def event_id(self) -> str:
+        return self.case_id
+
+    @property
+    def event_date(self) -> str:
+        return self.assessed_at
+
+    @property
+    def family(self) -> str:
+        return "GOVERNANCE_LEGAL"
+
+    @property
+    def case_type(self) -> str:
+        return "contract_lifecycle_case"
+
+    @property
+    def team_id(self) -> None:
+        return None
 
     @property
     def expected_gate(self) -> str:
@@ -72,6 +93,7 @@ class ContractAssessmentV0:
 @dataclass(frozen=True)
 class ComplianceAssessmentV0:
     case_id: str
+    assessed_at: str
     lifecycle_state: str
     unknowns: tuple[str, ...]
     contradictions: tuple[str, ...]
@@ -82,6 +104,26 @@ class ComplianceAssessmentV0:
     status: str = STATUS
     decision_authority: str = "KX108_ONLY"
     external_action: bool = False
+
+    @property
+    def event_id(self) -> str:
+        return self.case_id
+
+    @property
+    def event_date(self) -> str:
+        return self.assessed_at
+
+    @property
+    def family(self) -> str:
+        return "GOVERNANCE_LEGAL"
+
+    @property
+    def case_type(self) -> str:
+        return "compliance_lifecycle_case"
+
+    @property
+    def team_id(self) -> None:
+        return None
 
     @property
     def expected_gate(self) -> str:
@@ -181,6 +223,7 @@ def assess_contract_v0(
 
     return ContractAssessmentV0(
         case_id=str(raw["id"]),
+        assessed_at=as_of.isoformat(),
         lifecycle_state=state,
         unknowns=tuple(dict.fromkeys(unknowns)),
         contradictions=tuple(dict.fromkeys(contradictions)),
@@ -259,6 +302,7 @@ def assess_compliance_v0(
 
     return ComplianceAssessmentV0(
         case_id=str(raw["id"]),
+        assessed_at=as_of.isoformat(),
         lifecycle_state=state,
         unknowns=tuple(dict.fromkeys(unknowns)),
         contradictions=tuple(dict.fromkeys(contradictions)),
