@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3D_CSSA_SEASON_SCALE_AUDIT_CLOSED
-Branch: `feat/f3d-cssa-season-scale-audit-v0`
+Status: F3E_CSSA_FULL_SEASON_SIMULATOR_CLOSED
+Branch: `feat/f3e-cssa-full-season-simulator-v0`
 
 ## Universal / runtime
 
@@ -17,68 +17,94 @@ Branch: `feat/f3d-cssa-season-scale-audit-v0`
 
 - F3A public baseline: PASS
 - F3B field intake kit: READY
-- F3C simulated isolated field scenarios: PASS
-- F3D season-scale public audit/model: PASS
-- F0-B real CSSA internal evidence: OPEN
+- F3C isolated synthetic scenarios: PASS
+- F3D season-scale audit/model: PASS
+- F3E full-season synthetic operating corpus: PASS
+- F0-B real CSSA internal field evidence: OPEN
 - external action: HOLD
 
-## F3D scale now modeled
+## F3E scale
 
-- 19 official public team structures;
-- R1/R2 current group scale;
-- whole-club persona map;
-- licence/equipment administrative economics;
-- LGEF public tariffs;
-- partner/subscriber public snapshots;
-- current legal-entity ambiguity;
-- public-source freshness contradictions;
-- season travel ranges;
-- guarded travel/finance simulation functions;
-- Football Manager management abstractions only.
+- 19 team structures
+- 330 synthetic fixture/plateau events
+- 904 total operating events
+- 2026-08-01 -> 2027-06-15
+- 24,500 estimated team-route km represented once per trip
+- whole-club concurrent administrative workload
 
-## Travel simulation envelope
+## Whole-club event families
 
-- regular team-route: 20,000-29,000 km;
-- with cups/tournaments/friendlies: 22,000-36,250 km;
-- LOW vehicle-cost scenario: 15,400 EUR;
-- BASE: 32,765.62 EUR;
-- HIGH: 65,250 EUR.
+- academy/licences/equipment
+- competitions/FMI
+- travel/reconciliation
+- finance/accounting
+- partners/hospitality
+- supporters/ticketing
+- matchday
+- communication
+- staff/volunteers
+- education
+- source freshness/proof
+- privacy-sensitive HR/youth evidence
 
-All are ESTIMATED simulation values, not CSSA accounting facts.
+## Governance
 
-## Commercial truth boundary
-
-- 800 subscriber snapshot: PUBLIC_CONFIRMED, campaign still open;
-- 855 later claim: SECONDARY_CORROBORATED;
-- final subscriber count: UNKNOWN;
-- +50 partners: PUBLIC marketing claim;
-- partner revenue: UNKNOWN;
-- no revenue inferred from count alone.
+- clean synthetic cases -> ALLOW for internal READONLY only
+- >1 unknown -> HOLD
+- >=2 contradictions -> BLOCK
+- high-sensitivity youth/payroll -> PRE_RUNTIME_BLOCK
+- KX108_ONLY preserved
+- no memory write
+- no kernel mutation
+- no world action
 
 ## CI
 
-`183 passed in 0.65s`
-Run `37555962749`
-Job `112582133606`
-SUCCESS
+First run:
+- 194 PASS / 1 FAIL
+- only failure: 0.10 km aggregation rounding drift
 
-## Next technical target
+Fixed by preserving route precision before aggregation.
 
-F3E — synthetic full-season CSSA operating corpus.
+Closure:
+- run `37557076230`
+- job `112585656176`
+- `195 passed in 0.48s`
+- SUCCESS
 
-Target is no longer 15 isolated cases. It should create a time-evolving season with concurrent workloads across:
+## Real first-team contact path
 
-- 19 team structures;
-- fixtures/cups/plateaux;
-- licences/equipment;
-- travel/reimbursements;
-- LGEF/District/FFF decisions;
-- discipline/procedure fees;
-- supporters/ticketing;
-- partners/hospitality;
-- matchday/volunteers/security;
-- communication/public-source consistency;
-- school/academy;
-- finance/accounting/proof.
+Prepared field-validation protocols for a current first-team staff contact.
+
+Preferred evidence:
+- employing entity
+- contract type
+- reporting/validation chain
+- travel/expense workflow
+- tools/channels
+- administrative handoffs
+- first-team vs Association differences
+
+Raw payslips are not required and are forbidden from the public repo.
+Any real payroll evidence must be manually redacted/abstracted first.
+
+## Next
+
+F3F should stress **organizational decisions over the season**, not merely generate events:
+
+- workload collisions
+- delegation failures
+- budget-pressure propagation
+- deadline cascades
+- cross-team shared-resource conflicts
+- source freshness propagation
+- partner/matchday commitments
+- transport capacity
+- staff absence/substitution
+- evidence completeness
+- multi-case prioritization
+
+F3F should answer:
+"Can Obsidia keep the whole club coherent when many valid cases compete for the same people, money, time and authority?"
 
 No merge to main.
