@@ -29,7 +29,6 @@ class DependencyNodeStateV0:
 
 
 @dataclass(frozen=True)
-@dataclass(frozen=True)
 class VersionTransitionAssessmentV0:
     current_version: int
     incoming_version: int
