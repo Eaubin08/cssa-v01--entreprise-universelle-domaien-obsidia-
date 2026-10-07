@@ -131,7 +131,7 @@ def build_report_pack_v0(
     *,
     cadence: str,
     as_of: date,
-    truth_class: str = "SIMULATED_NOT_OBSERVED",
+    truth_class: str | None = "SIMULATED_NOT_OBSERVED",
 ) -> CSSAReportPackV0:
     cadence_cfg = routing["cadences"].get(cadence)
     if cadence_cfg is None:
@@ -148,10 +148,20 @@ def build_report_pack_v0(
         if not (start <= event_day <= end):
             continue
 
+        effective_truth_class = (
+            str(getattr(event, "truth_class"))
+            if truth_class is None and getattr(event, "truth_class", None)
+            else truth_class
+        )
+        if effective_truth_class is None:
+            raise ValueError(
+                f"EVENT_TRUTH_CLASS_REQUIRED:{getattr(event, 'event_id', 'unknown')}"
+            )
+
         item = route_event_v0(
             event,
             routing,
-            truth_class=truth_class,
+            truth_class=effective_truth_class,
             as_of=as_of,
         )
         items.append(item)
