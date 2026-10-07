@@ -234,7 +234,6 @@ class WorldActionRequestV0:
     autonomy_level: int
     irreversible: bool
     retry_policy: str
-    human_approval_hash: str | None
     idempotency_key: str
     request_hash: str
     decision_authority: str = DECISION_AUTHORITY
@@ -276,7 +275,6 @@ def build_world_action_request_v0(
     surface_registry: UniversalExecutionSurfaceRegistryV0,
     policy_registry: WorldActionPolicyRegistryV0,
     proposal: UniversalActionProposalV0,
-    human_approval: Mapping[str, Any] | None,
     request_id: str,
     connector_action: str,
     connector_args: Mapping[str, Any],
@@ -293,14 +291,6 @@ def build_world_action_request_v0(
     if proposal.effect_class not in EXTERNAL_EFFECT_CLASSES:
         raise UniversalExecutionContractError(
             "world-action request requires external effect proposal"
-        )
-    ok, reason = verify_universal_human_approval_v0(
-        approval=human_approval,
-        proposal=proposal,
-    )
-    if not ok:
-        raise UniversalExecutionContractError(
-            f"INVALID_HUMAN_APPROVAL:{reason}"
         )
     if current_target_state_hash != proposal.expected_target_state_hash:
         raise UniversalExecutionContractError(
@@ -322,11 +312,6 @@ def build_world_action_request_v0(
         "connector_args": dict(connector_args),
     }
     connector_call_hash = canonical_sha256_v0(connector_call)
-    approval_hash = (
-        str(human_approval["approval_hash"])
-        if human_approval is not None
-        else None
-    )
     idempotency_key = canonical_sha256_v0({
         "schema": "UNIVERSAL_WORLD_ACTION_IDEMPOTENCY_V0",
         "proposal_hash": proposal.proposal_hash,
@@ -355,7 +340,6 @@ def build_world_action_request_v0(
         "autonomy_level": policy.autonomy_level,
         "irreversible": policy.irreversible,
         "retry_policy": policy.retry_policy,
-        "human_approval_hash": approval_hash,
         "idempotency_key": idempotency_key,
         "decision_authority": DECISION_AUTHORITY,
     }
@@ -379,7 +363,6 @@ def build_world_action_request_v0(
         autonomy_level=policy.autonomy_level,
         irreversible=policy.irreversible,
         retry_policy=policy.retry_policy,
-        human_approval_hash=approval_hash,
         idempotency_key=idempotency_key,
         request_hash=canonical_sha256_v0(bound),
     )
@@ -387,17 +370,109 @@ def build_world_action_request_v0(
     return request
 
 
+def build_world_action_human_approval_v0(
+    *,
+    approval_id: str,
+    approved_by: str,
+    approval_reference: str,
+    request: WorldActionRequestV0,
+) -> dict[str, Any]:
+    """Bind human approval to the exact external action request."""
+    request.assert_non_sovereign()
+    if not approval_id or not approved_by or not approval_reference:
+        raise UniversalExecutionContractError(
+            "explicit world-action human approval required"
+        )
+    if approved_by == "MACHINE":
+        raise UniversalExecutionContractError(
+            "machine cannot synthesize world-action human approval"
+        )
+    record = {
+        "schema": "UNIVERSAL_WORLD_ACTION_HUMAN_APPROVAL_V0",
+        "approval_id": approval_id,
+        "approved_by": approved_by,
+        "approval_reference": approval_reference,
+        "request_id": request.request_id,
+        "request_hash": request.request_hash,
+        "proposal_hash": request.proposal_hash,
+        "domain_id": request.domain_id,
+        "surface_id": request.surface_id,
+        "operation_id": request.operation_id,
+        "connector_id": request.connector_id,
+        "connector_action": request.connector_action,
+        "connector_call_hash": request.connector_call_hash,
+        "target_ref": request.target_ref,
+        "target_prestate_hash": request.target_prestate_hash,
+        "world_action_approval_hash": world_action_approval["approval_hash"],
+        "required_scope": request.required_scope,
+        "idempotency_key": request.idempotency_key,
+        "decision_authority": DECISION_AUTHORITY,
+        "is_execution_authority": False,
+    }
+    record["approval_hash"] = canonical_sha256_v0(record)
+    return record
+
+
+def verify_world_action_human_approval_v0(
+    *,
+    approval: Mapping[str, Any] | None,
+    request: WorldActionRequestV0,
+    world_action_approval: Mapping[str, Any],
+) -> tuple[bool, str | None]:
+    if approval is None:
+        return False, "WORLD_ACTION_HUMAN_APPROVAL_MISSING"
+    if approval.get("schema") != "UNIVERSAL_WORLD_ACTION_HUMAN_APPROVAL_V0":
+        return False, "WORLD_ACTION_HUMAN_APPROVAL_SCHEMA_INVALID"
+    if approval.get("decision_authority") != DECISION_AUTHORITY:
+        return False, "WORLD_ACTION_HUMAN_APPROVAL_AUTHORITY_INVALID"
+    if approval.get("is_execution_authority") is not False:
+        return False, "WORLD_ACTION_HUMAN_APPROVAL_CANNOT_BE_SOVEREIGN"
+    expected = {
+        "request_id": request.request_id,
+        "request_hash": request.request_hash,
+        "proposal_hash": request.proposal_hash,
+        "domain_id": request.domain_id,
+        "surface_id": request.surface_id,
+        "operation_id": request.operation_id,
+        "connector_id": request.connector_id,
+        "connector_action": request.connector_action,
+        "connector_call_hash": request.connector_call_hash,
+        "target_ref": request.target_ref,
+        "target_prestate_hash": request.target_prestate_hash,
+        "world_action_approval_hash": world_action_approval["approval_hash"],
+        "required_scope": request.required_scope,
+        "idempotency_key": request.idempotency_key,
+    }
+    for key, value in expected.items():
+        if approval.get(key) != value:
+            return False, f"WORLD_ACTION_HUMAN_APPROVAL_{key.upper()}_MISMATCH"
+    candidate = dict(approval)
+    stored = candidate.pop("approval_hash", None)
+    if not stored or canonical_sha256_v0(candidate) != stored:
+        return False, "WORLD_ACTION_HUMAN_APPROVAL_HASH_MISMATCH"
+    return True, None
+
+
 def build_world_action_pre_context_v0(
     request: WorldActionRequestV0,
     *,
     valid_at: str,
     evidence_refs: Sequence[str],
+    world_action_approval: Mapping[str, Any],
     unknowns: Sequence[str] = (),
     contradictions: Sequence[str] = (),
     risk_flags: Sequence[str] = (),
 ) -> dict[str, Any]:
     """Exact context for the future sovereign WORLD_ACTION_PRE_EXECUTION gate."""
     request.assert_non_sovereign()
+    ok, reason = verify_world_action_human_approval_v0(
+        approval=world_action_approval,
+        request=request,
+    )
+    if not ok:
+        raise UniversalExecutionContractError(
+            f"INVALID_WORLD_ACTION_HUMAN_APPROVAL:{reason}"
+        )
     if not evidence_refs:
         raise UniversalExecutionContractError(
             "WORLD_ACTION_PRE_EVIDENCE_REFS_REQUIRED"
@@ -442,6 +517,12 @@ def verify_world_action_pre_evidence_v0(
         return False, "WORLD_ACTION_PRE_AUTHORITY_INVALID"
     if evidence.get("x108_gate") != "ALLOW":
         return False, "WORLD_ACTION_PRE_GATE_NOT_ALLOW"
+    ok, reason = verify_world_action_human_approval_v0(
+        approval=world_action_approval,
+        request=request,
+    )
+    if not ok:
+        return False, reason
     expected = {
         "proposal_hash": request.proposal_hash,
         "world_action_request_hash": request.request_hash,
@@ -478,6 +559,7 @@ def assess_world_action_pre_execution_v0(
     request: WorldActionRequestV0,
     runtime_link_facts: Mapping[str, Any],
     pre_evidence: Mapping[str, Any] | None,
+    world_action_approval: Mapping[str, Any],
     prior_attempts: Sequence[Mapping[str, Any]] = (),
 ) -> dict[str, Any]:
     """Final universal readiness check before an external connector call."""
@@ -513,6 +595,7 @@ def assess_world_action_pre_execution_v0(
     ok, reason = verify_world_action_pre_evidence_v0(
         pre_evidence,
         request=request,
+        world_action_approval=world_action_approval,
     )
     if not ok:
         return _blocked(reason or "WORLD_ACTION_PRE_INVALID")
