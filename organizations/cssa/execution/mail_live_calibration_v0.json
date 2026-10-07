@@ -1,0 +1,53 @@
+{
+  "version": "CSSA_F3H_B_MAIL_LIVE_CALIBRATION_V0",
+  "status": "PRIVATE_READONLY_PATTERN_CALIBRATION_NO_MESSAGE_CONTENT_PERSISTED",
+  "as_of": "2026-10-07",
+  "observed_message_classes": [
+    {
+      "class": "CLUB_MATCHDAY_INFORMATION",
+      "sender_class": "CLUB_NOREPLY",
+      "observed_fields": [
+        "fixture",
+        "kickoff",
+        "stadium",
+        "doors_open",
+        "parking",
+        "buvette",
+        "subscriber_entry"
+      ]
+    },
+    {
+      "class": "TICKETING_TRANSACTION_CONFIRMATION",
+      "sender_class": "TICKETING_PROVIDER",
+      "observed_fields": [
+        "event",
+        "event_datetime",
+        "order_confirmation",
+        "ticket_attachment",
+        "organizer_contact",
+        "calendar_links"
+      ]
+    },
+    {
+      "class": "EVENT_MARKETING_CAMPAIGN",
+      "sender_class": "EVENT_MARKETING_PROVIDER",
+      "observed_fields": [
+        "fixture",
+        "doors_open",
+        "kickoff",
+        "ticketing_call_to_action"
+      ]
+    }
+  ],
+  "execution_boundary": {
+    "cssa_operational_sender_mailbox_verified": false,
+    "personal_mailbox_must_not_be_treated_as_cssa_sender": true,
+    "real_send_permitted_now": false,
+    "reason": "NO_AUTHORIZED_CSSA_OPERATIONAL_MAILBOX_CONNECTED_OR_PROVEN"
+  },
+  "privacy_boundary": {
+    "gmail_message_ids_persisted": false,
+    "recipient_personal_data_persisted": false,
+    "raw_message_bodies_persisted": false
+  }
+}
