@@ -578,6 +578,12 @@ def assess_world_action_pre_execution_v0(
             "decision_authority": DECISION_AUTHORITY,
         }
 
+    if (
+        request.world_call_class in {WCC_CRITICAL, WCC_FORBIDDEN}
+        or request.action_risk_class == ARC_FORBIDDEN
+    ):
+        return _blocked("WORLD_ACTION_POLICY_CLASS_BLOCKED")
+
     missing = tuple(runtime_link_facts.get("missing_runtime_links") or ())
     if runtime_link_facts.get("decision_authority") != DECISION_AUTHORITY:
         return _blocked("UPSTREAM_RUNTIME_AUTHORITY_INVALID")
@@ -642,13 +648,52 @@ def assess_prior_attempts_v0(
     return {"status": "NO_PRIOR_EFFECT", "reason": None}
 
 
+def _assert_pre_execution_ready_v0(
+    *,
+    request: WorldActionRequestV0,
+    pre_execution_ready: Mapping[str, Any] | None,
+) -> None:
+    if pre_execution_ready is None:
+        raise UniversalExecutionContractError(
+            "PRE_EXECUTION_READY_EVIDENCE_REQUIRED"
+        )
+    if pre_execution_ready.get("status") != PRE_EXECUTION_READY:
+        raise UniversalExecutionContractError(
+            "PRE_EXECUTION_READY_STATUS_REQUIRED"
+        )
+    expected = {
+        "request_hash": request.request_hash,
+        "connector_call_hash": request.connector_call_hash,
+        "idempotency_key": request.idempotency_key,
+        "decision_authority": DECISION_AUTHORITY,
+    }
+    for key, value in expected.items():
+        if pre_execution_ready.get(key) != value:
+            raise UniversalExecutionContractError(
+                f"PRE_EXECUTION_READY_{key.upper()}_MISMATCH"
+            )
+    if not pre_execution_ready.get("sovereign_ticket_id"):
+        raise UniversalExecutionContractError(
+            "PRE_EXECUTION_READY_SOVEREIGN_TICKET_MISSING"
+        )
+    if not pre_execution_ready.get("decision_record_id"):
+        raise UniversalExecutionContractError(
+            "PRE_EXECUTION_READY_DECISION_RECORD_MISSING"
+        )
+
+
 def build_provider_outcome_v0(
     *,
     request: WorldActionRequestV0,
+    pre_execution_ready: Mapping[str, Any] | None,
     provider_result_identity: Mapping[str, Any] | None = None,
     explicit_no_effect: bool = False,
     exception_class: str | None = None,
 ) -> dict[str, Any]:
+    _assert_pre_execution_ready_v0(
+        request=request,
+        pre_execution_ready=pre_execution_ready,
+    )
     if explicit_no_effect and provider_result_identity:
         raise UniversalExecutionContractError(
             "provider result cannot be both success identity and no-effect"
