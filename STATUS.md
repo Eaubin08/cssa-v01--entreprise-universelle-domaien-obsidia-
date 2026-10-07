@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3E_CSSA_REPORTING_ROUTING_CLOSED
-Branch: `feat/f3e-cssa-reporting-routing-v0`
+Status: F3F_CSSA_ORGANIZATIONAL_STRESS_CLOSED
+Branch: `feat/f3f-cssa-organizational-stress-v0`
 
 ## Universal / runtime
 
@@ -20,138 +20,163 @@ Branch: `feat/f3e-cssa-reporting-routing-v0`
 - F3C isolated synthetic scenarios: PASS
 - F3D season-scale audit/model: PASS
 - F3E full-season synthetic operating corpus: PASS
-- F3E reporting/persona routing: PASS
+- F3E recurring reporting/persona routing: PASS
+- F3F organizational stress / shared-resource pressure: PASS
 - F0-B real CSSA internal field evidence: OPEN
 - external action: HOLD
 
-## Season simulation
+## F3F synthetic resource model
 
-- 19 team structures
-- 330 synthetic fixture/plateau events
-- 904 total operating events
-- 2026-08-01 -> 2027-06-15
-- 24,500 estimated team-route km
+Simulated only:
 
-## Reporting system
+- role/day capacity
+- vehicle-equivalent pool
+- hospitality slot
+- stadium slot
+- monthly travel envelope
+- volunteer pool
 
-Cadences:
+No capacity is claimed as real CSSA data.
 
-- WEEKLY: Monday, lookback 7d + lookahead 7d
-- BIWEEKLY: every 14 days from 2026-10-19, lookback 14d + lookahead 14d
-- MONTHLY: day 1, lookback 31d + lookahead 31d
+## F3F explicit stress catalog
 
-Outputs:
+12 scenarios:
 
-- global report
-- summary JSON
-- persona-specific report files
+- vehicle collision
+- admin absence + urgent LGEF
+- travel budget pressure
+- late fixture change cascade
+- hospitality double commitment
+- FMI backlog
+- stale-source contradiction
+- missing delegation
+- 20 simultaneous valid cases
+- normal multi-case day
+- safety vs partner priority
+- stadium double booking
 
-Routing covers:
+Governance result:
+
+```text
+ALLOW 2
+HOLD  5
+BLOCK 5
+```
+
+## Full-season pressure
+
+The 904-event F3E corpus is scanned against the synthetic daily role-capacity model.
+
+Result:
+
+`4 synthetic capacity-pressure points`
+
+This proves stress emerges from the generated season but does not claim four real CSSA overloads.
+
+## Priority policy
+
+F3F priority ordering is advisory only.
+
+Current V0 ordering:
+
+`SAFETY > REGULATORY > DEADLINE`
+
+First F3F run exposed a wrong test expectation: the engine correctly prioritized the safety-critical case above regulatory cases.
+
+No execution authority is created by priority.
+
+## Reporting cockpit
+
+F3F findings are routed through the existing recurring reporting layer as:
+
+`ORGANIZATIONAL_STRESS`
+
+Generated outputs now include stress findings in:
+
+- weekly operational report;
+- biweekly cross-layer report;
+- monthly governance report;
+- persona-specific views.
+
+Relevant recipients include:
 
 - Direction/Présidence
 - Manager Général
 - Administration
-- Secrétariat
-- Finance/Admin Accounting
+- Finance
 - Direction Technique
-- Formation / Foot 5-8
 - Team Manager/Intendance
 - Matchday
-- Security
-- Volunteers
-- Ticketing/Boutique
+- Ticketing
 - Partnerships
 - Communication
-- School/Education
 
-## Truth boundary
+External delivery remains disabled.
 
-Every report item retains one explicit class:
+## Runtime governance
 
-- PUBLIC_CONFIRMED
-- SECONDARY_CORROBORATED
-- ESTIMATED
-- SIMULATED_NOT_OBSERVED
-- REAL_FIELD_EVIDENCE
-- UNKNOWN_PRIVATE
+Representative F3F ALLOW/HOLD/BLOCK assessments cross the real GuardX108.
 
-No silent promotion is allowed.
+Preserved:
 
-## Privacy
-
-Sensitive HR/youth cases:
-
-- metadata-only;
-- MANAGER_GENERAL + RESP_ADMIN only;
-- source/provenance/amount/detail redacted;
-- PRE_RUNTIME_BLOCK preserved.
-
-## Delivery boundary
-
-Repository generates artifacts only.
-
-Disabled:
-
-- email
-- Slack/WhatsApp
-- CRM mutation
-- website publication
-- supporter/partner send
-
-`external_delivery = false`
-
-`KX108_ONLY` unchanged.
+- KX108_ONLY
+- decision record verified
+- memory_write=false
+- kernel_mutation=false
+- emits_act=false
+- world_action_allowed=false
+- provider only on ALLOW
 
 ## CI
 
-Initial reporting implementation:
+First F3F run:
+- 216 PASS / 1 FAIL
+- failure: test expected regulatory priority before safety
+- correction: safety-first priority made explicit
 
-- 205 tests PASS;
-- artifact generation failed because direct script execution could not import the repository package.
+Closure run:
+- run `37559251006`
+- job `112592547263`
+- `217 passed in 0.97s`
+- stress artifact generated
+- weekly/biweekly/monthly stress-aware reporting artifacts generated
+- SUCCESS
 
-Fix:
+## Current verdict
 
-- repository root added to generator import path.
+`CSSA_ORGANIZATIONAL_STRESS_AND_PRIORITY_ROUTING_V0_PROVEN`
 
-Closure:
+What is proven:
+- shared-resource collision detection;
+- impossible double-allocation fail-closed;
+- advisory prioritization;
+- deadline/authority HOLD;
+- stale-state BLOCK;
+- whole-season synthetic capacity scan;
+- stress-to-persona reporting.
 
-- run `37558491140`
-- job `112590142497`
-- `205 passed in 0.86s`
-- weekly + biweekly + monthly packs generated
-- artifact upload SUCCESS
-
-## Automation state
-
-The repository contains a daily GitHub Actions schedule hook.
-
-Because scheduled workflows run from the default branch and this work remains off-main:
-
-`CRON_READY_BUT_DORMANT_OFF_MAIN`
-
-No merge to main is authorized by this status.
+Not proven:
+- real CSSA resource capacities;
+- real vehicle fleet;
+- real staff workload limits;
+- real travel budget;
+- real delegation/substitution rules;
+- real internal priority policy.
 
 ## Next
 
-F3F remains the next functional phase:
+F3G — field calibration.
 
-stress organizational decisions and shared resources across the season:
+Replace the highest-impact synthetic assumptions with real evidence, starting with:
 
-- workload collisions
-- delegation failures
-- transport capacity
-- budget pressure
-- staff absence/substitution
-- deadline cascades
-- partner/matchday commitments
-- source freshness propagation
-- multi-case prioritization
+1. first-team employing entity;
+2. actual reporting/validation chain;
+3. travel/expense process;
+4. real tools/channels;
+5. substitution/delegation;
+6. transport/shared-resource practice;
+7. real approval boundaries.
 
-Reporting should be used as the observation surface for F3F so every stress run produces:
-
-- weekly operational view;
-- biweekly cross-layer view;
-- monthly governance view;
-- role-specific information packs.
+A current first-team staff contact is a high-value source for this phase.
 
 No merge to main.
