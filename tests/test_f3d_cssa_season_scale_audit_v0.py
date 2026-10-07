@@ -10,6 +10,12 @@ from organizations.cssa.season.logistics_v0 import (
     fuel_only_reference_v0,
     season_cost_envelope_v0,
 )
+from organizations.cssa.season.finance_v0 import (
+    LicencePackScenarioV0,
+    revenue_from_partner_count_only_v0,
+    revenue_from_subscriber_count_only_v0,
+    subscription_gross_from_explicit_mix_v0,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,6 +23,7 @@ MODEL = ROOT / "organizations" / "cssa" / "season" / "public_model_v0.json"
 PERSONAS = ROOT / "organizations" / "cssa" / "season" / "personas_v0.json"
 FM = ROOT / "organizations" / "cssa" / "season" / "fm_management_primitives_v0.json"
 SOURCES = ROOT / "evidence" / "source_manifest" / "F3D_CSSA_SEASON_PUBLIC_SOURCES_V0.json"
+OPS = ROOT / "organizations" / "cssa" / "season" / "operating_map_v0.json"
 
 
 def load(path):
@@ -156,3 +163,49 @@ def test_source_manifest_has_explicit_certainty_and_urls():
     assert len(manifest["sources"]) >= 25
     assert all(source["certainty"] for source in manifest["sources"])
     assert all(source["url"].startswith("http") for source in manifest["sources"])
+
+
+
+def test_finance_helpers_require_explicit_mix_and_never_infer_partner_revenue():
+    packs = LicencePackScenarioV0(
+        u6_u9=30,
+        u10_u18=60,
+        u20_seniors=10,
+        family_discount_events=4,
+        female_discount_events=5,
+        pass_sport_events=8,
+    )
+    assert packs.licence_holders == 100
+    assert packs.gross_pack_value_eur == 22_800.00
+    assert packs.modeled_discount_value_eur == 785.00
+
+    assert subscription_gross_from_explicit_mix_v0(
+        full={"HONNEUR": 10, "SALON_DES_LEGENDES": 2, "CLUB_1919": 1},
+        reduced={"HONNEUR": 3, "SALON_DES_LEGENDES": 1, "CLUB_1919": 0},
+    ) == 1_755.00
+
+    with pytest.raises(ValueError, match="SUBSCRIBER_COUNT_ONLY"):
+        revenue_from_subscriber_count_only_v0(800)
+
+    with pytest.raises(ValueError, match="PARTNER_COUNT_ONLY"):
+        revenue_from_partner_count_only_v0(50)
+
+
+def test_operating_map_covers_whole_club_not_only_first_team():
+    ops = load(OPS)
+    ids = {domain["id"] for domain in ops["operating_domains"]}
+    assert {
+        "GOVERNANCE_LEGAL",
+        "COMPETITIONS",
+        "ACADEMY_MEMBERSHIP",
+        "TRAVEL_LOGISTICS",
+        "FINANCE_ACCOUNTING",
+        "PARTNERS_COMMERCIAL",
+        "SUPPORTERS_TICKETING",
+        "MATCHDAY",
+        "COMMUNICATION",
+        "PEOPLE_HR_VOLUNTEERS",
+        "FACILITIES",
+        "EDUCATION",
+        "PROOF_AUDIT",
+    } <= ids
