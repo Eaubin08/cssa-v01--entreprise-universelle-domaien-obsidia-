@@ -552,6 +552,43 @@ def build_calibration_priorities_v0(
     return priorities
 
 
+
+def resource_coverage_audit_v0(
+    catalog: Mapping[str, Any],
+    resources: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Find modeled resources that the current simulator never exercises."""
+    all_resources = {
+        str(row["id"])
+        for row in resources["resources"]
+    }
+    workload_refs = {
+        str(resource_id)
+        for demands in resources["family_workload_map"].values()
+        for resource_id, _amount in demands
+    }
+    scenario_refs = {
+        str(resource_id)
+        for scenario in catalog["scenarios"]
+        for item in scenario["items"]
+        for resource_id, _amount in item.get("resource_demands", ())
+    }
+    exercised = workload_refs | scenario_refs
+    unknown_refs = exercised - all_resources
+    if unknown_refs:
+        raise ValueError(
+            f"RESOURCE_REFERENCE_WITHOUT_DEFINITION:{sorted(unknown_refs)}"
+        )
+
+    return {
+        "simulation_status": SIMULATION_STATUS,
+        "resource_count": len(all_resources),
+        "workload_referenced_count": len(workload_refs),
+        "scenario_referenced_count": len(scenario_refs),
+        "exercised_resource_count": len(exercised),
+        "unexercised_resources": sorted(all_resources - exercised),
+    }
+
 def adversarial_summary_v0(
     catalog: Mapping[str, Any],
     resources: Mapping[str, Any],
@@ -576,6 +613,9 @@ def adversarial_summary_v0(
     named_profiles = named_profile_results_v0(
         catalog, resources, space
     )
+    coverage = resource_coverage_audit_v0(
+        catalog, resources
+    )
 
     return {
         "simulation_status": SIMULATION_STATUS,
@@ -592,6 +632,7 @@ def adversarial_summary_v0(
         "pressure_sensitivity": pressure,
         "resource_grid": resource_grid,
         "assumption_grid": assumption_grid,
+        "resource_coverage": coverage,
         "calibration_priorities": build_calibration_priorities_v0(
             resource_sensitivity,
             assumption_sensitivity,
