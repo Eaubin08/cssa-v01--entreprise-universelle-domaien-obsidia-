@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3G_E_CSSA_CONTROLLED_SEMANTIC_PROMOTION_CLOSED
-Branch: feat/f3g-e-cssa-controlled-semantic-promotion-v0
+Status: F3G_F_CSSA_ANNOUNCED_MANAGER_ROLE_COVERAGE_CLOSED
+Branch: feat/f3g-f-cssa-announced-role-coverage-v0
 
 ## Progression
 
@@ -17,6 +17,7 @@ Branch: feat/f3g-e-cssa-controlled-semantic-promotion-v0
 - F3G-C public-anchored estimated operating envelope: PASS
 - F3G-D repeatable public watch/drift: PASS
 - F3G-E controlled semantic promotion and impact propagation: PASS
+- F3G-F announced Manager Général role coverage: PASS
 - real CSSA internal field evidence: OPEN
 - external action: HOLD
 
@@ -147,11 +148,63 @@ Current verdict:
 
 CSSA_CONTROLLED_SEMANTIC_PROMOTION_AND_IMPACT_PROPAGATION_V0_PROVEN
 
+## F3G-F announced Manager Général role coverage
+
+Official public role contract:
+- administration: licences / declarations / compliance / contracts / cases
+- institutional relations: Ligue / District / FFF / Ville / collectivités
+- employees / volunteers / delegation
+- cross-pole coordination
+- matchday ticketing / security / welcome / hospitality / buvette / restauration
+- written processes / explicit responsibilities
+- durable root-cause operation
+- execution of direction decisions
+
+Coverage:
+- 11 requirements total
+- 5 STRUCTURALLY_COVERED
+- 4 PARTIAL
+- 2 OPEN_GAP
+
+Open gaps:
+1. MATCHDAY_BUVETTE_RESTAURATION
+2. DECISION_EXECUTION
+
+Announcement-derived stress:
+- 4 scenarios
+- 1 ALLOW
+- 1 HOLD
+- 2 BLOCK
+- safety priority preserved
+
+Closure proof:
+- run 37568479749
+- 291 passed in 27.11s
+- SUCCESS
+
+Governance preserved:
+- KX108_ONLY
+- external_action=false
+- memory_write=false
+- emits_act=false
+- kernel_mutation=false
+- public role contract != real internal field evidence
+
+Current verdict:
+
+CSSA_ANNOUNCED_MANAGER_ROLE_COVERAGE_V0_PROVEN
+
 ## Next
 
-Next useful barrier:
+Continue the test/closure phase from the explicit gap map before enabling
+operational connectors.
 
-Feed one real reviewed CSSA public fact through F3G-D -> F3G-E and measure the
-actual downstream delta without enabling any external action.
+Priority closure targets:
+1. contract lifecycle + generic compliance
+2. FFF / Ville / collectivity relation workflows
+3. root-cause / recurrence-prevention lifecycle
+4. buvette / restauration operating workflow
+5. then open DECISION_EXECUTION as the operational layer:
+   MAIL / CALENDAR / CRM / TASKS + receipts/replay
 
 No merge to main.
