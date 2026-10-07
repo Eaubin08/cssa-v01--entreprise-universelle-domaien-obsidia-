@@ -47,8 +47,11 @@ def _canonical_hash(value: Any) -> str:
 
 def _ensure_upstream_importable() -> None:
     root = os.environ.get("OBSIDIA_UPSTREAM_ROOT")
-    if root and root not in sys.path:
-        sys.path.insert(0, root)
+    if not root:
+        return
+    for candidate in (root, str(Path(root) / "scripts")):
+        if candidate not in sys.path:
+            sys.path.insert(0, candidate)
 
 
 def _native_modules():
