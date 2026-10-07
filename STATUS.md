@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3G_H_CSSA_INSTITUTIONAL_RELATIONS_CLOSED
-Branch: feat/f3g-h-cssa-institutional-relations-v0
+Status: F3G_I_CSSA_ROOT_CAUSE_RECURRENCE_CLOSED
+Branch: feat/f3g-i-cssa-root-cause-recurrence-v0
 
 ## Progression
 
@@ -20,6 +20,7 @@ Branch: feat/f3g-h-cssa-institutional-relations-v0
 - F3G-F announced Manager Général role coverage: PASS
 - F3G-G contract + generic compliance lifecycle: PASS
 - F3G-H institutional relations: PASS
+- F3G-I root-cause + recurrence prevention: PASS
 - real CSSA internal field evidence: OPEN
 - external action: HOLD
 
@@ -299,21 +300,65 @@ Current verdict:
 
 CSSA_INSTITUTIONAL_RELATIONS_V0_PROVEN
 
+## F3G-I root-cause + recurrence prevention
+
+Closed F3G-F durability gaps:
+- INCIDENT_ROOT_CAUSE_WORKFLOW
+- RECURRENCE_PREVENTION_RECEIPT
+
+Critical semantic rules:
+- hypothesis != proven root cause
+- applied correction != verified effective correction
+- verified effective != durable non-recurrence
+- closed != receipt eligible
+
+Proof catalog:
+- 11 simulated cases
+- 2 ALLOW
+- 6 HOLD
+- 3 BLOCK
+
+Proven behavior:
+- closure before root-cause proof -> HOLD
+- confirmed root cause without evidence -> HOLD
+- correction without application proof -> HOLD
+- effective claim without verification proof -> HOLD
+- recurrence after effective verification -> BLOCK
+- ineffective correction + closure request -> BLOCK
+- closed without monitoring proof -> HOLD
+- recurrent signature not linked to prior incident -> HOLD
+- hard RCA deadline missed -> BLOCK
+- complete durable closure -> deterministic recurrence-prevention receipt
+
+Initial closure proof:
+- run 37589585121
+- 343 passed in 26.96s
+- SUCCESS
+
+Still unknown before field validation:
+- REAL_INCIDENT_TAXONOMY
+- REAL_RCA_OWNER_AND_ESCALATION_MATRIX
+- REAL_CORRECTIVE_ACTION_APPROVAL_CHAIN
+- REAL_MONITORING_WINDOWS_BY_INCIDENT_TYPE
+
+Governance preserved:
+- KX108_ONLY
+- external_action=false
+- memory_write=false
+- emits_act=false
+- kernel_mutation=false
+
+Current verdict:
+
+CSSA_ROOT_CAUSE_AND_RECURRENCE_PREVENTION_V0_PROVEN
+
 ## Next
 
 Continue F3G-F gap closure:
 
-1. incident root-cause / recurrence-prevention lifecycle
-2. buvette / restauration operating workflow
-3. then DECISION_EXECUTION:
+1. matchday buvette / restauration operating workflow
+2. then DECISION_EXECUTION:
    MAIL / CALENDAR / CRM / TASKS + receipts/replay
+3. then real-field calibration / readonly pilot / governed execution progression
 
 No merge to main.
-
-
-## Final frozen-HEAD verification
-
-- run 37570923893
-- 325 passed in 26.94s
-- SUCCESS
-- verified after architecture/report/receipt/status freeze
