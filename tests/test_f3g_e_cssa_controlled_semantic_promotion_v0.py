@@ -159,6 +159,15 @@ def test_public_anchor_can_change_without_touching_estimated_capacities():
     } == before_capacities
 
 
+def test_direct_anchor_update_also_requires_approved_review():
+    envelope = load(ENVELOPE)
+    review = load(REVIEW)
+    review["review_decision"] = "REJECTED"
+
+    with pytest.raises(ValueError, match="REVIEW_NOT_APPROVED"):
+        apply_reviewed_anchor_updates_v0(envelope, review)
+
+
 def test_public_review_is_forbidden_from_rewriting_estimated_capacity():
     snapshot = load(SNAPSHOT)
     review = load(REVIEW)
