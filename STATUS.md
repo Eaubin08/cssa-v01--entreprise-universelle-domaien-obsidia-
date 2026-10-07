@@ -1,9 +1,9 @@
 # STATUS
 
-Status: F3B_FIELD_INTAKE_KIT_READY
-Branch: `feat/f3b-cssa-field-intake-kit-v0`
+Status: F3C_CSSA_SIMULATED_FIELD_CLOSED
+Branch: `feat/f3c-cssa-simulated-field-v0`
 
-## Universal/runtime
+## Universal / runtime
 
 - F1 universal contract: PASS
 - F2 conformance: PASS
@@ -11,54 +11,56 @@ Branch: `feat/f3b-cssa-field-intake-kit-v0`
 - F2.2 portable registration: PASS
 - F2.3 canonical-compatible resolver: PASS
 - F2.4 full canonical runtime: PASS
-- F2.5 first-class aggregate-only seam: FROZEN OFF MAIN
+- F2.5 first-class aggregate-only resolver: FROZEN OFF MAIN
 
 ## CSSA
 
-- F3A public Administration baseline: CLOSED
-- F3B field intake kit: READY
-- real CSSA private field evidence: NOT YET INGESTED
-- Administration semantic freeze: HOLD
+- F3A public baseline: PASS / frozen public-only
+- F3B field-intake kit: READY
+- F3C simulated field stress tests: PASS
+- real CSSA internal field evidence: OPEN
 - external action: HOLD
 
-## F3B kit contents
+## F3C scenario result
 
-- `organizations/cssa/field/contracts_v0.py`
-- `organizations/cssa/field/intake_v0.py`
-- field capture template;
-- public-rule vs local-practice comparison template;
-- anonymized example bundles;
-- privacy-block example;
-- first field-session runbook;
-- private-data Git protections.
+15 realistic synthetic scenarios:
+- ALLOW: 4;
+- HOLD: 5;
+- BLOCK: 5;
+- PRE_RUNTIME_PRIVACY_BLOCK: 1.
 
-## Runtime behavior
+CI:
+`168 passed in 0.61s`
+run `37552286365`, job `112570342673`.
 
-- unvalidated field case -> HOLD;
-- validated clean field case -> bounded internal READONLY analysis may ALLOW;
-- high-sensitivity case -> stopped before runtime ingest;
-- no email send;
-- no Footclubs write;
-- no FMI submit;
-- no licence action;
-- no financial action;
-- no autonomous external action.
+## Truth boundary
 
-## CI
+F3C uses public rules + sanitized supporter-output patterns to make the simulation realistic.
 
-`120 passed in 0.35s`
-run `37530649833`, job `112498875204`.
+It does not infer CSSA internal workflow from marketing/transactional emails.
 
-## Next gate
+All scenarios remain `SIMULATED_NOT_OBSERVED` and no scenario is stored as CSSA-validated field evidence.
 
-F3C starts when real CSSA evidence is available.
+## What is now testable
 
-Minimum useful first intake:
-- one complete administrative match lifecycle;
-- one exception path;
-- recent anonymized administrative email samples;
-- actual responsible/approval roles;
-- actual tools/channels;
-- at least one public-rule vs local-practice comparison.
+- coherent matchday state;
+- unhomologated fixture change;
+- stale/contradictory supporter communication;
+- stand/VIP inconsistency;
+- subscriber-access inconsistency;
+- door/ticket-office timing inconsistency;
+- transactional ticket confirmation;
+- duplicate channel stale state;
+- late fixture-change uncertainty;
+- FMI normal path;
+- FMI fallback uncertainty;
+- official-email channel risk;
+- false inference from visible sending-channel changes;
+- publication before final operational state;
+- high-sensitivity youth-data privacy stop.
 
-Until then, no internal CSSA semantics should be invented.
+## Next
+
+Use F3C to discover missing CSSA-domain objects and build a simulated end-to-end match-week corpus (J-10 -> J+1), while keeping F0-B real field evidence separate.
+
+No merge to main.
