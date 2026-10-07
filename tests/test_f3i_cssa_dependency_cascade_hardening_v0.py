@@ -227,7 +227,7 @@ def test_dependency_failures_route_into_existing_persona_cockpit():
     pack = build_report_pack_v0(
         rows,
         load(ROUTING),
-        cadence="MONTHLY",
+        cadence="BIWEEKLY",
         as_of=as_of,
         truth_class="SIMULATED_NOT_OBSERVED",
     )
