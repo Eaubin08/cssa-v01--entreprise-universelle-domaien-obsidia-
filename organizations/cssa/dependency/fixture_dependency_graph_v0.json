@@ -1,0 +1,111 @@
+{
+  "version": "CSSA_FIXTURE_DEPENDENCY_GRAPH_V0",
+  "status": "SIMULATED_NOT_OBSERVED",
+  "root": {
+    "case_type": "fixture_state",
+    "semantic": "canonical fixture/date/time/venue state",
+    "version_field": "fixture_state_version"
+  },
+  "node_types": {
+    "away_trip_plan": {
+      "id": "TRANSPORT_PLAN",
+      "depends_on": [
+        "FIXTURE_ROOT"
+      ],
+      "criticality": "HIGH"
+    },
+    "travel_reconciliation": {
+      "id": "TRAVEL_RECONCILIATION",
+      "depends_on": [
+        "TRANSPORT_PLAN"
+      ],
+      "criticality": "MEDIUM"
+    },
+    "fmi_post_match": {
+      "id": "FMI",
+      "depends_on": [
+        "FIXTURE_ROOT"
+      ],
+      "criticality": "HIGH"
+    },
+    "home_match_ticketing_state": {
+      "id": "TICKETING",
+      "depends_on": [
+        "FIXTURE_ROOT"
+      ],
+      "criticality": "HIGH"
+    },
+    "venue_configuration": {
+      "id": "MATCHDAY",
+      "depends_on": [
+        "FIXTURE_ROOT",
+        "TICKETING"
+      ],
+      "criticality": "HIGH"
+    },
+    "hospitality_activation": {
+      "id": "PARTNER_HOSPITALITY",
+      "depends_on": [
+        "FIXTURE_ROOT",
+        "MATCHDAY"
+      ],
+      "criticality": "MEDIUM"
+    },
+    "match_publication_candidate": {
+      "id": "COMMUNICATION",
+      "depends_on": [
+        "FIXTURE_ROOT"
+      ],
+      "criticality": "HIGH"
+    },
+    "matchday_volunteer_assignment": {
+      "id": "VOLUNTEERS",
+      "depends_on": [
+        "FIXTURE_ROOT",
+        "MATCHDAY"
+      ],
+      "criticality": "MEDIUM"
+    }
+  },
+  "virtual_nodes": [
+    {
+      "id": "PROOF_RECEIPT",
+      "depends_on": [
+        "FIXTURE_ROOT"
+      ],
+      "criticality": "HIGH",
+      "semantic": "proof of propagated fixture version"
+    }
+  ],
+  "rules": [
+    "DEPENDENT_VERSION_MUST_MATCH_ROOT_VERSION",
+    "NO_DOWNSTREAM_PUBLICATION_ON_UNRESOLVED_ROOT",
+    "NO_SILENT_PARTIAL_PROPAGATION",
+    "PROOF_RECEIPT_MUST_BIND_ROOT_VERSION",
+    "OUT_OF_ORDER_VERSION_UPDATE_FAILS_CLOSED",
+    "DUPLICATE_VERSION_WITH_DIFFERENT_VALUE_IS_CONTRADICTION"
+  ],
+  "campaign_modes": {
+    "NORMAL": {
+      "change_every": 17,
+      "single_stale_every": 5,
+      "multi_stale_every": 0,
+      "root_conflict_every": 0,
+      "receipt_stale_every": 7
+    },
+    "HARD": {
+      "change_every": 7,
+      "single_stale_every": 3,
+      "multi_stale_every": 5,
+      "root_conflict_every": 11,
+      "receipt_stale_every": 4
+    },
+    "BREAKER": {
+      "change_every": 3,
+      "single_stale_every": 2,
+      "multi_stale_every": 3,
+      "root_conflict_every": 5,
+      "receipt_stale_every": 2
+    }
+  }
+}
