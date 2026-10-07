@@ -379,14 +379,14 @@ def assess_fixture_cascade_v0(
         )
         risks.append("SINGLE_STALE_DEPENDENT")
 
-    if missing_nodes and len(contradictions) < 2:
+    if missing_nodes:
         unknowns.extend((
             f"REQUIRED_DEPENDENT_MISSING:{missing_nodes[0]}",
             f"PROPAGATION_NODE_COMPLETENESS_UNKNOWN:{fixture_ref}",
         ))
         risks.append("REQUIRED_DEPENDENT_MISSING")
 
-    if order_violations and len(contradictions) < 2:
+    if order_violations:
         unknowns.extend((
             f"DEPENDENCY_ORDER_VIOLATION:{order_violations[0]}",
             f"PREDECESSOR_CONFIRMATION_UNKNOWN:{fixture_ref}",
@@ -394,7 +394,7 @@ def assess_fixture_cascade_v0(
         risks.append("PROPAGATION_ORDER_NOT_PROVEN")
 
     receipt_mismatch = "PROOF_RECEIPT" in stale_nodes
-    if receipt_mismatch and len(contradictions) < 2:
+    if receipt_mismatch:
         unknowns.extend(
             (
                 f"PROOF_RECEIPT_VERSION_MISMATCH:{fixture_ref}",
