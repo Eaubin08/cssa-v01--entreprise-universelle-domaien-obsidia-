@@ -1,0 +1,63 @@
+{
+  "version": "CSSA_FM_INSPIRED_MANAGEMENT_PRIMITIVES_V0",
+  "status": "ABSTRACTIONS_ONLY_NOT_GAME_TRUTH",
+  "source_basis": "FOOTBALL_MANAGER_26_PUBLIC_DOCUMENTATION",
+  "allowed_primitives": [
+    {
+      "id": "RESPONSIBILITY_MATRIX",
+      "use": "map task owner/delegate/escalation",
+      "cssa_example": "licences vs matchday vs partners"
+    },
+    {
+      "id": "DELEGATION_ROUTING",
+      "use": "explicit who does what and who substitutes",
+      "cssa_example": "manager vacancy continuity"
+    },
+    {
+      "id": "TASK_INBOX",
+      "use": "open/late/waiting/blocked workload",
+      "cssa_example": "LGEF reply pending"
+    },
+    {
+      "id": "BUDGET_COST_CENTER",
+      "use": "scenario budget envelope by team/pole",
+      "cssa_example": "academy travel"
+    },
+    {
+      "id": "TEAM_PLANNER",
+      "use": "teams/categories/staff/fixtures",
+      "cssa_example": "19 structures"
+    },
+    {
+      "id": "YOUTH_PIPELINE",
+      "use": "progression between age groups and senior bridge",
+      "cssa_example": "U20 development group"
+    },
+    {
+      "id": "STAFF_CAPABILITY_MAP",
+      "use": "role skill/availability without giving authority automatically",
+      "cssa_example": "educator/manager/secretariat"
+    },
+    {
+      "id": "CALENDAR_WORKLOAD",
+      "use": "cross-team collision detection",
+      "cssa_example": "many away fixtures same weekend"
+    },
+    {
+      "id": "BOARD_OBJECTIVES",
+      "use": "separate strategic targets from operational tasks",
+      "cssa_example": "professional standards outside pitch"
+    },
+    {
+      "id": "FINANCE_OVERVIEW",
+      "use": "scenario cash commitments and forecasts",
+      "cssa_example": "licences, travel, partners, matchday"
+    }
+  ],
+  "forbidden_imports": [
+    "HIDDEN_GAME_RATINGS_AS_REAL_PERSON_DATA",
+    "GAME_FINANCIAL_FORMULAS_AS_REAL_CLUB_ACCOUNTS",
+    "GAME_TRANSFER_VALUES_AS_REAL_VALUES",
+    "AUTOMATIC_AUTHORITY_FROM_STAFF_ROLE"
+  ]
+}
