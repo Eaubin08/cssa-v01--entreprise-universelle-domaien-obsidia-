@@ -71,3 +71,11 @@ Conclusion:
 
 `DECISION_EXECUTION` remains OPEN for real connector execution and
 receipt/replay.
+
+
+## Frozen-head verification
+
+- run 37593051130
+- 386 passed in 27.45s
+- SUCCESS
+- verified after F3H-A architecture/report/receipt/status freeze
