@@ -32,6 +32,7 @@ from organizations.cssa.intake.readonly_router_v0 import (
     SOURCE_PERSONAL_INBOX,
     build_native_intake_candidate_from_route_v0,
     build_readonly_message_observation_v0,
+    build_readonly_source_authority_v0,
     route_readonly_observation_v0,
     verify_readonly_message_observation_v0,
     verify_readonly_route_decision_v0,
@@ -49,6 +50,15 @@ def observe(
     source_scope: str,
     has_attachment: bool = False,
 ):
+    source_authority = None
+    if source_scope == SOURCE_CSSA_OPERATIONAL_MAILBOX:
+        source_authority = build_readonly_source_authority_v0(
+            authority_id="fixture-operational-mailbox",
+            provider="GMAIL",
+            mailbox_identity_sha256="1" * 64,
+            authority_reference="fixture:operational-mailbox-authority",
+            approved_by="HUMAN:CSSA_TEST_OPERATOR",
+        )
     return build_readonly_message_observation_v0(
         provider_message_id=message_id,
         subject=subject,
@@ -57,6 +67,7 @@ def observe(
         received_at="2026-10-07T10:00:00+00:00",
         source_scope=source_scope,
         has_attachment=has_attachment,
+        source_authority=source_authority,
     )
 
 
@@ -346,4 +357,22 @@ def test_native_candidate_requires_resolved_due_at():
             due_at=None,
             source_refs=("fixture:source",),
             evidence_refs=("fixture:evidence",),
+        )
+
+
+
+def test_operational_scope_requires_explicit_source_authority():
+    with pytest.raises(
+        ValueError,
+        match="READONLY_SOURCE_AUTHORITY_MISSING",
+    ):
+        build_readonly_message_observation_v0(
+            provider_message_id="spoofed-operational",
+            subject="CSSA - action requise",
+            body="CS Sedan Ardennes. Merci de nous répondre.",
+            sender_family="TEST_SOURCE",
+            received_at="2026-10-07T10:00:00+00:00",
+            source_scope=SOURCE_CSSA_OPERATIONAL_MAILBOX,
+            has_attachment=False,
+            source_authority=None,
         )
