@@ -1,0 +1,26 @@
+{
+  "version": "CSSA_F3G_J_OPERATING_MAP_EXTENSION_V0",
+  "status": "SIMULATED_MODEL_EXTENSION_NOT_REAL_FIELD_EVIDENCE",
+  "extends_domain": "MATCHDAY_BUVETTE_RESTAURATION",
+  "objects": [
+    "BuvetteStock",
+    "SupplierOrder",
+    "SupplierDelivery",
+    "ShiftPlan",
+    "TillSession",
+    "CashReconciliation",
+    "MatchdayFoodReadiness"
+  ],
+  "links_to_existing": [
+    "Buvette",
+    "VolunteerAssignment",
+    "Payment",
+    "Reconciliation",
+    "Receipt",
+    "MatchEvent"
+  ],
+  "boundaries": {
+    "external_action": false,
+    "decision_authority": "KX108_ONLY"
+  }
+}
