@@ -109,7 +109,7 @@
     {
       "id": "BUV_SHIFT_COMPLETE",
       "case_type": "SHIFT",
-      "reporting_family": "PEOPLE_HR_VOLUNTEERS",
+      "reporting_family": "MATCHDAY",
       "lifecycle_state": "READY",
       "match_ref": "sim:match:008",
       "responsible_role": "MATCHDAY_ORGANIZER",
@@ -124,7 +124,7 @@
     {
       "id": "BUV_SHIFT_UNDERSTAFFED",
       "case_type": "SHIFT",
-      "reporting_family": "PEOPLE_HR_VOLUNTEERS",
+      "reporting_family": "MATCHDAY",
       "lifecycle_state": "OPEN",
       "match_ref": "sim:match:009",
       "responsible_role": "MATCHDAY_ORGANIZER",
@@ -139,7 +139,7 @@
     {
       "id": "BUV_SHIFT_AUTHORITY_UNKNOWN",
       "case_type": "SHIFT",
-      "reporting_family": "PEOPLE_HR_VOLUNTEERS",
+      "reporting_family": "MATCHDAY",
       "lifecycle_state": "OPEN",
       "match_ref": "sim:match:010",
       "responsible_role": "MATCHDAY_ORGANIZER",
