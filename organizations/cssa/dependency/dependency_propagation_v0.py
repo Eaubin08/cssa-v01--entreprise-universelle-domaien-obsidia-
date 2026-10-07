@@ -227,8 +227,9 @@ def validate_graph_coverage_v0(
             if case_type not in rule_index:
                 orphan_case_types.add(case_type)
 
+    graph_rows = tuple(graphs)
     return {
-        "fixture_count": len(tuple(graphs)) if not isinstance(graphs, tuple) else len(graphs),
+        "fixture_count": len(graph_rows),
         "dependency_count": dependency_count,
         "missing_required": sorted(missing_required),
         "unruled_case_types": sorted(orphan_case_types),
@@ -302,7 +303,12 @@ def assess_revision_state_v0(
             ready = False
         elif observed_revision < root_revision:
             risks.append(f"STALE_DEPENDENT:{case_type}")
-            unknowns.append(f"DEPENDENT_REFRESH_PENDING:{case_type}")
+            unknowns.extend(
+                (
+                    f"DEPENDENT_REFRESH_PENDING:{case_type}",
+                    f"DEPENDENT_STATE_NOT_CURRENT:{case_type}",
+                )
+            )
             stale_reason = "STALE_REVISION"
             ready = False
 
@@ -318,7 +324,12 @@ def assess_revision_state_v0(
 
         if delay_hours > max_hours:
             risks.append(f"PROPAGATION_DEADLINE_MISS:{case_type}")
-            unknowns.append(f"DEPENDENCY_OVERDUE:{case_type}")
+            unknowns.extend(
+                (
+                    f"DEPENDENCY_OVERDUE:{case_type}",
+                    f"DEPENDENCY_CURRENT_STATE_UNCONFIRMED:{case_type}",
+                )
+            )
             stale_reason = "PROPAGATION_DELAY"
             ready = False
 
@@ -368,7 +379,10 @@ def attack_graph_v0(
         raise ValueError(f"UNKNOWN_PROPAGATION_ATTACK_MODE:{mode}")
 
     root_revision = 2 if ordinal % int(attack["revision_modulo"]) == 0 else 1
-    root_final = True
+    root_final = not (
+        root_revision > 1
+        and ordinal % int(attack["authority_not_final_modulo"]) == 0
+    )
     revisions = {}
     delays = {}
     missing = []
@@ -384,10 +398,15 @@ def attack_graph_v0(
         ):
             missing.append(node.case_type)
             continue
-        if (
-            root_revision > 1
-            and (ordinal + index) % int(attack["wrong_revision_modulo"]) == 0
-        ):
+
+        if root_revision <= 1:
+            revisions[node.case_type] = root_revision
+            delays[node.case_type] = 0.0
+            continue
+
+        if (ordinal + index) % int(attack["ahead_revision_modulo"]) == 0:
+            revisions[node.case_type] = root_revision + 1
+        elif (ordinal + index) % int(attack["wrong_revision_modulo"]) == 0:
             revisions[node.case_type] = root_revision - 1
         else:
             revisions[node.case_type] = root_revision
