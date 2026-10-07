@@ -1,0 +1,298 @@
+{
+  "version": "CSSA_F3D_PUBLIC_SOURCE_MANIFEST_V0",
+  "retrieved_date": "2026-10-07",
+  "sources": [
+    {
+      "id": "CSSA_HOME",
+      "issuer": "CSSA",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://cs-sedan.fr/",
+      "supports": [
+        "WEBSITE_UPDATE_WARNING"
+      ]
+    },
+    {
+      "id": "CSSA_ORGANIGRAMME_ASSOCIATION",
+      "issuer": "CSSA",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://cs-sedan.fr/organigramme-association",
+      "supports": [
+        "ADMIN_ROLES",
+        "COMMERCIAL_ROLES",
+        "MATCHDAY_ROLES",
+        "STALE_MANAGER_DISPLAY"
+      ]
+    },
+    {
+      "id": "CSSA_ORGANIGRAMME_ACADEMIE_2026_2027",
+      "issuer": "CSSA",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://cs-sedan.fr/organigramme-academie",
+      "supports": [
+        "19_TEAM_STRUCTURES",
+        "ACADEMY_ROLE_MAP"
+      ]
+    },
+    {
+      "id": "CSSA_MANAGER_RECRUITMENT",
+      "issuer": "CSSA",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://cs-sedan.fr/recrutement-manager-general",
+      "supports": [
+        "MANAGER_GENERAL_RESPONSIBILITIES",
+        "PROCESS_DELEGATION_TARGET"
+      ]
+    },
+    {
+      "id": "CSSA_MANAGER_DEPARTURE_2026_09_10",
+      "issuer": "CSSA",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://cs-sedan.fr/communique-du-10-septembre-2026",
+      "supports": [
+        "MANAGER_GENERAL_VACANCY_EVENT"
+      ]
+    },
+    {
+      "id": "CSSA_LICENSE_2026_2027",
+      "issuer": "CSSA",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://cs-sedan.fr/renouvellement-licence-2026-2027",
+      "supports": [
+        "PACK_PRICES",
+        "DISCOUNTS",
+        "PAYMENT_CHANNELS",
+        "EQUIPMENT_LEAD_TIME"
+      ]
+    },
+    {
+      "id": "CSSA_HELLOASSO_LICENSE",
+      "issuer": "CSSA_HELLOASSO",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://www.helloasso.com/associations/cs-sedan-ardennes/boutiques/test",
+      "supports": [
+        "PACK_CONTENT",
+        "PACK_PRICE_CORROBORATION"
+      ]
+    },
+    {
+      "id": "CSSA_SUBSCRIPTION_26_27",
+      "issuer": "CSSA",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://cs-sedan.fr/abonnement-26-27",
+      "supports": [
+        "13_HOME_LEAGUE_MATCHES",
+        "SEASON_TICKET_PRICES",
+        "CARD_LEAD_TIME"
+      ]
+    },
+    {
+      "id": "CSSA_TICKETING_26_27",
+      "issuer": "CSSA",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://cs-sedan.fr/billetterie",
+      "supports": [
+        "TICKET_FLOW",
+        "HOSPITALITY",
+        "LOGES",
+        "QR_EMAIL"
+      ]
+    },
+    {
+      "id": "CSSA_PARTNERS",
+      "issuer": "CSSA",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://cs-sedan.fr/partenaires",
+      "supports": [
+        "PLUS_50_PARTNERS",
+        "PLUS_100K_SOCIAL",
+        "PLUS_30K_SUPPORTERS",
+        "PLUS_12_HOME_MARKETING_CLAIM"
+      ]
+    },
+    {
+      "id": "CSSA_BECOME_PARTNER",
+      "issuer": "CSSA",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://cs-sedan.fr/devenir-partenaire",
+      "supports": [
+        "PLUS_110K_SOCIAL",
+        "PLUS_30K_ANNUAL_SPECTATORS",
+        "PLUS_2500_MATCH_EXPOSURE",
+        "HOSPITALITY_ACTIVATION"
+      ]
+    },
+    {
+      "id": "CSSA_CONTACT",
+      "issuer": "CSSA",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://cs-sedan.fr/contact",
+      "supports": [
+        "MAILBOX_ROUTING_BY_FUNCTION"
+      ]
+    },
+    {
+      "id": "CSSA_DEVELOPMENT_GROUP",
+      "issuer": "CSSA",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://cs-sedan.fr/groupe-de-developpement",
+      "supports": [
+        "U20_R1_CREATED",
+        "YOUTH_TO_SENIOR_PIPELINE"
+      ]
+    },
+    {
+      "id": "CSSA_SECTION_MABILLON",
+      "issuer": "CSSA",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://cs-sedan.fr/section-sportive",
+      "supports": [
+        "SCHOOL_SPORT_COORDINATION"
+      ]
+    },
+    {
+      "id": "LGEF_RULES_2026_2027",
+      "issuer": "LGEF_FFF",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://lgef.fff.fr/wp-content/uploads/sites/14/2026/05/Reglements-Particuliers-de-la-LGEF-26-27.pdf",
+      "supports": [
+        "COMPETITION_ADMIN_RULES"
+      ]
+    },
+    {
+      "id": "LGEF_FINANCIAL_2026_2027",
+      "issuer": "LGEF_FFF",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://lgef.fff.fr/wp-content/uploads/sites/14/2026/05/5-LGEF-SF-2026-2027-AG.pdf",
+      "supports": [
+        "LICENCE_TARIFFS",
+        "DISCIPLINE_TARIFFS",
+        "PROCEDURE_TARIFFS"
+      ]
+    },
+    {
+      "id": "R1_GROUP_2026_2027_SECONDARY",
+      "issuer": "PUBLIC_FOOTBALL_DATA",
+      "certainty": "SECONDARY_CORROBORATED",
+      "url": "https://www.statfootballclubfrance.fr/championnat.php?id=4130",
+      "supports": [
+        "R1_GROUP_A"
+      ]
+    },
+    {
+      "id": "R1_R2_GROUPS_2026_2027_SECONDARY",
+      "issuer": "REGIONAL_NEWS",
+      "certainty": "SECONDARY_CORROBORATED",
+      "url": "https://remiremontvallees.com/2026/07/17/football-les-groupes-des-championnats-regionaux-sont-devoiles/",
+      "supports": [
+        "R1_GROUP_A",
+        "R2_GROUP_A"
+      ]
+    },
+    {
+      "id": "SPORTCORICO_CSSA",
+      "issuer": "SPORTCORICO",
+      "certainty": "SECONDARY_CORROBORATED",
+      "url": "https://www.sportcorico.com/clubs/cs-sedan-ardennes",
+      "supports": [
+        "TRACKED_COMPETITIVE_TEAMS",
+        "CURRENT_FIXTURES"
+      ]
+    },
+    {
+      "id": "PAPPERS_ASSOCIATION",
+      "issuer": "PAPPERS_RNA_INSEE",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://www.pappers.fr/entreprise/club-sportif-sedan-ardennes-780287843",
+      "supports": [
+        "ASSOCIATION_ACTIVE"
+      ]
+    },
+    {
+      "id": "PAPPERS_SAS",
+      "issuer": "PAPPERS_RCS_INSEE",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://www.pappers.fr/entreprise/club-sportif-sedan-ardennes-et-par-abreviation-cssa-798016796",
+      "supports": [
+        "SAS_ACTIVE",
+        "PROCEDURE_COLLECTIVE_REPORTED"
+      ]
+    },
+    {
+      "id": "PAPPERS_PARTNERS_ASSOC",
+      "issuer": "PAPPERS_RNA_INSEE",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://www.pappers.fr/entreprise/ardennes-club-des-partenaires-du-cssa-939505657",
+      "supports": [
+        "PARTNERS_ASSOCIATION_ACTIVE"
+      ]
+    },
+    {
+      "id": "PAPPERS_DVCR",
+      "issuer": "PAPPERS_RNA_INSEE",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://www.pappers.fr/entreprise/drapeau-vert-carton-rouge-923996078",
+      "supports": [
+        "DVCR_ASSOCIATION_ACTIVE"
+      ]
+    },
+    {
+      "id": "DVCR_TRAVEL_BENCHMARK",
+      "issuer": "DVCR",
+      "certainty": "PUBLIC_CONFIRMED_FOR_DVCR_ONLY",
+      "url": "https://fr.linkedin.com/posts/drapeau-vert-carton-rouge_dvcr-cssa-ardennes-activity-7495217597274288130-2Spi",
+      "supports": [
+        "15_TRIPS",
+        "3208_KM",
+        "29_BROADCASTS",
+        "UP_TO_16_VOLUNTEERS"
+      ]
+    },
+    {
+      "id": "CSSA_LINKEDIN_800_SUBSCRIBERS",
+      "issuer": "CSSA_REPOST",
+      "certainty": "PUBLIC_CONFIRMED",
+      "url": "https://fr.linkedin.com/company/clubsportifsedanardennes",
+      "supports": [
+        "800_SEASON_SUBSCRIBERS_SNAPSHOT_PARTNERS_INCLUDED"
+      ]
+    },
+    {
+      "id": "BESEDAN_855_SUBSCRIBERS",
+      "issuer": "SUPPORTER_MEDIA",
+      "certainty": "SECONDARY_CORROBORATED",
+      "url": "https://testing-when.twstalker.com/_BeCSSA",
+      "supports": [
+        "855_SUBSCRIBERS_LATER_CLAIM"
+      ]
+    },
+    {
+      "id": "JDD_ASSOCIATION_SCALE",
+      "issuer": "JDD",
+      "certainty": "SECONDARY_CORROBORATED",
+      "url": "https://www.lejdd.fr/sport/cs-sedan-ardennes-les-sangliers-reprennent-du-poil-de-la-bete-164113",
+      "supports": [
+        "APPROX_500K_BUDGET",
+        "PLUS_300_LICENSEES"
+      ]
+    },
+    {
+      "id": "FM26_RESPONSIBILITIES",
+      "issuer": "SPORTS_INTERACTIVE",
+      "certainty": "REFERENCE_MODEL_ONLY",
+      "url": "https://www.footballmanager.com/fr/the-dugout/les-10-premieres-choses-faire-dans-fm26",
+      "supports": [
+        "RESPONSIBILITY_MATRIX",
+        "DELEGATION"
+      ]
+    },
+    {
+      "id": "FM26_DELEGATION",
+      "issuer": "SPORTS_INTERACTIVE",
+      "certainty": "REFERENCE_MODEL_ONLY",
+      "url": "https://www.footballmanager.com/the-dugout/delegating-success-football-manager-26",
+      "supports": [
+        "DELEGATION_ROUTING"
+      ]
+    }
+  ]
+}
