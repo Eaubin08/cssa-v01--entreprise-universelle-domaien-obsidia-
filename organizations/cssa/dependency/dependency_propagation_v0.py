@@ -210,12 +210,13 @@ def validate_graph_coverage_v0(
     graphs: Iterable[FixtureDependencyGraphV0],
     rules: Mapping[str, Any],
 ) -> dict[str, Any]:
+    graph_rows = tuple(graphs)
     rule_index = dependency_rule_index_v0(rules)
     missing_required = []
     orphan_case_types = set()
     dependency_count = 0
 
-    for graph in graphs:
+    for graph in graph_rows:
         present = {node.case_type for node in graph.dependents}
         dependency_count += len(graph.dependents)
         for case_type in rule_index:
@@ -227,7 +228,6 @@ def validate_graph_coverage_v0(
             if case_type not in rule_index:
                 orphan_case_types.add(case_type)
 
-    graph_rows = tuple(graphs)
     return {
         "fixture_count": len(graph_rows),
         "dependency_count": dependency_count,
