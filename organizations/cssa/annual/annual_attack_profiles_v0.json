@@ -1,0 +1,118 @@
+{
+  "version": "CSSA_ONE_YEAR_ATTACK_PROFILES_V0",
+  "status": "SIMULATED_NOT_OBSERVED",
+  "horizon": {
+    "start": "2026-08-01",
+    "end": "2027-07-31",
+    "days": 365
+  },
+  "modes": {
+    "NORMAL": {
+      "hold_resolution_days": 2,
+      "block_resolution_days": 4,
+      "persistent_unresolved_modulo": 17,
+      "backlog_failure_threshold": 30,
+      "overdue_failure_days": 1,
+      "starvation_failure_days": 3,
+      "outage_rules": []
+    },
+    "HARD": {
+      "hold_resolution_days": 6,
+      "block_resolution_days": 12,
+      "persistent_unresolved_modulo": 7,
+      "backlog_failure_threshold": 45,
+      "overdue_failure_days": 1,
+      "starvation_failure_days": 4,
+      "outage_rules": [
+        {
+          "resource_id": "RESP_ADMIN_DAILY",
+          "every_days": 19,
+          "duration_days": 1,
+          "multiplier": 0
+        },
+        {
+          "resource_id": "TEAM_MANAGER_DAILY",
+          "every_days": 23,
+          "duration_days": 1,
+          "multiplier": 0
+        },
+        {
+          "resource_id": "ADMIN_ACCOUNTING_DAILY",
+          "every_days": 31,
+          "duration_days": 1,
+          "multiplier": 0
+        },
+        {
+          "resource_id": "COMMUNICATION_DAILY",
+          "every_days": 17,
+          "duration_days": 1,
+          "multiplier": 0.5
+        },
+        {
+          "resource_id": "MATCHDAY_ORGANIZER_DAILY",
+          "every_days": 29,
+          "duration_days": 1,
+          "multiplier": 0.5
+        }
+      ]
+    },
+    "BREAKER": {
+      "hold_resolution_days": 14,
+      "block_resolution_days": 28,
+      "persistent_unresolved_modulo": 3,
+      "backlog_failure_threshold": 60,
+      "overdue_failure_days": 1,
+      "starvation_failure_days": 5,
+      "outage_rules": [
+        {
+          "resource_id": "RESP_ADMIN_DAILY",
+          "every_days": 11,
+          "duration_days": 3,
+          "multiplier": 0
+        },
+        {
+          "resource_id": "TEAM_MANAGER_DAILY",
+          "every_days": 13,
+          "duration_days": 2,
+          "multiplier": 0
+        },
+        {
+          "resource_id": "ADMIN_ACCOUNTING_DAILY",
+          "every_days": 17,
+          "duration_days": 2,
+          "multiplier": 0
+        },
+        {
+          "resource_id": "COMMUNICATION_DAILY",
+          "every_days": 7,
+          "duration_days": 1,
+          "multiplier": 0
+        },
+        {
+          "resource_id": "MATCHDAY_ORGANIZER_DAILY",
+          "every_days": 19,
+          "duration_days": 2,
+          "multiplier": 0
+        },
+        {
+          "resource_id": "PARTNERSHIP_MANAGER_DAILY",
+          "every_days": 23,
+          "duration_days": 2,
+          "multiplier": 0
+        },
+        {
+          "resource_id": "TICKETING_DAILY",
+          "every_days": 29,
+          "duration_days": 2,
+          "multiplier": 0
+        },
+        {
+          "resource_id": "FORMATION_COORDINATOR_DAILY",
+          "every_days": 31,
+          "duration_days": 2,
+          "multiplier": 0
+        }
+      ]
+    }
+  }
+}
