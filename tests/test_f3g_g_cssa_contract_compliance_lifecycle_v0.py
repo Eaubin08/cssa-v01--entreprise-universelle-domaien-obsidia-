@@ -79,7 +79,7 @@ def test_active_contract_before_effective_date_blocks():
             "end_date": "2027-10-31",
             "active_version_refs": ["sim:v1"],
             "evidence_refs": ["sim:v1", "sim:signature"],
-            "operational_use_requested": true
+            "operational_use_requested": True
         },
         as_of=date(2026, 10, 7),
     )
@@ -158,12 +158,12 @@ def test_satisfied_compliance_without_verified_evidence_holds():
         {
             "id": "SATISFIED_NO_PROOF",
             "lifecycle_state": "SATISFIED",
-            "applicable": true,
+            "applicable": True,
             "authority_ref": "sim:authority",
             "responsible_role": "RESP_ADMIN",
             "due_date": "2026-10-31",
             "evidence_refs": [],
-            "evidence_verified": false
+            "evidence_verified": False
         },
         as_of=date(2026, 10, 7),
     )
