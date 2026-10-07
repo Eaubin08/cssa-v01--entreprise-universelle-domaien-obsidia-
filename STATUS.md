@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3H_D_CSSA_NATIVE_CRM_TASKS_BRIDGE_PROVEN
-Branch: feat/cssa-native-ops-bridge-v0
+Status: F3H_E_CSSA_REAL_READONLY_INTAKE_ROUTER_PROVEN
+Branch: feat/f3h-e-real-readonly-intake-router-v0
 
 ## Progression
 
@@ -28,6 +28,7 @@ Branch: feat/cssa-native-ops-bridge-v0
 - Universal métier execution-adapter registry: PASS
 - F3H-C universal world-action PRE-execution rail: PASS
 - F3H-D CSSA -> native CRM/TASKS bridge: PASS
+- F3H-E real READONLY intake router: PASS
 - real CSSA internal field evidence: OPEN
 - external action: HOLD
 
@@ -665,3 +666,61 @@ Governance preserved:
 Current verdict:
 
 CSSA_NATIVE_CRM_TASKS_BRIDGE_V0_PROVEN
+
+
+## F3H-E real READONLY intake router
+
+Real Gmail calibration:
+- provider: Gmail
+- source scope: PERSONAL_INBOX
+- 8 CSSA-related real samples
+- 4 matchday information
+- 1 marketing communication
+- 2 ticketing transaction confirmations
+- 1 accounting document
+
+Critical truth boundary:
+- personal inbox != internal CSSA truth
+- 0 canonical CRM/TASK promotions from real personal samples
+- no real action-required CSSA operational message observed
+- no CSSA operational mailbox connected
+
+Routing:
+- matchday / marketing -> READONLY_SHADOW_INTERACTION_ONLY
+- personal transaction / accounting -> PERSONAL_TRANSACTION_INTERACTION_ONLY
+- actionable untrusted source -> READONLY_REVIEW_HOLD
+- trusted operational action -> NATIVE_CASE_TASK_FOLLOWUP_CANDIDATE
+- trusted operational deadline -> NATIVE_CASE_TASK_CALENDAR_CANDIDATE
+- unknown CSSA semantics -> READONLY_REVIEW_HOLD
+- non-CSSA -> IGNORE_NON_CSSA
+
+Operational source protection:
+- CSSA_OPERATIONAL_MAILBOX string alone is not trusted
+- explicit hashed SourceAuthority required
+- human-backed
+- is_execution_authority=false
+- KX108_ONLY
+
+Privacy:
+- raw Gmail id not persisted
+- raw subject not persisted
+- raw body not persisted
+- raw recipient not persisted
+- raw mailbox identity not persisted
+
+Initial proof:
+- run 37611281272
+- 196 passed in 0.74s
+- SUCCESS
+
+Governance preserved:
+- KX108_ONLY
+- Gmail READONLY
+- no Gmail mutation
+- no send
+- no false native task creation
+- no main merge
+
+Current verdict:
+
+CSSA_REAL_READONLY_INTAKE_ROUTER_V0_PROVEN
