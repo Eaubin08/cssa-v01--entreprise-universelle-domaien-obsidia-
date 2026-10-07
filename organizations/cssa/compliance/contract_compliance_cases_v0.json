@@ -1,0 +1,120 @@
+{
+  "version": "CSSA_F3G_G_CONTRACT_COMPLIANCE_CASES_V0",
+  "status": "SIMULATED_NOT_OBSERVED",
+  "as_of": "2026-10-07",
+  "contracts": [
+    {
+      "id": "CONTRACT_VALID_ACTIVE",
+      "lifecycle_state": "ACTIVE",
+      "responsible_role": "MANAGER_GENERAL",
+      "signature_authority_ref": "sim:authority:presidence",
+      "signature_evidence_ref": "sim:signature:contract-valid",
+      "effective_date": "2026-07-01",
+      "end_date": "2027-06-30",
+      "active_version_refs": ["sim:contract:v1"],
+      "evidence_refs": ["sim:contract:v1", "sim:signature:contract-valid"],
+      "operational_use_requested": true
+    },
+    {
+      "id": "CONTRACT_AUTHORITY_UNKNOWN",
+      "lifecycle_state": "ACTIVE",
+      "responsible_role": "MANAGER_GENERAL",
+      "signature_authority_ref": null,
+      "signature_evidence_ref": "sim:signature:authority-unknown",
+      "effective_date": "2026-08-01",
+      "end_date": "2027-07-31",
+      "active_version_refs": ["sim:contract:v1"],
+      "evidence_refs": ["sim:contract:v1"],
+      "operational_use_requested": true
+    },
+    {
+      "id": "CONTRACT_MULTIPLE_ACTIVE_VERSIONS",
+      "lifecycle_state": "ACTIVE",
+      "responsible_role": "MANAGER_GENERAL",
+      "signature_authority_ref": "sim:authority:presidence",
+      "signature_evidence_ref": "sim:signature:multi-version",
+      "effective_date": "2026-09-01",
+      "end_date": "2027-08-31",
+      "active_version_refs": ["sim:contract:v1", "sim:contract:v2"],
+      "evidence_refs": ["sim:contract:v1", "sim:contract:v2"],
+      "operational_use_requested": true
+    },
+    {
+      "id": "CONTRACT_EXPIRED_OPERATION_REQUESTED",
+      "lifecycle_state": "EXPIRED",
+      "responsible_role": "RESP_ADMIN",
+      "signature_authority_ref": "sim:authority:presidence",
+      "signature_evidence_ref": "sim:signature:expired",
+      "effective_date": "2025-07-01",
+      "end_date": "2026-06-30",
+      "active_version_refs": ["sim:contract:expired"],
+      "evidence_refs": ["sim:contract:expired"],
+      "operational_use_requested": true
+    },
+    {
+      "id": "CONTRACT_RENEWAL_WINDOW",
+      "lifecycle_state": "ACTIVE",
+      "responsible_role": "MANAGER_GENERAL",
+      "signature_authority_ref": "sim:authority:presidence",
+      "signature_evidence_ref": "sim:signature:renewal",
+      "effective_date": "2025-11-01",
+      "end_date": "2026-10-20",
+      "renewal_notice_days": 30,
+      "active_version_refs": ["sim:contract:renewal"],
+      "evidence_refs": ["sim:contract:renewal", "sim:signature:renewal"],
+      "operational_use_requested": true
+    }
+  ],
+  "compliance_cases": [
+    {
+      "id": "COMPLIANCE_SATISFIED_VERIFIED",
+      "lifecycle_state": "SATISFIED",
+      "applicable": true,
+      "authority_ref": "sim:authority:lgef",
+      "responsible_role": "RESP_ADMIN",
+      "due_date": "2026-10-10",
+      "evidence_refs": ["sim:evidence:verified-filing"],
+      "evidence_verified": true
+    },
+    {
+      "id": "COMPLIANCE_APPLICABILITY_UNKNOWN",
+      "lifecycle_state": "APPLICABILITY_REVIEW",
+      "applicable": null,
+      "authority_ref": "sim:authority:public-rule",
+      "responsible_role": "RESP_ADMIN",
+      "due_date": "2026-10-31",
+      "evidence_refs": [],
+      "evidence_verified": false
+    },
+    {
+      "id": "COMPLIANCE_MISSED_DEADLINE",
+      "lifecycle_state": "OPEN",
+      "applicable": true,
+      "authority_ref": "sim:authority:lgef",
+      "responsible_role": "RESP_ADMIN",
+      "due_date": "2026-10-01",
+      "evidence_refs": [],
+      "evidence_verified": false
+    },
+    {
+      "id": "COMPLIANCE_CONTESTED_REQUIREMENT",
+      "lifecycle_state": "CONTESTED",
+      "applicable": true,
+      "authority_ref": "sim:authority:institution",
+      "responsible_role": "MANAGER_GENERAL",
+      "due_date": "2026-10-15",
+      "evidence_refs": ["sim:evidence:contested"],
+      "evidence_verified": false
+    },
+    {
+      "id": "COMPLIANCE_DEADLINE_WITHIN_7_DAYS",
+      "lifecycle_state": "EVIDENCE_PENDING",
+      "applicable": true,
+      "authority_ref": "sim:authority:institution",
+      "responsible_role": "RESP_ADMIN",
+      "due_date": "2026-10-12",
+      "evidence_refs": ["sim:evidence:pending"],
+      "evidence_verified": false
+    }
+  ]
+}

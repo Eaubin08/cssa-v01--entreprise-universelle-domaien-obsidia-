@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3G_F_CSSA_ANNOUNCED_MANAGER_ROLE_COVERAGE_CLOSED
-Branch: feat/f3g-f-cssa-announced-role-coverage-v0
+Status: F3G_G_CSSA_CONTRACT_COMPLIANCE_LIFECYCLE_CLOSED
+Branch: feat/f3g-g-cssa-contract-compliance-lifecycle-v0
 
 ## Progression
 
@@ -18,6 +18,7 @@ Branch: feat/f3g-f-cssa-announced-role-coverage-v0
 - F3G-D repeatable public watch/drift: PASS
 - F3G-E controlled semantic promotion and impact propagation: PASS
 - F3G-F announced Manager Général role coverage: PASS
+- F3G-G contract + generic compliance lifecycle: PASS
 - real CSSA internal field evidence: OPEN
 - external action: HOLD
 
@@ -194,17 +195,65 @@ Current verdict:
 
 CSSA_ANNOUNCED_MANAGER_ROLE_COVERAGE_V0_PROVEN
 
+## F3G-G contract + generic compliance lifecycle
+
+Closed F3G-F Administration gaps:
+- CONTRACT_LIFECYCLE_WORKFLOW
+- GENERIC_COMPLIANCE_CASE_WORKFLOW
+
+Contract proof:
+- explicit lifecycle transitions
+- unknown signature authority/scope -> HOLD
+- multiple active versions -> BLOCK
+- ACTIVE before effective date -> BLOCK
+- ACTIVE after end date -> BLOCK
+- expired/terminated operational use -> BLOCK
+- renewal window -> risk without false BLOCK
+
+Compliance proof:
+- applicability unknown -> HOLD
+- authority/source unknown -> HOLD
+- missed mandatory deadline -> BLOCK
+- contested requirement -> BLOCK
+- SATISFIED/CLOSED without auditable proof -> HOLD
+- near deadline -> visible risk without false BLOCK
+
+Proof catalog:
+- 5 contract cases
+- 5 compliance cases
+- 4 ALLOW
+- 2 HOLD
+- 4 BLOCK
+
+Closure proof:
+- run 37569361100
+- 308 passed in 27.21s
+- SUCCESS
+
+Still unknown before field validation:
+- REAL_INTERNAL_CONTRACT_TYPES
+- REAL_SIGNATURE_AUTHORITY_CHAIN
+- REAL_COMPLIANCE_OBLIGATION_CATALOG
+
+Governance preserved:
+- KX108_ONLY
+- external_action=false
+- memory_write=false
+- emits_act=false
+- kernel_mutation=false
+
+Current verdict:
+
+CSSA_CONTRACT_AND_GENERIC_COMPLIANCE_LIFECYCLE_V0_PROVEN
+
 ## Next
 
-Continue the test/closure phase from the explicit gap map before enabling
-operational connectors.
+Continue F3G-F gap closure:
 
-Priority closure targets:
-1. contract lifecycle + generic compliance
-2. FFF / Ville / collectivity relation workflows
-3. root-cause / recurrence-prevention lifecycle
-4. buvette / restauration operating workflow
-5. then open DECISION_EXECUTION as the operational layer:
+1. FFF / Ville / collectivity relation workflows
+2. root-cause / recurrence-prevention lifecycle
+3. buvette / restauration operating workflow
+4. then DECISION_EXECUTION:
    MAIL / CALENDAR / CRM / TASKS + receipts/replay
 
 No merge to main.
