@@ -11,6 +11,7 @@ from .adversarial_sensitivity_v0 import (
     one_at_a_time_resource_sensitivity_v0,
     override_resource_capacities_v0,
     pressure_sensitivity_v0,
+    resource_coverage_audit_v0,
 )
 
 __all__ = [
@@ -26,4 +27,5 @@ __all__ = [
     "one_at_a_time_resource_sensitivity_v0",
     "override_resource_capacities_v0",
     "pressure_sensitivity_v0",
+    "resource_coverage_audit_v0",
 ]
