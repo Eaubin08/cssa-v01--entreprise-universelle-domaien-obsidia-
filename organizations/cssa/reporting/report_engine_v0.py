@@ -279,3 +279,44 @@ def render_markdown_v0(pack: CSSAReportPackV0) -> str:
         ]
     )
     return "\n".join(lines)
+
+
+def render_persona_markdown_v0(
+    pack: CSSAReportPackV0,
+    persona: str,
+    routing: Mapping[str, Any],
+) -> str:
+    cfg = routing["persona_views"].get(persona)
+    if cfg is None:
+        raise ValueError(f"unknown recurring persona view: {persona}")
+
+    items = pack.persona_views.get(persona, ())
+    lines = [
+        f"# CSSA {pack.cadence} — {persona}",
+        "",
+        f"As-of: {pack.as_of}",
+        f"Window: {pack.window_start} -> {pack.window_end}",
+        f"Sections requested: {', '.join(cfg['sections'])}",
+        "External delivery: DISABLED",
+        "",
+        "## Routed priorities",
+        "",
+    ]
+    if items:
+        lines.extend(_format_item(item) for item in items)
+    else:
+        lines.append("- No routed items for this persona and cadence.")
+
+    lines.extend(
+        [
+            "",
+            "## Boundary",
+            "",
+            "- Internal routed view only.",
+            "- Sensitive cases expose metadata only when authorized by routing policy.",
+            "- No email/Slack/CRM send is performed.",
+            "- KX108_ONLY remains the decision authority.",
+            "",
+        ]
+    )
+    return "\n".join(lines)
