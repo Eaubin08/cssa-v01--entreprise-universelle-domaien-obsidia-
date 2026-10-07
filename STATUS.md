@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3G_I_CSSA_ROOT_CAUSE_RECURRENCE_CLOSED
-Branch: feat/f3g-i-cssa-root-cause-recurrence-v0
+Status: F3G_J_CSSA_MATCHDAY_BUVETTE_RESTAURATION_CLOSED
+Branch: feat/f3g-j-cssa-matchday-buvette-restauration-v0
 
 ## Progression
 
@@ -21,6 +21,7 @@ Branch: feat/f3g-i-cssa-root-cause-recurrence-v0
 - F3G-G contract + generic compliance lifecycle: PASS
 - F3G-H institutional relations: PASS
 - F3G-I root-cause + recurrence prevention: PASS
+- F3G-J matchday buvette / restauration: PASS
 - real CSSA internal field evidence: OPEN
 - external action: HOLD
 
@@ -352,13 +353,85 @@ Current verdict:
 
 CSSA_ROOT_CAUSE_AND_RECURRENCE_PREVENTION_V0_PROVEN
 
-## Next
+## F3G-J matchday buvette / restauration
 
-Continue F3G-F gap closure:
+Closed final F3G-F matchday-food gaps:
+- BUVETTE_STOCK_WORKFLOW
+- RESTAURATION_SUPPLIER_WORKFLOW
+- SHIFT_ASSIGNMENT
+- MATCHDAY_CASH_RECONCILIATION
 
-1. matchday buvette / restauration operating workflow
-2. then DECISION_EXECUTION:
-   MAIL / CALENDAR / CRM / TASKS + receipts/replay
-3. then real-field calibration / readonly pilot / governed execution progression
+Proof catalog:
+- 16 simulated cases
+- 6 ALLOW
+- 4 HOLD
+- 6 BLOCK
+
+Proven behavior:
+- sufficient stock -> ALLOW
+- low stock buffer -> risk, no false BLOCK
+- shortage + requested opening -> BLOCK
+- perishable suitability unknown -> HOLD
+- confirmed supplier -> ALLOW
+- cancelled required supplier delivery -> BLOCK
+- unknown supplier status -> HOLD
+- complete shift -> ALLOW
+- understaffed shift -> BLOCK
+- shift assignment authority unknown -> HOLD
+- complete readiness -> ALLOW
+- READY with incomplete checks -> BLOCK
+- venue CLOSED + opening requested -> BLOCK
+- cash within tolerance -> ALLOW + risk
+- cash variance over tolerance -> BLOCK
+- final cash state without reconciliation evidence -> HOLD
+- complete final reconciliation -> deterministic receipt
+
+Initial closure proof:
+- run 37591139747
+- 368 passed in 28.13s
+- SUCCESS
+
+Still unknown before field validation:
+- REAL_BUVETTE_PRODUCT_CATALOG
+- REAL_STOCK_LEVELS_AND_REORDER_RULES
+- REAL_SUPPLIER_CONTRACTS_AND_DELIVERY_WINDOWS
+- REAL_SHIFT_REQUIREMENTS_AND_ASSIGNMENT_AUTHORITY
+- REAL_CASH_RECONCILIATION_POLICY_AND_TOLERANCE
+
+Governance preserved:
+- KX108_ONLY
+- external_action=false
+- memory_write=false
+- emits_act=false
+- kernel_mutation=false
+
+Current verdict:
+
+CSSA_MATCHDAY_BUVETTE_RESTAURATION_V0_PROVEN
+
+## Remaining structural gap
+
+Only the F3G-F `DECISION_EXECUTION` gap remains structurally open.
+
+Next controlled phase:
+
+1. DECISION_EXECUTION contract
+2. MAIL adapter
+3. CALENDAR adapter
+4. CRM adapter
+5. TASKS adapter
+6. action receipt / replay
+7. real-field calibration + readonly pilot
+8. progressive human-approved execution
+
+Authority ramp:
+
+READ
+→ CLASSIFY
+→ DRAFT
+→ PROPOSE ACTION
+→ HUMAN APPROVE
+→ EXECUTE
+→ RECEIPT
 
 No merge to main.
