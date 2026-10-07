@@ -366,6 +366,8 @@ def build_mail_kx108_pre_evidence_v0(
         raise ValueError("MAIL_KX108_PRE_EXECUTION_PLAN_NOT_BOUND")
     if not getattr(runtime_result, "decision_record_id", ""):
         raise ValueError("MAIL_KX108_PRE_DECISION_RECORD_ID_MISSING")
+    if getattr(runtime_result, "decision_phase", None) != "AGENT_PRE_EXECUTION":
+        raise ValueError("MAIL_KX108_PRE_DECISION_PHASE_INVALID")
     if getattr(runtime_result, "decision_authority", None) != DECISION_AUTHORITY:
         raise ValueError("MAIL_KX108_PRE_AUTHORITY_INVALID")
     if getattr(runtime_result, "world_action_allowed", True) is not False:
@@ -404,6 +406,8 @@ def verify_mail_kx108_pre_evidence_v0(
         return False, "MAIL_KX108_PRE_BINDING_HASH_MISMATCH"
     if evidence.get("x108_gate") != "ALLOW":
         return False, "MAIL_KX108_PRE_GATE_NOT_ALLOW"
+    if evidence.get("decision_phase") != "AGENT_PRE_EXECUTION":
+        return False, "MAIL_KX108_PRE_DECISION_PHASE_INVALID"
     if evidence.get("decision_authority") != DECISION_AUTHORITY:
         return False, "MAIL_KX108_PRE_AUTHORITY_INVALID"
     if not evidence.get("decision_record_id") or not evidence.get("decision_record_hash"):
