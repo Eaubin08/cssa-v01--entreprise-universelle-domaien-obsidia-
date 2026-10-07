@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3G_J_CSSA_MATCHDAY_BUVETTE_RESTAURATION_CLOSED
-Branch: feat/f3g-j-cssa-matchday-buvette-restauration-v0
+Status: F3H_A_CSSA_DECISION_EXECUTION_DRY_RUN_PROVEN
+Branch: feat/f3h-a-cssa-decision-execution-contract-v0
 
 ## Progression
 
@@ -22,6 +22,7 @@ Branch: feat/f3g-j-cssa-matchday-buvette-restauration-v0
 - F3G-H institutional relations: PASS
 - F3G-I root-cause + recurrence prevention: PASS
 - F3G-J matchday buvette / restauration: PASS
+- F3H-A decision execution dry-run contract: PASS
 - real CSSA internal field evidence: OPEN
 - external action: HOLD
 
@@ -409,29 +410,87 @@ Current verdict:
 
 CSSA_MATCHDAY_BUVETTE_RESTAURATION_V0_PROVEN
 
+## F3H-A decision execution dry-run contract
+
+The business workflow layer is structurally closed through F3G-J.
+
+F3H-A starts the remaining `DECISION_EXECUTION` gap.
+
+Completed:
+- immutable action proposal contract
+- SHA-256 proposal binding
+- real KX108 portable-runtime gating
+- verified KX108 decision record requirement
+- separate exact HumanApproval binding
+- target pre-state recheck after approval
+- MAIL dry-run adapter
+- CALENDAR dry-run adapter
+- CRM dry-run adapter
+- TASKS dry-run adapter
+- deterministic dry-run receipt
+
+Proven refusals:
+- HumanApproval with KX108 HOLD/BLOCK -> REJECT
+- KX108 ALLOW without HumanApproval -> REJECT
+- tampered approval -> REJECT
+- changed target pre-state after approval -> REJECT
+- unsupported real MAIL SEND operation -> REJECT
+- HOLD/BLOCK -> provider not invoked
+
+Initial proof:
+- run 37592858310
+- 386 passed in 27.59s
+- SUCCESS
+
+Current maximum authority:
+- HUMAN_APPROVED_DRY_RUN
+
+Governance preserved:
+- KX108_ONLY
+- external_action=false
+- world_action_allowed=false
+- connector_invoked=false
+- target_mutated=false
+
+Current verdict:
+
+CSSA_DECISION_EXECUTION_DRY_RUN_CONTRACT_V0_PROVEN
+
 ## Remaining structural gap
 
-Only the F3G-F `DECISION_EXECUTION` gap remains structurally open.
+`DECISION_EXECUTION` is PARTIAL, not closed.
 
-Next controlled phase:
+Still open:
+1. MAIL real connector execution
+2. CALENDAR real connector execution
+3. CRM real connector execution
+4. TASKS real connector execution
+5. PRE_EXECUTION KX108 recheck at world-action boundary
+6. real action receipt / replay
+7. connector failure / partial-effect recovery
+8. real-field calibration + readonly pilot + progressive execution
 
-1. DECISION_EXECUTION contract
-2. MAIL adapter
-3. CALENDAR adapter
-4. CRM adapter
-5. TASKS adapter
-6. action receipt / replay
-7. real-field calibration + readonly pilot
-8. progressive human-approved execution
+Next:
+- F3H-B MAIL governed execution surface
 
-Authority ramp:
+Authority ramp remains:
 
 READ
 → CLASSIFY
 → DRAFT
 → PROPOSE ACTION
 → HUMAN APPROVE
+→ PRE_EXECUTION KX108
 → EXECUTE
 → RECEIPT
+→ REPLAY
 
 No merge to main.
+
+
+## Frozen-head verification
+
+- run 37593051130
+- 386 passed in 27.45s
+- SUCCESS
+- verified after F3H-A architecture/report/receipt/status freeze
