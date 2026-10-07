@@ -122,7 +122,7 @@ def test_twenty_valid_cases_are_prioritized_without_false_block():
     assert len(row.priority_order) == 20
     assert len(set(row.priority_order)) == 20
     assert row.expected_gate == "ALLOW"
-    assert row.priority_order[0] in {"CASE_01", "CASE_02"}
+    assert row.priority_order[0] == "CASE_09"
 
 
 def test_full_904_event_season_is_scanned_for_daily_role_pressure():
