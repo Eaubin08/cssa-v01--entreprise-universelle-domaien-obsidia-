@@ -73,7 +73,7 @@ def test_one_year_dependency_graph_covers_all_330_fixture_roots():
 
     assert len(rows) == 330
     assert audit["fixture_count"] == 330
-    assert audit["dependency_count"] == 218
+    assert audit["dependency_count"] == 478
     assert audit["missing_required"] == []
     assert audit["unruled_case_types"] == []
 
