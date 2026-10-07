@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3G_C_CSSA_PUBLIC_ANCHORED_ENVELOPE_CLOSED
-Branch: `feat/f3g-c-cssa-public-anchored-envelope-v0`
+Status: F3G_D_CSSA_PUBLIC_WATCH_DRIFT_CLOSED
+Branch: feat/f3g-d-cssa-public-watch-drift-v0
 
 ## Progression
 
@@ -15,59 +15,116 @@ Branch: `feat/f3g-c-cssa-public-anchored-envelope-v0`
 - F3G-A adversarial sensitivity: PASS
 - F3G-B public reality shadow: PASS
 - F3G-C public-anchored estimated operating envelope: PASS
+- F3G-D repeatable public watch/drift: PASS
 - real CSSA internal field evidence: OPEN
 - external action: HOLD
 
-## Current usable approximation
+## Current approximation baseline
 
-Three replaceable envelopes:
+Three replaceable F3G-C envelopes remain active:
 
-```text
 LOW_CONSTRAINED
-  2 ALLOW / 5 BLOCK / 5 HOLD
-  9 resource conflicts
-  56 season pressure points
+- 2 ALLOW / 5 BLOCK / 5 HOLD
+- 9 resource conflicts
+- 56 season pressure points
 
 CENTRAL_WORKING
-  2 ALLOW / 5 BLOCK / 5 HOLD
-  5 resource conflicts
-  4 season pressure points
+- 2 ALLOW / 5 BLOCK / 5 HOLD
+- 5 resource conflicts
+- 4 season pressure points
 
 HIGH_CAPACITY
-  4 ALLOW / 3 BLOCK / 5 HOLD
-  1 resource conflict
-  3 season pressure points
-```
+- 4 ALLOW / 3 BLOCK / 5 HOLD
+- 1 resource conflict
+- 3 season pressure points
 
-## Truth boundary
+All capacities remain ESTIMATED.
 
-- public anchors remain PUBLIC_CONFIRMED / SECONDARY_CORROBORATED
-- capacities remain ESTIMATED
-- simulation capacity units are not staff headcount
-- 8 private facts remain UNKNOWN
+## F3G-D public watch
 
-## Replaceability
+Watchlist:
+- 14 explicit HTTPS public sources
+- WEEKLY / BIWEEKLY / MONTHLY cadence
+- GET only
+- 5 MB body ceiling
+- raw SHA-256
+- visible-text SHA-256
 
-15 estimated parameters can later be replaced by real evidence and the same suite rerun.
+Delta states:
+- NEW_BASELINE
+- UNCHANGED
+- RAW_CHANGED_VISIBLE_UNCHANGED
+- VISIBLE_CONTENT_CHANGED_REVIEW_REQUIRED
+- UNREACHABLE
+- RECOVERED
 
-No architectural redesign is required merely because a real count/budget/capacity differs.
+## Semantic safety rule
+
+PAGE CHANGED != SEMANTIC FACT CHANGED.
+
+Visible change creates a PROOF_AUDIT review signal with two unknowns:
+- SEMANTIC_CHANGE_NOT_REVIEWED
+- AFFECTED_STATE_UNKNOWN
+
+That signal HOLDs under current Guard semantics.
+
+No source change is silently promoted into CSSA truth.
+
+## Recurring state
+
+The workflow can:
+- restore prior watch state from GitHub Actions cache
+- GET current due sources
+- compare against previous capture
+- save new watch state
+- generate review artifacts
+- feed due persona reports
+
+Scheduled workflow hook exists.
+
+Because scheduled workflows execute from the default branch and this work remains off-main:
+
+CRON_READY_BUT_DORMANT_OFF_MAIN
 
 ## CI
 
-- run `37562759225`
-- `254 passed in 18.51s`
-- artifact `11456744300`
+Initial F3G-D run:
+- 265 PASS / 1 FAIL
+- missing defaultdict import in structured snapshot drift
+
+Correction applied.
+
+Closure proof:
+- run 37564085921
+- 266 passed in 27.05s
 - SUCCESS
+
+## Governance
+
+Preserved:
+- KX108_ONLY
+- no world action
+- no external delivery
+- no kernel mutation
+- no memory write
+- no emits_act
+- public watch is not internal field evidence
+- estimated envelope remains replaceable
+
+## Current verdict
+
+CSSA_REPEATABLE_PUBLIC_WATCH_AND_DRIFT_V0_PROVEN
 
 ## Next
 
-The technical system can now continue without waiting for internal access.
+F3G-E — controlled semantic promotion and impact propagation.
 
-Next useful work:
-
-1. freeze F3G-C as the current approximation baseline;
-2. make public-shadow refresh repeatable over time;
-3. compare future public observations against this baseline;
-4. when field evidence becomes available, replace only affected parameters and rerun.
+Goal:
+- take a reviewed public change
+- update only the affected public state
+- identify dependent estimated assumptions
+- rerun stress/sensitivity/runtime/reporting
+- show exactly which gates, pressure points and persona reports changed
+- never mutate external CSSA systems
 
 No merge to main.
