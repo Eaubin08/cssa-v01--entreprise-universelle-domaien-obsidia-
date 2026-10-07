@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3H_A_CSSA_DECISION_EXECUTION_DRY_RUN_PROVEN
-Branch: feat/f3h-a-cssa-decision-execution-contract-v0
+Status: F3H_B_CSSA_MAIL_PREFLIGHT_AND_UNIVERSAL_EXECUTION_PROVEN
+Branch: feat/f3h-b-cssa-mail-governed-execution-v0
 
 ## Progression
 
@@ -23,6 +23,9 @@ Branch: feat/f3h-a-cssa-decision-execution-contract-v0
 - F3G-I root-cause + recurrence prevention: PASS
 - F3G-J matchday buvette / restauration: PASS
 - F3H-A decision execution dry-run contract: PASS
+- F3H-B CSSA MAIL governed preflight: PASS
+- Universal decision-execution contract: PASS
+- Universal métier execution-adapter registry: PASS
 - real CSSA internal field evidence: OPEN
 - external action: HOLD
 
@@ -456,41 +459,116 @@ Current verdict:
 
 CSSA_DECISION_EXECUTION_DRY_RUN_CONTRACT_V0_PROVEN
 
-## Remaining structural gap
+## F3H-B CSSA MAIL governed preflight
 
-`DECISION_EXECUTION` is PARTIAL, not closed.
+Completed:
+- exact mail send-plan contract
+- exact mail-specific HumanApproval binding
+- CSSA operational-mailbox authority gate
+- exact Gmail SEND_EMAIL call candidate
+- target pre-state recheck
+- privacy-safe live Gmail pattern calibration
+- provider-result receipt contract
+- receipt-contract replay
+- unknown provider outcome => no automatic retry
 
-Still open:
-1. MAIL real connector execution
-2. CALENDAR real connector execution
-3. CRM real connector execution
-4. TASKS real connector execution
-5. PRE_EXECUTION KX108 recheck at world-action boundary
-6. real action receipt / replay
-7. connector failure / partial-effect recovery
-8. real-field calibration + readonly pilot + progressive execution
+Live calibration classes:
+- CLUB_MATCHDAY_INFORMATION
+- TICKETING_TRANSACTION_CONFIRMATION
+- EVENT_MARKETING_CAMPAIGN
 
-Next:
-- F3H-B MAIL governed execution surface
+Privacy boundary:
+- Gmail message ids not persisted
+- raw message bodies not persisted
+- personal recipient data not persisted
+- connected personal mailbox is not accepted as CSSA sender
 
-Authority ramp remains:
+Canonical upstream truth discovered and preserved:
+- AGENT_PRE_EXECUTION = INTERNAL_BOUNDED_PROVIDER_EXECUTION
+- EXTERNAL_WORLD_ACTUATION_NOT_ACTIVATED
+- REAL_X108_GATED_EXECUTION_PATH_NOT_ACTIVATED
+- WorldActionBus = dry-run only
+- EMAIL_SEND is blocked at world-action boundary
 
-READ
-→ CLASSIFY
-→ DRAFT
-→ PROPOSE ACTION
-→ HUMAN APPROVE
-→ PRE_EXECUTION KX108
-→ EXECUTE
-→ RECEIPT
+Therefore:
+- no fake external PRE authority
+- no Gmail connector invocation
+- no real email send
+- MAIL live send remains BLOCKED
+
+## Universal decision-execution contract
+
+New reusable layer:
+- universal/execution/contract_v0.py
+- universal/execution/domain_adapter_v0.py
+
+Universal execution model:
+
+DOMAIN FACTS
+→ DOMAIN EXECUTION ADAPTER
+→ UNIVERSAL ACTION PROPOSAL
+→ REGISTERED SURFACE / OPERATION
+→ KX108
+→ HUMAN APPROVAL WHEN REQUIRED
+→ TARGET PRE-STATE RECHECK
+→ EXECUTION READINESS
+→ PROVIDER RECEIPT
 → REPLAY
 
-No merge to main.
+Proven with:
+- administration
+- trading
+- ecom
+- gps_defense_aviation
+- logistics
+- finance_ops
+- internal research/local work
 
+Adapter isolation proven:
+- adapter cannot decide
+- adapter cannot act
+- adapter cannot change domain identity
+- adapter cannot escape allowed surfaces
+- unknown surface fails closed
+- unknown operation fails closed
 
-## Frozen-head verification
+CSSA F3H-A compatibility:
+- MAIL maps losslessly
+- CALENDAR maps losslessly
+- CRM maps losslessly
+- TASKS maps losslessly
 
-- run 37593051130
-- 386 passed in 27.45s
+Proof:
+- run 37595017825
+- 437 passed in 27.38s
 - SUCCESS
-- verified after F3H-A architecture/report/receipt/status freeze
+
+Current verdict:
+
+UNIVERSAL_DECISION_EXECUTION_CONTRACT_V0_PROVEN
+
+CSSA_MAIL_GOVERNED_PREFLIGHT_V0_PROVEN_LIVE_SEND_BLOCKED
+
+## Remaining structural gap
+
+`DECISION_EXECUTION` remains PARTIAL.
+
+Generic blocker before any real external connector:
+1. build/activate GENERIC_WORLD_ACTION_PRE_EXECUTION_RAIL
+2. prove REAL_X108_GATED_EXTERNAL_EXECUTION_PATH
+3. prove real external receipt/replay + partial-effect recovery
+
+Then connector surfaces:
+4. MAIL: authorized CSSA mailbox + one human-approved real pilot
+5. CALENDAR governed connector
+6. CRM governed connector
+7. TASKS governed connector
+8. real-field calibration + readonly pilot + progressive execution
+
+Important:
+- do not duplicate the governance rail per métier
+- future domains use UniversalExecutionDomainAdapterRegistryV0
+- domain-specific work is limited to fact translation + allowed surfaces/operations
+- KX108_ONLY remains global
+
+No merge to main.
