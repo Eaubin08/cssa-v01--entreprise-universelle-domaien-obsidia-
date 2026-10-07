@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3F_CSSA_ORGANIZATIONAL_STRESS_CLOSED
-Branch: `feat/f3f-cssa-organizational-stress-v0`
+Status: F3G_A_CSSA_ADVERSARIAL_SENSITIVITY_CLOSED
+Branch: `feat/f3g-a-cssa-adversarial-sensitivity-v0`
 
 ## Universal / runtime
 
@@ -13,170 +13,110 @@ Branch: `feat/f3f-cssa-organizational-stress-v0`
 - F2.4 full canonical runtime: PASS
 - F2.5 first-class aggregate-only resolver: FROZEN OFF MAIN
 
-## CSSA
+## CSSA progression
 
 - F3A public baseline: PASS
 - F3B field intake kit: READY
 - F3C isolated synthetic scenarios: PASS
 - F3D season-scale audit/model: PASS
-- F3E full-season synthetic operating corpus: PASS
+- F3E full-season synthetic corpus: PASS
 - F3E recurring reporting/persona routing: PASS
-- F3F organizational stress / shared-resource pressure: PASS
-- F0-B real CSSA internal field evidence: OPEN
+- F3F organizational stress: PASS
+- F3G-A adversarial sensitivity/calibration prep: PASS
+- real CSSA internal field evidence: OPEN
 - external action: HOLD
 
-## F3F synthetic resource model
+## F3G-A attack surface
 
-Simulated only:
+- 15,120 exhaustive resource profiles
+- 64 exhaustive authority/truth profiles
+- role capacity attacked at 0 / 25% / 50% / 100% / 200% / 400%
+- 5 named operating envelopes
+- invalid/negative/non-finite parameter attacks
+- capacity-induced real Guard gate flip proof
 
-- role/day capacity
-- vehicle-equivalent pool
-- hospitality slot
+## Key result
+
+Resource abundance changes baseline from:
+
+`ALLOW 2 / BLOCK 5 / HOLD 5`
+
+to:
+
+`ALLOW 5 / BLOCK 2 / HOLD 5`
+
+Therefore resource relief cannot fix missing authority or stale/contradictory truth.
+
+## Top calibration target
+
+`DELEGATION_RESOLVED`
+
+Question:
+
+Who substitutes for an absent responsible person, and what is the exact validation/signature scope?
+
+This one fact changes two separate baseline HOLD cases.
+
+## Largest synthetic pressure levers
+
+- RESP_ADMIN_DAILY: pressure range 275
+- TEAM_MANAGER_DAILY: 254
+- ADMIN_ACCOUNTING_DAILY: 146
+
+Gate count must not be used as a proxy for organizational health.
+
+## Capacity-fragile hard-resource cases
+
+- shared vehicle pool
+- hospitality capacity
 - stadium slot
-- monthly travel envelope
-- volunteer pool
 
-No capacity is claimed as real CSSA data.
+## Model coverage gaps discovered
 
-## F3F explicit stress catalog
+Currently defined but not exercised:
 
-12 scenarios:
+- TECHNICAL_DIRECTOR_DAILY
+- VOLUNTEER_MATCHDAY_POOL
 
-- vehicle collision
-- admin absence + urgent LGEF
-- travel budget pressure
-- late fixture change cascade
-- hospitality double commitment
-- FMI backlog
-- stale-source contradiction
-- missing delegation
-- 20 simultaneous valid cases
-- normal multi-case day
-- safety vs partner priority
-- stadium double booking
+Do not claim those capacity layers are validated.
 
-Governance result:
-
-```text
-ALLOW 2
-HOLD  5
-BLOCK 5
-```
-
-## Full-season pressure
-
-The 904-event F3E corpus is scanned against the synthetic daily role-capacity model.
-
-Result:
-
-`4 synthetic capacity-pressure points`
-
-This proves stress emerges from the generated season but does not claim four real CSSA overloads.
-
-## Priority policy
-
-F3F priority ordering is advisory only.
-
-Current V0 ordering:
-
-`SAFETY > REGULATORY > DEADLINE`
-
-First F3F run exposed a wrong test expectation: the engine correctly prioritized the safety-critical case above regulatory cases.
-
-No execution authority is created by priority.
-
-## Reporting cockpit
-
-F3F findings are routed through the existing recurring reporting layer as:
-
-`ORGANIZATIONAL_STRESS`
-
-Generated outputs now include stress findings in:
-
-- weekly operational report;
-- biweekly cross-layer report;
-- monthly governance report;
-- persona-specific views.
-
-Relevant recipients include:
-
-- Direction/Présidence
-- Manager Général
-- Administration
-- Finance
-- Direction Technique
-- Team Manager/Intendance
-- Matchday
-- Ticketing
-- Partnerships
-- Communication
-
-External delivery remains disabled.
-
-## Runtime governance
-
-Representative F3F ALLOW/HOLD/BLOCK assessments cross the real GuardX108.
+## Governance
 
 Preserved:
 
 - KX108_ONLY
-- decision record verified
-- memory_write=false
-- kernel_mutation=false
-- emits_act=false
-- world_action_allowed=false
-- provider only on ALLOW
+- no world action
+- no kernel mutation
+- no memory write
+- no emits_act
+- invalid parameter input fails closed
+- all values remain SIMULATED_NOT_OBSERVED until field/public evidence upgrades them
 
 ## CI
 
-First F3F run:
-- 216 PASS / 1 FAIL
-- failure: test expected regulatory priority before safety
-- correction: safety-first priority made explicit
-
 Closure run:
-- run `37559251006`
-- job `112592547263`
-- `217 passed in 0.97s`
-- stress artifact generated
-- weekly/biweekly/monthly stress-aware reporting artifacts generated
+
+- run `37561671909`
+- `232 passed in 26.60s`
+- artifact `11456987742`
 - SUCCESS
-
-## Current verdict
-
-`CSSA_ORGANIZATIONAL_STRESS_AND_PRIORITY_ROUTING_V0_PROVEN`
-
-What is proven:
-- shared-resource collision detection;
-- impossible double-allocation fail-closed;
-- advisory prioritization;
-- deadline/authority HOLD;
-- stale-state BLOCK;
-- whole-season synthetic capacity scan;
-- stress-to-persona reporting.
-
-Not proven:
-- real CSSA resource capacities;
-- real vehicle fleet;
-- real staff workload limits;
-- real travel budget;
-- real delegation/substitution rules;
-- real internal priority policy.
 
 ## Next
 
-F3G — field calibration.
+F3G-B — PUBLIC REALITY SHADOW MODE.
 
-Replace the highest-impact synthetic assumptions with real evidence, starting with:
+Goal:
 
-1. first-team employing entity;
-2. actual reporting/validation chain;
-3. travel/expense process;
-4. real tools/channels;
-5. substitution/delegation;
-6. transport/shared-resource practice;
-7. real approval boundaries.
+- ingest current public CSSA / competition observations;
+- classify freshness/provenance;
+- compare public reality to synthetic expectations;
+- run READONLY governance;
+- feed weekly/biweekly/monthly persona cockpit;
+- never mutate a club system.
 
-A current first-team staff contact is a high-value source for this phase.
+Also expand shadow coverage for the two F3G-A blind spots:
+
+- Direction Technique
+- volunteer/matchday pool
 
 No merge to main.
