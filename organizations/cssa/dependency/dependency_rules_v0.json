@@ -89,19 +89,25 @@
       "revision_modulo": 5,
       "missing_surface_modulo": 23,
       "wrong_revision_modulo": 31,
-      "propagation_lag_multiplier": 0.5
+      "propagation_lag_multiplier": 0.5,
+      "authority_not_final_modulo": 97,
+      "ahead_revision_modulo": 53
     },
     "HARD": {
       "revision_modulo": 3,
       "missing_surface_modulo": 11,
       "wrong_revision_modulo": 13,
-      "propagation_lag_multiplier": 1.5
+      "propagation_lag_multiplier": 1.5,
+      "authority_not_final_modulo": 29,
+      "ahead_revision_modulo": 17
     },
     "BREAKER": {
       "revision_modulo": 2,
       "missing_surface_modulo": 5,
       "wrong_revision_modulo": 7,
-      "propagation_lag_multiplier": 4
+      "propagation_lag_multiplier": 4,
+      "authority_not_final_modulo": 13,
+      "ahead_revision_modulo": 11
     }
   }
 }
