@@ -467,6 +467,34 @@ def route_readonly_observation_v0(
     )
 
 
+def verify_readonly_route_decision_v0(
+    observation: ReadonlyMessageObservationV0,
+    route: ReadonlyRouteDecisionV0,
+) -> tuple[bool, Optional[str]]:
+    ok, reason = verify_readonly_message_observation_v0(observation)
+    if not ok:
+        return False, reason
+    if route.decision_authority != DECISION_AUTHORITY:
+        return False, "READONLY_ROUTE_AUTHORITY_INVALID"
+    if route.allowed_to_decide or route.allowed_to_act:
+        return False, "READONLY_ROUTE_CANNOT_GRANT_AUTHORITY"
+    expected = route_readonly_observation_v0(observation)
+    if route.to_dict() != expected.to_dict():
+        return False, "READONLY_ROUTE_RECOMPUTE_MISMATCH"
+    payload = _route_payload(route.to_dict())
+    expected_hash = _hash_text(
+        json.dumps(
+            payload,
+            sort_keys=True,
+            ensure_ascii=False,
+            separators=(",", ":"),
+        )
+    )
+    if expected_hash != route.route_hash:
+        return False, "READONLY_ROUTE_HASH_MISMATCH"
+    return True, None
+
+
 def build_native_intake_candidate_from_route_v0(
     *,
     observation: ReadonlyMessageObservationV0,
@@ -482,8 +510,12 @@ def build_native_intake_candidate_from_route_v0(
     evidence_refs: tuple[str, ...],
     tags: tuple[str, ...] = (),
 ) -> CSSANativeIntakePlanV0:
-    if route.observation_hash != observation.observation_hash:
-        raise ValueError("READONLY_ROUTE_OBSERVATION_BINDING_MISMATCH")
+    ok, reason = verify_readonly_route_decision_v0(
+        observation,
+        route,
+    )
+    if not ok:
+        raise ValueError(reason)
     if not route.canonical_native_candidate:
         raise ValueError("READONLY_ROUTE_NOT_NATIVE_CANDIDATE")
     if observation.source_scope != SOURCE_CSSA_OPERATIONAL_MAILBOX:
