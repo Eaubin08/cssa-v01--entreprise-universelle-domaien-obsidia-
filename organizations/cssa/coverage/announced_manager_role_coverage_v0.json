@@ -1,0 +1,355 @@
+{
+  "version": "CSSA_F3G_F_ANNOUNCED_MANAGER_ROLE_COVERAGE_V0",
+  "status": "PUBLIC_ANNOUNCED_ROLE_CONTRACT_READONLY",
+  "as_of": "2026-10-07",
+  "source": {
+    "id": "CSSA_MANAGER_GENERAL_RECRUITMENT_2026",
+    "url": "https://cs-sedan.fr/recrutement-manager-general",
+    "truth_class": "PUBLIC_CONFIRMED",
+    "issuer": "CS_SEDAN_ARDENNES",
+    "scope": "PUBLIC_ROLE_DESCRIPTION_NOT_INTERNAL_FIELD_EVIDENCE"
+  },
+  "coverage_levels": [
+    "STRUCTURALLY_COVERED",
+    "PARTIAL",
+    "OPEN_GAP"
+  ],
+  "global_boundaries": {
+    "real_field_evidence": false,
+    "external_action": false,
+    "decision_authority": "KX108_ONLY",
+    "memory_write": false,
+    "emits_act": false,
+    "kernel_mutation": false
+  },
+  "requirements": [
+    {
+      "id": "ADMINISTRATION_DAILY",
+      "announced_scope": [
+        "licences",
+        "declarations_to_instances",
+        "compliance",
+        "contracts",
+        "case_followup"
+      ],
+      "families": [
+        "ACADEMY_MEMBERSHIP",
+        "COMPETITIONS",
+        "GOVERNANCE_LEGAL",
+        "FINANCE_ACCOUNTING"
+      ],
+      "coverage_level": "PARTIAL",
+      "reason": "Licences, official cases and institutional deadlines are modeled/tested; contract lifecycle and generic compliance closure are not yet end-to-end workflows.",
+      "proof_refs": [
+        "organizations/cssa/public_admin_v0.py",
+        "organizations/cssa/season/operating_map_v0.json",
+        "organizations/cssa/workflows/fmi_public_v0.yaml",
+        "organizations/cssa/workflows/official_correspondence_public_v0.yaml",
+        "tests/test_f3a_cssa_public_admin_domain_v0.py"
+      ],
+      "open_gaps": [
+        "CONTRACT_LIFECYCLE_WORKFLOW",
+        "GENERIC_COMPLIANCE_CASE_WORKFLOW"
+      ],
+      "future_surfaces": [
+        "MAIL",
+        "TASKS"
+      ]
+    },
+    {
+      "id": "INSTITUTIONAL_RELATIONS",
+      "announced_scope": [
+        "LGEF",
+        "District",
+        "FFF",
+        "Ville_de_Sedan",
+        "Collectivites"
+      ],
+      "families": [
+        "COMPETITIONS",
+        "GOVERNANCE_LEGAL",
+        "FACILITIES"
+      ],
+      "coverage_level": "PARTIAL",
+      "reason": "LGEF/District-style official correspondence and competition authority are modeled; FFF/Ville/collectivity relationship workflows are not individually closed.",
+      "proof_refs": [
+        "organizations/cssa/public_admin_v0.py",
+        "organizations/cssa/season/operating_map_v0.json",
+        "organizations/cssa/workflows/official_correspondence_public_v0.yaml",
+        "tests/test_f3a_cssa_public_admin_domain_v0.py"
+      ],
+      "open_gaps": [
+        "FFF_RELATION_WORKFLOW",
+        "VILLE_COLLECTIVITY_RELATION_WORKFLOW"
+      ],
+      "future_surfaces": [
+        "MAIL",
+        "TASKS",
+        "CALENDAR"
+      ]
+    },
+    {
+      "id": "PEOPLE_MANAGEMENT_DELEGATION",
+      "announced_scope": [
+        "employees",
+        "regular_volunteers",
+        "delegation",
+        "roles",
+        "operating_frame",
+        "required_means"
+      ],
+      "families": [
+        "PEOPLE_HR_VOLUNTEERS",
+        "GOVERNANCE_LEGAL"
+      ],
+      "coverage_level": "PARTIAL",
+      "reason": "Role/persona, delegation and absence stress are modeled, but the real CSSA authority/substitution chain remains unknown.",
+      "proof_refs": [
+        "organizations/cssa/season/personas_v0.json",
+        "organizations/cssa/season/fm_management_primitives_v0.json",
+        "organizations/cssa/stress/stress_scenarios_v0.json",
+        "tests/test_f3f_cssa_organizational_stress_v0.py"
+      ],
+      "open_gaps": [
+        "REAL_DELEGATION_CHAIN",
+        "REAL_SUBSTITUTION_CHAIN",
+        "REAL_ROLE_CAPACITY"
+      ],
+      "future_surfaces": [
+        "CRM",
+        "TASKS",
+        "CALENDAR"
+      ]
+    },
+    {
+      "id": "CROSS_POLE_COORDINATION",
+      "announced_scope": [
+        "coordinate_club_poles",
+        "cross_layer_priorities",
+        "blockers",
+        "dependencies"
+      ],
+      "families": [
+        "ORGANIZATIONAL_STRESS",
+        "PROOF_AUDIT"
+      ],
+      "coverage_level": "STRUCTURALLY_COVERED",
+      "reason": "Cross-family routing, persona views, stress prioritization and recurring reports are proven in-repo.",
+      "proof_refs": [
+        "organizations/cssa/reporting/routing_v0.json",
+        "organizations/cssa/reporting/report_engine_v0.py",
+        "organizations/cssa/stress/organizational_stress_v0.py",
+        "tests/test_f3e_cssa_reporting_routing_v0.py",
+        "tests/test_f3f_cssa_organizational_stress_v0.py"
+      ],
+      "open_gaps": [
+        "REAL_INTERNAL_ROUTING_VALIDATION"
+      ],
+      "future_surfaces": [
+        "TASKS",
+        "CALENDAR"
+      ]
+    },
+    {
+      "id": "MATCHDAY_TICKETING",
+      "announced_scope": [
+        "ticketing",
+        "access_rules",
+        "subscriber_match_config"
+      ],
+      "families": [
+        "SUPPORTERS_TICKETING",
+        "MATCHDAY"
+      ],
+      "coverage_level": "STRUCTURALLY_COVERED",
+      "reason": "Ticketing domain objects, persona routing, public subscription rules and stress integration exist; live ticketing mutation remains disabled.",
+      "proof_refs": [
+        "organizations/cssa/season/operating_map_v0.json",
+        "organizations/cssa/reporting/routing_v0.json",
+        "organizations/cssa/shadow/public_snapshot_2026-10-07_v0.json",
+        "tests/test_f3g_b_cssa_public_shadow_v0.py"
+      ],
+      "open_gaps": [
+        "LIVE_TICKETING_CONNECTOR"
+      ],
+      "future_surfaces": [
+        "CRM",
+        "MAIL",
+        "TASKS"
+      ]
+    },
+    {
+      "id": "MATCHDAY_SECURITY",
+      "announced_scope": [
+        "security",
+        "venue_access",
+        "safety_dependencies"
+      ],
+      "families": [
+        "MATCHDAY",
+        "FACILITIES"
+      ],
+      "coverage_level": "STRUCTURALLY_COVERED",
+      "reason": "SecurityPlan, dedicated security persona and safety-first stress priority are proven; real internal checklist is unknown.",
+      "proof_refs": [
+        "organizations/cssa/season/operating_map_v0.json",
+        "organizations/cssa/reporting/routing_v0.json",
+        "organizations/cssa/stress/stress_scenarios_v0.json",
+        "tests/test_f3f_cssa_organizational_stress_v0.py"
+      ],
+      "open_gaps": [
+        "REAL_MATCHDAY_SECURITY_CHECKLIST"
+      ],
+      "future_surfaces": [
+        "CALENDAR",
+        "TASKS"
+      ]
+    },
+    {
+      "id": "MATCHDAY_WELCOME_HOSPITALITY",
+      "announced_scope": [
+        "welcome",
+        "hospitalities",
+        "volunteers",
+        "partner_guests"
+      ],
+      "families": [
+        "MATCHDAY",
+        "PARTNERS_COMMERCIAL",
+        "PEOPLE_HR_VOLUNTEERS"
+      ],
+      "coverage_level": "STRUCTURALLY_COVERED",
+      "reason": "HospitalitySpace, VolunteerAssignment, partner activation, public volunteer program and collision stress are already represented.",
+      "proof_refs": [
+        "organizations/cssa/season/operating_map_v0.json",
+        "organizations/cssa/stress/stress_scenarios_v0.json",
+        "organizations/cssa/shadow/public_snapshot_2026-10-07_v0.json",
+        "tests/test_f3f_cssa_organizational_stress_v0.py",
+        "tests/test_f3g_b_cssa_public_shadow_v0.py"
+      ],
+      "open_gaps": [
+        "REAL_HOSPITALITY_CAPACITY",
+        "REAL_VOLUNTEER_ASSIGNMENT_WORKFLOW"
+      ],
+      "future_surfaces": [
+        "CRM",
+        "CALENDAR",
+        "TASKS",
+        "MAIL"
+      ]
+    },
+    {
+      "id": "MATCHDAY_BUVETTE_RESTAURATION",
+      "announced_scope": [
+        "buvettes",
+        "restauration"
+      ],
+      "families": [
+        "MATCHDAY",
+        "FINANCE_ACCOUNTING"
+      ],
+      "coverage_level": "OPEN_GAP",
+      "reason": "Buvette exists as an operating object but no dedicated ordering/stock/cash/shift/closure workflow is currently proven.",
+      "proof_refs": [
+        "organizations/cssa/season/operating_map_v0.json"
+      ],
+      "open_gaps": [
+        "BUVETTE_STOCK_WORKFLOW",
+        "RESTAURATION_SUPPLIER_WORKFLOW",
+        "MATCHDAY_CASH_RECONCILIATION",
+        "SHIFT_ASSIGNMENT"
+      ],
+      "future_surfaces": [
+        "TASKS",
+        "CRM",
+        "CALENDAR"
+      ]
+    },
+    {
+      "id": "WRITTEN_PROCESS_RESPONSIBILITY",
+      "announced_scope": [
+        "written_processes",
+        "clear_delegation",
+        "identified_responsibilities"
+      ],
+      "families": [
+        "GOVERNANCE_LEGAL",
+        "PROOF_AUDIT"
+      ],
+      "coverage_level": "STRUCTURALLY_COVERED",
+      "reason": "Explicit workflows, responsibility/delegation primitives, persona routing, receipts and fail-closed unknowns already form the core architecture.",
+      "proof_refs": [
+        "organizations/cssa/season/fm_management_primitives_v0.json",
+        "organizations/cssa/reporting/routing_v0.json",
+        "organizations/cssa/workflows/fixture_change_public_v0.yaml",
+        "organizations/cssa/workflows/fmi_public_v0.yaml",
+        "evidence/audits/F3G_E_CSSA_CONTROLLED_SEMANTIC_PROMOTION_RECEIPT.md"
+      ],
+      "open_gaps": [
+        "REAL_RESPONSIBILITY_MATRIX_VALIDATION"
+      ],
+      "future_surfaces": [
+        "TASKS"
+      ]
+    },
+    {
+      "id": "ROOT_CAUSE_DURABILITY",
+      "announced_scope": [
+        "solve_root_causes",
+        "avoid_single_person_dependency",
+        "durable_operation"
+      ],
+      "families": [
+        "PROOF_AUDIT",
+        "ORGANIZATIONAL_STRESS"
+      ],
+      "coverage_level": "PARTIAL",
+      "reason": "Contradictions, unknowns, receipts, replay and recurring stress are modeled; there is not yet a dedicated incident/root-cause closure lifecycle.",
+      "proof_refs": [
+        "organizations/cssa/watch/public_watch_v0.py",
+        "organizations/cssa/promotion/controlled_semantic_promotion_v0.py",
+        "organizations/cssa/stress/organizational_stress_v0.py",
+        "tests/test_f3g_d_cssa_public_watch_drift_v0.py",
+        "tests/test_f3g_e_cssa_controlled_semantic_promotion_v0.py"
+      ],
+      "open_gaps": [
+        "INCIDENT_ROOT_CAUSE_WORKFLOW",
+        "RECURRENCE_PREVENTION_RECEIPT"
+      ],
+      "future_surfaces": [
+        "TASKS"
+      ]
+    },
+    {
+      "id": "DECISION_EXECUTION",
+      "announced_scope": [
+        "ensure_execution_of_direction_decisions",
+        "follow_through_to_completion"
+      ],
+      "families": [
+        "GOVERNANCE_LEGAL",
+        "PROOF_AUDIT"
+      ],
+      "coverage_level": "OPEN_GAP",
+      "reason": "Decision governance and reporting are proven, but real operational execution surfaces are intentionally disabled.",
+      "proof_refs": [
+        "organizations/cssa/reporting/routing_v0.json",
+        "organizations/cssa/public_admin_v0.py",
+        "evidence/audits/F3G_E_CSSA_CONTROLLED_SEMANTIC_PROMOTION_RECEIPT.md"
+      ],
+      "open_gaps": [
+        "MAIL_ACTION_ADAPTER",
+        "CALENDAR_ACTION_ADAPTER",
+        "CRM_ACTION_ADAPTER",
+        "TASK_ACTION_ADAPTER",
+        "ACTION_RECEIPT_AND_REPLAY"
+      ],
+      "future_surfaces": [
+        "MAIL",
+        "CALENDAR",
+        "CRM",
+        "TASKS"
+      ]
+    }
+  ]
+}

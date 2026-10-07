@@ -1,0 +1,123 @@
+{
+  "version": "CSSA_F3G_F_ANNOUNCED_ROLE_STRESS_V0",
+  "status": "SIMULATED_NOT_OBSERVED",
+  "source_contract": "CSSA_F3G_F_ANNOUNCED_MANAGER_ROLE_COVERAGE_V0",
+  "scenarios": [
+    {
+      "id": "F3GF_S01_MATCHDAY_MULTI_SURFACE_COLLISION",
+      "date": "2027-03-20",
+      "title": "Security incident, ticketing pressure and two hospitality commitments collide on matchday",
+      "items": [
+        {
+          "id": "SECURITY_INCIDENT",
+          "family": "MATCHDAY",
+          "deadline_days": 0,
+          "regulatory": false,
+          "safety": true,
+          "resource_demands": [
+            ["MATCHDAY_ORGANIZER_DAILY", 2],
+            ["HOSPITALITY_SPACE", 1]
+          ]
+        },
+        {
+          "id": "TICKETING_PRESSURE",
+          "family": "SUPPORTERS_TICKETING",
+          "deadline_days": 0,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            ["TICKETING_DAILY", 3]
+          ]
+        },
+        {
+          "id": "PARTNER_HOSPITALITY",
+          "family": "PARTNERS_COMMERCIAL",
+          "deadline_days": 0,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            ["HOSPITALITY_SPACE", 1],
+            ["PARTNERSHIP_MANAGER_DAILY", 1]
+          ]
+        }
+      ],
+      "expected_gate": "BLOCK",
+      "expected_priority_first": "SECURITY_INCIDENT"
+    },
+    {
+      "id": "F3GF_S02_MANAGER_ABSENT_REGULATORY_HANDOFF",
+      "date": "2027-02-10",
+      "title": "Regulatory deadline arrives while manager handoff authority is not validated",
+      "forced_unknowns": [
+        "SUBSTITUTE_UNKNOWN",
+        "DELEGATION_SCOPE_UNKNOWN"
+      ],
+      "items": [
+        {
+          "id": "REGULATORY_FILING",
+          "family": "COMPETITIONS",
+          "deadline_days": 0,
+          "regulatory": true,
+          "safety": false,
+          "resource_demands": [
+            ["RESP_ADMIN_DAILY", 1],
+            ["MANAGER_GENERAL_DAILY", 1]
+          ]
+        }
+      ],
+      "expected_gate": "HOLD"
+    },
+    {
+      "id": "F3GF_S03_INSTITUTIONAL_INSTRUCTION_CONFLICT",
+      "date": "2027-04-02",
+      "title": "Two institutional instructions conflict and cannot be silently reconciled",
+      "forced_contradictions": [
+        "OFFICIAL_INSTRUCTION_A_CONFLICTS_WITH_B",
+        "OFFICIAL_INSTRUCTION_B_CONFLICTS_WITH_A"
+      ],
+      "items": [
+        {
+          "id": "INSTITUTIONAL_CASE",
+          "family": "GOVERNANCE_LEGAL",
+          "deadline_days": 1,
+          "regulatory": true,
+          "safety": false,
+          "resource_demands": [
+            ["RESP_ADMIN_DAILY", 1],
+            ["MANAGER_GENERAL_DAILY", 1]
+          ]
+        }
+      ],
+      "expected_gate": "BLOCK"
+    },
+    {
+      "id": "F3GF_S04_COMPLETE_DELEGATED_HANDOFF",
+      "date": "2027-04-15",
+      "title": "Explicit delegated handoff stays inside capacity with no unresolved authority",
+      "items": [
+        {
+          "id": "ADMIN_HANDOFF",
+          "family": "GOVERNANCE_LEGAL",
+          "deadline_days": 2,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            ["RESP_ADMIN_DAILY", 1],
+            ["MANAGER_GENERAL_DAILY", 1]
+          ]
+        },
+        {
+          "id": "MATCHDAY_HANDOFF",
+          "family": "MATCHDAY",
+          "deadline_days": 2,
+          "regulatory": false,
+          "safety": false,
+          "resource_demands": [
+            ["MATCHDAY_ORGANIZER_DAILY", 1]
+          ]
+        }
+      ],
+      "expected_gate": "ALLOW"
+    }
+  ]
+}
