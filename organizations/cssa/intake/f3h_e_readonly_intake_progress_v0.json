@@ -1,0 +1,53 @@
+{
+  "version": "F3H_E_CSSA_REAL_READONLY_INTAKE_ROUTER_V0",
+  "status": "CSSA_REAL_READONLY_INTAKE_ROUTER_PROVEN",
+  "date": "2026-10-07",
+  "real_provider_calibration": {
+    "provider": "GMAIL",
+    "source_scope": "PERSONAL_INBOX",
+    "sample_count": 8,
+    "classes": {
+      "CLUB_MATCHDAY_INFORMATION": 4,
+      "CLUB_MARKETING_COMMUNICATION": 1,
+      "TICKETING_TRANSACTION_CONFIRMATION": 2,
+      "ACCOUNTING_DOCUMENT": 1
+    },
+    "canonical_native_promotions": 0,
+    "real_internal_cssa_evidence": false,
+    "raw_message_ids_persisted": false,
+    "raw_subjects_persisted": false,
+    "raw_bodies_persisted": false,
+    "raw_recipients_persisted": false
+  },
+  "routing_contract": {
+    "personal_matchday_or_marketing": "READONLY_SHADOW_INTERACTION_ONLY",
+    "personal_transaction_or_accounting": "PERSONAL_TRANSACTION_INTERACTION_ONLY",
+    "untrusted_actionable": "READONLY_REVIEW_HOLD",
+    "trusted_operational_action": "NATIVE_CASE_TASK_FOLLOWUP_CANDIDATE",
+    "trusted_operational_deadline": "NATIVE_CASE_TASK_CALENDAR_CANDIDATE",
+    "unknown_cssa": "READONLY_REVIEW_HOLD",
+    "non_cssa": "IGNORE_NON_CSSA"
+  },
+  "source_authority": {
+    "operational_scope_requires_hashed_authority": true,
+    "human_approval_required": true,
+    "raw_mailbox_identity_persisted": false,
+    "is_execution_authority": false,
+    "decision_authority": "KX108_ONLY"
+  },
+  "boundaries": {
+    "gmail_readonly": true,
+    "gmail_mutation": false,
+    "gmail_send": false,
+    "personal_inbox_not_internal_cssa_truth": true,
+    "direct_action_required_real_cssa_mail_observed": false,
+    "operational_cssa_mailbox_connected": false,
+    "synthetic_action_deadline_incident_tests": true,
+    "main_merge": false
+  },
+  "proof": {
+    "run_id": 37611281272,
+    "result": "196 passed in 0.74s",
+    "conclusion": "SUCCESS"
+  }
+}
