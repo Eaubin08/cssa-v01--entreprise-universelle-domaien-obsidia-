@@ -41,3 +41,13 @@ __all__ = [
     "verify_universal_action_proposal_v0",
     "verify_universal_human_approval_v0",
 ]
+
+from .domain_adapter_v0 import (
+    ExecutionDomainAdapterRegistrationV0,
+    UniversalExecutionDomainAdapterRegistryV0,
+)
+
+__all__ += [
+    "ExecutionDomainAdapterRegistrationV0",
+    "UniversalExecutionDomainAdapterRegistryV0",
+]
