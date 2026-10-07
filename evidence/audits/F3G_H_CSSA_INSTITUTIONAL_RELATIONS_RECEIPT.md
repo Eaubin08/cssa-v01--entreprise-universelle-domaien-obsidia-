@@ -82,3 +82,11 @@ Conclusion:
 ## Verdict
 
 `CSSA_INSTITUTIONAL_RELATIONS_V0_PROVEN`
+
+
+## Final frozen-HEAD verification
+
+- run 37570923893
+- 325 passed in 26.94s
+- SUCCESS
+- verified after architecture/report/receipt/status freeze
