@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3G_D_CSSA_PUBLIC_WATCH_DRIFT_CLOSED
-Branch: feat/f3g-d-cssa-public-watch-drift-v0
+Status: F3H_CSSA_ONE_YEAR_FAILURE_CAMPAIGN_CLOSED
+Branch: feat/f3h-cssa-one-year-failure-campaign-v0
 
 ## Progression
 
@@ -15,116 +15,141 @@ Branch: feat/f3g-d-cssa-public-watch-drift-v0
 - F3G-A adversarial sensitivity: PASS
 - F3G-B public reality shadow: PASS
 - F3G-C public-anchored estimated operating envelope: PASS
-- F3G-D repeatable public watch/drift: PASS
+- F3G-D public watch/drift: PASS / auxiliary
+- F3H one-year longitudinal failure campaign: PASS
 - real CSSA internal field evidence: OPEN
 - external action: HOLD
 
-## Current approximation baseline
+## One-year campaign
 
-Three replaceable F3G-C envelopes remain active:
+Horizon:
+2026-08-01 -> 2027-07-31
 
-LOW_CONSTRAINED
-- 2 ALLOW / 5 BLOCK / 5 HOLD
-- 9 resource conflicts
-- 56 season pressure points
+- 365 days
+- 969 annual events
+- full season + off-season + next-season transition
+- 9 complete runs
+- persistent backlog and unresolved state
 
-CENTRAL_WORKING
-- 2 ALLOW / 5 BLOCK / 5 HOLD
-- 5 resource conflicts
-- 4 season pressure points
+Profiles:
+- LOW_CONSTRAINED
+- CENTRAL_WORKING
+- HIGH_CAPACITY
 
-HIGH_CAPACITY
-- 4 ALLOW / 3 BLOCK / 5 HOLD
-- 1 resource conflict
-- 3 season pressure points
+Attacks:
+- NORMAL
+- HARD
+- BREAKER
 
-All capacities remain ESTIMATED.
+## Annual results
 
-## F3G-D public watch
+LOW_CONSTRAINED:
+- NORMAL: 253 failure signals / 30 unresolved / max backlog 57
+- HARD: 285 / 36 / 70
+- BREAKER: 786 / 52 / 89
 
-Watchlist:
-- 14 explicit HTTPS public sources
-- WEEKLY / BIWEEKLY / MONTHLY cadence
-- GET only
-- 5 MB body ceiling
-- raw SHA-256
-- visible-text SHA-256
+CENTRAL_WORKING:
+- NORMAL: 68 / 5 / 22
+- HARD: 107 / 10 / 34
+- BREAKER: 334 / 26 / 44
 
-Delta states:
-- NEW_BASELINE
-- UNCHANGED
-- RAW_CHANGED_VISIBLE_UNCHANGED
-- VISIBLE_CONTENT_CHANGED_REVIEW_REQUIRED
-- UNREACHABLE
-- RECOVERED
+HIGH_CAPACITY:
+- NORMAL: 59 / 5 / 16
+- HARD: 96 / 10 / 23
+- BREAKER: 275 / 26 / 38
 
-## Semantic safety rule
+Best:
+HIGH_CAPACITY/NORMAL
 
-PAGE CHANGED != SEMANTIC FACT CHANGED.
+Worst:
+LOW_CONSTRAINED/BREAKER
 
-Visible change creates a PROOF_AUDIT review signal with two unknowns:
-- SEMANTIC_CHANGE_NOT_REVIEWED
-- AFFECTED_STATE_UNKNOWN
+## Failure inventory across all nine runs
 
-That signal HOLDs under current Guard semantics.
+- DEADLINE_MISS: 1408
+- RESOURCE_STARVATION: 319
+- YEAR_END_UNRESOLVED: 200
+- SHARED_ASSET_COLLISION: 105
+- UNRESOLVED_HOLD_AGING: 78
+- TRAVEL_BUDGET_PRESSURE: 62
+- BACKLOG_SATURATION: 52
+- UNRESOLVED_BLOCK_AGING: 39
 
-No source change is silently promoted into CSSA truth.
+## Main finding
 
-## Recurring state
+The dominant failure surface is deadline/competition propagation.
 
-The workflow can:
-- restore prior watch state from GitHub Actions cache
-- GET current due sources
-- compare against previous capture
-- save new watch state
-- generate review artifacts
-- feed due persona reports
+CENTRAL_WORKING / NORMAL:
+- 57 deadline misses
+- 44 from COMPETITIONS
+- 6 from TRAVEL_LOGISTICS
 
-Scheduled workflow hook exists.
+CENTRAL_WORKING / BREAKER:
+- 249 deadline misses
+- 184 from COMPETITIONS
+- 36 from TRAVEL_LOGISTICS
 
-Because scheduled workflows execute from the default branch and this work remains off-main:
+## Capacity finding
 
-CRON_READY_BUT_DORMANT_OFF_MAIN
+LOW_CONSTRAINED is unstable even in NORMAL:
+- resource starvation
+- shared-asset collisions
+- backlog saturation
+- 30 year-end unresolved cases
 
-## CI
+CENTRAL_WORKING is materially more resilient.
 
-Initial F3G-D run:
-- 265 PASS / 1 FAIL
-- missing defaultdict import in structured snapshot drift
+HIGH_CAPACITY improves NORMAL only from 68 to 59 failure signals relative to CENTRAL_WORKING.
 
-Correction applied.
+Therefore extra capacity has diminishing returns and cannot solve missing authority/evidence.
 
-Closure proof:
-- run 37564085921
-- 266 passed in 27.05s
+## First implementation failure
+
+Initial F3H CI:
+- 274 PASS / 1 FAIL
+- expected natural annual travel-budget pressure did not occur
+
+Correction:
+- budget pressure is now attacked explicitly through HARD/BREAKER travel-envelope shock profiles
+
+Closure:
+- run 37564857973
+- 275 passed in 14.47s
+- artifact 11458422741
 - SUCCESS
 
 ## Governance
 
 Preserved:
 - KX108_ONLY
+- no external action
 - no world action
-- no external delivery
-- no kernel mutation
-- no memory write
-- no emits_act
-- public watch is not internal field evidence
-- estimated envelope remains replaceable
+- estimated capacities remain estimated
+- failure signals remain SIMULATED_NOT_OBSERVED
+- no real CSSA incident claim
 
-## Current verdict
+## Main line
 
-CSSA_REPEATABLE_PUBLIC_WATCH_AND_DRIFT_V0_PROVEN
+F3G-D public watch remains useful but auxiliary.
+
+The main technical line is now the 365-day longitudinal failure campaign.
 
 ## Next
 
-F3G-E — controlled semantic promotion and impact propagation.
+F3I — dependency cascade / propagation hardening.
+
+Target the largest F3H weakness:
+
+fixture/deadline state
+-> transport
+-> FMI
+-> ticketing
+-> matchday
+-> partner commitments
+-> communication
+-> proof
 
 Goal:
-- take a reviewed public change
-- update only the affected public state
-- identify dependent estimated assumptions
-- rerun stress/sensitivity/runtime/reporting
-- show exactly which gates, pressure points and persona reports changed
-- never mutate external CSSA systems
+prove that one late or contradictory upstream state cannot silently leave dependent layers inconsistent.
 
 No merge to main.
