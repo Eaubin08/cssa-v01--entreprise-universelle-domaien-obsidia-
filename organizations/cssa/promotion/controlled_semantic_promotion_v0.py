@@ -182,6 +182,16 @@ def apply_reviewed_anchor_updates_v0(
 
     Profile capacities remain ESTIMATED and immutable through this function.
     """
+    if review.get("status") != REVIEW_STATUS:
+        raise ValueError("REVIEW_PACKET_STATUS_REQUIRED")
+    if review.get("review_decision") != "APPROVED":
+        raise ValueError("REVIEW_NOT_APPROVED")
+    if review.get("truth_class") not in ALLOWED_TRUTH_CLASSES:
+        raise ValueError("INVALID_REVIEW_TRUTH_CLASS")
+    if review.get("unresolved_unknowns"):
+        raise ValueError("REVIEW_HAS_UNRESOLVED_UNKNOWNS")
+    if review.get("unresolved_contradictions"):
+        raise ValueError("REVIEW_HAS_UNRESOLVED_CONTRADICTIONS")
     if review.get("capacity_updates") or review.get("profile_updates"):
         raise ValueError("PUBLIC_REVIEW_CANNOT_MUTATE_ESTIMATED_CAPACITY")
 
