@@ -1,0 +1,179 @@
+{
+  "version": "F3H_E_REAL_READONLY_GMAIL_CALIBRATION_V0",
+  "status": "REAL_PROVIDER_READONLY_OBSERVED_PRIVACY_MINIMIZED",
+  "date": "2026-10-07",
+  "source_scope": "PERSONAL_INBOX",
+  "provider": "GMAIL",
+  "real_internal_cssa_evidence": false,
+  "raw_provider_message_id_persisted": false,
+  "raw_subject_persisted": false,
+  "raw_body_persisted": false,
+  "raw_recipient_persisted": false,
+  "samples": [
+    {
+      "sample_id": "REAL_MATCHDAY_DIRECT_01",
+      "provider_message_id_sha256": "727dec57cb200f8f1f8048ce2a2102f80db67a728e7f3a6b55b5c036eab745d6",
+      "subject_sha256": "5253fab60371edde8decbefe845d34307ee449d217c471790727ca66c66f9f33",
+      "sender_family": "CS_SEDAN_DIRECT",
+      "received_at": "2026-09-30T07:05:14+00:00",
+      "has_attachment": false,
+      "signals": {
+        "cssa_relevant": true,
+        "matchday": true,
+        "marketing": false,
+        "transaction": false,
+        "accounting": false,
+        "incident": false,
+        "deadline": false,
+        "explicit_action_request": false
+      },
+      "classification": "CLUB_MATCHDAY_INFORMATION",
+      "route": "READONLY_SHADOW_INTERACTION_ONLY"
+    },
+    {
+      "sample_id": "REAL_MATCHDAY_DIRECT_02",
+      "provider_message_id_sha256": "8bc119c3e199a5bafca570e25444c62f91d2dcfdfa50228a8e1552adb9358605",
+      "subject_sha256": "70949d2fcd95433de5fa9a62aefd06994a8f64068c6046a8d58ef2289b10613a",
+      "sender_family": "CS_SEDAN_DIRECT",
+      "received_at": "2026-09-24T09:36:04+00:00",
+      "has_attachment": false,
+      "signals": {
+        "cssa_relevant": true,
+        "matchday": true,
+        "marketing": false,
+        "transaction": false,
+        "accounting": false,
+        "incident": false,
+        "deadline": false,
+        "explicit_action_request": false
+      },
+      "classification": "CLUB_MATCHDAY_INFORMATION",
+      "route": "READONLY_SHADOW_INTERACTION_ONLY"
+    },
+    {
+      "sample_id": "REAL_MATCHDAY_DIRECT_03",
+      "provider_message_id_sha256": "31be30edd685028a031d97404e70359f2a1d20e51eed1ed0b234e301cc5abc0c",
+      "subject_sha256": "df747ec89ae769a4881ae286b77484e0643ed9b58c1dabaef5aa0207fbbf36ba",
+      "sender_family": "CS_SEDAN_DIRECT",
+      "received_at": "2026-09-23T15:00:25+00:00",
+      "has_attachment": false,
+      "signals": {
+        "cssa_relevant": true,
+        "matchday": true,
+        "marketing": false,
+        "transaction": false,
+        "accounting": false,
+        "incident": false,
+        "deadline": false,
+        "explicit_action_request": false
+      },
+      "classification": "CLUB_MATCHDAY_INFORMATION",
+      "route": "READONLY_SHADOW_INTERACTION_ONLY"
+    },
+    {
+      "sample_id": "REAL_MATCHDAY_MARKETING_01",
+      "provider_message_id_sha256": "b9a62737d53c5a69419557f166721e4164f409f2f56a17ff8b89dff6ac869a31",
+      "subject_sha256": "94ea1a38a855f9ed30697c1eb0fe6b8ab5fba7e314d2fb5b1ef9dbec248ae439",
+      "sender_family": "CSSA_WEEZTARGET_MARKETING",
+      "received_at": "2026-08-31T10:04:11+00:00",
+      "has_attachment": false,
+      "signals": {
+        "cssa_relevant": true,
+        "matchday": true,
+        "marketing": true,
+        "transaction": false,
+        "accounting": false,
+        "incident": false,
+        "deadline": false,
+        "explicit_action_request": false
+      },
+      "classification": "CLUB_MATCHDAY_INFORMATION",
+      "route": "READONLY_SHADOW_INTERACTION_ONLY"
+    },
+    {
+      "sample_id": "REAL_MERCH_MARKETING_01",
+      "provider_message_id_sha256": "de5adc2e6c3421bf5723ff5a8b1973d65bebef6d7b94dffc9a304b590b1ef951",
+      "subject_sha256": "a103dc673f089d2d9639d00b1686c256d98986010896a09d625bf78ee2060cc4",
+      "sender_family": "CSSA_WEEZTARGET_MARKETING",
+      "received_at": "2026-09-03T10:03:30+00:00",
+      "has_attachment": false,
+      "signals": {
+        "cssa_relevant": true,
+        "matchday": false,
+        "marketing": true,
+        "transaction": false,
+        "accounting": false,
+        "incident": false,
+        "deadline": false,
+        "explicit_action_request": false
+      },
+      "classification": "CLUB_MARKETING_COMMUNICATION",
+      "route": "READONLY_SHADOW_INTERACTION_ONLY"
+    },
+    {
+      "sample_id": "REAL_TICKETING_TRANSACTION_01",
+      "provider_message_id_sha256": "09ddd44d6442855286808306d81922a928a5cb6a58a0bd0e80119bba498a3214",
+      "subject_sha256": "bd01752eb5c0070696f3f061a776fcdd25df6f1ed12bc34ec21b3caab7bcb0ac",
+      "sender_family": "WEEZEVENT_TRANSACTIONAL",
+      "received_at": "2026-08-26T12:54:33+00:00",
+      "has_attachment": true,
+      "signals": {
+        "cssa_relevant": true,
+        "matchday": true,
+        "marketing": false,
+        "transaction": true,
+        "accounting": false,
+        "incident": false,
+        "deadline": false,
+        "explicit_action_request": false
+      },
+      "classification": "TICKETING_TRANSACTION_CONFIRMATION",
+      "route": "PERSONAL_TRANSACTION_INTERACTION_ONLY"
+    },
+    {
+      "sample_id": "REAL_TICKETING_TRANSACTION_02",
+      "provider_message_id_sha256": "00b8b0f02c6817ade90f1d5815125e08c2f573fb26ab806f7b4a981827a94d56",
+      "subject_sha256": "e99bc4246ad996eab700e19e9a23f371ec5bb50fb626a72c4c1327f97ea5ddb7",
+      "sender_family": "WEEZEVENT_TRANSACTIONAL",
+      "received_at": "2026-09-09T17:11:27+00:00",
+      "has_attachment": true,
+      "signals": {
+        "cssa_relevant": true,
+        "matchday": true,
+        "marketing": false,
+        "transaction": true,
+        "accounting": true,
+        "incident": false,
+        "deadline": false,
+        "explicit_action_request": false
+      },
+      "classification": "TICKETING_TRANSACTION_CONFIRMATION",
+      "route": "PERSONAL_TRANSACTION_INTERACTION_ONLY"
+    },
+    {
+      "sample_id": "REAL_ACCOUNTING_DOCUMENT_01",
+      "provider_message_id_sha256": "a3cd79345253ab15fb98f1c65808310709a4b1dfa7d9b513d3675acf18027025",
+      "subject_sha256": "9a39695d41c5e47fa69f21cc1c4484d93fe3758e601cf226be10f2cda7904c82",
+      "sender_family": "WEEZEVENT_TRANSACTIONAL",
+      "received_at": "2026-03-14T15:45:54+00:00",
+      "has_attachment": true,
+      "signals": {
+        "cssa_relevant": true,
+        "matchday": false,
+        "marketing": false,
+        "transaction": false,
+        "accounting": true,
+        "incident": false,
+        "deadline": false,
+        "explicit_action_request": false
+      },
+      "classification": "ACCOUNTING_DOCUMENT",
+      "route": "PERSONAL_TRANSACTION_INTERACTION_ONLY"
+    }
+  ],
+  "search_findings": {
+    "operational_cssa_sender_messages_found": false,
+    "direct_action_required_cssa_messages_found": false,
+    "note": "No observed personal-inbox sample is promoted to internal CSSA truth or native CRM/TASK work."
+  }
+}
