@@ -6,7 +6,9 @@ import pytest
 
 from organizations.cssa.compliance import (
     assess_compliance_catalog_v0,
+    assess_compliance_v0,
     assess_contract_catalog_v0,
+    assess_contract_v0,
     lifecycle_summary_v0,
     validate_contract_transition_v0,
 )
@@ -63,6 +65,30 @@ def test_contract_state_machine_allows_only_explicit_transitions():
         match="INVALID_CONTRACT_TRANSITION:EXPIRED->ACTIVE",
     ):
         validate_contract_transition_v0("EXPIRED", "ACTIVE")
+
+
+def test_active_contract_before_effective_date_blocks():
+    row = assess_contract_v0(
+        {
+            "id": "FUTURE_ACTIVE",
+            "lifecycle_state": "ACTIVE",
+            "responsible_role": "MANAGER_GENERAL",
+            "signature_authority_ref": "sim:authority",
+            "signature_evidence_ref": "sim:signature",
+            "effective_date": "2026-11-01",
+            "end_date": "2027-10-31",
+            "active_version_refs": ["sim:v1"],
+            "evidence_refs": ["sim:v1", "sim:signature"],
+            "operational_use_requested": true
+        },
+        as_of=date(2026, 10, 7),
+    )
+
+    assert {
+        "CONTRACT_ACTIVE_BEFORE_EFFECTIVE_DATE",
+        "ACTIVE_STATE_CONFLICTS_WITH_EFFECTIVE_DATE",
+    } <= set(row.contradictions)
+    assert row.expected_gate == "BLOCK"
 
 
 def test_contract_catalog_produces_expected_fail_closed_gates():
@@ -125,6 +151,28 @@ def test_renewal_window_is_a_risk_signal_not_fake_block():
 
     assert "CONTRACT_RENEWAL_WINDOW_OPEN" in row.risk_flags
     assert row.expected_gate == "ALLOW"
+
+
+def test_satisfied_compliance_without_verified_evidence_holds():
+    row = assess_compliance_v0(
+        {
+            "id": "SATISFIED_NO_PROOF",
+            "lifecycle_state": "SATISFIED",
+            "applicable": true,
+            "authority_ref": "sim:authority",
+            "responsible_role": "RESP_ADMIN",
+            "due_date": "2026-10-31",
+            "evidence_refs": [],
+            "evidence_verified": false
+        },
+        as_of=date(2026, 10, 7),
+    )
+
+    assert {
+        "COMPLIANCE_CLOSURE_EVIDENCE_MISSING",
+        "COMPLIANCE_CLOSURE_NOT_AUDITABLE",
+    } <= set(row.unknowns)
+    assert row.expected_gate == "HOLD"
 
 
 def test_compliance_catalog_produces_expected_fail_closed_gates():
