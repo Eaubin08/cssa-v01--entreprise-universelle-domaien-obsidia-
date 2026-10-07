@@ -108,3 +108,11 @@ READ
 ```
 
 No merge to main.
+
+
+## Frozen-head verification
+
+- run 37593051130
+- 386 passed in 27.45s
+- SUCCESS
+- verified after F3H-A architecture/report/receipt/status freeze
