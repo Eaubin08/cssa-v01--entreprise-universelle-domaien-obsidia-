@@ -1,7 +1,7 @@
 # STATUS
 
-Status: F3G_D_CSSA_PUBLIC_WATCH_DRIFT_CLOSED
-Branch: feat/f3g-d-cssa-public-watch-drift-v0
+Status: F3G_E_CSSA_CONTROLLED_SEMANTIC_PROMOTION_CLOSED
+Branch: feat/f3g-e-cssa-controlled-semantic-promotion-v0
 
 ## Progression
 
@@ -16,6 +16,7 @@ Branch: feat/f3g-d-cssa-public-watch-drift-v0
 - F3G-B public reality shadow: PASS
 - F3G-C public-anchored estimated operating envelope: PASS
 - F3G-D repeatable public watch/drift: PASS
+- F3G-E controlled semantic promotion and impact propagation: PASS
 - real CSSA internal field evidence: OPEN
 - external action: HOLD
 
@@ -115,16 +116,42 @@ Preserved:
 
 CSSA_REPEATABLE_PUBLIC_WATCH_AND_DRIFT_V0_PROVEN
 
+## F3G-E controlled semantic promotion
+
+Proven:
+- public page drift cannot self-promote
+- explicit APPROVED review required
+- exact pre-state / TOCTOU check
+- known public source required
+- unresolved semantic uncertainty fails closed
+- only reviewed state key is promoted
+- explicit public anchor update
+- estimated capacities cannot be mutated by public review
+- stress/sensitivity rerun with exact diff
+- persona reporting rerun with exact affected views
+- simulated review fixture remains NOT_OBSERVED
+
+Closure proof:
+- run 37566908293
+- 279 passed in 27.20s
+- SUCCESS
+
+Governance preserved:
+- KX108_ONLY
+- external_action=false
+- memory_write=false
+- emits_act=false
+- kernel_mutation=false
+
+Current verdict:
+
+CSSA_CONTROLLED_SEMANTIC_PROMOTION_AND_IMPACT_PROPAGATION_V0_PROVEN
+
 ## Next
 
-F3G-E — controlled semantic promotion and impact propagation.
+Next useful barrier:
 
-Goal:
-- take a reviewed public change
-- update only the affected public state
-- identify dependent estimated assumptions
-- rerun stress/sensitivity/runtime/reporting
-- show exactly which gates, pressure points and persona reports changed
-- never mutate external CSSA systems
+Feed one real reviewed CSSA public fact through F3G-D -> F3G-E and measure the
+actual downstream delta without enabling any external action.
 
 No merge to main.
