@@ -1,0 +1,61 @@
+{
+  "version": "F3H_F_CSSA_OPERATIONAL_SOURCE_REGISTRY_V0",
+  "status": "CSSA_OPERATIONAL_SOURCE_REGISTRY_V0_PROVEN",
+  "date": "2026-10-07",
+  "supported_source_kinds": [
+    "MAILBOX",
+    "DOCUMENT_REPOSITORY",
+    "CALENDAR",
+    "FORM_INBOX",
+    "API_READONLY"
+  ],
+  "readonly_capabilities": [
+    "LIST",
+    "SEARCH",
+    "READ_MESSAGE",
+    "READ_THREAD",
+    "READ_ATTACHMENT",
+    "READ_DOCUMENT",
+    "READ_FILE_METADATA",
+    "READ_EVENT",
+    "READ_FORM_RESPONSE",
+    "READ_API_RESOURCE"
+  ],
+  "forbidden_write_semantics": [
+    "WRITE",
+    "SEND",
+    "CREATE",
+    "UPDATE",
+    "DELETE",
+    "TRASH",
+    "ARCHIVE",
+    "MOVE",
+    "REPLY",
+    "FORWARD",
+    "UPLOAD",
+    "MUTATE",
+    "EXECUTE"
+  ],
+  "registry_contract": {
+    "immutable_registration": true,
+    "append_only_revocation": true,
+    "human_approval_required": true,
+    "raw_source_identity_persisted": false,
+    "external_mutation_allowed": false,
+    "is_execution_authority": false,
+    "decision_authority": "KX108_ONLY"
+  },
+  "bridges": {
+    "registered_mailbox_to_f3h_e": true,
+    "revoked_mailbox_to_f3h_e": false,
+    "non_mailbox_cannot_forge_mailbox_authority": true,
+    "provider_neutral_readonly_item": true
+  },
+  "proof": {
+    "run_id": 37613151103,
+    "result": "221 passed in 0.88s",
+    "conclusion": "SUCCESS"
+  },
+  "real_operational_source_connected": false,
+  "main_merge": false
+}
