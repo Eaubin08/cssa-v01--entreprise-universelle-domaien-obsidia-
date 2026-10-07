@@ -1,0 +1,61 @@
+{
+  "version": "CSSA_F3H_A_ACTION_PROPOSAL_SPECS_V0",
+  "status": "SIMULATED_NOT_OBSERVED",
+  "as_of": "2026-10-07",
+  "proposals": [
+    {
+      "proposal_id": "ACT_MAIL_001",
+      "surface": "MAIL",
+      "operation": "DRAFT_REPLY",
+      "target_ref": "sim:mail-thread:001",
+      "payload": {
+        "template": "fixture_change_followup",
+        "language": "fr",
+        "recipient_role": "institutional_contact"
+      },
+      "source_case_refs": ["sim:institutional-case:001"],
+      "evidence_refs": ["sim:evidence:mail-source:001"],
+      "expected_target_state_seed": "mail-thread-state-001"
+    },
+    {
+      "proposal_id": "ACT_CALENDAR_001",
+      "surface": "CALENDAR",
+      "operation": "PROPOSE_UPDATE_EVENT",
+      "target_ref": "sim:calendar-event:001",
+      "payload": {
+        "fixture_ref": "sim:fixture:001",
+        "proposed_start": "2026-10-24T18:30:00+02:00"
+      },
+      "source_case_refs": ["sim:fixture-case:001"],
+      "evidence_refs": ["sim:evidence:homologation:001"],
+      "expected_target_state_seed": "calendar-event-state-001"
+    },
+    {
+      "proposal_id": "ACT_CRM_001",
+      "surface": "CRM",
+      "operation": "PROPOSE_UPDATE_RECORD",
+      "target_ref": "sim:crm-contact:001",
+      "payload": {
+        "field": "contact_status",
+        "value": "confirmed_existing_contact"
+      },
+      "source_case_refs": ["sim:partner-case:001"],
+      "evidence_refs": ["sim:evidence:contact:001"],
+      "expected_target_state_seed": "crm-contact-state-001"
+    },
+    {
+      "proposal_id": "ACT_TASK_001",
+      "surface": "TASKS",
+      "operation": "PROPOSE_CREATE_TASK",
+      "target_ref": "sim:task-board:cssa-admin",
+      "payload": {
+        "title": "Préparer dossier institutionnel",
+        "owner_role": "RESP_ADMIN",
+        "due_date": "2026-10-12"
+      },
+      "source_case_refs": ["sim:compliance-case:001"],
+      "evidence_refs": ["sim:evidence:deadline:001"],
+      "expected_target_state_seed": "task-board-state-001"
+    }
+  ]
+}
