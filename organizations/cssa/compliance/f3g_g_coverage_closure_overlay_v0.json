@@ -1,0 +1,25 @@
+{
+  "version": "CSSA_F3G_G_COVERAGE_CLOSURE_OVERLAY_V0",
+  "status": "READONLY_COVERAGE_CLOSURE",
+  "base_phase": "F3G_F_CSSA_ANNOUNCED_MANAGER_ROLE_COVERAGE",
+  "closed_targets": [
+    {
+      "requirement_id": "ADMINISTRATION_DAILY",
+      "closed_gaps": [
+        "CONTRACT_LIFECYCLE_WORKFLOW",
+        "GENERIC_COMPLIANCE_CASE_WORKFLOW"
+      ],
+      "closure_phase": "F3G_G",
+      "remaining_before_field_validation": [
+        "REAL_INTERNAL_CONTRACT_TYPES",
+        "REAL_SIGNATURE_AUTHORITY_CHAIN",
+        "REAL_COMPLIANCE_OBLIGATION_CATALOG"
+      ]
+    }
+  ],
+  "boundaries": {
+    "real_field_evidence": false,
+    "external_action": false,
+    "decision_authority": "KX108_ONLY"
+  }
+}
